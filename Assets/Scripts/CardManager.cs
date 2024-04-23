@@ -6,10 +6,8 @@ using DarkcupGames;
 
 public class CardManager : MonoBehaviour
 {
-    public const float SPAWN_SPAW_X = -4f;
-    public const float SPAWN_SPAW_Y = 8f;
-
     public static CardManager Instance;
+    public Sprite cardBack;
     public List<Card> cards;
     public Card cardPrefab;
     public Transform cardParent;
@@ -40,6 +38,7 @@ public class CardManager : MonoBehaviour
                 card.SetData(DataManager.Instance.noneHeroCardDatas.RandomElement());
             }
             cards.Add(card);
+            card.ShowSpawnAnimation(GridManager.Instance.grids[i]);
             yield return new WaitForSeconds(0.1f);
         }
     }
@@ -47,8 +46,6 @@ public class CardManager : MonoBehaviour
     private Card SpawnCard(GridPos grid)
     {
         var card = Instantiate(cardPrefab, cardParent);
-        card.transform.position = grid.transform.position + new Vector3(SPAWN_SPAW_X, SPAWN_SPAW_Y);
-        card.transform.DOMove(grid.transform.position, 0.8f).SetEase(Ease.OutCubic);
         card.gridPosition = grid.gridPosition;
         grid.card = card;
         return card;

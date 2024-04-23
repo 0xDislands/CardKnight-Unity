@@ -780,6 +780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b865587022e82645a468ce81c9fa591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardBack: {fileID: 21300000, guid: 2139030ad1804804982dd6ad0b6455ca, type: 3}
   cards: []
   cardPrefab: {fileID: 8772459415456982177, guid: 53bdd9953b81ff84786c03627db52f6f, type: 3}
   cardParent: {fileID: 858699404}
