@@ -2,29 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class Card : MonoBehaviour
 {
-    [SerializeField] private Image imgIcon;
+    public Vector2Int pos;
+    [SerializeField] SpriteRenderer icon;
     [SerializeField] Sprite[] sprites;
+    [SerializeField] TextMeshProUGUI txtDebug;
 
     private void Start()
     {
-        imgIcon.sprite = sprites[Random.Range(0, sprites.Length)];
+        //icon.sprite = sprites[Random.Range(0, sprites.Length)];
+    }
+    private void Update()
+    {
+        
     }
 }
 
-public class GameFlow : MonoBehaviour
+[System.Serializable]
+public struct CardData
 {
-
-}
-
-public class Character : MonoBehaviour
-{
-
-}
-
-public class CardManager : MonoBehaviour
-{
-
+    public Sprite sprite;
+    public int health;
 }

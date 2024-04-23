@@ -8,16 +8,16 @@ public class GridPos : MonoBehaviour
     public const bool TEST_MODE = true;
 
     public Vector2Int pos;
-    public TextMeshPro txtDebug;
+    public TextMeshProUGUI txtDebug;
     public Card card;
 
     private void Awake()
     {
-        txtDebug = GetComponentInChildren<TextMeshPro>();
+        txtDebug = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     private void Update()
     {
-        txtDebug.text = card == null || TEST_MODE == false ? "" : pos.ToString();
+        txtDebug.text = pos.ToString();
     }
 }
