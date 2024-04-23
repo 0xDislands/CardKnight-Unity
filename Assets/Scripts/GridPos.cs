@@ -7,7 +7,7 @@ public class GridPos : MonoBehaviour
 {
     public const bool TEST_MODE = true;
 
-    public Vector2Int pos;
+    public Vector2Int gridPosition;
     public TextMeshProUGUI txtDebug;
     public Card card;
 
@@ -18,6 +18,6 @@ public class GridPos : MonoBehaviour
 
     private void Update()
     {
-        txtDebug.text = pos.ToString();
+        txtDebug.text = gridPosition.ToString();
     }
 }

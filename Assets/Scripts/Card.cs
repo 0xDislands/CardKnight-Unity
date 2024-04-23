@@ -6,24 +6,33 @@ using TMPro;
 
 public class Card : MonoBehaviour
 {
-    public Vector2Int pos;
-    [SerializeField] SpriteRenderer icon;
-    [SerializeField] Sprite[] sprites;
+    public Vector2Int gridPosition;
+    [SerializeField] Image icon;
     [SerializeField] TextMeshProUGUI txtDebug;
-
-    private void Start()
+    private CardData data;
+    public void SetData(CardData cardData)
     {
-        //icon.sprite = sprites[Random.Range(0, sprites.Length)];
-    }
-    private void Update()
-    {
-        
+        this.data = cardData;
+        icon.sprite = cardData.sprite;
     }
 }
 
 [System.Serializable]
 public struct CardData
 {
+    public CardId id;
     public Sprite sprite;
     public int health;
+}
+
+public enum CardId
+{
+    None,
+    Hero,
+    Potion,
+    Enemy,
+    Chest,
+    Gold,
+    Diamond,
+    Random
 }

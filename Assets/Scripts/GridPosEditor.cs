@@ -40,7 +40,7 @@ public class GridPosEditor : MonoBehaviour, IPointerDownHandler
 
     private void Start()
     {
-        xy = gridPos.pos;
+        xy = gridPos.gridPosition;
     }
 
     public void OnPointerDown(PointerEventData eventData)

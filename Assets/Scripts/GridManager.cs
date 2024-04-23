@@ -23,7 +23,7 @@ public class GridManager : MonoBehaviour
         {
             int x = i % WIDTH;
             int y = i / WIDTH;
-            grids[i].pos = new Vector2Int(x, y);
+            grids[i].gridPosition = new Vector2Int(x, y);
         }
     }
 }
