@@ -26,6 +26,14 @@ public class CardManager : MonoBehaviour
         UpdateNeighbourPos();
     }
 
+    private void Update()
+    {
+        for (int i = 0; i < neighbours.Count; i++)
+        {
+            Debug.DrawLine(heroCard.transform.position, GridManager.Instance.dicGrids[neighbours[i]].transform.position, Color.red);
+        }
+    }
+
     public IEnumerator IESpawnAllCard()
     {
         int midIndex = GridManager.Instance.grids.Length / 2;
@@ -79,5 +87,18 @@ public class CardManager : MonoBehaviour
                 neighbours.Add(newPos);
             }
         }
+    }
+
+    public void HandleMove(Card card)
+    {
+        var oldHeroPos = heroCard.gridPosition;
+        var oldGrid = GridManager.Instance.dicGrids[oldHeroPos];
+        var newCard = SpawnCard(oldGrid);
+        newCard.SetData(DataManager.Instance.noneHeroCardDatas.RandomElement());
+        newCard.ShowSpawnAnimation(oldGrid, 0f);
+
+        heroCard.MoveToPos(card.gridPosition);
+        card.Disappear();
+        UpdateNeighbourPos();
     }
 }
