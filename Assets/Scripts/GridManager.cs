@@ -14,16 +14,18 @@ public class GridManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        GenerateGrid();
+        Init();
     }
-    public void GenerateGrid()
+    public void Init()
     {
         grids = GetComponentsInChildren<GridPos>();
+        dicGrids = new Dictionary<Vector2Int, GridPos>();
         for (int i = 0; i < grids.Length; i++)
         {
             int x = i % WIDTH;
             int y = i / WIDTH;
             grids[i].gridPosition = new Vector2Int(x, y);
+            dicGrids.Add(grids[i].gridPosition, grids[i]);
         }
     }
 }

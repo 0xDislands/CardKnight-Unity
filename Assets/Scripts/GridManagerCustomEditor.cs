@@ -17,7 +17,7 @@ public class GridManagerCustomEditor : Editor
         GridManager grid = (GridManager)target;
         if (GUILayout.Button("SET UP GRID", GUILayout.Width(150), GUILayout.Height(50))) 
         {
-            grid.GenerateGrid();
+            grid.Init();
         }
         GUILayout.FlexibleSpace();
         GUILayout.EndHorizontal();

@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using TMPro;
 using DG.Tweening;
+using DarkcupGames;
 
-public class Card : MonoBehaviour
+public class Card : MonoBehaviour, IPointerDownHandler
 {
     public const float SPAWN_SPAW_X = -4f;
     public const float SPAWN_SPAW_Y = 8f;
@@ -23,7 +25,6 @@ public class Card : MonoBehaviour
     }
     public void ShowSpawnAnimation(GridPos grid)
     {
-
         transform.position = grid.transform.position + new Vector3(SPAWN_SPAW_X, SPAWN_SPAW_Y);
         var sequence = DOTween.Sequence();
         sequence.Append(transform.DOMove(grid.transform.position, 0.8f));
@@ -53,6 +54,26 @@ public class Card : MonoBehaviour
             cardBack.gameObject.SetActive(true);
         });
     }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (CardManager.Instance.IsNextToHeroCard(this))
+        {
+            Debug.Log("You click next to hero card!");
+            Bounce();
+        }
+        var hero = GetComponent<Hero>();
+        if (hero != null)
+        {
+            Debug.Log("You click hero card");
+        }
+    }
+
+    public void Bounce()
+    {
+        transform.localScale = Vector3.one;
+        EasyEffect.Bounce(gameObject, 0.1f, strength: 0.1f);
+    }
 }
 
 [System.Serializable]
@@ -73,4 +94,9 @@ public enum CardId
     Gold,
     Diamond,
     Random
+}
+
+public class Hero : MonoBehaviour
+{
+
 }

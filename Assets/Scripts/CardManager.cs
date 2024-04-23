@@ -11,6 +11,8 @@ public class CardManager : MonoBehaviour
     public List<Card> cards;
     public Card cardPrefab;
     public Transform cardParent;
+    public Card heroCard;
+    private List<Vector2Int> neighbours = new List<Vector2Int>();
 
     private void Awake()
     {
@@ -21,6 +23,7 @@ public class CardManager : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         yield return IESpawnAllCard();
+        UpdateNeighbourPos();
     }
 
     public IEnumerator IESpawnAllCard()
@@ -33,6 +36,8 @@ public class CardManager : MonoBehaviour
             if (i == midIndex)
             {
                 card.SetData(DataManager.Instance.dicCardDatas[CardId.Hero]);
+                card.gameObject.AddComponent<Hero>();
+                heroCard = card;
             } else
             {
                 card.SetData(DataManager.Instance.noneHeroCardDatas.RandomElement());
@@ -49,5 +54,30 @@ public class CardManager : MonoBehaviour
         card.gridPosition = grid.gridPosition;
         grid.card = card;
         return card;
+    }
+
+    public bool IsNextToHeroCard(Card card)
+    {
+        return neighbours.Contains(card.gridPosition);
+    }
+
+    public void UpdateNeighbourPos()
+    {
+        List<Vector2Int> positions = new List<Vector2Int>()
+        {
+            new Vector2Int(0,1),
+            new Vector2Int(0,-1),
+            new Vector2Int(1,0),
+            new Vector2Int(-1,0)
+        };
+        neighbours = new List<Vector2Int>();
+        for (int i = 0; i < positions.Count; i++)
+        {
+            Vector2Int newPos = heroCard.gridPosition + positions[i];
+            if (GridManager.Instance.dicGrids.ContainsKey(newPos))
+            {
+                neighbours.Add(newPos);
+            }
+        }
     }
 }
