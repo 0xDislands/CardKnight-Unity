@@ -17,21 +17,36 @@ public class Card : MonoBehaviour, IPointerDownHandler
     public const float SPAWN_DELAY_FLIP = 0.2f;
 
     public Vector2Int pos;
-    [SerializeField] Image icon;
+    //[SerializeField] Image icon;
+    [SerializeField] Transform cardEffectParent;
     [SerializeField] Image cardBack;
     [SerializeField] TextMeshProUGUI txtDebug;
     public CardData data { get; private set; }
     private CanvasGroup canvasGroup;
+    private CardEffect cardEffect;
+    private Dictionary<CardId, CardEffect> dicCardEffects = new Dictionary<CardId, CardEffect>();
+    private List<CardEffect> effects = new List<CardEffect>();
 
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+        InitData();
+    }
+
+    public void InitData()
+    {
+        for (int i = 0; i < cardEffectParent.childCount; i++)
+        {
+            var effect = cardEffectParent.GetChild(i).gameObject.GetComponent<CardEffect>();
+            effects.Add(effect);
+        }
     }
 
     public void SetData(CardData cardData)
     {
         this.data = cardData;
-        icon.sprite = cardData.sprite;
+        //icon.sprite = cardData.sprite;
+        
     }
     public void ShowSpawnAnimation(float delayFlip = SPAWN_DELAY_FLIP)
     {
