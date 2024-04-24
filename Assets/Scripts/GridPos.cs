@@ -19,5 +19,10 @@ public class GridPos : MonoBehaviour
     private void Update()
     {
         txtDebug.text = pos.ToString();
+        if (card == null) return;
+        if (card.pos != pos)
+        {
+            Debug.LogError($"wrong position at {card}, pos = {pos}");
+        }
     }
 }

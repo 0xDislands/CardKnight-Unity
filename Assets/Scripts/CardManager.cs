@@ -102,12 +102,9 @@ public class CardManager : MonoBehaviour
         var moveCard = GetMoveCard(card);
         var spawnNewCardPosition = moveCard.pos;
         moveCard.MoveToPos(heroCard.pos);
-        Debug.Log($"move {moveCard.gameObject.name} movecard to position : " + moveCard.pos);
         heroCard.MoveToPos(card.pos);
         DOTween.Kill(card.transform);
         card.Disappear();
-
-        Debug.Log("spawn new card at position : " + moveCard.pos);
         var newCard = SpawnCard(spawnNewCardPosition);
         newCard.SetData(DataManager.Instance.noneHeroCardDatas.RandomElement());
         newCard.ShowSpawnAnimation(0f);
@@ -117,13 +114,17 @@ public class CardManager : MonoBehaviour
 
     public Card GetMoveCard(Card card)
     {
-        Debug.Log("Find move card!");
+        for (int i = testPositions.Count - 1; i >= 0; i--)
+        {
+            Destroy(testPositions[i].gameObject);
+            testPositions.RemoveAt(i);
+        }
+
         Vector2Int direction = card.pos - heroCard.pos;
         GridPos heroGrid = GridManager.Instance.dicGrids[heroCard.pos];
         Vector2Int straightGrid = heroGrid.pos - direction;
         if (GridManager.Instance.IsInsideGrid(straightGrid))
         {
-            Debug.Log("straight card valid, return straight card");
             return GridManager.Instance.dicGrids[straightGrid].card;
         }
         var positions = GetNeightbourPositions(heroGrid.pos);
@@ -134,24 +135,55 @@ public class CardManager : MonoBehaviour
         ShowDebug(positions);
         if (positions.Count == 1)
         {
-            Debug.Log("position available is 1, return only 1");
-            Debug.Log("return move card: " + positions[0]);
             return GridManager.Instance.dicGrids[positions[0]].card;
         }
-        Debug.Log("return random card");
+        if (card.pos.x == heroCard.pos.x)
+        {
+            //nếu cùng x: đi lên thì dùng ô bên phải, đi xuống thì dùng ô bên trái (trục tọa độ đi xuống)
+            if (card.pos.y < heroCard.pos.y)
+            {
+                for (int i = 0; i < positions.Count; i++)
+                {
+                    if (positions[i].x > heroCard.pos.x) return GridManager.Instance.dicGrids[positions[i]].card;
+                }
+            }
+            //nếu cùng x: đi lên thì dùng ô bên phải, đi xuống thì dùng ô bên trái
+            if (card.pos.y > heroCard.pos.y)
+            {
+                for (int i = 0; i < positions.Count; i++)
+                {
+                    if (positions[i].x < heroCard.pos.x) return GridManager.Instance.dicGrids[positions[i]].card;
+                }
+            }
+        }
+        if (card.pos.y == heroCard.pos.y)
+        {
+            //nếu cùng y: đi phải thì dùng ô bên trên
+            if (card.pos.x > heroCard.pos.x)
+            {
+                for (int i = 0; i < positions.Count; i++)
+                {
+                    if (positions[i].y > heroCard.pos.y) return GridManager.Instance.dicGrids[positions[i]].card;
+                }
+            }
+            //nếu cùng x: đi trái thì dùng ô bên dưới
+            if (card.pos.x < heroCard.pos.x)
+            {
+                for (int i = 0; i < positions.Count; i++)
+                {
+                    if (positions[i].y < heroCard.pos.y) return GridManager.Instance.dicGrids[positions[i]].card;
+                }
+            }
+        }
         return GridManager.Instance.dicGrids[positions.RandomElement()].card;
     }
 
     public void ShowDebug(List<Vector2Int> positions)
     {
-        for (int i = testPositions.Count - 1; i >= 0; i--)
-        {
-            Destroy(testPositions[i].gameObject);
-            testPositions.RemoveAt(i);
-        }
         for (int i = 0; i < positions.Count; i++)
         {
-            var t = Instantiate(test, GridManager.Instance.dicGrids[positions[i]].transform.position, Quaternion.identity);
+            var obj = Instantiate(test, GridManager.Instance.dicGrids[positions[i]].transform.position, Quaternion.identity);
+            testPositions.Add(obj);
         }
     }
 }
