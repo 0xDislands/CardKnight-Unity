@@ -20,7 +20,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
     [SerializeField] Image icon;
     [SerializeField] Image cardBack;
     [SerializeField] TextMeshProUGUI txtDebug;
-    public CardData data;
+    public CardData data { get; private set; }
     private CanvasGroup canvasGroup;
 
     private void Awake()

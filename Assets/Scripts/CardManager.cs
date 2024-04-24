@@ -7,15 +7,22 @@ using DarkcupGames;
 public class CardManager : MonoBehaviour
 {
     public static CardManager Instance;
-    public Sprite cardBack;
-    public List<Card> cards;
-    public Card cardPrefab;
-    public Transform cardParent;
-    public Card heroCard;
+    [SerializeField] private Sprite cardBack;
+    [SerializeField] private Card cardPrefab;
+    [SerializeField] private Transform cardParent;
+    [SerializeField] private Card heroCard;
+    public List<Card> cards { get; private set; }
     private List<Vector2Int> neighbours = new List<Vector2Int>();
-    public GameObject test;
-    public List<GameObject> testPositions = new List<GameObject>();
 
+    [SerializeField] private GameObject test;
+    [SerializeField] private List<GameObject> testPositions = new List<GameObject>();
+    private readonly List<Vector2Int> fourDirections = new List<Vector2Int>()
+    {
+        new Vector2Int(0,1),
+        new Vector2Int(0,-1),
+        new Vector2Int(1,0),
+        new Vector2Int(-1,0)
+    };
     private void Awake()
     {
         Instance = this;
@@ -36,7 +43,7 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    public IEnumerator IESpawnAllCard()
+    private IEnumerator IESpawnAllCard()
     {
         int midIndex = GridManager.Instance.grids.Length / 2;
         cards = new List<Card>();
@@ -78,17 +85,10 @@ public class CardManager : MonoBehaviour
 
     public List<Vector2Int> GetNeightbourPositions(Vector2Int pos)
     {
-        List<Vector2Int> positions = new List<Vector2Int>()
-        {
-            new Vector2Int(0,1),
-            new Vector2Int(0,-1),
-            new Vector2Int(1,0),
-            new Vector2Int(-1,0)
-        };
         var neighbours = new List<Vector2Int>();
-        for (int i = 0; i < positions.Count; i++)
+        for (int i = 0; i < fourDirections.Count; i++)
         {
-            Vector2Int newPos = pos + positions[i];
+            Vector2Int newPos = pos + fourDirections[i];
             if (GridManager.Instance.dicGrids.ContainsKey(newPos))
             {
                 neighbours.Add(newPos);
@@ -108,7 +108,6 @@ public class CardManager : MonoBehaviour
         var newCard = SpawnCard(spawnNewCardPosition);
         newCard.SetData(DataManager.Instance.noneHeroCardDatas.RandomElement());
         newCard.ShowSpawnAnimation(0f);
-
         neighbours = GetNeightbourPositions(heroCard.pos);
     }
 

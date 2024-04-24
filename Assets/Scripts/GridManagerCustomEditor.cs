@@ -22,22 +22,6 @@ public class GridManagerCustomEditor : Editor
         GUILayout.FlexibleSpace();
         GUILayout.EndHorizontal();
     }
-
-    //public void SnapToGridAll(GridManager grid)
-    //{
-    //    grid.Awake();
-    //    BlockCell[] cells = grid.transform.parent.GetComponentsInChildren<BlockCell>();
-    //    for (int i = 0; i < cells.Length; i++)
-    //    {
-    //        cells[i].Awake();
-    //    }
-    //    Block[] blocks = grid.transform.parent.GetComponentsInChildren<Block>();
-    //    for (int i = 0; i < blocks.Length; i++)
-    //    {
-    //        blocks[i].Awake();
-    //        blocks[i].Init();
-    //    }
-    //}
 }
 
 #endif
