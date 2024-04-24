@@ -33,11 +33,12 @@ public class Card : MonoBehaviour, IPointerDownHandler
         this.data = cardData;
         icon.sprite = cardData.sprite;
     }
-    public void ShowSpawnAnimation(GridPos grid, float delayFlip = SPAWN_DELAY_FLIP)
+    public void ShowSpawnAnimation(float delayFlip = SPAWN_DELAY_FLIP)
     {
-        transform.position = grid.transform.position + new Vector3(SPAWN_SPAW_X, SPAWN_SPAW_Y);
+        Vector2 startPos = transform.position;
+        transform.position = transform.position + new Vector3(SPAWN_SPAW_X, SPAWN_SPAW_Y);
         var sequence = DOTween.Sequence();
-        sequence.Append(transform.DOMove(grid.transform.position, 0.8f));
+        sequence.Append(transform.DOMove(startPos, 0.8f));
         sequence.AppendInterval(delayFlip);
         sequence.AppendCallback(() =>
         {
@@ -69,8 +70,6 @@ public class Card : MonoBehaviour, IPointerDownHandler
     {
         if (CardManager.Instance.IsNextToHeroCard(this))
         {
-            //Debug.Log("You click next to hero card!");
-            //Bounce();
             CardManager.Instance.HandleMove(this);
         }
         var hero = GetComponent<Hero>();
@@ -96,7 +95,14 @@ public class Card : MonoBehaviour, IPointerDownHandler
     public void MoveToPos(Vector2Int pos)
     {
         this.pos = pos;
-        transform.DOMove(GridManager.Instance.dicGrids[pos].transform.position, CARD_MOVE_SPEED);
+        GridManager.Instance.dicGrids[pos].card = this;
+        LeanTween.move(transform.gameObject, GridManager.Instance.dicGrids[pos].transform.position, CARD_MOVE_SPEED);
+    }
+
+    private void Update()
+    {
+        txtDebug.text = pos.ToString();
+        Debug.DrawLine(transform.position, GridManager.Instance.dicGrids[pos].transform.position, Color.blue);
     }
 }
 

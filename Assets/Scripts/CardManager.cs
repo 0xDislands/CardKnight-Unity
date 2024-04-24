@@ -13,6 +13,8 @@ public class CardManager : MonoBehaviour
     public Transform cardParent;
     public Card heroCard;
     private List<Vector2Int> neighbours = new List<Vector2Int>();
+    public GameObject test;
+    public List<GameObject> testPositions = new List<GameObject>();
 
     private void Awake()
     {
@@ -40,7 +42,7 @@ public class CardManager : MonoBehaviour
         cards = new List<Card>();
         for (int i = 0; i < GridManager.Instance.grids.Length; i++)
         {
-            var card = SpawnCard(GridManager.Instance.grids[i]);
+            var card = SpawnCard(GridManager.Instance.grids[i].pos);
             if (i == midIndex)
             {
                 card.SetData(DataManager.Instance.dicCardDatas[CardId.Hero]);
@@ -51,16 +53,20 @@ public class CardManager : MonoBehaviour
             {
                 card.SetData(DataManager.Instance.noneHeroCardDatas.RandomElement());
             }
+            card.name = "Card" + i;
             cards.Add(card);
-            card.ShowSpawnAnimation(GridManager.Instance.grids[i]);
+            card.ShowSpawnAnimation();
             yield return new WaitForSeconds(0.1f);
         }
     }
 
-    private Card SpawnCard(GridPos grid)
+    private Card SpawnCard(Vector2Int pos)
     {
+        var grid = GridManager.Instance.dicGrids[pos];
         var card = Instantiate(cardPrefab, cardParent);
         card.pos = grid.pos;
+        card.transform.position = grid.transform.position;
+        card.gameObject.name = "Card #" + Random.Range(100, 200); 
         grid.card = card;
         return card;
     }
@@ -93,28 +99,59 @@ public class CardManager : MonoBehaviour
 
     public void HandleMove(Card card)
     {
+        var moveCard = GetMoveCard(card);
+        var spawnNewCardPosition = moveCard.pos;
+        moveCard.MoveToPos(heroCard.pos);
+        Debug.Log($"move {moveCard.gameObject.name} movecard to position : " + moveCard.pos);
+        heroCard.MoveToPos(card.pos);
+        DOTween.Kill(card.transform);
+        card.Disappear();
+
+        Debug.Log("spawn new card at position : " + moveCard.pos);
+        var newCard = SpawnCard(spawnNewCardPosition);
+        newCard.SetData(DataManager.Instance.noneHeroCardDatas.RandomElement());
+        newCard.ShowSpawnAnimation(0f);
+
+        neighbours = GetNeightbourPositions(heroCard.pos);
+    }
+
+    public Card GetMoveCard(Card card)
+    {
+        Debug.Log("Find move card!");
         Vector2Int direction = card.pos - heroCard.pos;
-
         GridPos heroGrid = GridManager.Instance.dicGrids[heroCard.pos];
-
         Vector2Int straightGrid = heroGrid.pos - direction;
         if (GridManager.Instance.IsInsideGrid(straightGrid))
         {
-            var grid = GridManager.Instance.dicGrids[straightGrid];
-            var cell = grid.card;
-            cell.MoveToPos(heroGrid.pos);
-            var newCard = SpawnCard(grid);
-            newCard.SetData(DataManager.Instance.noneHeroCardDatas.RandomElement());
-            newCard.ShowSpawnAnimation(grid, 0f);
-        } else
-        {
-            var newCard = SpawnCard(heroGrid);
-            newCard.SetData(DataManager.Instance.noneHeroCardDatas.RandomElement());
-            newCard.ShowSpawnAnimation(heroGrid, 0f);
+            Debug.Log("straight card valid, return straight card");
+            return GridManager.Instance.dicGrids[straightGrid].card;
         }
+        var positions = GetNeightbourPositions(heroGrid.pos);
+        for (int i = positions.Count - 1; i >= 0; i--)
+        {
+            if (positions[i] == card.pos) positions.RemoveAt(i);
+        }
+        ShowDebug(positions);
+        if (positions.Count == 1)
+        {
+            Debug.Log("position available is 1, return only 1");
+            Debug.Log("return move card: " + positions[0]);
+            return GridManager.Instance.dicGrids[positions[0]].card;
+        }
+        Debug.Log("return random card");
+        return GridManager.Instance.dicGrids[positions.RandomElement()].card;
+    }
 
-        heroCard.MoveToPos(card.pos);
-        card.Disappear();
-        neighbours = GetNeightbourPositions(heroCard.pos);
+    public void ShowDebug(List<Vector2Int> positions)
+    {
+        for (int i = testPositions.Count - 1; i >= 0; i--)
+        {
+            Destroy(testPositions[i].gameObject);
+            testPositions.RemoveAt(i);
+        }
+        for (int i = 0; i < positions.Count; i++)
+        {
+            var t = Instantiate(test, GridManager.Instance.dicGrids[positions[i]].transform.position, Quaternion.identity);
+        }
     }
 }
