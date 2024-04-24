@@ -23,7 +23,7 @@ public class CardManager : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         yield return IESpawnAllCard();
-        UpdateNeighbourPos();
+        neighbours = GetNeightbourPositions(heroCard.pos);
     }
 
     private void Update()
@@ -46,6 +46,7 @@ public class CardManager : MonoBehaviour
                 card.SetData(DataManager.Instance.dicCardDatas[CardId.Hero]);
                 card.gameObject.AddComponent<Hero>();
                 heroCard = card;
+                heroCard.pos = GridManager.Instance.grids[i].pos;
             } else
             {
                 card.SetData(DataManager.Instance.noneHeroCardDatas.RandomElement());
@@ -59,17 +60,17 @@ public class CardManager : MonoBehaviour
     private Card SpawnCard(GridPos grid)
     {
         var card = Instantiate(cardPrefab, cardParent);
-        card.gridPosition = grid.gridPosition;
+        card.pos = grid.pos;
         grid.card = card;
         return card;
     }
 
     public bool IsNextToHeroCard(Card card)
     {
-        return neighbours.Contains(card.gridPosition);
+        return neighbours.Contains(card.pos);
     }
 
-    public void UpdateNeighbourPos()
+    public List<Vector2Int> GetNeightbourPositions(Vector2Int pos)
     {
         List<Vector2Int> positions = new List<Vector2Int>()
         {
@@ -78,27 +79,42 @@ public class CardManager : MonoBehaviour
             new Vector2Int(1,0),
             new Vector2Int(-1,0)
         };
-        neighbours = new List<Vector2Int>();
+        var neighbours = new List<Vector2Int>();
         for (int i = 0; i < positions.Count; i++)
         {
-            Vector2Int newPos = heroCard.gridPosition + positions[i];
+            Vector2Int newPos = pos + positions[i];
             if (GridManager.Instance.dicGrids.ContainsKey(newPos))
             {
                 neighbours.Add(newPos);
             }
         }
+        return neighbours;
     }
 
     public void HandleMove(Card card)
     {
-        var oldHeroPos = heroCard.gridPosition;
-        var oldGrid = GridManager.Instance.dicGrids[oldHeroPos];
-        var newCard = SpawnCard(oldGrid);
-        newCard.SetData(DataManager.Instance.noneHeroCardDatas.RandomElement());
-        newCard.ShowSpawnAnimation(oldGrid, 0f);
+        Vector2Int direction = card.pos - heroCard.pos;
 
-        heroCard.MoveToPos(card.gridPosition);
+        GridPos heroGrid = GridManager.Instance.dicGrids[heroCard.pos];
+
+        Vector2Int straightGrid = heroGrid.pos - direction;
+        if (GridManager.Instance.IsInsideGrid(straightGrid))
+        {
+            var grid = GridManager.Instance.dicGrids[straightGrid];
+            var cell = grid.card;
+            cell.MoveToPos(heroGrid.pos);
+            var newCard = SpawnCard(grid);
+            newCard.SetData(DataManager.Instance.noneHeroCardDatas.RandomElement());
+            newCard.ShowSpawnAnimation(grid, 0f);
+        } else
+        {
+            var newCard = SpawnCard(heroGrid);
+            newCard.SetData(DataManager.Instance.noneHeroCardDatas.RandomElement());
+            newCard.ShowSpawnAnimation(heroGrid, 0f);
+        }
+
+        heroCard.MoveToPos(card.pos);
         card.Disappear();
-        UpdateNeighbourPos();
+        neighbours = GetNeightbourPositions(heroCard.pos);
     }
 }

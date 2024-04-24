@@ -24,9 +24,14 @@ public class GridManager : MonoBehaviour
         {
             int x = i % WIDTH;
             int y = i / WIDTH;
-            grids[i].gridPosition = new Vector2Int(x, y);
-            dicGrids.Add(grids[i].gridPosition, grids[i]);
+            grids[i].pos = new Vector2Int(x, y);
+            dicGrids.Add(grids[i].pos, grids[i]);
         }
+    }
+
+    public bool IsInsideGrid(Vector2Int pos)
+    {
+        return dicGrids.ContainsKey(pos);
     }
 }
 

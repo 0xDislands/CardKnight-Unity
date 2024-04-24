@@ -16,7 +16,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
     public const float CARD_FADE_SPEED = 0.4f;
     public const float SPAWN_DELAY_FLIP = 0.2f;
 
-    public Vector2Int gridPosition;
+    public Vector2Int pos;
     [SerializeField] Image icon;
     [SerializeField] Image cardBack;
     [SerializeField] TextMeshProUGUI txtDebug;
@@ -95,7 +95,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
     }
     public void MoveToPos(Vector2Int pos)
     {
-        this.gridPosition = pos;
+        this.pos = pos;
         transform.DOMove(GridManager.Instance.dicGrids[pos].transform.position, CARD_MOVE_SPEED);
     }
 }
