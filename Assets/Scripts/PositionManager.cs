@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using DarkcupGames;
 
-public class CardManager : MonoBehaviour
+public class PositionManager : MonoBehaviour
 {
-    public static CardManager Instance;
+    public static PositionManager Instance;
     [SerializeField] private Sprite cardBack;
     [SerializeField] private Card cardPrefab;
     [SerializeField] private Transform cardParent;
     [SerializeField] private Card heroCard;
     public List<Card> cards { get; private set; }
-    private List<Vector2Int> neighbours = new List<Vector2Int>();
+    private List<Vector2Int> heroNeighbours = new List<Vector2Int>();
 
     [SerializeField] private GameObject test;
     [SerializeField] private List<GameObject> testPositions = new List<GameObject>();
@@ -32,14 +32,14 @@ public class CardManager : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         yield return IESpawnAllCard();
-        neighbours = GetNeightbourPositions(heroCard.pos);
+        heroNeighbours = GetNeightbourPositions(heroCard.pos);
     }
 
     private void Update()
     {
-        for (int i = 0; i < neighbours.Count; i++)
+        for (int i = 0; i < heroNeighbours.Count; i++)
         {
-            Debug.DrawLine(heroCard.transform.position, GridManager.Instance.dicGrids[neighbours[i]].transform.position, Color.red);
+            Debug.DrawLine(heroCard.transform.position, GridManager.Instance.dicGrids[heroNeighbours[i]].transform.position, Color.red);
         }
     }
 
@@ -80,7 +80,7 @@ public class CardManager : MonoBehaviour
 
     public bool IsNextToHeroCard(Card card)
     {
-        return neighbours.Contains(card.pos);
+        return heroNeighbours.Contains(card.pos);
     }
 
     public List<Vector2Int> GetNeightbourPositions(Vector2Int pos)
@@ -97,7 +97,7 @@ public class CardManager : MonoBehaviour
         return neighbours;
     }
 
-    public void HandleMove(Card card)
+    public void MoveCardsAfterUse(Card card)
     {
         var moveCard = GetMoveCard(card);
         var spawnNewCardPosition = moveCard.pos;
@@ -108,7 +108,7 @@ public class CardManager : MonoBehaviour
         var newCard = SpawnCard(spawnNewCardPosition);
         newCard.SetData(DataManager.Instance.noneHeroCardDatas.RandomElement());
         newCard.ShowSpawnAnimation(0f);
-        neighbours = GetNeightbourPositions(heroCard.pos);
+        heroNeighbours = GetNeightbourPositions(heroCard.pos);
     }
 
     public Card GetMoveCard(Card card)
@@ -184,5 +184,21 @@ public class CardManager : MonoBehaviour
             var obj = Instantiate(test, GridManager.Instance.dicGrids[positions[i]].transform.position, Quaternion.identity);
             testPositions.Add(obj);
         }
+    }
+}
+
+public class LogicManager : MonoBehaviour
+{
+    public static LogicManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public void UseCard(Card card)
+    {
+        //do something
+        PositionManager.Instance.MoveCardsAfterUse(card);
     }
 }

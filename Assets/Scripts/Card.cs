@@ -35,6 +35,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
     }
     public void ShowSpawnAnimation(float delayFlip = SPAWN_DELAY_FLIP)
     {
+        cardBack.gameObject.SetActive(true);
         Vector2 startPos = transform.position;
         transform.position = transform.position + new Vector3(SPAWN_SPAW_X, SPAWN_SPAW_Y);
         var sequence = DOTween.Sequence();
@@ -68,9 +69,9 @@ public class Card : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (CardManager.Instance.IsNextToHeroCard(this))
+        if (PositionManager.Instance.IsNextToHeroCard(this))
         {
-            CardManager.Instance.HandleMove(this);
+            LogicManager.Instance.UseCard(this);
         }
         var hero = GetComponent<Hero>();
         if (hero != null)
@@ -85,6 +86,10 @@ public class Card : MonoBehaviour, IPointerDownHandler
         canvasGroup.DOFade(0f, CARD_FADE_SPEED).OnComplete(() =>
         {
             gameObject.SetActive(false);
+            if (GridManager.Instance.dicGrids[pos].card == this)
+            {
+                GridManager.Instance.dicGrids[pos].card = null;
+            }
         });
     }
     private void Bounce()
@@ -124,9 +129,4 @@ public enum CardId
     Gold,
     Diamond,
     Random
-}
-
-public class Hero : MonoBehaviour
-{
-
 }

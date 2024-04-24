@@ -781,7 +781,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardBack: {fileID: 21300000, guid: 2139030ad1804804982dd6ad0b6455ca, type: 3}
-  cards: []
   cardPrefab: {fileID: 8772459415456982177, guid: 53bdd9953b81ff84786c03627db52f6f, type: 3}
   cardParent: {fileID: 858699404}
   heroCard: {fileID: 0}
@@ -2183,7 +2182,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WIDTH: 3
-  grids: []
 --- !u!1 &1068351289
 GameObject:
   m_ObjectHideFlags: 0
@@ -2373,10 +2371,10 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: f04262372b54e314ab5a7e6bfe50fc7e, type: 3}
     health: 0
   - id: 5
-    sprite: {fileID: 21300000, guid: 4120d4eacd79bb1489c7bca1aca3bbcc, type: 3}
+    sprite: {fileID: 21300000, guid: 25772542e1303594d962f8ac1d3a9af7, type: 3}
     health: 0
   - id: 6
-    sprite: {fileID: 21300000, guid: fa2c10b11880d6c4e9f20f0f3950c9cb, type: 3}
+    sprite: {fileID: 21300000, guid: 00fa31ddf72f05c43984dc798bfe2654, type: 3}
     health: 0
   - id: 4
     sprite: {fileID: 21300000, guid: bb0f5b6da68b29048bc5485da0360b67, type: 3}

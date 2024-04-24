@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2150959188416721914
 RectTransform:
   m_ObjectHideFlags: 0
@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 985609288983076574}
   - component: {fileID: 5589195984378310525}
   - component: {fileID: 7896884321815311025}
+  - component: {fileID: 9042739554592529190}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -209,6 +210,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &9042739554592529190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2488602744403844898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 968ec2e647951c94fb0783a4b69e7470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3278746199833397526
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,10 +694,6 @@ MonoBehaviour:
   icon: {fileID: 7833356241929002155}
   cardBack: {fileID: 6685940440013630504}
   txtDebug: {fileID: 6288552608234351111}
-  data:
-    id: 0
-    sprite: {fileID: 0}
-    health: 0
 --- !u!225 &2075306533853894767
 CanvasGroup:
   m_ObjectHideFlags: 0
