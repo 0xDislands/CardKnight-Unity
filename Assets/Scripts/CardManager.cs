@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DarkcupGames;
 
-public class PositionManager : MonoBehaviour
+public class CardManager : MonoBehaviour
 {
-    public static PositionManager Instance;
+    public static CardManager Instance;
     [SerializeField] private Sprite cardBack;
     [SerializeField] private Card cardPrefab;
     [SerializeField] private Transform cardParent;
@@ -49,28 +49,40 @@ public class PositionManager : MonoBehaviour
         cards = new List<Card>();
         for (int i = 0; i < GridManager.Instance.grids.Length; i++)
         {
-            var card = SpawnCard(GridManager.Instance.grids[i].pos);
+            Card card;
+            CardId id;
+
             if (i == midIndex)
             {
-                card.SetData(DataManager.Instance.dicCardDatas[CardId.Hero]);
-                card.gameObject.AddComponent<Hero>();
-                heroCard = card;
-                heroCard.pos = GridManager.Instance.grids[i].pos;
+                id = CardId.Hero;
+                //card = SpawnCard(GridManager.Instance.grids[i].pos, CardId.Hero);
+                //card.SetData(DataManager.Instance.dicCardDatas[CardId.Hero]);
+                //card.gameObject.AddComponent<Hero>();
+                //heroCard = card;
+                //heroCard.pos = GridManager.Instance.grids[i].pos;
             } else
             {
-                card.SetData(DataManager.Instance.noneHeroCardDatas.RandomElement());
+                id = DataManager.Instance.noneHeroCardDatas.RandomElement().id;
+                //card.SetData(DataManager.Instance.noneHeroCardDatas.RandomElement());
             }
-            card.name = "Card" + i;
+            card = SpawnCard(GridManager.Instance.grids[i].pos, id);
+            if (i == midIndex)
+            {
+                heroCard = card;
+                card.gameObject.GetComponent<Hero>();
+            }
+            //card.name = "Card" + i;
             cards.Add(card);
             card.ShowSpawnAnimation();
             yield return new WaitForSeconds(0.1f);
         }
     }
 
-    private Card SpawnCard(Vector2Int pos)
+    private Card SpawnCard(Vector2Int pos, CardId id)
     {
+        var data = DataManager.Instance.dicCardDatas[id];
         var grid = GridManager.Instance.dicGrids[pos];
-        var card = Instantiate(cardPrefab, cardParent);
+        var card = Instantiate(data.cardPrefab, cardParent);
         card.pos = grid.pos;
         card.transform.position = grid.transform.position;
         card.gameObject.name = "Card #" + Random.Range(100, 200); 
@@ -105,8 +117,8 @@ public class PositionManager : MonoBehaviour
         heroCard.MoveToPos(card.pos);
         DOTween.Kill(card.transform);
         card.Disappear();
-        var newCard = SpawnCard(spawnNewCardPosition);
-        newCard.SetData(DataManager.Instance.noneHeroCardDatas.RandomElement());
+        var newCard = SpawnCard(spawnNewCardPosition, DataManager.Instance.noneHeroCardDatas.RandomElement().id);
+        //newCard.SetData();
         newCard.ShowSpawnAnimation(0f);
         heroNeighbours = GetNeightbourPositions(heroCard.pos);
     }
@@ -177,6 +189,17 @@ public class PositionManager : MonoBehaviour
         return GridManager.Instance.dicGrids[positions.RandomElement()].card;
     }
 
+    public void UseCard(Card card)
+    {
+        var effect = card.cardEffect;
+        if (effect != null)
+        {
+            effect.ApplyEffect(heroCard.GetComponent<Hero>());
+        }
+        //do something
+        CardManager.Instance.MoveCardsAfterUse(card);
+    }
+
     public void ShowDebug(List<Vector2Int> positions)
     {
         for (int i = 0; i < positions.Count; i++)
@@ -184,21 +207,5 @@ public class PositionManager : MonoBehaviour
             var obj = Instantiate(test, GridManager.Instance.dicGrids[positions[i]].transform.position, Quaternion.identity);
             testPositions.Add(obj);
         }
-    }
-}
-
-public class LogicManager : MonoBehaviour
-{
-    public static LogicManager Instance;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
-
-    public void UseCard(Card card)
-    {
-        //do something
-        PositionManager.Instance.MoveCardsAfterUse(card);
     }
 }

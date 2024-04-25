@@ -3,11 +3,14 @@ using TMPro;
 
 public class TextHp : MonoBehaviour
 {
-    private IHealthReadable health;
     private TextMeshProUGUI txtHp;
 
-    public void UpdateHP()
+    private void Awake()
     {
-
+        txtHp = GetComponent<TextMeshProUGUI>();
+    }
+    public void SetHP(int newHp)
+    {
+        txtHp.text = newHp.ToString();
     }
 }

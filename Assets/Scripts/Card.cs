@@ -17,36 +17,22 @@ public class Card : MonoBehaviour, IPointerDownHandler
     public const float SPAWN_DELAY_FLIP = 0.2f;
 
     public Vector2Int pos;
-    //[SerializeField] Image icon;
-    [SerializeField] Transform cardEffectParent;
     [SerializeField] Image cardBack;
     [SerializeField] TextMeshProUGUI txtDebug;
     public CardData data { get; private set; }
+    public CardEffect cardEffect { get; private set; }
     private CanvasGroup canvasGroup;
-    private CardEffect cardEffect;
-    private Dictionary<CardId, CardEffect> dicCardEffects = new Dictionary<CardId, CardEffect>();
     private List<CardEffect> effects = new List<CardEffect>();
 
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
-        InitData();
-    }
-
-    public void InitData()
-    {
-        for (int i = 0; i < cardEffectParent.childCount; i++)
-        {
-            var effect = cardEffectParent.GetChild(i).gameObject.GetComponent<CardEffect>();
-            effects.Add(effect);
-        }
+        cardEffect = GetComponent<CardEffect>();
     }
 
     public void SetData(CardData cardData)
     {
         this.data = cardData;
-        //icon.sprite = cardData.sprite;
-        
     }
     public void ShowSpawnAnimation(float delayFlip = SPAWN_DELAY_FLIP)
     {
@@ -84,9 +70,9 @@ public class Card : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (PositionManager.Instance.IsNextToHeroCard(this))
+        if (CardManager.Instance.IsNextToHeroCard(this))
         {
-            LogicManager.Instance.UseCard(this);
+            CardManager.Instance.UseCard(this);
         }
         var hero = GetComponent<Hero>();
         if (hero != null)
@@ -132,16 +118,18 @@ public struct CardData
     public CardId id;
     public Sprite sprite;
     public int health;
+    public Card cardPrefab;
 }
 
 public enum CardId
 {
-    None,
     Hero,
-    Potion,
-    Enemy,
-    Chest,
-    Gold,
-    Diamond,
+    ItemHeal,
+    ItemPoison,
+    ItemChest,
+    ItemGold,
+    ItemDiamond,
+    Monster1,
+    Monster2,
     Random
 }

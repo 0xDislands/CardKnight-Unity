@@ -2,7 +2,7 @@
 
 public class Item : CardEffect
 {
-    public override void UseCard(Hero hero)
+    public override void ApplyEffect(Hero hero)
     {
 
     }

@@ -1,18 +1,22 @@
-﻿public class ItemHeal : Item
+﻿using UnityEngine;
+
+public class ItemHeal : Item
 {
     public int healAmount;
-    public override void UseCard(Hero hero)
+    public override void ApplyEffect(Hero hero)
     {
-        hero.heroData.hp += healAmount;
-        var hp = hero.GetComponentInChildren<TextHp>();
-        if (hp) hp.UpdateHP();
+        Debug.Log("use item heal");
+        var data = new DamageData();
+        data.damage = 1;
+        hero.Heal(data);
     }
 }
 
 public class ItemPoison : Item
 {
-    public override void UseCard(Hero hero)
+    public override void ApplyEffect(Hero hero)
     {
+        Debug.Log("use item poison");
         hero.gameObject.AddComponent<PoisonEachTurn>();
     }
 }

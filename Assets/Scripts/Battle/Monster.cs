@@ -1,19 +1,29 @@
 ﻿using UnityEngine;
 
-public class Monster : MonoBehaviour, ICardTurn, IHealthReadable
+public class Monster : CardEffect
 {
     public MonsterData monsterData;
+    private TextHp textHp;
 
-    public int GetHP()
+    private void Awake()
     {
-        return monsterData.hp; 
+        textHp = GetComponentInChildren<TextHp>();
+    }
+    private void Start()
+    {
+        textHp.SetHP(monsterData.hp);
     }
 
-    public void UseCard(Hero hero)
+    public override void ApplyEffect(Hero hero)
     {
         var damage = new DamageData();
         damage.damage = monsterData.hp;
         hero.TakeDamage(damage);
+    }
+
+    public int GetHP()
+    {
+        return monsterData.hp; 
     }
 
     private void OnDisable()

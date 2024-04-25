@@ -2362,23 +2362,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardDatas:
   - id: 0
-    sprite: {fileID: 21300000, guid: dc4e6a97a6c642c47ba2682953b7a5be, type: 3}
-    health: 0
-  - id: 1
     sprite: {fileID: 21300000, guid: 881369a2f00d1fc41a29e698be69f6c7, type: 3}
     health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: 53bdd9953b81ff84786c03627db52f6f, type: 3}
+  - id: 1
+    sprite: {fileID: 21300000, guid: dc4e6a97a6c642c47ba2682953b7a5be, type: 3}
+    health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: 34c4d206d3dcd594a935f055c185177c, type: 3}
   - id: 2
     sprite: {fileID: 21300000, guid: f04262372b54e314ab5a7e6bfe50fc7e, type: 3}
     health: 0
-  - id: 5
+    cardPrefab: {fileID: 8772459415456982177, guid: 6ee9bcd5429c16e438a4a13da4028a30, type: 3}
+  - id: 6
     sprite: {fileID: 21300000, guid: 25772542e1303594d962f8ac1d3a9af7, type: 3}
     health: 0
-  - id: 6
+    cardPrefab: {fileID: 8772459415456982177, guid: 2f94a8eb1f37b4e4db02163e07543b52, type: 3}
+  - id: 7
     sprite: {fileID: 21300000, guid: 00fa31ddf72f05c43984dc798bfe2654, type: 3}
     health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: 5cb4f37809419dd4381c8cf38d6d1475, type: 3}
   - id: 4
     sprite: {fileID: 21300000, guid: bb0f5b6da68b29048bc5485da0360b67, type: 3}
     health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: 34c4d206d3dcd594a935f055c185177c, type: 3}
   noneHeroCardDatas: []
 --- !u!1 &1105218983
 GameObject:
