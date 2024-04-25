@@ -11,19 +11,29 @@ public class Monster : CardEffect
     }
     private void Start()
     {
-        textHp.SetHP(monsterData.baseHp);
+        UpdateMaxHp();
+        monsterData.currentHp = monsterData.maxHp;
+        textHp.SetHP((int)monsterData.currentHp);
     }
 
     public override void ApplyEffect(Hero hero)
     {
         var damage = new DamageData();
-        damage.damage = monsterData.baseHp;
+        damage.damage = monsterData.currentHp;
         hero.TakeDamage(damage);
     }
 
-    public int GetHP()
+    public void UpdateMaxHp()
     {
-        return monsterData.baseHp; 
+        var heroData = CardManager.Instance.hero.heroData;
+        monsterData.maxHp = (int)(heroData.level * monsterData.baseHp);
+    }
+
+    public void UpdateHpWhenPlayerLevelUp()
+    {
+        int hpLost = monsterData.maxHp - monsterData.currentHp;
+        UpdateMaxHp();
+        monsterData.currentHp = monsterData.maxHp - hpLost;
     }
 
     private void OnDisable()

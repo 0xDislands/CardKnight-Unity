@@ -2,7 +2,8 @@
 public class MonsterData
 {
     public int damage;
-    public int baseHp;
+    public float baseHp;
     public int currentHp;
+    public int maxHp;
     public int amor;
 }

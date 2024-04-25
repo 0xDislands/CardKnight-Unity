@@ -7,6 +7,7 @@ public class HeroData
     public int hp;
     public int startHp;
     public int dame;
+    public int level = 1;
 }
 
 [System.Serializable]

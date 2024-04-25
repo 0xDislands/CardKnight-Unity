@@ -11,6 +11,7 @@ public class CardManager : MonoBehaviour
     [SerializeField] private Card cardPrefab;
     [SerializeField] private Transform cardParent;
     [SerializeField] private Card heroCard;
+    public Hero hero;
     public List<Card> cards { get; private set; }
     private List<Vector2Int> heroNeighbours = new List<Vector2Int>();
 
@@ -63,7 +64,7 @@ public class CardManager : MonoBehaviour
             if (i == midIndex)
             {
                 heroCard = card;
-                card.gameObject.GetComponent<Hero>();
+                hero = card.GetComponent<Hero>();
             }
             card.name = "Card" + i;
             cards.Add(card);
@@ -134,11 +135,6 @@ public class CardManager : MonoBehaviour
         var newCard = SpawnCard(spawnNewCardPosition, DataManager.Instance.noneHeroCardDatas.RandomElement().id);
         newCard.ShowSpawnAnimation(0f);
         heroNeighbours = GetNeightbourPositions(heroCard.Pos);
-    }
-
-    public void MoveCornerCard()
-    {
-
     }
 
     public Card GetMoveCard(Card card)
@@ -225,5 +221,17 @@ public class CardManager : MonoBehaviour
             var obj = Instantiate(test, GridManager.Instance.dicGrids[positions[i]].transform.position, Quaternion.identity);
             testPositions.Add(obj);
         }
+    }
+}
+
+public class HeroManager : MonoBehaviour
+{
+    public static HeroManager Instance;
+    public Hero hero;
+    public Card heroCard;
+
+    private void Awake()
+    {
+        
     }
 }

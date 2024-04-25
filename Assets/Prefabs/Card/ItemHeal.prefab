@@ -691,7 +691,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35299052811fad42be197cbee05d81c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pos: {x: 0, y: 0}
   cardBack: {fileID: 6685940440013630504}
   txtDebug: {fileID: 6288552608234351111}
 --- !u!225 &2075306533853894767
@@ -719,3 +718,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healAmount: 0
+  healEffect: {fileID: 7038163563228748556, guid: 84b59cb51d187794ba75e4aa2485faab, type: 3}
