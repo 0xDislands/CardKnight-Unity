@@ -610,7 +610,7 @@ GameObject:
   - component: {fileID: 1535598705384351556}
   - component: {fileID: 8772459415456982177}
   - component: {fileID: 2075306533853894767}
-  - component: {fileID: 6129174420420884680}
+  - component: {fileID: -7482106683223889924}
   m_Layer: 5
   m_Name: ItemPoison
   m_TagString: Untagged
@@ -691,7 +691,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35299052811fad42be197cbee05d81c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pos: {x: 0, y: 0}
   cardBack: {fileID: 6685940440013630504}
   txtDebug: {fileID: 6288552608234351111}
 --- !u!225 &2075306533853894767
@@ -706,7 +705,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &6129174420420884680
+--- !u!114 &-7482106683223889924
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -715,7 +714,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8451986556342849492}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca1d07b44c5ed9347a4368d02af26f0a, type: 3}
+  m_Script: {fileID: 11500000, guid: f8ab5bc51b41793428448ffaddc62d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healAmount: 0
+  poisonEffect: {fileID: 5493489937177344302, guid: 28ff1515b135c1c43bd691a8a644c985, type: 3}

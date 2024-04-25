@@ -26,7 +26,7 @@ public class Monster : CardEffect
     public void UpdateMaxHp()
     {
         var heroData = CardManager.Instance.hero.heroData;
-        monsterData.maxHp = (int)(heroData.level * monsterData.baseHp);
+        monsterData.maxHp = (int)((heroData.level + 1) * monsterData.baseHp * monsterData.multiple);
     }
 
     public void UpdateHpWhenPlayerLevelUp()

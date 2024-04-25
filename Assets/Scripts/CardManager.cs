@@ -6,6 +6,8 @@ using DarkcupGames;
 
 public class CardManager : MonoBehaviour
 {
+    public const bool SHOW_DEBUG = false;
+
     public static CardManager Instance;
     [SerializeField] private Sprite cardBack;
     [SerializeField] private Card cardPrefab;
@@ -64,7 +66,6 @@ public class CardManager : MonoBehaviour
             }
             card.name = "Card" + i;
             cards.Add(card);
-            //card.ShowSpawnAnimation();
             card.transform.position = new Vector2(999f, 999f);
         }
     }
@@ -219,10 +220,16 @@ public class CardManager : MonoBehaviour
         }
         //do something
         CardManager.Instance.MoveCardsAfterUse(card);
+        var turnEnds = hero.GetComponentsInChildren<TurnEndEffect>();
+        for (int i = 0; i < turnEnds.Length; i++)
+        {
+            turnEnds[i].OnTurnEnd();
+        }
     }
 
     public void ShowDebug(List<Vector2Int> positions)
     {
+        if (SHOW_DEBUG == false) return;
         for (int i = 0; i < positions.Count; i++)
         {
             var obj = Instantiate(test, GridManager.Instance.dicGrids[positions[i]].transform.position, Quaternion.identity);

@@ -15,12 +15,3 @@ public class ItemHeal : Item
         effect.transform.SetParent(hero.transform);
     }
 }
-
-public class ItemPoison : Item
-{
-    public override void ApplyEffect(Hero hero)
-    {
-        Debug.Log("use item poison");
-        hero.gameObject.AddComponent<PoisonEachTurn>();
-    }
-}

@@ -1,6 +1,10 @@
-﻿public class PoisonEachTurn : TurnEndEffect
+﻿using UnityEngine;
+
+public class PoisonEachTurn : TurnEndEffect
 {
-    public const int DEFAULT_TURN_COUNT = 3;
+    public const int DEFAULT_TURN_COUNT = 2;
+    public ParticleSystem poisonEffect;
+
     public int turnCount = DEFAULT_TURN_COUNT;
     public int damage;
     private Hero hero;
@@ -20,5 +24,8 @@
         turnCount--;
         if (turnCount < 0) Destroy(this);
         hero.TakeDamage(damageData);
+        var effect = SimpleObjectPool.Instance.GetObjectFromPool(poisonEffect, transform.position);
+        effect.transform.SetParent(hero.transform);
+        Debug.Log($"spawn poison at game object: " + gameObject.name);
     }
 }
