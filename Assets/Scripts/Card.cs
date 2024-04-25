@@ -16,13 +16,22 @@ public class Card : MonoBehaviour, IPointerDownHandler
     public const float CARD_FADE_SPEED = 0.4f;
     public const float SPAWN_DELAY_FLIP = 0.2f;
 
-    public Vector2Int pos;
+    private Vector2Int pos;
     [SerializeField] Image cardBack;
     [SerializeField] TextMeshProUGUI txtDebug;
     public CardData data { get; private set; }
     public CardEffect cardEffect { get; private set; }
     private CanvasGroup canvasGroup;
     private List<CardEffect> effects = new List<CardEffect>();
+    public Vector2Int Pos
+    {
+        get { return pos; }
+        set
+        {
+            pos = value;
+            GridManager.Instance.dicGrids[pos].card = this;
+        }
+    }
 
     private void Awake()
     {

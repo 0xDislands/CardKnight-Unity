@@ -32,7 +32,7 @@ public class CardManager : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         yield return IESpawnAllCard();
-        heroNeighbours = GetNeightbourPositions(heroCard.pos);
+        heroNeighbours = GetNeightbourPositions(heroCard.Pos);
     }
 
     private void Update()
@@ -55,15 +55,9 @@ public class CardManager : MonoBehaviour
             if (i == midIndex)
             {
                 id = CardId.Hero;
-                //card = SpawnCard(GridManager.Instance.grids[i].pos, CardId.Hero);
-                //card.SetData(DataManager.Instance.dicCardDatas[CardId.Hero]);
-                //card.gameObject.AddComponent<Hero>();
-                //heroCard = card;
-                //heroCard.pos = GridManager.Instance.grids[i].pos;
             } else
             {
                 id = DataManager.Instance.noneHeroCardDatas.RandomElement().id;
-                //card.SetData(DataManager.Instance.noneHeroCardDatas.RandomElement());
             }
             card = SpawnCard(GridManager.Instance.grids[i].pos, id);
             if (i == midIndex)
@@ -71,7 +65,7 @@ public class CardManager : MonoBehaviour
                 heroCard = card;
                 card.gameObject.GetComponent<Hero>();
             }
-            //card.name = "Card" + i;
+            card.name = "Card" + i;
             cards.Add(card);
             card.ShowSpawnAnimation();
             yield return new WaitForSeconds(0.1f);
@@ -83,16 +77,15 @@ public class CardManager : MonoBehaviour
         var data = DataManager.Instance.dicCardDatas[id];
         var grid = GridManager.Instance.dicGrids[pos];
         var card = Instantiate(data.cardPrefab, cardParent);
-        card.pos = grid.pos;
+        card.Pos = grid.pos;
         card.transform.position = grid.transform.position;
         card.gameObject.name = "Card #" + Random.Range(100, 200); 
-        grid.card = card;
         return card;
     }
 
     public bool IsNextToHeroCard(Card card)
     {
-        return heroNeighbours.Contains(card.pos);
+        return heroNeighbours.Contains(card.Pos);
     }
 
     public List<Vector2Int> GetNeightbourPositions(Vector2Int pos)
@@ -112,15 +105,40 @@ public class CardManager : MonoBehaviour
     public void MoveCardsAfterUse(Card card)
     {
         var moveCard = GetMoveCard(card);
-        var spawnNewCardPosition = moveCard.pos;
-        moveCard.MoveToPos(heroCard.pos);
-        heroCard.MoveToPos(card.pos);
+        var spawnNewCardPosition = moveCard.Pos;
+        Debug.Log($"is corner card = {GridManager.Instance.IsCornerCard(heroCard.Pos)}");
+        //Nếu ngay góc thì di chuyển toàn bộ cột
+        if (GridManager.Instance.IsCornerCard(heroCard.Pos))
+        {
+            Vector2Int destination = heroCard.Pos;
+            Vector2Int direction = heroCard.Pos - moveCard.Pos;
+            while (true)
+            {
+                Vector2Int oldPos = destination - direction;
+                if (GridManager.Instance.IsInsideGrid(oldPos) == false)
+                {
+                    break;
+                }
+                var oldCard = GridManager.Instance.dicGrids[oldPos].card;
+                oldCard.MoveToPos(destination);
+                destination = oldPos;
+            }
+            spawnNewCardPosition = destination;
+        } else //Nếu không chỉ move card cần move
+        {
+            moveCard.MoveToPos(heroCard.Pos);
+        }
+        heroCard.MoveToPos(card.Pos);
         DOTween.Kill(card.transform);
         card.Disappear();
         var newCard = SpawnCard(spawnNewCardPosition, DataManager.Instance.noneHeroCardDatas.RandomElement().id);
-        //newCard.SetData();
         newCard.ShowSpawnAnimation(0f);
-        heroNeighbours = GetNeightbourPositions(heroCard.pos);
+        heroNeighbours = GetNeightbourPositions(heroCard.Pos);
+    }
+
+    public void MoveCornerCard()
+    {
+
     }
 
     public Card GetMoveCard(Card card)
@@ -131,8 +149,8 @@ public class CardManager : MonoBehaviour
             testPositions.RemoveAt(i);
         }
 
-        Vector2Int direction = card.pos - heroCard.pos;
-        GridPos heroGrid = GridManager.Instance.dicGrids[heroCard.pos];
+        Vector2Int direction = card.Pos - heroCard.Pos;
+        GridPos heroGrid = GridManager.Instance.dicGrids[heroCard.Pos];
         Vector2Int straightGrid = heroGrid.pos - direction;
         if (GridManager.Instance.IsInsideGrid(straightGrid))
         {
@@ -141,48 +159,48 @@ public class CardManager : MonoBehaviour
         var positions = GetNeightbourPositions(heroGrid.pos);
         for (int i = positions.Count - 1; i >= 0; i--)
         {
-            if (positions[i] == card.pos) positions.RemoveAt(i);
+            if (positions[i] == card.Pos) positions.RemoveAt(i);
         }
         ShowDebug(positions);
         if (positions.Count == 1)
         {
             return GridManager.Instance.dicGrids[positions[0]].card;
         }
-        if (card.pos.x == heroCard.pos.x)
+        if (card.Pos.x == heroCard.Pos.x)
         {
             //nếu cùng x: đi lên thì dùng ô bên phải, đi xuống thì dùng ô bên trái (trục tọa độ đi xuống)
-            if (card.pos.y < heroCard.pos.y)
+            if (card.Pos.y < heroCard.Pos.y)
             {
                 for (int i = 0; i < positions.Count; i++)
                 {
-                    if (positions[i].x > heroCard.pos.x) return GridManager.Instance.dicGrids[positions[i]].card;
+                    if (positions[i].x > heroCard.Pos.x) return GridManager.Instance.dicGrids[positions[i]].card;
                 }
             }
             //nếu cùng x: đi lên thì dùng ô bên phải, đi xuống thì dùng ô bên trái
-            if (card.pos.y > heroCard.pos.y)
+            if (card.Pos.y > heroCard.Pos.y)
             {
                 for (int i = 0; i < positions.Count; i++)
                 {
-                    if (positions[i].x < heroCard.pos.x) return GridManager.Instance.dicGrids[positions[i]].card;
+                    if (positions[i].x < heroCard.Pos.x) return GridManager.Instance.dicGrids[positions[i]].card;
                 }
             }
         }
-        if (card.pos.y == heroCard.pos.y)
+        if (card.Pos.y == heroCard.Pos.y)
         {
             //nếu cùng y: đi phải thì dùng ô bên trên
-            if (card.pos.x > heroCard.pos.x)
+            if (card.Pos.x > heroCard.Pos.x)
             {
                 for (int i = 0; i < positions.Count; i++)
                 {
-                    if (positions[i].y > heroCard.pos.y) return GridManager.Instance.dicGrids[positions[i]].card;
+                    if (positions[i].y > heroCard.Pos.y) return GridManager.Instance.dicGrids[positions[i]].card;
                 }
             }
             //nếu cùng x: đi trái thì dùng ô bên dưới
-            if (card.pos.x < heroCard.pos.x)
+            if (card.Pos.x < heroCard.Pos.x)
             {
                 for (int i = 0; i < positions.Count; i++)
                 {
-                    if (positions[i].y < heroCard.pos.y) return GridManager.Instance.dicGrids[positions[i]].card;
+                    if (positions[i].y < heroCard.Pos.y) return GridManager.Instance.dicGrids[positions[i]].card;
                 }
             }
         }

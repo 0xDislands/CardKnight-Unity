@@ -11,19 +11,19 @@ public class Monster : CardEffect
     }
     private void Start()
     {
-        textHp.SetHP(monsterData.hp);
+        textHp.SetHP(monsterData.baseHp);
     }
 
     public override void ApplyEffect(Hero hero)
     {
         var damage = new DamageData();
-        damage.damage = monsterData.hp;
+        damage.damage = monsterData.baseHp;
         hero.TakeDamage(damage);
     }
 
     public int GetHP()
     {
-        return monsterData.hp; 
+        return monsterData.baseHp; 
     }
 
     private void OnDisable()
