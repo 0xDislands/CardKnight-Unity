@@ -29,11 +29,11 @@ public class CardManager : MonoBehaviour
         Instance = this;
     }
 
-    private IEnumerator Start()
+    private void Start()
     {
-        yield return new WaitForEndOfFrame();
-        yield return IESpawnAllCard();
+        SpawnAllCard();
         heroNeighbours = GetNeightbourPositions(heroCard.Pos);
+        StartCoroutine(IECardAnimation());
     }
 
     private void Update()
@@ -44,31 +44,38 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    private IEnumerator IESpawnAllCard()
+    private void SpawnAllCard()
     {
         int midIndex = GridManager.Instance.grids.Length / 2;
         cards = new List<Card>();
+        heroCard = SpawnCard(GridManager.Instance.grids[midIndex].pos, CardId.Hero); 
+        hero = heroCard.GetComponent<Hero>();
         for (int i = 0; i < GridManager.Instance.grids.Length; i++)
         {
             Card card;
             CardId id;
-
             if (i == midIndex)
             {
-                id = CardId.Hero;
+                card = heroCard;
             } else
             {
                 id = DataManager.Instance.noneHeroCardDatas.RandomElement().id;
-            }
-            card = SpawnCard(GridManager.Instance.grids[i].pos, id);
-            if (i == midIndex)
-            {
-                heroCard = card;
-                hero = card.GetComponent<Hero>();
+                card = SpawnCard(GridManager.Instance.grids[i].pos, id);
             }
             card.name = "Card" + i;
             cards.Add(card);
-            card.ShowSpawnAnimation();
+            //card.ShowSpawnAnimation();
+            card.transform.position = new Vector2(999f, 999f);
+        }
+    }
+
+    IEnumerator IECardAnimation()
+    {
+        yield return new WaitForEndOfFrame();
+        for (int i = 0; i < cards.Count; i++)
+        {
+            cards[i].transform.position = GridManager.Instance.dicGrids[cards[i].Pos].transform.position;
+            cards[i].ShowSpawnAnimation();
             yield return new WaitForSeconds(0.1f);
         }
     }
