@@ -81,7 +81,7 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    private Card SpawnCard(Vector2Int pos, CardId id)
+    public Card SpawnCard(Vector2Int pos, CardId id)
     {
         var data = DataManager.Instance.dicCardDatas[id];
         var grid = GridManager.Instance.dicGrids[pos];
@@ -219,7 +219,6 @@ public class CardManager : MonoBehaviour
             effect.ApplyEffect(heroCard.GetComponent<Hero>());
         }
         //do something
-        CardManager.Instance.MoveCardsAfterUse(card);
         var turnEnds = hero.GetComponentsInChildren<TurnEndEffect>();
         for (int i = 0; i < turnEnds.Length; i++)
         {

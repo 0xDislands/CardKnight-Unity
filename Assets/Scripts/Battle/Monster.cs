@@ -4,6 +4,7 @@ public class Monster : CardEffect
 {
     public MonsterData monsterData;
     private TextHp textHp;
+    [SerializeField] private ParticleSystem attackEffect;
 
     private void Awake()
     {
@@ -21,6 +22,10 @@ public class Monster : CardEffect
         var damage = new DamageData();
         damage.damage = monsterData.currentHp;
         hero.TakeDamage(damage);
+        var effect = SimpleObjectPool.Instance.GetObjectFromPool(attackEffect, transform.position);
+
+        var card = GetComponent<Card>();
+        CardManager.Instance.MoveCardsAfterUse(card);
     }
 
     public void UpdateMaxHp()

@@ -2,7 +2,7 @@
 
 public class PoisonEachTurn : TurnEndEffect
 {
-    public const int DEFAULT_TURN_COUNT = 2;
+    public const int DEFAULT_TURN_COUNT = 4;
     public ParticleSystem poisonEffect;
 
     public int turnCount = DEFAULT_TURN_COUNT;

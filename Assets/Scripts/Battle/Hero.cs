@@ -5,6 +5,7 @@ using TMPro;
 public class HeroData
 {
     public int hp;
+    public int shield;
     public int startHp;
     public int dame;
     public int level;
@@ -20,26 +21,40 @@ public class Hero : MonoBehaviour
 {
     public HeroData heroData;
     private TextHp textHp;
+    private TextShield textShield;
 
     private void Awake()
     {
         heroData = new HeroData();
         textHp = GetComponentInChildren<TextHp>();
+        textShield = GetComponentInChildren<TextShield>();
         heroData.hp = 10;
+        heroData.shield = 0;
     }
     private void Start()
     {
         textHp.SetHP(heroData.hp);
+        textShield.SetHP(heroData.shield);
     }
 
-    public void TakeDamage(DamageData damage)
+    public void TakeDamage(DamageData data)
     {
-        heroData.hp -= damage.damage;
-        if (heroData.hp < 0)
+        if (data.damage > heroData.shield)
         {
-            heroData.hp = 0;
+            heroData.hp -= (data.damage - heroData.shield);
+            heroData.shield = 0;
+            if (heroData.hp < 0)
+            {
+                Debug.Log("Die!");
+                heroData.hp = 0;
+            }
+        }
+        else
+        {
+            heroData.shield -= data.damage;
         }
         textHp.SetHP(heroData.hp);
+        textShield.SetHP(heroData.shield);
     }
 
     public void Heal(DamageData data)
@@ -50,6 +65,12 @@ public class Hero : MonoBehaviour
             heroData.hp = 0;
         }
         textHp.SetHP(heroData.hp);
+    }
+
+    public void AddShield(int amount)
+    {
+        heroData.shield += amount;
+        textShield.SetHP(heroData.shield);
     }
 
     public void Die()

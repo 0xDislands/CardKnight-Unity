@@ -470,6 +470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardBack: {fileID: 6685940440013630504}
   txtDebug: {fileID: 6288552608234351111}
+  cardParent: {fileID: 0}
 --- !u!225 &2075306533853894767
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -502,6 +503,7 @@ MonoBehaviour:
     currentHp: 1
     maxHp: 1
     amor: 2
+  attackEffect: {fileID: 6553047553640012297, guid: 64a1bfed3e6382742a7ab56c24a8285c, type: 3}
 --- !u!1001 &7619046883837847221
 PrefabInstance:
   m_ObjectHideFlags: 0

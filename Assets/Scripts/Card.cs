@@ -19,6 +19,8 @@ public class Card : MonoBehaviour, IPointerDownHandler
     private Vector2Int pos;
     [SerializeField] Image cardBack;
     [SerializeField] TextMeshProUGUI txtDebug;
+    [SerializeField] Transform cardParent;
+
     public CardData data { get; private set; }
     public CardEffect cardEffect { get; private set; }
     private CanvasGroup canvasGroup;
@@ -137,6 +139,7 @@ public enum CardId
     ItemPoison,
     ItemChest,
     ItemGold,
+    ItemShield,
     ItemDiamond,
     Monster1,
     Monster2,

@@ -11,5 +11,8 @@ public class ItemPoison : Item
 
         var effect = SimpleObjectPool.Instance.GetObjectFromPool(poisonEffect, hero.transform.position);
         effect.transform.SetParent(hero.transform);
+
+        var card = GetComponent<Card>();
+        CardManager.Instance.MoveCardsAfterUse(card);
     }
 }
