@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DarkcupGames;
+using UnityEngine.UI;
+using TMPro;
 
 public class CardManager : MonoBehaviour
 {
@@ -234,17 +236,5 @@ public class CardManager : MonoBehaviour
             var obj = Instantiate(test, GridManager.Instance.dicGrids[positions[i]].transform.position, Quaternion.identity);
             testPositions.Add(obj);
         }
-    }
-}
-
-public class HeroManager : MonoBehaviour
-{
-    public static HeroManager Instance;
-    public Hero hero;
-    public Card heroCard;
-
-    private void Awake()
-    {
-        
     }
 }

@@ -12,7 +12,7 @@ public class Monster : CardEffect
     }
     private void Start()
     {
-        UpdateMaxHp();
+        Init();
         monsterData.currentHp = monsterData.maxHp;
         textHp.SetHP((int)monsterData.currentHp);
     }
@@ -21,14 +21,18 @@ public class Monster : CardEffect
     {
         var damage = new DamageData();
         damage.damage = monsterData.currentHp;
-        hero.TakeDamage(damage);
+        hero.TakeDamage(damage, out bool dead);
+        if (dead == false)
+        {
+            hero.AddEXP(monsterData.rewardExp);
+            Debug.Log($"add exp {monsterData.rewardExp}");
+        }
         var effect = SimpleObjectPool.Instance.GetObjectFromPool(attackEffect, transform.position);
-
         var card = GetComponent<Card>();
         CardManager.Instance.MoveCardsAfterUse(card);
     }
 
-    public void UpdateMaxHp()
+    public void Init()
     {
         var heroData = CardManager.Instance.hero.heroData;
         monsterData.maxHp = (int)((heroData.level + 1) * monsterData.baseHp * monsterData.multiple);
@@ -37,7 +41,7 @@ public class Monster : CardEffect
     public void UpdateHpWhenPlayerLevelUp()
     {
         int hpLost = monsterData.maxHp - monsterData.currentHp;
-        UpdateMaxHp();
+        Init();
         monsterData.currentHp = monsterData.maxHp - hpLost;
     }
 

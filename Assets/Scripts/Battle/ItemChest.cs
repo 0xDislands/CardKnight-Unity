@@ -12,7 +12,7 @@ public class ItemChest : Item
         Debug.Log("use item heal");
         var data = new DamageData();
         data.damage = 1;
-        hero.Heal(data);
+        hero.AddHP(data);
         var effect = SimpleObjectPool.Instance.GetObjectFromPool(appearEffect, transform.position);
         var card = GetComponent<Card>();
         var newCard = CardManager.Instance.SpawnCard(card.Pos, transformCards.RandomElement());

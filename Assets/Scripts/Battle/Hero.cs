@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 [System.Serializable]
 public class HeroData
 {
     public int hp;
+    public int maxHp;
     public int shield;
+    public int maxShield;
     public int startHp;
     public int dame;
     public int level;
+    public float currentExp;
 }
 
 [System.Serializable]
@@ -19,9 +23,12 @@ public class DamageData
 
 public class Hero : MonoBehaviour
 {
+    public const float EXP_TO_LEVEL_UP = 3f;
+
     public HeroData heroData;
     private TextHp textHp;
     private TextShield textShield;
+    [SerializeField] TextLevelUp textLevelUp;
 
     private void Awake()
     {
@@ -29,7 +36,9 @@ public class Hero : MonoBehaviour
         textHp = GetComponentInChildren<TextHp>();
         textShield = GetComponentInChildren<TextShield>();
         heroData.hp = 10;
+        heroData.maxHp = 10;
         heroData.shield = 0;
+        heroData.maxShield = 10;
     }
     private void Start()
     {
@@ -37,7 +46,7 @@ public class Hero : MonoBehaviour
         textShield.SetHP(heroData.shield);
     }
 
-    public void TakeDamage(DamageData data)
+    public void TakeDamage(DamageData data, out bool dead)
     {
         if (data.damage > heroData.shield)
         {
@@ -47,6 +56,7 @@ public class Hero : MonoBehaviour
             {
                 Debug.Log("Die!");
                 heroData.hp = 0;
+                dead = true;
             }
         }
         else
@@ -55,11 +65,32 @@ public class Hero : MonoBehaviour
         }
         textHp.SetHP(heroData.hp);
         textShield.SetHP(heroData.shield);
+        dead = false;
     }
 
-    public void Heal(DamageData data)
+    public void AddEXP(float exp)
+    {
+        heroData.currentExp += exp;
+        if (heroData.currentExp > EXP_TO_LEVEL_UP)
+        {
+            int oldLevel = heroData.level;
+            heroData.currentExp -= EXP_TO_LEVEL_UP;
+            heroData.level++;
+            SimpleObjectPool.Instance.GetObjectFromPool(textLevelUp, transform.position);
+            DOVirtual.DelayedCall(0.5f, () =>
+            {
+                GameFlow.Instance.popupLevelUp.ShowLevelUp(oldLevel);
+            });
+        }
+    }
+
+    public void AddHP(DamageData data)
     {
         heroData.hp += data.damage;
+        if (heroData.hp > heroData.maxHp)
+        {
+            heroData.hp = heroData.maxHp;
+        }
         if (heroData.hp < 0)
         {
             heroData.hp = 0;
@@ -70,6 +101,10 @@ public class Hero : MonoBehaviour
     public void AddShield(int amount)
     {
         heroData.shield += amount;
+        if (heroData.shield > heroData.maxShield)
+        {
+            heroData.shield = heroData.maxShield;
+        }
         textShield.SetHP(heroData.shield);
     }
 

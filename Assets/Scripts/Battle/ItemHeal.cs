@@ -11,7 +11,7 @@ public class ItemHeal : Item
         Debug.Log("use item heal");
         var data = new DamageData();
         data.damage = 1;
-        hero.Heal(data);
+        hero.AddHP(data);
         var effect = SimpleObjectPool.Instance.GetObjectFromPool(healEffect, hero.transform.position);
         effect.transform.SetParent(hero.transform);
         effect.transform.DOLocalMove(effect.transform.localPosition + new Vector3(0, 150f), 1f);

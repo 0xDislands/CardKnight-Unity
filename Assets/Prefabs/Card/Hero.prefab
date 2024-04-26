@@ -578,6 +578,8 @@ MonoBehaviour:
     startHp: 0
     dame: 0
     level: 0
+    currentExp: 0
+  textLevelUp: {fileID: 9202366413005754918, guid: 90847cb6115d26d4e824866a90d427d1, type: 3}
 --- !u!1 &8802161727089519133
 GameObject:
   m_ObjectHideFlags: 0
