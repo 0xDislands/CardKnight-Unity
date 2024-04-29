@@ -28,6 +28,9 @@ public class CardManager : MonoBehaviour
         new Vector2Int(1,0),
         new Vector2Int(-1,0)
     };
+    List<CardId> startCards;
+    List<CardId> spawnCards;
+    int spawnCardIndex = -1;
     private void Awake()
     {
         Instance = this;
@@ -35,6 +38,8 @@ public class CardManager : MonoBehaviour
 
     private void Start()
     {
+        startCards = GetStartCards();
+        spawnCards = GetSpawnCards ();
         SpawnAllCard();
         heroNeighbours = GetNeightbourPositions(heroCard.Pos);
         StartCoroutine(IECardAnimation());
@@ -54,6 +59,8 @@ public class CardManager : MonoBehaviour
         cards = new List<Card>();
         heroCard = SpawnCard(GridManager.Instance.grids[midIndex].pos, CardId.Hero); 
         hero = heroCard.GetComponent<Hero>();
+        int startCardIndex = 0;
+
         for (int i = 0; i < GridManager.Instance.grids.Length; i++)
         {
             Card card;
@@ -63,8 +70,10 @@ public class CardManager : MonoBehaviour
                 card = heroCard;
             } else
             {
-                id = DataManager.Instance.noneHeroCardDatas.RandomElement().id;
+                //id = DataManager.Instance.noneHeroCardDatas.RandomElement().id;
+                id = startCards[startCardIndex];
                 card = SpawnCard(GridManager.Instance.grids[i].pos, id);
+                startCardIndex++;
             }
             card.name = "Card" + i;
             cards.Add(card);
@@ -72,7 +81,63 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    IEnumerator IECardAnimation()
+    private List<CardId> GetStartCards ()
+    {
+        List<CardId> results = new List<CardId> ();
+        List<CardId> monsters = new List<CardId> ()
+        {
+            CardId.Monster1, CardId.Monster2, CardId.Monster3
+        };
+        for (int i = 0; i < 4; i++)
+        {
+            results.Add (monsters.RandomElement ());
+        }
+        List<CardId> nonMonsters = new List<CardId> ()
+        {
+            CardId.ItemHeal, CardId.ItemPoison, CardId.ItemChest, CardId.ItemShield
+        };
+        for (int i = 0; i < 4; i++)
+        {
+            results.Add (nonMonsters.RandomElement ());
+        }
+        results.Shuffle ();
+        return results;
+    }
+    //1	101	2	102	3	103	1	101	2	102	3	103  --heal --poison -- chest
+    private List<CardId> GetSpawnCards ()
+    {
+        List<CardId> spawnCards = new List<CardId> () { 
+            CardId.Monster1,
+            CardId.ItemHeal,
+
+            CardId.Monster2,
+            CardId.ItemPoison,
+
+            CardId.Monster3,
+            CardId.ItemChest,
+
+            CardId.Monster1,
+            CardId.ItemHeal,
+
+            CardId.Monster2,
+            CardId.ItemPoison,
+
+            CardId.Monster3,
+            CardId.ItemChest,
+        };
+        return spawnCards;
+    }
+
+    private CardId GetNextCard ()
+    {
+        spawnCardIndex++;
+        if (spawnCardIndex >= spawnCards.Count)
+        {
+            spawnCardIndex = 0;
+        }
+        return spawnCards[spawnCardIndex];
+    }
+    IEnumerator IECardAnimation ()
     {
         yield return new WaitForEndOfFrame();
         for (int i = 0; i < cards.Count; i++)
@@ -142,7 +207,8 @@ public class CardManager : MonoBehaviour
         heroCard.MoveToPos(card.Pos);
         DOTween.Kill(card.transform);
         card.Disappear();
-        var newCard = SpawnCard(spawnNewCardPosition, DataManager.Instance.noneHeroCardDatas.RandomElement().id);
+        CardId newCardId = GetNextCard ();
+        var newCard = SpawnCard(spawnNewCardPosition, newCardId);
         newCard.ShowSpawnAnimation(0f);
         heroNeighbours = GetNeightbourPositions(heroCard.Pos);
     }
@@ -225,7 +291,6 @@ public class CardManager : MonoBehaviour
 
     public IEnumerator IETurnEnd ()
     {
-        //do something
         var turnEnds = hero.GetComponentsInChildren<TurnEndEffect> ();
         for (int i = 0; i < turnEnds.Length; i++)
         {

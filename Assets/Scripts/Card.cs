@@ -143,5 +143,5 @@ public enum CardId
     ItemDiamond,
     Monster1,
     Monster2,
-    Random
+    Monster3
 }
