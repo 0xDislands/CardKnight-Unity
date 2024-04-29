@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public abstract class TurnEndEffect : MonoBehaviour
 {
-    public abstract void OnTurnEnd();
+    public abstract IEnumerator IETurnEnd();
 }

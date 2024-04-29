@@ -220,11 +220,16 @@ public class CardManager : MonoBehaviour
         {
             effect.ApplyEffect(heroCard.GetComponent<Hero>());
         }
+        StartCoroutine (IETurnEnd ());
+    }
+
+    public IEnumerator IETurnEnd ()
+    {
         //do something
-        var turnEnds = hero.GetComponentsInChildren<TurnEndEffect>();
+        var turnEnds = hero.GetComponentsInChildren<TurnEndEffect> ();
         for (int i = 0; i < turnEnds.Length; i++)
         {
-            turnEnds[i].OnTurnEnd();
+            yield return turnEnds[i].IETurnEnd ();
         }
     }
 
