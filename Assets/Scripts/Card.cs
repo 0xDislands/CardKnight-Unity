@@ -9,6 +9,7 @@ using DarkcupGames;
 
 public class Card : MonoBehaviour, IPointerDownHandler
 {
+    public const bool DEBUG_POSITION = false;
     public const float SPAWN_SPAW_X = -4f;
     public const float SPAWN_SPAW_Y = 8f;
     public const float FLIP_ANIMATION_TIME = 0.3f;
@@ -25,6 +26,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
     public CardEffect cardEffect { get; private set; }
     private CanvasGroup canvasGroup;
     private List<CardEffect> effects = new List<CardEffect>();
+
     public Vector2Int Pos
     {
         get { return pos; }
@@ -39,6 +41,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
     {
         canvasGroup = GetComponent<CanvasGroup>();
         cardEffect = GetComponent<CardEffect>();
+        txtDebug.text = "";
     }
 
     public void SetData(CardData cardData)
@@ -118,6 +121,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
 
     private void Update()
     {
+        if (DEBUG_POSITION == false) return;
         txtDebug.text = pos.ToString();
         Debug.DrawLine(transform.position, GridManager.Instance.dicGrids[pos].transform.position, Color.blue);
     }

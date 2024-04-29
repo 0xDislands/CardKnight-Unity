@@ -14,7 +14,7 @@ public class Monster : CardEffect
     {
         Init();
         monsterData.currentHp = monsterData.maxHp;
-        textHp.SetHP((int)monsterData.currentHp);
+        textHp.SetHP(monsterData);
     }
 
     public override void ApplyEffect(Hero hero)

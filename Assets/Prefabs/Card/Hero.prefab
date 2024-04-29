@@ -574,7 +574,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heroData:
     hp: 0
+    maxHp: 0
     shield: 0
+    maxShield: 0
     startHp: 0
     dame: 0
     level: 0
@@ -673,8 +675,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
-  m_fontSizeBase: 70
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -814,6 +816,14 @@ PrefabInstance:
     - target: {fileID: 1611094673713705332, guid: 7b3352662536f494d85be35678a7e064, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2228980132084174982, guid: 7b3352662536f494d85be35678a7e064, type: 3}
+      propertyPath: m_fontSize
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2228980132084174982, guid: 7b3352662536f494d85be35678a7e064, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 6844200119495683571, guid: 7b3352662536f494d85be35678a7e064, type: 3}
       propertyPath: m_Name

@@ -10,8 +10,12 @@ public class TextHp : MonoBehaviour
     {
         txtHp = GetComponent<TextMeshProUGUI>();
     }
-    public void SetHP(int newHp)
+    public void SetHP(HeroData heroData)
     {
-        txtHp.text = newHp.ToString();
+        txtHp.text = heroData.hp + "/" + heroData.maxHp;
+    }
+    public void SetHP (MonsterData monsterData)
+    {
+        txtHp.text = monsterData.currentHp.ToString ();
     }
 }

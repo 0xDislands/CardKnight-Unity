@@ -42,8 +42,8 @@ public class Hero : MonoBehaviour
     }
     private void Start()
     {
-        textHp.SetHP(heroData.hp);
-        textShield.SetHP(heroData.shield);
+        textHp.SetHP(heroData);
+        textShield.SetShield(heroData);
     }
 
     public void TakeDamage(DamageData data, out bool dead)
@@ -63,8 +63,8 @@ public class Hero : MonoBehaviour
         {
             heroData.shield -= data.damage;
         }
-        textHp.SetHP(heroData.hp);
-        textShield.SetHP(heroData.shield);
+        textHp.SetHP(heroData);
+        textShield.SetShield(heroData);
         dead = false;
     }
 
@@ -95,7 +95,7 @@ public class Hero : MonoBehaviour
         {
             heroData.hp = 0;
         }
-        textHp.SetHP(heroData.hp);
+        textHp.SetHP(heroData);
     }
 
     public void AddShield(int amount)
@@ -105,7 +105,12 @@ public class Hero : MonoBehaviour
         {
             heroData.shield = heroData.maxShield;
         }
-        textShield.SetHP(heroData.shield);
+        textShield.SetShield(heroData);
+    }
+    public void UpdateDisplay ()
+    {
+        textHp.SetHP (heroData);
+        textShield.SetShield (heroData);
     }
 
     public void Die()

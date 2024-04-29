@@ -45,10 +45,12 @@ public class LevelUpOption : MonoBehaviour
                 CardManager.Instance.hero.AddShield(data.amount);
                 break;
             case LevelUpId.INCREASE_MAX_HP:
-                CardManager.Instance.hero.heroData.maxHp += data.amount; 
+                CardManager.Instance.hero.heroData.maxHp += data.amount;
+                CardManager.Instance.hero.UpdateDisplay ();
                 break;
             case LevelUpId.INCREASE_MAX_AMOUR:
                 CardManager.Instance.hero.heroData.maxShield += data.amount;
+                CardManager.Instance.hero.UpdateDisplay ();
                 break;
         }
         popupLevelUp.Close();

@@ -16,6 +16,8 @@ public class CardManager : MonoBehaviour
     [SerializeField] private Transform cardParent;
     [SerializeField] private Card heroCard;
     public Hero hero;
+    private bool canClick = true;
+
     public List<Card> cards { get; private set; }
     private List<Vector2Int> heroNeighbours = new List<Vector2Int>();
 
@@ -281,6 +283,7 @@ public class CardManager : MonoBehaviour
 
     public void UseCard(Card card)
     {
+        if (canClick == false) return;
         var effect = card.cardEffect;
         if (effect != null)
         {
@@ -291,11 +294,13 @@ public class CardManager : MonoBehaviour
 
     public IEnumerator IETurnEnd ()
     {
+        canClick = false;
         var turnEnds = hero.GetComponentsInChildren<TurnEndEffect> ();
         for (int i = 0; i < turnEnds.Length; i++)
         {
             yield return turnEnds[i].IETurnEnd ();
         }
+        canClick = true;
     }
 
     public void ShowDebug(List<Vector2Int> positions)
