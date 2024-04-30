@@ -21,7 +21,7 @@ public class TextDebugHero : MonoBehaviour
         string str = "hero \n";
         str += $"hp: {data.hp} / {data.maxHp} \n";
         str += $"shield: {data.shield} / {data.maxShield} \n";
-        str += $"exp: {data.currentExp} \n";
+        str += $"exp: {data.currentExp.ToString("F2")} / 3\n";
         str += $"level: {data.level + 1} \n";
         return str;
     }

@@ -108,7 +108,7 @@ public class CardManager : MonoBehaviour
     //1	101	2	102	3	103	1	101	2	102	3	103  --heal --poison -- chest
     private List<CardId> GetSpawnCards ()
     {
-        List<CardId> spawnCards = new List<CardId> () { 
+        List<CardId> spawnCards = new List<CardId> () {
             CardId.Monster1,
             CardId.ItemHeal,
 
@@ -127,10 +127,14 @@ public class CardManager : MonoBehaviour
             CardId.Monster3,
             CardId.ItemChest,
         };
-        return spawnCards;
+        //TODO: TEST
+        return new List<CardId> () {
+            CardId.Monster1, CardId.SkillFire,
+            CardId.Monster2, CardId.SkillFire};
+        //return spawnCards;
     }
 
-    private CardId GetNextCard ()
+    public CardId GetNextCard ()
     {
         spawnCardIndex++;
         if (spawnCardIndex >= spawnCards.Count)
@@ -158,6 +162,10 @@ public class CardManager : MonoBehaviour
         card.Pos = grid.pos;
         card.transform.position = grid.transform.position;
         card.gameObject.name = "Card #" + Random.Range(100, 200); 
+        if (cards.Contains(card) == false)
+        {
+            cards.Add (card);
+        }
         return card;
     }
 

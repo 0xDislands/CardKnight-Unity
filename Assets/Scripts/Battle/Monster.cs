@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Monster : CardEffect
 {
@@ -16,7 +17,10 @@ public class Monster : CardEffect
         monsterData.currentHp = monsterData.maxHp;
         textHp.SetHP(monsterData);
     }
-
+    private void OnEnable ()
+    {
+        Init();
+    }
     public override void ApplyEffect(Hero hero)
     {
         var damage = new DamageData();
@@ -36,6 +40,7 @@ public class Monster : CardEffect
     {
         var heroData = CardManager.Instance.hero.heroData;
         monsterData.maxHp = (int)((heroData.level + 1) * monsterData.baseHp * monsterData.multiple);
+        monsterData.currentHp = monsterData.maxHp;
     }
 
     public void UpdateHpWhenPlayerLevelUp()
@@ -48,5 +53,23 @@ public class Monster : CardEffect
     private void OnDisable()
     {
         Destroy(this);
+    }
+
+    public void TakeDamage (DamageData data, out bool dead)
+    {
+        dead = false;
+        monsterData.currentHp -= data.damage;
+        if (monsterData.currentHp <= 0 )
+        {
+            monsterData.currentHp = 0;
+            dead = true;
+        }
+        textHp.SetHP (monsterData);
+
+        if (dead == true)
+        {
+            CardManager.Instance.hero.AddEXP (monsterData.rewardExp);
+            Debug.Log ($"add exp {monsterData.rewardExp}");
+        }
     }
 }

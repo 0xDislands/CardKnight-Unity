@@ -117,26 +117,3 @@ public class Card : MonoBehaviour, IPointerDownHandler
         LeanTween.move(transform.gameObject, GridManager.Instance.dicGrids[pos].transform.position, CARD_MOVE_SPEED);
     }
 }
-
-[System.Serializable]
-public struct CardData
-{
-    public CardId id;
-    public Sprite sprite;
-    public int health;
-    public Card cardPrefab;
-}
-
-public enum CardId
-{
-    Hero,
-    ItemHeal,
-    ItemPoison,
-    ItemChest,
-    ItemGold,
-    ItemShield,
-    ItemDiamond,
-    Monster1,
-    Monster2,
-    Monster3
-}
