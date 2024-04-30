@@ -19,7 +19,6 @@ public class Card : MonoBehaviour, IPointerDownHandler
 
     private Vector2Int pos;
     [SerializeField] Image cardBack;
-    [SerializeField] TextMeshProUGUI txtDebug;
     [SerializeField] Transform cardParent;
 
     public CardData data { get; private set; }
@@ -41,7 +40,6 @@ public class Card : MonoBehaviour, IPointerDownHandler
     {
         canvasGroup = GetComponent<CanvasGroup>();
         cardEffect = GetComponent<CardEffect>();
-        txtDebug.text = "";
     }
 
     public void SetData(CardData cardData)
@@ -117,13 +115,6 @@ public class Card : MonoBehaviour, IPointerDownHandler
         this.pos = pos;
         GridManager.Instance.dicGrids[pos].card = this;
         LeanTween.move(transform.gameObject, GridManager.Instance.dicGrids[pos].transform.position, CARD_MOVE_SPEED);
-    }
-
-    private void Update()
-    {
-        if (DEBUG_POSITION == false) return;
-        txtDebug.text = pos.ToString();
-        Debug.DrawLine(transform.position, GridManager.Instance.dicGrids[pos].transform.position, Color.blue);
     }
 }
 

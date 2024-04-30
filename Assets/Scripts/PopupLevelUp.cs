@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public class PopupLevelUp : MonoBehaviour
 {
@@ -47,4 +48,11 @@ public class PopupLevelUp : MonoBehaviour
             gameObject.SetActive(false);
         });
     }
+
+    //+2 Max HP	Heal 4 HP
+//+2 Max Armor    Full Heal
+//+3 Max HP   Heal 6 HP
+//+3 Max Armor    Full Heal
+//+3 Max HP   Full Heal
+//Full Armor  Full Heal
 }
