@@ -57,6 +57,7 @@ public class CardManager : MonoBehaviour
 
     private void SpawnAllCard()
     {
+        //cần spawn hero đầu tiên vì các card khác cần lấy data từ hero (ví dụ như card monster)
         int midIndex = GridManager.Instance.grids.Length / 2;
         cards = new List<Card>();
         heroCard = SpawnCard(GridManager.Instance.grids[midIndex].pos, CardId.Hero); 
@@ -77,8 +78,14 @@ public class CardManager : MonoBehaviour
                 startCardIndex++;
             }
             card.name = "Card" + i;
-            cards.Add(card);
             card.transform.position = new Vector2(999f, 999f);
+        }
+        //cần clear list để add lại theo đúng thứ tự
+        cards = new List<Card> ();
+        for (int i = 0; i < GridManager.Instance.grids.Length; i++)
+        {
+            Card card = GridManager.Instance.grids[i].card;
+            cards.Add (card);
         }
     }
 
