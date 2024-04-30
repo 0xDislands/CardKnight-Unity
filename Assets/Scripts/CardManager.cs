@@ -72,7 +72,6 @@ public class CardManager : MonoBehaviour
                 card = heroCard;
             } else
             {
-                //id = DataManager.Instance.noneHeroCardDatas.RandomElement().id;
                 id = startCards[startCardIndex];
                 card = SpawnCard(GridManager.Instance.grids[i].pos, id);
                 startCardIndex++;
