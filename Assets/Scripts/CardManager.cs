@@ -9,6 +9,7 @@ using TMPro;
 public class CardManager : MonoBehaviour
 {
     public const bool SHOW_DEBUG = false;
+    public const bool TEST_SKILL_FIRE = false;
 
     public static CardManager Instance;
     [SerializeField] private Sprite cardBack;
@@ -114,6 +115,12 @@ public class CardManager : MonoBehaviour
     //1	101	2	102	3	103	1	101	2	102	3	103  --heal --poison -- chest
     private List<CardId> GetSpawnCards ()
     {
+        if (TEST_SKILL_FIRE)
+        {
+            return new List<CardId> () {
+            CardId.Monster1, CardId.SkillFire,
+            CardId.Monster2, CardId.SkillFire};
+        }
         List<CardId> spawnCards = new List<CardId> () {
             CardId.Monster1,
             CardId.ItemHeal,
@@ -124,6 +131,8 @@ public class CardManager : MonoBehaviour
             CardId.Monster3,
             CardId.ItemChest,
 
+            CardId.SkillFire,
+
             CardId.Monster1,
             CardId.ItemHeal,
 
@@ -132,12 +141,10 @@ public class CardManager : MonoBehaviour
 
             CardId.Monster3,
             CardId.ItemChest,
+
+            CardId.SkillFire,
         };
-        //TODO: TEST
-        return new List<CardId> () {
-            CardId.Monster1, CardId.SkillFire,
-            CardId.Monster2, CardId.SkillFire};
-        //return spawnCards;
+        return spawnCards;
     }
 
     public CardId GetNextCard ()
