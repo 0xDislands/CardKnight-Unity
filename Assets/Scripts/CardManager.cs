@@ -9,13 +9,14 @@ using TMPro;
 public class CardManager : MonoBehaviour
 {
     public const bool SHOW_DEBUG = false;
-    public const bool TEST_SKILL_FIRE = true;
+    public const bool TEST_SKILL_FIRE = false;
 
     public static CardManager Instance;
     [SerializeField] private Sprite cardBack;
     [SerializeField] private Card cardPrefab;
     [SerializeField] private Transform cardParent;
     [SerializeField] private Card heroCard;
+    [SerializeField] private TextAsset spawnCardData;
     public Hero hero;
     private bool canClick = true;
 
@@ -121,29 +122,29 @@ public class CardManager : MonoBehaviour
             CardId.Monster1, CardId.SkillFire,
             CardId.Monster2, CardId.SkillFire};
         }
-        List<CardId> spawnCards = new List<CardId> () {
-            CardId.Monster1,
-            CardId.ItemHeal,
-
-            CardId.Monster2,
-            CardId.ItemPoison,
-
-            CardId.Monster3,
-            CardId.ItemChest,
-
-            CardId.SkillFire,
-
-            CardId.Monster1,
-            CardId.ItemHeal,
-
-            CardId.Monster2,
-            CardId.ItemPoison,
-
-            CardId.Monster3,
-            CardId.ItemChest,
-
-            CardId.SkillFire,
-        };
+        Dictionary<string, CardId> dicCard = new Dictionary<string, CardId>();
+        dicCard.Add("1", CardId.Monster1);
+        dicCard.Add("2", CardId.Monster2);
+        dicCard.Add("3", CardId.Monster3);
+        dicCard.Add("101", CardId.ItemHeal);
+        dicCard.Add("102", CardId.ItemPoison);
+        dicCard.Add("103", CardId.ItemChest);
+        List<CardId> spawnCards = new List<CardId>();
+        string[] lines = spawnCardData.text.Split("\n");
+        for (int i = 0; i < lines.Length; i++)
+        {
+            if (lines[i] == null) continue;
+            lines[i] = lines[i].Replace(" ", "").Replace("\r", "").Replace("\t", "");
+            if (lines[i] == "") continue;
+            if (dicCard.ContainsKey(lines[i]) == false)
+            {
+                Debug.LogError("not found key with id : " + lines[i]);
+                continue;
+            } else
+            {
+                spawnCards.Add(dicCard[lines[i]]);
+            }
+        }
         return spawnCards;
     }
 
