@@ -9,7 +9,7 @@ using TMPro;
 public class CardManager : MonoBehaviour
 {
     public const bool SHOW_DEBUG = false;
-    public const bool TEST_SKILL_FIRE = false;
+    public const bool TEST_SKILL_FIRE = true;
 
     public static CardManager Instance;
     [SerializeField] private Sprite cardBack;
