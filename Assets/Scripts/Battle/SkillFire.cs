@@ -34,14 +34,6 @@ public class SkillFire : Skill
                 var damageData = new DamageData ();
                 damageData.damage = 1;
                 monster.TakeDamage (damageData, out bool dead);
-                if (dead)
-                {
-                    var monsterCard = monster.GetComponent<Card> ();
-                    monsterCard.Disappear ();
-                    CardId nextCardId = CardManager.Instance.GetNextCard ();
-                    var newCard = CardManager.Instance.SpawnCard (monsterCard.Pos, nextCardId);
-                    newCard.ShowSpawnAnimation ();
-                }
             });
             yield return new WaitForSeconds (0.2f);
         }

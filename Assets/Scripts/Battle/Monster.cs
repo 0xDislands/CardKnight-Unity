@@ -17,7 +17,7 @@ public class Monster : CardEffect
         monsterData.currentHp = monsterData.maxHp;
         textHp.SetHP(monsterData);
     }
-    private void OnEnable ()
+    private void OnEnable()
     {
         Init();
     }
@@ -55,21 +55,27 @@ public class Monster : CardEffect
         Destroy(this);
     }
 
-    public void TakeDamage (DamageData data, out bool dead)
+    public void TakeDamage(DamageData data, out bool dead)
     {
         dead = false;
         monsterData.currentHp -= data.damage;
-        if (monsterData.currentHp <= 0 )
+        if (monsterData.currentHp <= 0)
         {
             monsterData.currentHp = 0;
             dead = true;
         }
-        textHp.SetHP (monsterData);
+        textHp.SetHP(monsterData);
 
         if (dead == true)
         {
-            CardManager.Instance.hero.AddEXP (monsterData.rewardExp);
-            Debug.Log ($"add exp {monsterData.rewardExp}");
+            CardManager.Instance.hero.AddEXP(monsterData.rewardExp);
+            Debug.Log($"add exp {monsterData.rewardExp}");
+
+            var monsterCard = GetComponent<Card>();
+            monsterCard.Disappear();
+            CardId nextCardId = CardManager.Instance.GetNextCard();
+            var newCard = CardManager.Instance.SpawnCard(monsterCard.Pos, nextCardId);
+            newCard.ShowSpawnAnimation();
         }
     }
 }

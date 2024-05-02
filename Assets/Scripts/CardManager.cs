@@ -21,7 +21,7 @@ public class CardManager : MonoBehaviour
     private bool canClick = true;
 
     public List<Card> cards { get; private set; }
-    private List<Vector2Int> heroNeighbours = new List<Vector2Int>();
+    public List<Vector2Int> heroNeighbours { get; private set; } = new List<Vector2Int>();
 
     [SerializeField] private GameObject test;
     [SerializeField] private List<GameObject> testPositions = new List<GameObject>();
@@ -45,7 +45,7 @@ public class CardManager : MonoBehaviour
         startCards = GetStartCards();
         spawnCards = GetSpawnCards ();
         SpawnAllCard();
-        heroNeighbours = GetNeightbourPositions(heroCard.Pos);
+        UpdateHeroNeighbours();
         StartCoroutine(IECardAnimation());
     }
 
@@ -202,6 +202,11 @@ public class CardManager : MonoBehaviour
         return neighbours;
     }
 
+    public void UpdateHeroNeighbours()
+    {
+        heroNeighbours = GetNeightbourPositions(heroCard.Pos);
+    }
+
     public void MoveCardsAfterUse(Card card)
     {
         var moveCard = GetMoveCard(card);
@@ -234,7 +239,7 @@ public class CardManager : MonoBehaviour
         CardId newCardId = GetNextCard ();
         var newCard = SpawnCard(spawnNewCardPosition, newCardId);
         newCard.ShowSpawnAnimation(0f);
-        heroNeighbours = GetNeightbourPositions(heroCard.Pos);
+        UpdateHeroNeighbours();
     }
 
     public Card GetMoveCard(Card card)
