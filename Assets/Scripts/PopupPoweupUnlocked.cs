@@ -35,6 +35,12 @@ public class PopupPoweupUnlocked : MonoBehaviour
         gameObject.SetActive(true);
         transform.localScale = Vector3.one * 0.8f;
         transform.DOScale(1f, ANIMATION_TIME).SetEase(Ease.OutBack);
+
+        var texts = FindObjectsOfType<TextPowerupName>();
+        for (int i = 0; i < texts.Length; i++)
+        {
+            texts[i].UpdateDisplay();
+        }
     }
 
     public void Close()

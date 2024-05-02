@@ -7,4 +7,5 @@ public class PowerupData
     public string name;
     public string description;
     public Sprite sprite;
+    public int unlockLevel;
 }

@@ -83,12 +83,16 @@ public class Hero : MonoBehaviour
                 {
                     GameFlow.Instance.popupLevelUp.ShowLevelUp(oldLevel);
                 });
-                if (heroData.level == 6)
+                for (int i = 0; i < DataManager.Instance.powerupDatas.Count; i++)
                 {
-                    PopupManager.Instance.ShowInQueue(() =>
+                    if (heroData.level == DataManager.Instance.powerupDatas[i].unlockLevel)
                     {
-                        GameFlow.Instance.popupPoweupUnlocked.ShowUnlock(PowerupId.Slash);
-                    });
+                        PopupManager.Instance.ShowInQueue(() =>
+                        {
+                            var id = DataManager.Instance.powerupDatas[i].id;
+                            GameFlow.Instance.popupPoweupUnlocked.ShowUnlock(id);
+                        });
+                    }
                 }
             });
         }
