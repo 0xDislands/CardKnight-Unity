@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using DarkcupGames;
+using Dislands;
 using System.Collections.Generic;
 
 public class ItemChest : Item

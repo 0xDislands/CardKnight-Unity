@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace DarkcupGames
+namespace Dislands
 {
     public class MyIAPManager : IStoreListener
     {

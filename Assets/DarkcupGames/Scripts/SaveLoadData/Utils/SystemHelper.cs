@@ -8,7 +8,7 @@ using System.Security.Cryptography;
 using UnityEditor;
 #endif
 
-namespace DarkcupGames
+namespace Dislands
 {
     public class SystemHelper
     {

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DarkcupGames
+namespace Dislands
 {
     public static class RandomNameUtils
     {

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Newtonsoft.Json;
 using UnityEngine.SceneManagement;
-using DarkcupGames;
+using Dislands;
 
 public class GameSystem : MonoBehaviour
 {

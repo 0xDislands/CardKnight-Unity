@@ -10,7 +10,7 @@ using UnityEngine.Windows;
 #endif
 
 
-namespace DarkcupGames{
+namespace Dislands{
 public class Encryption
 {
 //#if !NETFX_CORE

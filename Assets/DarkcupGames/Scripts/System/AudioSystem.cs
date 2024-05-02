@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DarkcupGames {
+namespace Dislands {
     [RequireComponent(typeof(AudioSource))]
     public class AudioSystem : MonoBehaviour {
         public static AudioSystem Instance;

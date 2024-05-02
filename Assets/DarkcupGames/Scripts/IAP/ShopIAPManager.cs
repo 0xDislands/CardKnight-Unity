@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public enum IAP_ID { no_ads, vip1, unlock_all_hero, beginer }
 
-namespace DarkcupGames
+namespace Dislands
 {
     public class ShopIAPManager : MonoBehaviour
     {

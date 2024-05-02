@@ -4,7 +4,7 @@ using System;
 using Newtonsoft.Json;
 using System.Security.Cryptography;
 
-namespace DarkcupGames
+namespace Dislands
 {
     /// <summary>
     /// Helper class to deal with every task related to files and folder

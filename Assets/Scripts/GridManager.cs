@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using DarkcupGames;
+using Dislands;
 
 public class GridManager : MonoBehaviour
 {

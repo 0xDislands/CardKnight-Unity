@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DarkcupGames;
+using Dislands;
 using UnityEngine.UI;
 using TMPro;
 

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 using DG.Tweening;
-using DarkcupGames;
+using Dislands;
 
 public class Card : MonoBehaviour, IPointerDownHandler
 {

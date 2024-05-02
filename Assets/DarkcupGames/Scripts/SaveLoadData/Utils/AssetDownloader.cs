@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 //using Parse;
 
-namespace DarkcupGames
+namespace Dislands
 {
     public class AssetDownloader : MonoBehaviour
     {

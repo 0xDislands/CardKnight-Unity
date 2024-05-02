@@ -6,7 +6,7 @@ using TMPro;
 using System;
 using UnityEngine.SceneManagement;
 
-namespace DarkcupGames
+namespace Dislands
 {
     public class PopupConfirm : MonoBehaviour
     {

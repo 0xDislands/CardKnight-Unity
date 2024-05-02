@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace DarkcupGames
+namespace Dislands
 {
     public class ChangeScene : MonoBehaviour
     {

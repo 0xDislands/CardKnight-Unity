@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace DarkcupGames
+namespace Dislands
 {
     public class BounceOnClick : MonoBehaviour
     {

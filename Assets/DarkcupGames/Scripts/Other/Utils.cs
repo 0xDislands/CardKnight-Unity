@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using System;
 using System.Linq.Expressions;
 
-namespace DarkcupGames
+namespace Dislands
 {
     public static class Utils
     {

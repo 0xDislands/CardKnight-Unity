@@ -11,7 +11,7 @@ using System.Text;
 using System;
 #endif
 
-namespace DarkcupGames{
+namespace Dislands{
 public static class EncryptionHelper {
 #if NETFX_CORE
         public static byte[] Encrypt(string plainText, string pw, string salt = "")

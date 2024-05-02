@@ -5,7 +5,7 @@ using System;
 using TMPro;
 using DG.Tweening;
 
-namespace DarkcupGames
+namespace Dislands
 {
     public class EasyEffect : MonoBehaviour
     {
