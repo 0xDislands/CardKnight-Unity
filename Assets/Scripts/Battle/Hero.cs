@@ -83,7 +83,7 @@ public class Hero : MonoBehaviour
                 {
                     GameFlow.Instance.popupLevelUp.ShowLevelUp(oldLevel);
                 });
-                if (heroData.level == 2)
+                if (heroData.level == 6)
                 {
                     PopupManager.Instance.ShowInQueue(() =>
                     {

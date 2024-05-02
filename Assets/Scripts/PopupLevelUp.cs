@@ -47,7 +47,7 @@ public class PopupLevelUp : MonoBehaviour
         canvasGroup.DOFade(0f, ANIMATION_TIME);
         transform.DOScale(0f, ANIMATION_TIME).SetEase(Ease.InBack).OnComplete(()=> {
             gameObject.SetActive(false);
+            PopupManager.Instance.DoNextAction();
         });
-        PopupManager.Instance.DoNextAction();
     }
 }

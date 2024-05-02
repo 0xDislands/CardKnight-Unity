@@ -5,24 +5,29 @@ public class PopupManager : MonoBehaviour
 {
     public static PopupManager Instance;
 
-    public Queue<System.Action> actions = new Queue<System.Action>();
+    public List<System.Action> actions = new List<System.Action>();
+    private int index = 0;
+
     private void Awake()
     {
         Instance = this;
     }
     public void ShowInQueue(System.Action action)
     {
-        actions.Enqueue(action);
-        if (actions.Count == 1)
+        actions.Add(action);
+        if (index == 0)
         {
-            DoNextAction();
+            actions[index]?.Invoke();
         }
     }
 
     public void DoNextAction()
     {
         if (actions.Count == 0) return;
-        var action = actions.Dequeue();
-        action?.Invoke();
+        actions.RemoveAt(0);
+        if (actions.Count > 0)
+        {
+            actions[0].Invoke();
+        }
     }
 }
