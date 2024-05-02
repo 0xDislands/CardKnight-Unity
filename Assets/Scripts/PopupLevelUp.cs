@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using Unity.VisualScripting;
+using UnityEngine.UI;
+using TMPro;
 
 public class PopupLevelUp : MonoBehaviour
 {
@@ -47,5 +48,6 @@ public class PopupLevelUp : MonoBehaviour
         transform.DOScale(0f, ANIMATION_TIME).SetEase(Ease.InBack).OnComplete(()=> {
             gameObject.SetActive(false);
         });
+        PopupManager.Instance.DoNextAction();
     }
 }

@@ -79,7 +79,17 @@ public class Hero : MonoBehaviour
             SimpleObjectPool.Instance.GetObjectFromPool(textLevelUp, transform.position);
             DOVirtual.DelayedCall(0.5f, () =>
             {
-                GameFlow.Instance.popupLevelUp.ShowLevelUp(oldLevel);
+                PopupManager.Instance.ShowInQueue(() =>
+                {
+                    GameFlow.Instance.popupLevelUp.ShowLevelUp(oldLevel);
+                });
+                if (heroData.level == 2)
+                {
+                    PopupManager.Instance.ShowInQueue(() =>
+                    {
+                        GameFlow.Instance.popupPoweupUnlocked.ShowUnlock(PowerupId.Slash);
+                    });
+                }
             });
         }
     }
