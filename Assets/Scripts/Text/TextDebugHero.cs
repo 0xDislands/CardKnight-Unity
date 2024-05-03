@@ -17,6 +17,7 @@ public class TextDebugHero : MonoBehaviour
 
     public string GetDebugText ()
     {
+        if (!CardManager.Instance.hero) return "";
         var data = CardManager.Instance.hero.heroData;
         string str = "hero \n";
         str += $"hp: {data.hp} / {data.maxHp} \n";

@@ -13,6 +13,7 @@ public class HeroData
     public int dame;
     public int level;
     public float currentExp;
+    public float totalExp;
 }
 
 [System.Serializable]
@@ -57,6 +58,7 @@ public class Hero : MonoBehaviour
                 Debug.Log("Die!");
                 heroData.hp = 0;
                 dead = true;
+                Gameplay.Instance.Lose();
             }
         }
         else
@@ -71,26 +73,34 @@ public class Hero : MonoBehaviour
     public void AddEXP(float exp)
     {
         heroData.currentExp += exp;
+        heroData.totalExp += exp;
         if (heroData.currentExp > EXP_TO_LEVEL_UP)
         {
             int oldLevel = heroData.level;
             heroData.currentExp -= EXP_TO_LEVEL_UP;
             heroData.level++;
             SimpleObjectPool.Instance.GetObjectFromPool(textLevelUp, transform.position);
+
+            if (Gameplay.Instance.state == GameplayState.Lose ||
+                Gameplay.Instance.state == GameplayState.Win)
+            {
+                return;
+            }
+
             DOVirtual.DelayedCall(0.5f, () =>
             {
                 PopupManager.Instance.ShowInQueue(() =>
                 {
-                    GameFlow.Instance.popupLevelUp.ShowLevelUp(oldLevel);
+                    Gameplay.Instance.popupLevelUp.ShowLevelUp(oldLevel);
                 });
                 for (int i = 0; i < DataManager.Instance.powerupDatas.Count; i++)
                 {
                     if (heroData.level == DataManager.Instance.powerupDatas[i].unlockLevel)
                     {
+                        var id = DataManager.Instance.powerupDatas[i].id;
                         PopupManager.Instance.ShowInQueue(() =>
                         {
-                            var id = DataManager.Instance.powerupDatas[i].id;
-                            GameFlow.Instance.popupPoweupUnlocked.ShowUnlock(id);
+                            Gameplay.Instance.popupPoweupUnlocked.ShowUnlock(id);
                         });
                     }
                 }

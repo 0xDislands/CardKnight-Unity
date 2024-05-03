@@ -40,7 +40,7 @@ public class CardManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
+    public void StartGame()
     {
         startCards = GetStartCards();
         spawnCards = GetSpawnCards ();
