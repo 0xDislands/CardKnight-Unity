@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class ItemChest : Item
 {
-    public int healAmount;
     public ParticleSystem appearEffect;
     public List<CardId> transformCards = new List<CardId>() { CardId.ItemHeal, CardId.ItemPoison, CardId.ItemShield };
     public override void ApplyEffect(Hero hero)

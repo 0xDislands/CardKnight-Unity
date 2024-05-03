@@ -13,6 +13,7 @@ public class Gameplay : MonoBehaviour
     public PopupLevelUp popupLevelUp;
     public PopupPoweupUnlocked popupPoweupUnlocked;
     public PopupGameOver popupGameOver;
+    public PopupLockMinigame popupUnlockMiniGame;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class Gameplay : MonoBehaviour
         popupPoweupUnlocked.gameObject.SetActive(false);
         popupGameOver.gameObject.SetActive(false);
         CardManager.Instance.StartGame();
+        state = GameplayState.Playing;
     }
 
     public void Lose()

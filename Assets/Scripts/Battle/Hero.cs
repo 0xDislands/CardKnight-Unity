@@ -20,6 +20,12 @@ public class HeroData
 public class DamageData
 {
     public int damage;
+
+    public DamageData() { }
+    public DamageData(int damage)
+    {
+        this.damage = damage;
+    }
 }
 
 public class Hero : MonoBehaviour
