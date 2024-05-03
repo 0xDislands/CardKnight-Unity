@@ -19,6 +19,14 @@ public class Gameplay : MonoBehaviour
         Instance = this;
     }
 
+    public void StartGame()
+    {
+        popupLevelUp.gameObject.SetActive(false);
+        popupPoweupUnlocked.gameObject.SetActive(false);
+        popupGameOver.gameObject.SetActive(false);
+        CardManager.Instance.StartGame();
+    }
+
     public void Lose()
     {
         if (state == GameplayState.Lose) return;

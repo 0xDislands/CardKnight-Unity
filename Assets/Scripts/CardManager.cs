@@ -59,6 +59,10 @@ public class CardManager : MonoBehaviour
 
     private void SpawnAllCard()
     {
+        for (int i = 0; i < cardParent.childCount; i++)
+        {
+            cardParent.GetChild(i).gameObject.SetActive(false);
+        }
         //cần spawn hero đầu tiên vì các card khác cần lấy data từ hero (ví dụ như card monster)
         int midIndex = GridManager.Instance.grids.Length / 2;
         cards = new List<Card>();

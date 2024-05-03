@@ -4,14 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainScene : MonoBehaviour
+public enum SceneName
+{
+    MainScene, Gameplay
+}
+
+public class GameplaySceneManager : MonoBehaviour
 {
     public const string SCENE_GAMEPLAY = "Gameplay";
     public Canvas canvasStart;
 
     private void Start()
     {
-        canvasStart.gameObject.SetActive(true);
+        ShowMainScene();
     }
 
     public void Play()
@@ -21,6 +26,12 @@ public class MainScene : MonoBehaviour
         {
             canvasStart.gameObject.SetActive(false);
         });
-        CardManager.Instance.StartGame();
+        Gameplay.Instance.StartGame();
+    }
+
+    public void ShowMainScene()
+    {
+        canvasStart.gameObject.SetActive(true);
+        canvasStart.GetComponent<CanvasGroup>().DOFade(1f, 1f);
     }
 }
