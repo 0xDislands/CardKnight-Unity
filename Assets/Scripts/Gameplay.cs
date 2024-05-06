@@ -21,6 +21,11 @@ public class Gameplay : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        StartGame();
+    }
+
     public void StartGame()
     {
         popupLevelUp.gameObject.SetActive(false);

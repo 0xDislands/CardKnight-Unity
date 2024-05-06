@@ -4,6 +4,9 @@
 
     public override void OnClick()
     {
+        var unlockLevel = DataManager.Instance.dicPowerUp[id].unlockLevel;
+        if (CardManager.Instance.hero.heroData.level < unlockLevel) return;
+
         var hero = CardManager.Instance.heroCard;
         for (int i = 0; i < GridManager.Instance.grids.Length; i++)
         {

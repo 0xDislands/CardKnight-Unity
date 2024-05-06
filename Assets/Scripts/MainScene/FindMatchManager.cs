@@ -1,11 +1,17 @@
-﻿using System.Collections;
+﻿using Dislands;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FindMatchManager : MonoBehaviour
 {
     public const float FIND_TIME = 4f;
 
+    public Canvas canvasHome;
+    public PopupWaiting popupWaiting;
     public TextMeshProUGUI txtButton;
     public TextMeshProFader txtStatus;
     public FindMatchState state;
@@ -45,10 +51,7 @@ public class FindMatchManager : MonoBehaviour
     {
         txtStatus.textMesh.text = "Found Room";
         yield return new WaitForSeconds(1f);
-
-        txtStatus.textMesh.text = "Entering Room";
-        yield return new WaitForSeconds(2f);
-
-        Debug.Log("enter room!");
+        canvasHome.gameObject.SetActive(false);
+        popupWaiting.gameObject.SetActive(true);
     }
 }

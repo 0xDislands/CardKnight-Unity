@@ -1215,6 +1215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasStart: {fileID: 2131959348}
+  canvasMatching: {fileID: 0}
 --- !u!1001 &167861755
 PrefabInstance:
   m_ObjectHideFlags: 0
