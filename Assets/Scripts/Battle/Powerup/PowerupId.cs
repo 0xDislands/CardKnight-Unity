@@ -1,7 +1,7 @@
 ﻿public enum PowerupId
 {
     Slash,
-    Slash1,
+    Swap,
     Slash2,
     Slash3,
 }

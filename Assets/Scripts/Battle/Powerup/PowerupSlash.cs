@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using DG.Tweening;
 
 public class PowerupSlash : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class PowerupSlash : MonoBehaviour
         for (int i = 0; i < slashes.Length; i++)
         {
             slashes[i].gameObject.SetActive(false);
-        }   
+        }
     }
     public void OnDisable()
     {

@@ -15,9 +15,9 @@ public class CardManager : MonoBehaviour
     [SerializeField] private Sprite cardBack;
     [SerializeField] private Card cardPrefab;
     [SerializeField] private Transform cardParent;
-    [SerializeField] private Card heroCard;
     [SerializeField] private TextAsset spawnCardData;
     public Hero hero;
+    public Card heroCard;
     private bool canClick = true;
 
     public List<Card> cards { get; private set; }
