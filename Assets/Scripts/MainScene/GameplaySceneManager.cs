@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,7 @@ public class GameplaySceneManager : MonoBehaviour
 {
     public const string SCENE_GAMEPLAY = "Gameplay";
     public Canvas canvasStart;
+    public Canvas canvasMatching;
 
     private void Start()
     {
