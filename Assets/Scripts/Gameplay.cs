@@ -34,9 +34,6 @@ public class Gameplay : MonoBehaviour
     {
         if (state == GameplayState.Lose) return;
         state = GameplayState.Lose;
-        DOVirtual.DelayedCall(0.5f, () =>
-        {
-            popupGameOver.gameObject.SetActive(true);
-        });
+        popupGameOver.gameObject.SetActive(true);
     }
 }

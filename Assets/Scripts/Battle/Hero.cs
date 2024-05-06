@@ -59,7 +59,7 @@ public class Hero : MonoBehaviour
         {
             heroData.hp -= (data.damage - heroData.shield);
             heroData.shield = 0;
-            if (heroData.hp < 0)
+            if (heroData.hp <= 0)
             {
                 Debug.Log("Die!");
                 heroData.hp = 0;
