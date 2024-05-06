@@ -51,6 +51,10 @@ public class CardManager : MonoBehaviour
 
     private void Update()
     {
+        if (hero.heroData.hp == 0)
+        {
+            Gameplay.Instance.Lose();
+        }
         for (int i = 0; i < heroNeighbours.Count; i++)
         {
             Debug.DrawLine(heroCard.transform.position, GridManager.Instance.dicGrids[heroNeighbours[i]].transform.position, Color.red);

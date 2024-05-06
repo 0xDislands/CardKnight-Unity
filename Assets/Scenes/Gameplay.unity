@@ -7055,6 +7055,7 @@ GameObject:
   - component: {fileID: 811311076}
   - component: {fileID: 811311075}
   - component: {fileID: 811311074}
+  - component: {fileID: 811311077}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -7126,16 +7127,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 167797789}
-        m_TargetAssemblyTypeName: GameplaySceneManager, Assembly-CSharp
-        m_MethodName: ShowMainScene
-        m_Mode: 1
+      - m_Target: {fileID: 811311077}
+        m_TargetAssemblyTypeName: Dislands.ChangeScene, Assembly-CSharp
+        m_MethodName: ChangeToScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Main
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &811311075
@@ -7176,6 +7177,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811311072}
   m_CullTransparentMesh: 1
+--- !u!114 &811311077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811311072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfacdd76b20c7194791843625be2d3ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &826648481
 PrefabInstance:
   m_ObjectHideFlags: 0
