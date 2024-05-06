@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-using Dislands;
 using System.Collections.Generic;
 using DG.Tweening;
+using Dislands;
 
-public class ItemChestMiniGame : Item
+public class ItemChestDevil : Item
 {
     public ParticleSystem appearEffect;
     public List<CardId> transformCards = new List<CardId>() { CardId.ItemHeal, CardId.ItemPoison, CardId.ItemShield };

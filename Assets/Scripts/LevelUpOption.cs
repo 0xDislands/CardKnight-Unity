@@ -9,15 +9,12 @@ public class LevelUpOption : MonoBehaviour
     public TextMeshProUGUI title;
     public TextMeshProUGUI amount;
     public TextMeshProUGUI description;
-    private LevelUpData data;
-    [SerializeField] private PopupLevelUp popupLevelUp;
+    private ChangeStateData data;
+    public bool changeColor;
+    public Color colorGood;
+    public Color colorBad;
 
-    private void Awake()
-    {
-        popupLevelUp = GetComponentInParent<PopupLevelUp>();
-    }
-
-    public void Show(LevelUpData data)
+    public void Show(ChangeStateData data)
     {
         this.data = data;
         imgDemo.sprite = data.sprite;
@@ -29,6 +26,11 @@ public class LevelUpOption : MonoBehaviour
         } else
         {
             amount.text = data.amount.ToString();
+        }
+        if (changeColor)
+        {
+            var color = data.type == LevelUpDataType.Bad ? colorBad : colorGood;
+            title.color = color;
         }
     }
 
@@ -52,7 +54,15 @@ public class LevelUpOption : MonoBehaviour
                 CardManager.Instance.hero.heroData.maxShield += data.amount;
                 CardManager.Instance.hero.UpdateDisplay ();
                 break;
+            case LevelUpId.LOSE_CURRENT_HP_PERCENT:
+                int hpLost = Mathf.CeilToInt(CardManager.Instance.hero.heroData.hp *((float)data.amount / 100));
+                CardManager.Instance.hero.AddHP(new DamageData(-(int)hpLost));
+                CardManager.Instance.hero.UpdateDisplay();
+                break;
+            case LevelUpId.INCREASE_EXP:
+                CardManager.Instance.hero.AddEXP(data.amount);
+                CardManager.Instance.hero.UpdateDisplay();
+                break;
         }
-        popupLevelUp.Close();
     }
 }

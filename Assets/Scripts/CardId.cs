@@ -11,5 +11,6 @@
     Monster2,
     Monster3,
     SkillFire,
-    ItemChestMiniGame
+    ItemChestMiniGame,
+    ItemChestEvil
 }

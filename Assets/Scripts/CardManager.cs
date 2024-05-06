@@ -134,6 +134,7 @@ public class CardManager : MonoBehaviour
         dicCard.Add("102", CardId.ItemPoison);
         dicCard.Add("103", CardId.ItemChest);
         dicCard.Add("104", CardId.ItemChestMiniGame);
+        dicCard.Add("105", CardId.ItemChestEvil);
         List<CardId> spawnCards = new List<CardId>();
         string[] lines = spawnCardData.text.Split("\n");
         for (int i = 0; i < lines.Length; i++)

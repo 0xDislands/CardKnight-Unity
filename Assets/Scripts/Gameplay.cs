@@ -14,6 +14,7 @@ public class Gameplay : MonoBehaviour
     public PopupPoweupUnlocked popupPoweupUnlocked;
     public PopupGameOver popupGameOver;
     public PopupLockMinigame popupUnlockMiniGame;
+    public PopupEvilBuff popupEvilBuff;
 
     private void Awake()
     {

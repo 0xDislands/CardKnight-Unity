@@ -124,6 +124,7 @@ public class Hero : MonoBehaviour
         if (heroData.hp < 0)
         {
             heroData.hp = 0;
+            Die();
         }
         textHp.SetHP(heroData);
     }
@@ -146,6 +147,7 @@ public class Hero : MonoBehaviour
     public void Die()
     {
         Debug.Log("game over!");
+        Gameplay.Instance.Lose();
     }
 
     public int GetHP()
