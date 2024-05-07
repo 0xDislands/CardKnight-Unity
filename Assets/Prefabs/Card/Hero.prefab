@@ -230,9 +230,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 881369a2f00d1fc41a29e698be69f6c7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 49e6ae853db3a234b8653bc244af107b, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -445,6 +445,7 @@ MonoBehaviour:
     dame: 0
     level: 0
     currentExp: 0
+    totalExp: 0
   textLevelUp: {fileID: 9202366413005754918, guid: 90847cb6115d26d4e824866a90d427d1, type: 3}
 --- !u!1 &8802161727089519133
 GameObject:

@@ -4,6 +4,7 @@ using UnityEngine;
 public class PoisonEachTurn : TurnEndEffect
 {
     public const int DEFAULT_TURN_COUNT = 4;
+    public const float DELAY = 0.2f;
     public ParticleSystem poisonEffect;
 
     public int turnCount = DEFAULT_TURN_COUNT;
@@ -22,7 +23,7 @@ public class PoisonEachTurn : TurnEndEffect
     }
     public override IEnumerator IETurnEnd()
     {
-        yield return new WaitForSeconds (1f);
+        yield return new WaitForSeconds (DELAY);
         turnCount--;
         if (turnCount < 0) Destroy(this);
         var damageData = new DamageData ();

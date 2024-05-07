@@ -6,14 +6,16 @@ using System.Collections;
 
 public class SkillFire : Skill
 {
+    public const int ATTACK_NUMBER = 2;
+
     public ParticleSystem fireEffect;
     public override void ApplyEffect (Hero hero)
     {
         var monsters = GetAllMonsters ();
         monsters.Shuffle ();
-        if (monsters.Count > 3)
+        if (monsters.Count > ATTACK_NUMBER)
         {
-            monsters = monsters.GetRange (0, 3);
+            monsters = monsters.GetRange (0, ATTACK_NUMBER);
         }
 
         CardManager.Instance.StartCoroutine (IEUseSkill (monsters));

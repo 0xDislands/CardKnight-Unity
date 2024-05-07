@@ -55,7 +55,7 @@ public class LevelUpOption : MonoBehaviour
                 CardManager.Instance.hero.UpdateDisplay ();
                 break;
             case LevelUpId.LOSE_CURRENT_HP_PERCENT:
-                int hpLost = Mathf.CeilToInt(CardManager.Instance.hero.heroData.hp *((float)data.amount / 100));
+                int hpLost = Mathf.FloorToInt(CardManager.Instance.hero.heroData.hp *((float)data.amount / 100));
                 CardManager.Instance.hero.AddHP(new DamageData(-(int)hpLost));
                 CardManager.Instance.hero.UpdateDisplay();
                 break;
