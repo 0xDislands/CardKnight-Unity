@@ -12,6 +12,8 @@ public class CardManager : MonoBehaviour
     public const bool TEST_SKILL_FIRE = false;
 
     public static CardManager Instance;
+    public static HeroId selectedHero;
+
     [SerializeField] private Sprite cardBack;
     [SerializeField] private Card cardPrefab;
     [SerializeField] private Transform cardParent;

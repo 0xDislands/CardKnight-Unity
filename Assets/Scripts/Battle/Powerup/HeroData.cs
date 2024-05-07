@@ -2,12 +2,11 @@
 using UnityEngine;
 
 [System.Serializable]
-public class PowerupData
+public class HeroData
 {
-    public PowerupId id;
+    public HeroId id;
+    public List<PowerupId> powerUps;
     public string name;
     public string description;
     public Sprite sprite;
-    public int unlockLevel;
-    public int cooldown;
 }

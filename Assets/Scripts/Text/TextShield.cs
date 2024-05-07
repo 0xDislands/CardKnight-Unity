@@ -9,7 +9,7 @@ public class TextShield : MonoBehaviour
     {
         txtHp = GetComponent<TextMeshProUGUI>();
     }
-    public void SetShield(HeroData heroData)
+    public void SetShield(HeroBattleData heroData)
     {
         txtHp.text = heroData.shield + "/" + heroData.maxShield;
     }

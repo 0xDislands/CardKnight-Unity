@@ -6,9 +6,12 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance;
     public List<CardData> cardDatas = new List<CardData>();
     public List<PowerupData> powerupDatas = new List<PowerupData>();
+    public List<HeroData> heroDatas = new List<HeroData>();
     public List<CardData> noneHeroCardDatas { get; private set; } = new List<CardData>();
     public Dictionary<CardId, CardData> dicCardDatas { get; private set; } = new Dictionary<CardId, CardData>();
     public Dictionary<PowerupId, PowerupData> dicPowerUp { get; private set; } = new Dictionary<PowerupId, PowerupData>();
+    public Dictionary<HeroId, HeroData> dicHero { get; private set; } = new Dictionary<HeroId, HeroData>();
+
     private void Awake()
     {
         Instance = this;
@@ -34,6 +37,11 @@ public class DataManager : MonoBehaviour
         for (int i = 0; i < powerupDatas.Count; i++)
         {
             dicPowerUp.Add(powerupDatas[i].id, powerupDatas[i]);
+        }
+        dicHero = new Dictionary<HeroId, HeroData>();
+        for (int i = 0; i < heroDatas.Count; i++)
+        {
+            dicHero.Add(heroDatas[i].id, heroDatas[i]);
         }
     }
 }

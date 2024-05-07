@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &949544488541002329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3824653269942692351}
+  - component: {fileID: 8151232389537041027}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3824653269942692351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949544488541002329}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.4371984, y: 3.030712, z: 361.28375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8151232389537041027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949544488541002329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a960a1a7b9448e458d893d03bd126c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardDatas:
+  - id: 0
+    sprite: {fileID: 21300000, guid: 881369a2f00d1fc41a29e698be69f6c7, type: 3}
+    health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: 53bdd9953b81ff84786c03627db52f6f, type: 3}
+  - id: 1
+    sprite: {fileID: 21300000, guid: dc4e6a97a6c642c47ba2682953b7a5be, type: 3}
+    health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: 34c4d206d3dcd594a935f055c185177c, type: 3}
+  - id: 2
+    sprite: {fileID: 21300000, guid: f04262372b54e314ab5a7e6bfe50fc7e, type: 3}
+    health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: 6ee9bcd5429c16e438a4a13da4028a30, type: 3}
+  - id: 7
+    sprite: {fileID: 21300000, guid: 25772542e1303594d962f8ac1d3a9af7, type: 3}
+    health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: 2f94a8eb1f37b4e4db02163e07543b52, type: 3}
+  - id: 8
+    sprite: {fileID: 21300000, guid: 00fa31ddf72f05c43984dc798bfe2654, type: 3}
+    health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: 5cb4f37809419dd4381c8cf38d6d1475, type: 3}
+  - id: 4
+    sprite: {fileID: 21300000, guid: bb0f5b6da68b29048bc5485da0360b67, type: 3}
+    health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: 0859c6055b4a1c14caf4d17a6d230704, type: 3}
+  - id: 3
+    sprite: {fileID: 21300000, guid: bb0f5b6da68b29048bc5485da0360b67, type: 3}
+    health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: d9860ee5c8627a34f9cd193be9cddda3, type: 3}
+  - id: 9
+    sprite: {fileID: 21300000, guid: 49860ab1d020da74b85fcdafb4fcc274, type: 3}
+    health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: 59e716bb4483eff4daf81d007a8a2552, type: 3}
+  - id: 5
+    sprite: {fileID: 21300000, guid: bb0f5b6da68b29048bc5485da0360b67, type: 3}
+    health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: 6fc67f54f96af7e45b7aab5fa5172f71, type: 3}
+  - id: 10
+    sprite: {fileID: 21300000, guid: 139d45194752d454ba344441670aa31d, type: 3}
+    health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: 51c4dbc624d619e42a41c1e0aee9f409, type: 3}
+  - id: 11
+    sprite: {fileID: 21300000, guid: 13f6246a193a7ee4b89732c4f01bb871, type: 3}
+    health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: 985a249691cda954bb4402021760ecfe, type: 3}
+  - id: 12
+    sprite: {fileID: 21300000, guid: 3d9d4fcc3fcdf1f42b93d74bbc9742d3, type: 3}
+    health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: 7e91b0de27de17e45a4d2acbdf752cee, type: 3}
+  - id: 13
+    sprite: {fileID: 21300000, guid: 3d9d4fcc3fcdf1f42b93d74bbc9742d3, type: 3}
+    health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: e9cc506afa529c047a3747986344ab6e, type: 3}
+  powerupDatas:
+  - id: 0
+    name: SLASH
+    description: Slash description
+    sprite: {fileID: 21300000, guid: 3dd55defa483e5148a36efb4a4893a61, type: 3}
+    unlockLevel: 6
+    cooldown: 0
+  - id: 1
+    name: SWAP
+    description: Swap Description
+    sprite: {fileID: 21300000, guid: fb56dbdbb5d580849bc460e20b6169a6, type: 3}
+    unlockLevel: 2
+    cooldown: 0
+  - id: 2
+    name: Hex
+    description: Turn one monster to chicken
+    sprite: {fileID: 21300000, guid: fb56dbdbb5d580849bc460e20b6169a6, type: 3}
+    unlockLevel: 2
+    cooldown: 0
+  - id: 3
+    name: Full Heal
+    description: Full Heal
+    sprite: {fileID: 21300000, guid: dc4e6a97a6c642c47ba2682953b7a5be, type: 3}
+    unlockLevel: 2
+    cooldown: 0
+  heroDatas:
+  - id: 0
+    powerUps: 
+    name: Knight
+    description: This is description
+    sprite: {fileID: 21300000, guid: 49e6ae853db3a234b8653bc244af107b, type: 3}
+  - id: 1
+    powerUps: 
+    name: Shaman
+    description: This is description
+    sprite: {fileID: 21300000, guid: 881369a2f00d1fc41a29e698be69f6c7, type: 3}

@@ -3,7 +3,7 @@ using TMPro;
 using DG.Tweening;
 
 [System.Serializable]
-public class HeroData
+public class HeroBattleData
 {
     public int hp;
     public int maxHp;
@@ -32,14 +32,14 @@ public class Hero : MonoBehaviour
 {
     public const float EXP_TO_LEVEL_UP = 3f;
 
-    public HeroData heroData;
+    public HeroBattleData heroData;
     private TextHp textHp;
     private TextShield textShield;
     [SerializeField] TextLevelUp textLevelUp;
 
     private void Awake()
     {
-        heroData = new HeroData();
+        heroData = new HeroBattleData();
         textHp = GetComponentInChildren<TextHp>();
         textShield = GetComponentInChildren<TextShield>();
         heroData.hp = 10;

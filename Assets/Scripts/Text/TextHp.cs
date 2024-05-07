@@ -10,7 +10,7 @@ public class TextHp : MonoBehaviour
     {
         txtHp = GetComponent<TextMeshProUGUI>();
     }
-    public void SetHP(HeroData heroData)
+    public void SetHP(HeroBattleData heroData)
     {
         txtHp.text = heroData.hp + "/" + heroData.maxHp;
     }

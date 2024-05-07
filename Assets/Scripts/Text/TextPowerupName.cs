@@ -29,7 +29,7 @@ public class TextPowerupName : MonoBehaviour
         var data = DataManager.Instance.dicPowerUp[id];
         if (CardManager.Instance.hero.heroData.level < data.unlockLevel)
         {
-            txt.text = $"Unlock at level {data.unlockLevel + 1}";
+            txt.text = $"Unlock at level {data.unlockLevel}";
         }
         else
         {

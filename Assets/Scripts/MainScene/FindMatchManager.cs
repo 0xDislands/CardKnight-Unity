@@ -16,10 +16,15 @@ public class FindMatchManager : MonoBehaviour
     public TextMeshProFader txtStatus;
     public FindMatchState state;
     private float startFindingTime;
-
+    
     private void Awake()
     {
         txtStatus.gameObject.SetActive(false);
+    }
+
+    public void OnSelectHeroClick()
+    {
+
     }
 
     public void OnFindMatchClick()
