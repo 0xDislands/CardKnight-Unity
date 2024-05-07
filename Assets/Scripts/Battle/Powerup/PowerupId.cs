@@ -2,6 +2,6 @@
 {
     Slash,
     Swap,
-    Slash2,
+    Hex,
     Slash3,
 }

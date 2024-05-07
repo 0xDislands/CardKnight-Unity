@@ -6005,6 +6005,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 644808473}
   m_CullTransparentMesh: 1
+--- !u!1 &656442970 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2826638150461269259, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
+  m_PrefabInstance: {fileID: 1595582237}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &657164272
 GameObject:
   m_ObjectHideFlags: 0
@@ -10016,6 +10021,10 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 3d9d4fcc3fcdf1f42b93d74bbc9742d3, type: 3}
     health: 0
     cardPrefab: {fileID: 8772459415456982177, guid: 7e91b0de27de17e45a4d2acbdf752cee, type: 3}
+  - id: 13
+    sprite: {fileID: 21300000, guid: 3d9d4fcc3fcdf1f42b93d74bbc9742d3, type: 3}
+    health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: e9cc506afa529c047a3747986344ab6e, type: 3}
   powerupDatas:
   - id: 0
     name: SLASH
@@ -10025,6 +10034,11 @@ MonoBehaviour:
   - id: 1
     name: SWAP
     description: Swap Description
+    sprite: {fileID: 21300000, guid: fb56dbdbb5d580849bc460e20b6169a6, type: 3}
+    unlockLevel: 2
+  - id: 2
+    name: Hex
+    description: Turn one monster to chicken
     sprite: {fileID: 21300000, guid: fb56dbdbb5d580849bc460e20b6169a6, type: 3}
     unlockLevel: 2
 --- !u!1 &1105218983
@@ -13091,9 +13105,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 786844521}
     m_Modifications:
+    - target: {fileID: 2246894030820480065, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2246894030820480065, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1595582243}
+    - target: {fileID: 2246894030820480065, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 2246894030820480065, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ButtonPowerupHex, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2826638150461269259, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
       propertyPath: m_Name
       value: Button Power Up (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194482198752621384, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
+      propertyPath: id
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8891171662576682608, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
       propertyPath: m_Pivot.x
@@ -13175,16 +13209,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3194482198752621384, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2826638150461269259, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1595582243}
   m_SourcePrefab: {fileID: 100100000, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
 --- !u!224 &1595582238 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8891171662576682608, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
   m_PrefabInstance: {fileID: 1595582237}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1595582243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656442970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71269ba165d82034491387e8890f3d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 2
+  powerupPrefab: {fileID: 7111472915197901797, guid: a59c160d692189443bfcc34162f2a52d, type: 3}
 --- !u!1 &1598493702
 GameObject:
   m_ObjectHideFlags: 0
