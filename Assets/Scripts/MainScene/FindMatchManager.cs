@@ -16,7 +16,7 @@ public class FindMatchManager : MonoBehaviour
     public TextMeshProFader txtStatus;
     public FindMatchState state;
     private float startFindingTime;
-    
+
     private void Awake()
     {
         txtStatus.gameObject.SetActive(false);
@@ -48,8 +48,13 @@ public class FindMatchManager : MonoBehaviour
         if (state == FindMatchState.FindingMatch && Time.time - startFindingTime > FIND_TIME)
         {
             state = FindMatchState.EnterRoom;
-            StartCoroutine(IEEnterRoom());
+            EnterRoom();
         }
+    }
+
+    public void EnterRoom()
+    {
+        StartCoroutine(IEEnterRoom());
     }
 
     public IEnumerator IEEnterRoom()

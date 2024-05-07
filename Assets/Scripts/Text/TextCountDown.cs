@@ -20,7 +20,7 @@ public class TextCountDown : MonoBehaviour
         txtCountDown.text = TimeSpan.FromSeconds((double)time).ToString("mm\\:ss");
     }
 
-    public void ShowCountDown(float time, Action onComplete)
+    public void StartCountDown(float time, Action onComplete)
     {
         this.time = time;
         this.onComplete = onComplete;

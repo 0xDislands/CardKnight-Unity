@@ -9,7 +9,8 @@ public class PopupWaiting : MonoBehaviour
 {
     public List<PlayerInRoom> players;
     private int playerIndex;
-    private bool finish;
+    private bool changingScene;
+    public TextCountDown textCountDown;
 
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class PopupWaiting : MonoBehaviour
     {
         playerIndex = Random.Range(0, players.Count);
         FakeReady();
+        textCountDown.StartCountDown(20, null);
     }
 
     public void OnReadyClick()
@@ -53,12 +55,12 @@ public class PopupWaiting : MonoBehaviour
 
     private void Update()
     {
-        if (finish) return;
+        if (changingScene) return;
 
         bool allReady = CheckAllReady();
-        if (allReady)
+        if (allReady || textCountDown.time <= 0)
         {
-            finish = true;
+            changingScene = true;
             SceneManager.LoadScene("gameplay");
         }
     }
