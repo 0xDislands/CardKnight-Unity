@@ -1,4 +1,4 @@
 ﻿public enum HeroId
 {
-    Knight, Shaman
+    Knight, Shaman, Vampire
 }

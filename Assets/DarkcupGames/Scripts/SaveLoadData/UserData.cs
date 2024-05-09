@@ -18,6 +18,7 @@ public class UserData
 {
     public int level;
     public int maxLevel;
+    public HeroData chosenHero;
     public Dictionary<string, LevelState> levelLib = new Dictionary<string, LevelState> ();
     public Dictionary<SettingKey, bool> dicSetting = new Dictionary<SettingKey, bool> ();
     public List<string> boughtItems;

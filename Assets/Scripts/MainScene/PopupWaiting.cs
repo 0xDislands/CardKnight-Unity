@@ -1,9 +1,9 @@
-﻿using Dislands;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Dislands;
 
 public class PopupWaiting : MonoBehaviour
 {
@@ -19,6 +19,7 @@ public class PopupWaiting : MonoBehaviour
     private void OnEnable()
     {
         playerIndex = Random.Range(0, players.Count);
+        players[playerIndex].SetPlayer();   
         FakeReady();
         textCountDown.StartCountDown(20, null);
     }

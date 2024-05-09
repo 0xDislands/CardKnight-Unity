@@ -99,18 +99,26 @@ public class Hero : MonoBehaviour
                 {
                     Gameplay.Instance.popupLevelUp.ShowLevelUp(oldLevel);
                 });
-                for (int i = 0; i < DataManager.Instance.powerupDatas.Count; i++)
-                {
-                    if (heroData.level == DataManager.Instance.powerupDatas[i].unlockLevel)
-                    {
-                        var id = DataManager.Instance.powerupDatas[i].id;
-                        PopupManager.Instance.ShowInQueue(() =>
-                        {
-                            Gameplay.Instance.popupPoweupUnlocked.ShowUnlock(id);
-                        });
-                    }
-                }
+                UnlockSkills();
             });
+        }
+    }
+
+    private void UnlockSkills()
+    {
+        var dataManager = DataManager.Instance;
+        var powerUpDatas = DataManager.Instance.dicHero[CardManager.selectedHero].powerUps;
+        for (int i = 0; i < powerUpDatas.Count; i++)
+        {
+            var id = powerUpDatas[i];
+
+            if (heroData.level == dataManager.dicPowerUp[id].unlockLevel)
+            {
+                PopupManager.Instance.ShowInQueue(() =>
+                {
+                    Gameplay.Instance.popupPoweupUnlocked.ShowUnlock(id);
+                });
+            }
         }
     }
 

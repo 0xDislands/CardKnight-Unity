@@ -28,7 +28,7 @@ public class PopupEvilBuff : MonoBehaviour
 
         if (index >= levelUpDataParent.transform.childCount)
         {
-            Debug.LogError("not enough data to show: " + index);
+            Debug.LogWarning("not enough data to show: " + index);
             index = 0;
         }
         var step = levelUpDataParent.GetChild(index);

@@ -4,6 +4,8 @@
 
     public override void OnClick()
     {
+        if (!useable) return;
+        CurrentAtkTime = 0;
         var hero = CardManager.Instance.hero;
         var unlockLevel = DataManager.Instance.dicPowerUp[id].unlockLevel;
         if (hero.heroData.level < unlockLevel) return;

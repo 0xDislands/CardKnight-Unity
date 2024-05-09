@@ -3,5 +3,8 @@
     Slash,
     Swap,
     Hex,
-    Slash3,
+    Heal, 
+    Life_Steal,
+    Shuffle,
+    Meteor
 }

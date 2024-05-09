@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System.Linq;
 using UnityEngine;
 
 public enum GameplayState
@@ -15,6 +16,7 @@ public class Gameplay : MonoBehaviour
     public PopupGameOver popupGameOver;
     public PopupLockMinigame popupUnlockMiniGame;
     public PopupEvilBuff popupEvilBuff;
+    public ButtonPowerup[] buttonPowerups;
 
     private void Awake()
     {
@@ -31,8 +33,15 @@ public class Gameplay : MonoBehaviour
         popupLevelUp.gameObject.SetActive(false);
         popupPoweupUnlocked.gameObject.SetActive(false);
         popupGameOver.gameObject.SetActive(false);
-        CardManager.Instance.StartGame();
+        var cardManager = CardManager.Instance;
+        cardManager.StartGame();
         state = GameplayState.Playing;
+        var data = DataManager.Instance.dicHero[CardManager.selectedHero];
+        foreach (var powerUp in data.powerUps) 
+        {
+            var button = buttonPowerups.FirstOrDefault(x => x.id == powerUp);
+            if(buttonPowerups != null) button.gameObject.SetActive(true);
+        }
     }
 
     public void Lose()

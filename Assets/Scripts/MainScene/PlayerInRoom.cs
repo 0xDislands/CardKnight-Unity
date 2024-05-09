@@ -12,6 +12,15 @@ public class PlayerInRoom : MonoBehaviour
         txtName.text = GetRandomName();
         UpdateDisplay();
     }
+
+    public void SetPlayer()
+    {
+        txtName.fontStyle = FontStyles.Bold;
+        txtName.fontSize += 3f;
+        txtStatus.fontStyle = FontStyles.Bold;
+        txtStatus.fontSize += 3f;
+    }
+
     public void OnReadyClick()
     {
         ready = !ready;

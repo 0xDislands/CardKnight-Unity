@@ -82,14 +82,19 @@ public class Card : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (CardManager.Instance.IsNextToHeroCard(this))
-        {
-            CardManager.Instance.UseCard(this);
-        }
         var hero = GetComponent<Hero>();
         if (hero != null)
         {
             Debug.Log("You click hero card");
+
+        }
+        if (CardManager.Instance.IsNextToHeroCard(this))
+        {
+            CardManager.Instance.UseCard(this);
+            foreach (var item in Gameplay.Instance.buttonPowerups)
+            {
+                if(item.IsUnlocked()) item.CurrentAtkTime++;
+            }
         }
     }
 

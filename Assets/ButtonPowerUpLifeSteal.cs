@@ -1,7 +1,10 @@
-﻿public class ButtonPowerupHex : ButtonPowerup
-{
-    public PowerupHex powerupPrefab;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
+public class ButtonPowerUpLifeSteal : ButtonPowerup
+{
+    public PowerUpLifeSteal powerupPrefab;
     public override void OnClick()
     {
         if (!useable) return;
