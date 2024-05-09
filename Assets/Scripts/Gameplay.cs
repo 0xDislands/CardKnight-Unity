@@ -9,6 +9,8 @@ public enum GameplayState
 
 public class Gameplay : MonoBehaviour
 {
+    public const bool CHEAT_NO_GAME_OVER = true;
+
     public static Gameplay Instance;
     public GameplayState state;
     public PopupLevelUp popupLevelUp;
@@ -48,6 +50,7 @@ public class Gameplay : MonoBehaviour
 
     public void Lose()
     {
+        if (CHEAT_NO_GAME_OVER) return;
         if (state == GameplayState.Lose) return;
         state = GameplayState.Lose;
         popupGameOver.gameObject.SetActive(true);

@@ -154,7 +154,7 @@ public class CardManager : MonoBehaviour
             if (lines[i] == "") continue;
             if (dicCard.ContainsKey(lines[i]) == false)
             {
-                Debug.LogError("not found key with id : " + lines[i]);
+                Debug.LogWarning("not found key with id : " + lines[i]);
                 continue;
             } else
             {

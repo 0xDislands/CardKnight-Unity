@@ -4,11 +4,10 @@
 
     public override void OnClick()
     {
+        var unlockLevel = DataManager.Instance.dicPowerUp[id].unlockLevel;
+        if (CardManager.Instance.hero.heroData.level < unlockLevel) return;
         if (!useable) return;
         CurrentAtkTime = 0;
-        var hero = CardManager.Instance.hero;
-        var unlockLevel = DataManager.Instance.dicPowerUp[id].unlockLevel;
-        if (hero.heroData.level < unlockLevel) return;
 
         var neightbours = CardManager.Instance.heroNeighbours;
         for (int i = 0; i < neightbours.Count; i++)

@@ -26,7 +26,7 @@ public class PopupLevelUp : MonoBehaviour
         transform.DOScale(1f, ANIMATION_TIME).SetEase(Ease.OutBack);
         if (index >= levelUpDataParent.transform.childCount)
         {
-            Debug.LogError("not enough data to show: " + index);
+            Debug.LogWarning("not enough data to show: " + index);
             index = levelUpDataParent.transform.childCount - 1;
         }
         var step = levelUpDataParent.GetChild(index);

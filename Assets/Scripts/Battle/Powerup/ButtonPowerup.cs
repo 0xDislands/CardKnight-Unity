@@ -47,3 +47,15 @@ public abstract class ButtonPowerup : MonoBehaviour
 
     public abstract void OnClick();
 }
+
+//public class ButtonPowerupCooldown : MonoBehaviour
+//{
+//    public float maxValue;
+//    public float currentValue;
+//    private Image coolDownImg;
+
+//    private void Awake()
+//    {
+//        coolDownImg = GetComponent<Image>();
+//    }
+//}
