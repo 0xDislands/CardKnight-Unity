@@ -145,7 +145,7 @@ MonoBehaviour:
     powerUps: 000000000100000003000000
     name: Knight
     description: This is description
-    sprite: {fileID: 21300000, guid: 49e6ae853db3a234b8653bc244af107b, type: 3}
+    sprite: {fileID: 21300000, guid: c9ad01c66fad2cc4f8a5bd338933a6fe, type: 3}
   - id: 1
     powerUps: 020000000500000006000000
     name: Shaman
