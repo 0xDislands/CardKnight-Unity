@@ -199,8 +199,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 10.0359, y: -1.125}
+  m_SizeDelta: {x: 26.7772, y: 14.5136}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3315016795109451823
 CanvasRenderer:
@@ -230,9 +230,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9c139c843f956244d8a62525ed898583, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6be3a236e143b554da469b0d6a853343, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -483,6 +483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardBack: {fileID: 6685940440013630504}
   cardParent: {fileID: 0}
+  icon: {fileID: 0}
 --- !u!225 &2075306533853894767
 CanvasGroup:
   m_ObjectHideFlags: 0
