@@ -92,10 +92,6 @@ public class Card : MonoBehaviour, IPointerDownHandler
         if (CardManager.Instance.IsNextToHeroCard(this))
         {
             CardManager.Instance.UseCard(this);
-            foreach (var item in Gameplay.Instance.buttonPowerups)
-            {
-                if(item.IsUnlocked()) item.CurrentAtkTime++;
-            }
         }
     }
 

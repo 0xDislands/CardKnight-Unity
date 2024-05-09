@@ -16,16 +16,17 @@ public class Gameplay : MonoBehaviour
     public PopupGameOver popupGameOver;
     public PopupLockMinigame popupUnlockMiniGame;
     public PopupEvilBuff popupEvilBuff;
-    public ButtonPowerup[] buttonPowerups;
+    public Transform powerupGroupParent;
+    public ButtonPowerup[] buttonPowerups { get; private set; }
 
     private void Awake()
     {
         Instance = this;
+        buttonPowerups = powerupGroupParent.GetComponentsInChildren<ButtonPowerup>(true);
     }
 
     private void Start()
     {
-        buttonPowerups = FindObjectsOfType<ButtonPowerup>(true);
         StartGame();
     }
 

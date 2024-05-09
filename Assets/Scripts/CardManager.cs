@@ -46,7 +46,7 @@ public class CardManager : MonoBehaviour
     public void StartGame()
     {
         startCards = GetStartCards();
-        spawnCards = GetSpawnCards ();
+        spawnCards = GetSpawnCards();
         SpawnAllCard();
         UpdateHeroNeighbours();
         StartCoroutine(IECardAnimation());
@@ -95,41 +95,41 @@ public class CardManager : MonoBehaviour
             card.transform.position = new Vector2(999f, 999f);
         }
         //cần clear list để add lại theo đúng thứ tự
-        cards = new List<Card> ();
+        cards = new List<Card>();
         for (int i = 0; i < GridManager.Instance.grids.Length; i++)
         {
             Card card = GridManager.Instance.grids[i].card;
-            cards.Add (card);
+            cards.Add(card);
         }
     }
 
-    private List<CardId> GetStartCards ()
+    private List<CardId> GetStartCards()
     {
-        List<CardId> results = new List<CardId> ();
-        List<CardId> monsters = new List<CardId> ()
+        List<CardId> results = new List<CardId>();
+        List<CardId> monsters = new List<CardId>()
         {
             CardId.Monster1, CardId.Monster2, CardId.Monster3
         };
         for (int i = 0; i < 4; i++)
         {
-            results.Add (monsters.RandomElement ());
+            results.Add(monsters.RandomElement());
         }
-        List<CardId> nonMonsters = new List<CardId> ()
+        List<CardId> nonMonsters = new List<CardId>()
         {
             CardId.ItemHeal, CardId.ItemPoison, CardId.ItemChest, CardId.ItemShield
         };
         for (int i = 0; i < 4; i++)
         {
-            results.Add (nonMonsters.RandomElement ());
+            results.Add(nonMonsters.RandomElement());
         }
-        results.Shuffle ();
+        results.Shuffle();
         return results;
     }
-    private List<CardId> GetSpawnCards ()
+    private List<CardId> GetSpawnCards()
     {
         if (TEST_SKILL_FIRE)
         {
-            return new List<CardId> () {
+            return new List<CardId>() {
             CardId.Monster1, CardId.SkillFire,
             CardId.Monster2, CardId.SkillFire};
         }
@@ -164,7 +164,7 @@ public class CardManager : MonoBehaviour
         return spawnCards;
     }
 
-    public CardId GetNextCard ()
+    public CardId GetNextCard()
     {
         spawnCardIndex++;
         if (spawnCardIndex >= spawnCards.Count)
@@ -173,7 +173,7 @@ public class CardManager : MonoBehaviour
         }
         return spawnCards[spawnCardIndex];
     }
-    IEnumerator IECardAnimation ()
+    IEnumerator IECardAnimation()
     {
         yield return new WaitForEndOfFrame();
         for (int i = 0; i < cards.Count; i++)
@@ -191,10 +191,10 @@ public class CardManager : MonoBehaviour
         var card = Instantiate(data.cardPrefab, cardParent);
         card.Pos = grid.pos;
         card.transform.position = grid.transform.position;
-        card.gameObject.name = "Card #" + Random.Range(100, 200); 
+        card.gameObject.name = "Card #" + Random.Range(100, 200);
         if (cards.Contains(card) == false)
         {
-            cards.Add (card);
+            cards.Add(card);
         }
         return card;
     }
@@ -252,7 +252,7 @@ public class CardManager : MonoBehaviour
         heroCard.MoveToPos(card.Pos);
         DOTween.Kill(card.transform);
         card.Disappear();
-        CardId newCardId = GetNextCard ();
+        CardId newCardId = GetNextCard();
         var newCard = SpawnCard(spawnNewCardPosition, newCardId);
         newCard.ShowSpawnAnimation(0f);
         UpdateHeroNeighbours();
@@ -332,16 +332,20 @@ public class CardManager : MonoBehaviour
         {
             effect.ApplyEffect(heroCard.GetComponent<Hero>());
         }
-        StartCoroutine (IETurnEnd ());
+        foreach (var item in Gameplay.Instance.buttonPowerups)
+        {
+            if (item.IsUnlocked()) item.CurrentAtkTime++;
+        }
+        StartCoroutine(IETurnEnd());
     }
 
-    public IEnumerator IETurnEnd ()
+    public IEnumerator IETurnEnd()
     {
         canClick = false;
-        var turnEnds = hero.GetComponentsInChildren<TurnEndEffect> ();
+        var turnEnds = hero.GetComponentsInChildren<TurnEndEffect>();
         for (int i = 0; i < turnEnds.Length; i++)
         {
-            yield return turnEnds[i].IETurnEnd ();
+            yield return turnEnds[i].IETurnEnd();
         }
         canClick = true;
     }
