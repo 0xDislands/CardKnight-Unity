@@ -19,7 +19,12 @@ public class PopupWaiting : MonoBehaviour
     private void OnEnable()
     {
         playerIndex = Random.Range(0, players.Count);
-        players[playerIndex].SetPlayer();   
+        for (int i = 0; i < players.Count; i++)
+        {
+            players[i].SetReady(false);
+            players[i].SetPlayer(i == playerIndex);
+            players[i].UpdateDisplay();
+        }
         FakeReady();
         textCountDown.StartCountDown(20, null);
     }

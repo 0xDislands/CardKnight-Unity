@@ -6,21 +6,22 @@ public class PlayerInRoom : MonoBehaviour
     public TextMeshProUGUI txtName;
     public TextMeshProUGUI txtStatus;
     public bool ready { get; private set; }
-    private void OnEnable()
+    public bool isPlayer { get; private set; }
+    private int bigFontSize = 60;
+    private int normalFontSize = 54;
+
+    private void Awake()
     {
-        ready = false;
         txtName.text = GetRandomName();
-        UpdateDisplay();
     }
-
-    public void SetPlayer()
+    public void SetPlayer(bool isPlayer)
     {
-        txtName.fontStyle = FontStyles.Bold;
-        txtName.fontSize += 3f;
-        txtStatus.fontStyle = FontStyles.Bold;
-        txtStatus.fontSize += 3f;
+        this.isPlayer = isPlayer;
     }
-
+    public void SetReady(bool ready)
+    {
+        this.ready = ready;
+    }
     public void OnReadyClick()
     {
         ready = !ready;
@@ -28,6 +29,10 @@ public class PlayerInRoom : MonoBehaviour
     }
     public void UpdateDisplay()
     {
+        txtName.fontStyle = isPlayer ? FontStyles.Bold : FontStyles.Normal;
+        txtStatus.fontStyle = isPlayer ? FontStyles.Bold : FontStyles.Normal;
+        txtName.fontSize = isPlayer ? bigFontSize : normalFontSize;
+        txtStatus.fontSize = isPlayer ? bigFontSize : normalFontSize;
         txtStatus.text = ready ? "Ready" : "Not Ready";
     }
     string alphabet = "abcdefghijklmnopqstuvxyz0123456789";

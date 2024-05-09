@@ -5477,7 +5477,7 @@ MonoBehaviour:
   popupGameOver: {fileID: 1188400647}
   popupUnlockMiniGame: {fileID: 192325676}
   popupEvilBuff: {fileID: 306235474}
-  buttonPowerups: []
+  powerupGroupParent: {fileID: 786844521}
 --- !u!4 &556966628 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 7d370b06cef5f0a4f8739f3d3ed4e01a, type: 3}
