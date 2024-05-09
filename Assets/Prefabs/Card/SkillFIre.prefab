@@ -453,7 +453,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 139d45194752d454ba344441670aa31d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 87fc7428ed3830f4aa7c8380936e91d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -558,6 +558,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardBack: {fileID: 6685940440013630504}
   cardParent: {fileID: 0}
+  icon: {fileID: 0}
 --- !u!225 &2075306533853894767
 CanvasGroup:
   m_ObjectHideFlags: 0

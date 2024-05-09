@@ -74,6 +74,7 @@ public class Hero : MonoBehaviour
         textHp.SetHP(heroData);
         textShield.SetShield(heroData);
         dead = false;
+        EffectManager.Instance.Hit(transform.position);
     }
 
     public void AddEXP(float exp)

@@ -65,6 +65,7 @@ public class Monster : CardEffect
             dead = true;
         }
         textHp.SetHP(monsterData);
+        EffectManager.Instance.Hit(transform.position);
 
         if (dead == true)
         {

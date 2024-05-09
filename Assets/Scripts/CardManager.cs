@@ -125,7 +125,6 @@ public class CardManager : MonoBehaviour
         results.Shuffle ();
         return results;
     }
-    //1	101	2	102	3	103	1	101	2	102	3	103  --heal --poison -- chest
     private List<CardId> GetSpawnCards ()
     {
         if (TEST_SKILL_FIRE)
@@ -313,7 +312,7 @@ public class CardManager : MonoBehaviour
                     if (positions[i].y > heroCard.Pos.y) return GridManager.Instance.dicGrids[positions[i]].card;
                 }
             }
-            //nếu cùng x: đi trái thì dùng ô bên dưới
+            //nếu cùng y: đi trái thì dùng ô bên dưới
             if (card.Pos.x < heroCard.Pos.x)
             {
                 for (int i = 0; i < positions.Count; i++)
