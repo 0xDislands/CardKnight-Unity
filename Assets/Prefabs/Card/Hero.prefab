@@ -412,6 +412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardBack: {fileID: 6685940440013630504}
   cardParent: {fileID: 0}
+  icon: {fileID: 7833356241929002155}
 --- !u!225 &2075306533853894767
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -447,6 +448,7 @@ MonoBehaviour:
     currentExp: 0
     totalExp: 0
   textLevelUp: {fileID: 9202366413005754918, guid: 90847cb6115d26d4e824866a90d427d1, type: 3}
+  card: {fileID: 0}
 --- !u!1 &8802161727089519133
 GameObject:
   m_ObjectHideFlags: 0

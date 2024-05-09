@@ -25,6 +25,7 @@ public class Gameplay : MonoBehaviour
 
     private void Start()
     {
+        buttonPowerups = FindObjectsOfType<ButtonPowerup>(true);
         StartGame();
     }
 

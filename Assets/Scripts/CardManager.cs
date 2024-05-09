@@ -5,6 +5,7 @@ using UnityEngine;
 using Dislands;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class CardManager : MonoBehaviour
 {
@@ -72,7 +73,8 @@ public class CardManager : MonoBehaviour
         //cần spawn hero đầu tiên vì các card khác cần lấy data từ hero (ví dụ như card monster)
         int midIndex = GridManager.Instance.grids.Length / 2;
         cards = new List<Card>();
-        heroCard = SpawnCard(GridManager.Instance.grids[midIndex].pos, CardId.Hero); 
+        heroCard = SpawnCard(GridManager.Instance.grids[midIndex].pos, CardId.Hero);
+        heroCard.icon.sprite = DataManager.Instance.dicHero[selectedHero].sprite;
         hero = heroCard.GetComponent<Hero>();
         int startCardIndex = 0;
 

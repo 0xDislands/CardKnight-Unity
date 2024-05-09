@@ -20,6 +20,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
     private Vector2Int pos;
     [SerializeField] Image cardBack;
     [SerializeField] Transform cardParent;
+    public Image icon;
 
     public CardData data { get; private set; }
     public CardEffect cardEffect { get; private set; }
