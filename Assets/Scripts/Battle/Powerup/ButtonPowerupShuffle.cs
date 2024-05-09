@@ -34,6 +34,21 @@ public class ButtonPowerupShuffle : ButtonPowerup
                 newPositions.Add(CardManager.Instance.heroCard.Pos);
             }
         }
+
+        string before = "";
+        for (int i = 0; i < cards.Count; i++)
+        {
+            before += cards[i].Pos + " ";
+        }
+        string after = "";
+        for (int i = 0; i < cards.Count; i++)
+        {
+            after += newPositions[i] + " ";
+        }
+        Debug.Log("prepare to swap");
+        Debug.Log("before: " + before);
+        Debug.Log("after: " + after);
+
         for (int i = 0; i < newPositions.Count; i++)
         {
             cards[i].MoveToPos(newPositions[i]);

@@ -23,7 +23,7 @@ public class CardManager : MonoBehaviour
     public Card heroCard;
     private bool canClick = true;
 
-    public List<Card> cards { get; private set; }
+    public List<Card> cards;// { get; private set; }
     public List<Vector2Int> heroNeighbours { get; private set; } = new List<Vector2Int>();
 
     [SerializeField] private GameObject test;
@@ -57,6 +57,10 @@ public class CardManager : MonoBehaviour
         if (hero.heroData.hp == 0)
         {
             Gameplay.Instance.Lose();
+        }
+        if (cards.Count > 9)
+        {
+            Debug.LogError("card is more than 9");
         }
         for (int i = 0; i < heroNeighbours.Count; i++)
         {

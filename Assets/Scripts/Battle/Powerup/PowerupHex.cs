@@ -11,6 +11,7 @@ public class PowerupHex : MonoBehaviour
         if (monster)
         {
             card.gameObject.SetActive(false);
+            CardManager.Instance.RemoveCard(card);
             var newCard = CardManager.Instance.SpawnCard(card.Pos, CardId.HexedMonster);
             var hexedMonster = newCard.GetComponent<Monster>();
             hexedMonster.monsterData.rewardExp = monster.monsterData.rewardExp;
