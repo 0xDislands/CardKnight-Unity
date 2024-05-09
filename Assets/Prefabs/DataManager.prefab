@@ -124,22 +124,22 @@ MonoBehaviour:
     cooldown: 10
   - id: 4
     name: Life Steal
-    description: Life Steal
+    description: Steal 25% max hp of the enemy
     sprite: {fileID: 21300000, guid: 9418e5d5c56257f4c89982946fdcf7e3, type: 3}
     unlockLevel: 2
     cooldown: 5
   - id: 5
     name: Shuffle
-    description: Shuffle
+    description: Shuffle all cards
     sprite: {fileID: 21300000, guid: 7a39b297ed9e2b3439d9a3e751ce4a0a, type: 3}
     unlockLevel: 2
     cooldown: 5
   - id: 6
     name: Meteor
-    description: Meteor
+    description: Attack all enemies
     sprite: {fileID: 21300000, guid: bcb3d3b3485059c44bd998577e07afec, type: 3}
     unlockLevel: 2
-    cooldown: 10
+    cooldown: 5
   heroDatas:
   - id: 0
     powerUps: 0000000001000000
@@ -147,7 +147,7 @@ MonoBehaviour:
     description: This is description
     sprite: {fileID: 21300000, guid: 49e6ae853db3a234b8653bc244af107b, type: 3}
   - id: 1
-    powerUps: 02000000
+    powerUps: 020000000600000005000000
     name: Shaman
     description: This is description
     sprite: {fileID: 21300000, guid: 881369a2f00d1fc41a29e698be69f6c7, type: 3}

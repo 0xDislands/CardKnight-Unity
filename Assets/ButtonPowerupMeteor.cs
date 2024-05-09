@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerupMeteor : ButtonPowerup
+public class ButtonPowerupMeteor : ButtonPowerup
 {
     public override void OnClick()
     {

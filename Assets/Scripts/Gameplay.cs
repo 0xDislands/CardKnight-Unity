@@ -38,10 +38,10 @@ public class Gameplay : MonoBehaviour
         cardManager.StartGame();
         state = GameplayState.Playing;
         var data = DataManager.Instance.dicHero[CardManager.selectedHero];
-        foreach (var powerUp in data.powerUps) 
+        for (int i = 0; i < buttonPowerups.Length; i++)
         {
-            var button = buttonPowerups.FirstOrDefault(x => x.id == powerUp);
-            if(buttonPowerups != null) button.gameObject.SetActive(true);
+            bool active = data.powerUps.Contains(buttonPowerups[i].id);
+            buttonPowerups[i].gameObject.SetActive(active);
         }
     }
 

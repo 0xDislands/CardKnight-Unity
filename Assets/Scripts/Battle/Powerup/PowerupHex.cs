@@ -26,3 +26,4 @@ public class PowerupHex : MonoBehaviour
         Destroy(gameObject);
     }
 }
+

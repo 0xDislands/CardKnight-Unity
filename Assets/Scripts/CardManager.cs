@@ -356,4 +356,15 @@ public class CardManager : MonoBehaviour
             testPositions.Add(obj);
         }
     }
+
+    internal void RemoveCard(Card card)
+    {
+        if (cards.Contains(card))
+        {
+            cards.Remove(card);
+        } else
+        {
+            Debug.LogWarning("card not exist in cards");
+        }
+    }
 }

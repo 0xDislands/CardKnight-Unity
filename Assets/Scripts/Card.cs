@@ -105,6 +105,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
         canvasGroup.DOFade(0f, CARD_FADE_SPEED).OnComplete(() =>
         {
             gameObject.SetActive(false);
+            CardManager.Instance.RemoveCard(this);
             if (GridManager.Instance.dicGrids[pos].card == this)
             {
                 GridManager.Instance.dicGrids[pos].card = null;
