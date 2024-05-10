@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class HeroBattleData
@@ -86,6 +87,7 @@ public class Hero : MonoBehaviour
             int oldLevel = heroData.level;
             heroData.currentExp -= EXP_TO_LEVEL_UP;
             heroData.level++;
+            Gameplay.Instance.heroProgressBarExp.SetValue(0);
             SimpleObjectPool.Instance.GetObjectFromPool(textLevelUp, transform.position);
 
             if (Gameplay.Instance.state == GameplayState.Lose ||

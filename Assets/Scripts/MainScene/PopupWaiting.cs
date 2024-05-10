@@ -7,6 +7,8 @@ using Dislands;
 
 public class PopupWaiting : MonoBehaviour
 {
+    public const int COUNT_DOWN_TIME = 10;
+
     public List<PlayerInRoom> players;
     private int playerIndex;
     private bool changingScene;
@@ -26,7 +28,7 @@ public class PopupWaiting : MonoBehaviour
             players[i].UpdateDisplay();
         }
         FakeReady();
-        textCountDown.StartCountDown(20, null);
+        textCountDown.StartCountDown(COUNT_DOWN_TIME, null);
     }
 
     public void OnReadyClick()

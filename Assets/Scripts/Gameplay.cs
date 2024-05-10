@@ -18,6 +18,7 @@ public class Gameplay : MonoBehaviour
     public PopupGameOver popupGameOver;
     public PopupLockMinigame popupUnlockMiniGame;
     public PopupEvilBuff popupEvilBuff;
+    public ProgressBarHeroEXP heroProgressBarExp;
     public Transform powerupGroupParent;
     public ButtonPowerup[] buttonPowerups { get; private set; }
 

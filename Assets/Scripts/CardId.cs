@@ -13,5 +13,9 @@
     SkillFire,
     ItemChestMiniGame,
     ItemChestEvil,
-    HexedMonster
+    HexedMonster,
+    Boss1,
+    Boss2,
+    Boss3,
+    Boss4
 }
