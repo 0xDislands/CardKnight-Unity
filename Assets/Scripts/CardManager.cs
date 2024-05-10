@@ -406,4 +406,19 @@ public class CardManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
     }
+
+    public void EndBossMode()
+    {
+        StartCoroutine(IEEndBossMode());
+    }
+
+    private IEnumerator IEEndBossMode()
+    {
+        gameMode = GameMode.Normal;
+        for (int i = 0; i < cards.Count; i++)
+        {
+            if (cards[i].side == CardSide.Back) cards[i].FlipToFront();
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
 }

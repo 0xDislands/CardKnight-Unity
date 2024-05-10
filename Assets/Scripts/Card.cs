@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using DG.Tweening;
 using Dislands;
+using System;
 
 public enum CardSide
 {
@@ -26,9 +27,11 @@ public class Card : MonoBehaviour, IPointerDownHandler
     [SerializeField] Image cardBack;
     [SerializeField] Transform cardParent;
     public Image icon;
-    public CardSide side { get; private set; } = CardSide.Back;
+    public CardSide side = CardSide.Back;
     public CardData data { get; private set; }
     public CardEffect cardEffect { get; private set; }
+    public Action onCardAppear;
+    public Action onCardDisappear;
     private CanvasGroup canvasGroup;
     private List<CardEffect> effects = new List<CardEffect>();
 
@@ -64,18 +67,15 @@ public class Card : MonoBehaviour, IPointerDownHandler
         sequence.AppendCallback(() =>
         {
             FlipToFront();
-            var boss = GetComponent<Boss>();
-            if (boss != null)
-            {
-                CardManager.Instance.StartBossMode();
-            }
+            onCardAppear?.Invoke();
         });
     }
 
     public void FlipToFront()
     {
-        side = CardSide.Front;
         if (CardManager.Instance.gameMode == GameMode.BossMode) return;
+        if (side == CardSide.Front) return;
+        side = CardSide.Front;
         cardBack.gameObject.SetActive(true);
         transform.DOScaleX(0f, FLIP_ANIMATION_TIME).OnComplete(() =>
         {
@@ -86,6 +86,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
 
     public void FlipToBack()
     {
+        if (side == CardSide.Back) return;
         side = CardSide.Back;
         cardBack.gameObject.SetActive(false);
         transform.DOScaleX(0f, FLIP_ANIMATION_TIME).OnComplete(() =>
@@ -115,6 +116,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
         Bounce();
         canvasGroup.DOFade(0f, CARD_FADE_SPEED).OnComplete(() =>
         {
+            onCardDisappear?.Invoke();
             gameObject.SetActive(false);
             if (GridManager.Instance.dicGrids[pos].card == this)
             {
