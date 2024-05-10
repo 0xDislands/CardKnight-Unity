@@ -7,6 +7,12 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 
+public enum GameMode
+{
+    Normal,
+    BossMode
+}
+
 public class CardManager : MonoBehaviour
 {
     public const bool SHOW_DEBUG = false;
@@ -22,8 +28,9 @@ public class CardManager : MonoBehaviour
     public Hero hero;
     public Card heroCard;
     private bool canClick = true;
+    public GameMode gameMode { get; private set; } = GameMode.Normal;
 
-    public List<Card> cards;// { get; private set; }
+    public List<Card> cards;
     public List<Vector2Int> heroNeighbours { get; private set; } = new List<Vector2Int>();
 
     [SerializeField] private GameObject test;
@@ -141,6 +148,7 @@ public class CardManager : MonoBehaviour
         dicCard.Add("1", CardId.Monster1);
         dicCard.Add("2", CardId.Monster2);
         dicCard.Add("3", CardId.Monster3);
+        dicCard.Add("4", CardId.Boss1);
         dicCard.Add("101", CardId.ItemHeal);
         dicCard.Add("102", CardId.ItemPoison);
         dicCard.Add("103", CardId.ItemChest);
@@ -372,6 +380,30 @@ public class CardManager : MonoBehaviour
         } else
         {
             Debug.LogWarning("card not exist in cards");
+        }
+    }
+
+    public void StartBossMode()
+    {
+        StartCoroutine(IEStartBossMode());
+    }
+
+    private IEnumerator IEStartBossMode()
+    {
+        gameMode = GameMode.BossMode;
+        List<Card> flipBackCards = new List<Card>();
+        flipBackCards.AddRange(this.cards);
+        flipBackCards.Remove(CardManager.Instance.heroCard);
+
+        for (int i = flipBackCards.Count - 1; i >= 0; i--)
+        {
+            var boss = flipBackCards[i].GetComponent<Boss>();
+            if (boss != null) flipBackCards.Remove(flipBackCards[i]);
+        }
+        for (int i = 0; i < flipBackCards.Count; i++)
+        {
+            if (flipBackCards[i].side == CardSide.Front) flipBackCards[i].FlipToBack();
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }

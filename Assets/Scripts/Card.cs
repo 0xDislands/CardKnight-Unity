@@ -7,6 +7,11 @@ using TMPro;
 using DG.Tweening;
 using Dislands;
 
+public enum CardSide
+{
+    Back, Front
+}
+
 public class Card : MonoBehaviour, IPointerDownHandler
 {
     public const bool DEBUG_POSITION = false;
@@ -21,7 +26,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
     [SerializeField] Image cardBack;
     [SerializeField] Transform cardParent;
     public Image icon;
-
+    public CardSide side { get; private set; } = CardSide.Back;
     public CardData data { get; private set; }
     public CardEffect cardEffect { get; private set; }
     private CanvasGroup canvasGroup;
@@ -49,6 +54,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
     }
     public void ShowSpawnAnimation(float delayFlip = SPAWN_DELAY_FLIP)
     {
+        side = CardSide.Back;
         cardBack.gameObject.SetActive(true);
         Vector2 startPos = transform.position;
         transform.position = transform.position + new Vector3(SPAWN_SPAW_X, SPAWN_SPAW_Y);
@@ -58,11 +64,18 @@ public class Card : MonoBehaviour, IPointerDownHandler
         sequence.AppendCallback(() =>
         {
             FlipToFront();
+            var boss = GetComponent<Boss>();
+            if (boss != null)
+            {
+                CardManager.Instance.StartBossMode();
+            }
         });
     }
 
     public void FlipToFront()
     {
+        side = CardSide.Front;
+        if (CardManager.Instance.gameMode == GameMode.BossMode) return;
         cardBack.gameObject.SetActive(true);
         transform.DOScaleX(0f, FLIP_ANIMATION_TIME).OnComplete(() =>
         {
@@ -73,6 +86,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
 
     public void FlipToBack()
     {
+        side = CardSide.Back;
         cardBack.gameObject.SetActive(false);
         transform.DOScaleX(0f, FLIP_ANIMATION_TIME).OnComplete(() =>
         {

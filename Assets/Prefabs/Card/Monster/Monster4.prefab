@@ -401,6 +401,7 @@ GameObject:
   - component: {fileID: 8772459415456982177}
   - component: {fileID: 2075306533853894767}
   - component: {fileID: 1318214777178387947}
+  - component: {fileID: 4640847567302313464}
   m_Layer: 5
   m_Name: Monster4
   m_TagString: Untagged
@@ -517,6 +518,18 @@ MonoBehaviour:
     maxHp: 0
     amor: 4
   attackEffect: {fileID: 6553047553640012297, guid: 64a1bfed3e6382742a7ab56c24a8285c, type: 3}
+--- !u!114 &4640847567302313464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8451986556342849492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2b0e9e2ac66c8446856510cd73731f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1632040475844355653
 PrefabInstance:
   m_ObjectHideFlags: 0

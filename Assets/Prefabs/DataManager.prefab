@@ -97,6 +97,10 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 3d9d4fcc3fcdf1f42b93d74bbc9742d3, type: 3}
     health: 0
     cardPrefab: {fileID: 8772459415456982177, guid: e9cc506afa529c047a3747986344ab6e, type: 3}
+  - id: 14
+    sprite: {fileID: 21300000, guid: ec8a93397ecaa924ebad8fb60dc4aaef, type: 3}
+    health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: 912dbf92f1e260b45a8f73241ab3821c, type: 3}
   powerupDatas:
   - id: 0
     name: SLASH
