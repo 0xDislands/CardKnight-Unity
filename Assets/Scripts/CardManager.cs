@@ -15,9 +15,6 @@ public enum GameMode
 
 public class CardManager : MonoBehaviour
 {
-    public const bool SHOW_DEBUG = false;
-    public const bool TEST_SKILL_FIRE = false;
-
     public static CardManager Instance;
     public static HeroId selectedHero;
 
@@ -138,7 +135,7 @@ public class CardManager : MonoBehaviour
     }
     private List<CardId> GetSpawnCards()
     {
-        if (TEST_SKILL_FIRE)
+        if (Constants.TEST_SKILL_FIRE)
         {
             return new List<CardId>() {
             CardId.Monster1, CardId.SkillFire,
@@ -364,7 +361,7 @@ public class CardManager : MonoBehaviour
 
     public void ShowDebug(List<Vector2Int> positions)
     {
-        if (SHOW_DEBUG == false) return;
+        if (Constants.SHOW_DEBUG == false) return;
         for (int i = 0; i < positions.Count; i++)
         {
             var obj = Instantiate(test, GridManager.Instance.dicGrids[positions[i]].transform.position, Quaternion.identity);

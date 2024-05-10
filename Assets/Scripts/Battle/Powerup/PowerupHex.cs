@@ -8,7 +8,8 @@ public class PowerupHex : MonoBehaviour
     public void OnClick()
     {
         var monster = card.GetComponent<Monster>();
-        if (monster)
+        var boss = monster.GetComponent<Boss>();
+        if (monster != null && boss == null)
         {
             card.gameObject.SetActive(false);
             CardManager.Instance.RemoveCard(card);

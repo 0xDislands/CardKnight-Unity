@@ -106,49 +106,49 @@ MonoBehaviour:
     name: SLASH
     description: Slash description
     sprite: {fileID: 21300000, guid: 3dd55defa483e5148a36efb4a4893a61, type: 3}
-    unlockLevel: 2
+    unlockLevel: 1
     cooldown: 3
   - id: 1
     name: SWAP
     description: Swap Description
     sprite: {fileID: 21300000, guid: fb56dbdbb5d580849bc460e20b6169a6, type: 3}
-    unlockLevel: 2
+    unlockLevel: 1
     cooldown: 3
   - id: 2
     name: Hex
     description: Turn one monster to chicken
     sprite: {fileID: 21300000, guid: 126c2f9d4a3e61c42b12ac6e3eb02b28, type: 3}
-    unlockLevel: 2
+    unlockLevel: 1
     cooldown: 2
   - id: 3
     name: Full Heal
     description: Full Heal
     sprite: {fileID: 21300000, guid: dc4e6a97a6c642c47ba2682953b7a5be, type: 3}
-    unlockLevel: 2
+    unlockLevel: 1
     cooldown: 10
   - id: 4
     name: Life Steal
     description: Steal 25% max hp of the enemy
     sprite: {fileID: 21300000, guid: 9418e5d5c56257f4c89982946fdcf7e3, type: 3}
-    unlockLevel: 2
+    unlockLevel: 1
     cooldown: 5
   - id: 5
     name: Shuffle
     description: Shuffle all cards
     sprite: {fileID: 21300000, guid: 7a39b297ed9e2b3439d9a3e751ce4a0a, type: 3}
-    unlockLevel: 2
+    unlockLevel: 1
     cooldown: 5
   - id: 6
     name: Meteor
     description: Attack all enemies
     sprite: {fileID: 21300000, guid: bcb3d3b3485059c44bd998577e07afec, type: 3}
-    unlockLevel: 2
+    unlockLevel: 1
     cooldown: 5
   - id: 7
     name: Unfair Trade
     description: Trade HP with enemy
     sprite: {fileID: 21300000, guid: 0e5428721d9ff56478b08e00394a786b, type: 3}
-    unlockLevel: 2
+    unlockLevel: 1
     cooldown: 5
   heroDatas:
   - id: 0
