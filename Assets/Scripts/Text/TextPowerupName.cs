@@ -26,6 +26,7 @@ public class TextPowerupName : MonoBehaviour
 
     public void UpdateDisplay()
     {
+        if (txt == null) txt = GetComponent<TextMeshProUGUI>();
         var data = DataManager.Instance.dicPowerUp[id];
         if (CardManager.Instance.hero.heroData.level < data.unlockLevel)
         {

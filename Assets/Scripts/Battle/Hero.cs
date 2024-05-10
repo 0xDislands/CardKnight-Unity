@@ -125,6 +125,17 @@ public class Hero : MonoBehaviour
         }
     }
 
+    public void SetHP(int hp)
+    {
+        heroData.hp = hp;
+        if (heroData.hp < 0)
+        {
+            heroData.hp = 0;
+            Die();
+        }
+        textHp.SetHP(heroData);
+    }
+
     public void AddHP(DamageData data)
     {
         heroData.hp += data.damage;

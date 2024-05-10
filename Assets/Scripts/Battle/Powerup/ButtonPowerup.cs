@@ -30,6 +30,12 @@ public abstract class ButtonPowerup : MonoBehaviour
         var data = DataManager.Instance.dicPowerUp[id];
         atkToAvailable = data.cooldown;
         icon.sprite = data.sprite;
+        var text = GetComponentInChildren<TextPowerupName>();
+        if (text)
+        {
+            text.id = id;
+            text.UpdateDisplay();
+        }
     }
 
     private void OnEnable()

@@ -6,5 +6,6 @@
     Heal, 
     Life_Steal,
     Shuffle,
-    Meteor
+    Meteor,
+    UnfairTrade
 }

@@ -43,11 +43,14 @@ public class Monster : CardEffect
         monsterData.currentHp = monsterData.maxHp;
     }
 
-    public void UpdateHpWhenPlayerLevelUp()
+    public void SetHp(int hp)
     {
-        int hpLost = monsterData.maxHp - monsterData.currentHp;
-        Init();
-        monsterData.currentHp = monsterData.maxHp - hpLost;
+        monsterData.currentHp = hp;
+        if (monsterData.currentHp > monsterData.maxHp)
+        {
+            monsterData.currentHp = monsterData.maxHp;
+        }
+        textHp.SetHP(monsterData);
     }
 
     private void OnDisable()
