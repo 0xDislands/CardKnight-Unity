@@ -32,8 +32,6 @@ public class DamageData
 
 public class Hero : MonoBehaviour
 {
-    public const float EXP_TO_LEVEL_UP = 3f;
-
     public HeroBattleData heroData;
     private TextHp textHp;
     private TextShield textShield;

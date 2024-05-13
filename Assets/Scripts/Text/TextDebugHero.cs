@@ -24,7 +24,7 @@ public class TextDebugHero : MonoBehaviour
         str += $"hp: {data.hp} / {data.maxHp} \n";
         str += $"shield: {data.shield} / {data.maxShield} \n";
         str += $"exp: {data.currentExp.ToString("F2")} / 3\n";
-        str += $"need exp next level: {HeroEXP.GetExpNeedForNextLevel(data.level)}\n";
+        str += $"need exp next level: {CardManager.Instance.hero.exp.expRequire}\n";
         str += $"level: {data.level + 1} \n";
         return str;
     }

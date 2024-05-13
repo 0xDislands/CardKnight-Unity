@@ -6,11 +6,13 @@ public class HeroEXP : MonoBehaviour
 {
     [SerializeField] TextLevelUp textLevelUp;
     private Hero hero;
-    private static List<int> requireToLevelUp = new List<int>();
+    private static List<int> requireEXPToLevelUps = new List<int>();
+    public int expRequire { get; private set; }
     private void Awake()
     {
         hero = GetComponent<Hero>();
-        requireToLevelUp = GetLevelUpList();
+        requireEXPToLevelUps = GetLevelUpList();
+        expRequire = GetExpNeedForNextLevel(hero.heroData.level);
     }
     public static List<int> GetLevelUpList()
     {
@@ -24,10 +26,10 @@ public class HeroEXP : MonoBehaviour
             6,
         };
     }
-    public static int GetExpNeedForNextLevel(int level)
+    private static int GetExpNeedForNextLevel(int level)
     {
-        if (level >= requireToLevelUp.Count) level = requireToLevelUp.Count - 1;
-        return requireToLevelUp[level];
+        if (level >= requireEXPToLevelUps.Count) level = requireEXPToLevelUps.Count - 1;
+        return requireEXPToLevelUps[level];
     }
     public void AddEXP(float exp)
     {
@@ -40,6 +42,7 @@ public class HeroEXP : MonoBehaviour
             int oldLevel = heroData.level;
             heroData.currentExp -= neededExp;
             heroData.level++;
+            expRequire = GetExpNeedForNextLevel(hero.heroData.level);
             Gameplay.Instance.heroProgressBarExp.SetValue(0);
             SimpleObjectPool.Instance.GetObjectFromPool(textLevelUp, transform.position);
 

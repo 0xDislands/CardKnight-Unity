@@ -10,6 +10,6 @@ public class ItemChestMiniGame : Item
     public override void ApplyEffect(Hero hero)
     {
         var card = GetComponent<Card>();
-        Gameplay.Instance.popupEvilBuff.ShowLevelUp(card);
+        Gameplay.Instance.popupUnlockMiniGame.ShowMiniGame(card, transformCards.RandomElement());
     }
 }
