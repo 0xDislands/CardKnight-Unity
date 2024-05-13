@@ -2,6 +2,7 @@
 using TMPro;
 using DG.Tweening;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class HeroBattleData
@@ -36,13 +37,14 @@ public class Hero : MonoBehaviour
     public HeroBattleData heroData;
     private TextHp textHp;
     private TextShield textShield;
-    [SerializeField] TextLevelUp textLevelUp;
+    public HeroEXP exp { get; private set; }
 
     private void Awake()
     {
         heroData = new HeroBattleData();
         textHp = GetComponentInChildren<TextHp>();
         textShield = GetComponentInChildren<TextShield>();
+        exp = GetComponentInChildren<HeroEXP>();
         heroData.hp = 10;
         heroData.maxHp = 10;
         heroData.shield = 0;
@@ -76,53 +78,6 @@ public class Hero : MonoBehaviour
         textShield.SetShield(heroData);
         dead = false;
         EffectManager.Instance.Hit(transform.position);
-    }
-
-    public void AddEXP(float exp)
-    {
-        heroData.currentExp += exp;
-        heroData.totalExp += exp;
-        if (heroData.currentExp > EXP_TO_LEVEL_UP)
-        {
-            int oldLevel = heroData.level;
-            heroData.currentExp -= EXP_TO_LEVEL_UP;
-            heroData.level++;
-            Gameplay.Instance.heroProgressBarExp.SetValue(0);
-            SimpleObjectPool.Instance.GetObjectFromPool(textLevelUp, transform.position);
-
-            if (Gameplay.Instance.state == GameplayState.Lose ||
-                Gameplay.Instance.state == GameplayState.Win)
-            {
-                return;
-            }
-
-            DOVirtual.DelayedCall(0.5f, () =>
-            {
-                PopupManager.Instance.ShowInQueue(() =>
-                {
-                    Gameplay.Instance.popupLevelUp.ShowLevelUp(oldLevel);
-                });
-                UnlockSkills();
-            });
-        }
-    }
-
-    private void UnlockSkills()
-    {
-        var dataManager = DataManager.Instance;
-        var powerUpDatas = DataManager.Instance.dicHero[CardManager.selectedHero].powerUps;
-        for (int i = 0; i < powerUpDatas.Count; i++)
-        {
-            var id = powerUpDatas[i];
-
-            if (heroData.level == dataManager.dicPowerUp[id].unlockLevel)
-            {
-                PopupManager.Instance.ShowInQueue(() =>
-                {
-                    Gameplay.Instance.popupPoweupUnlocked.ShowUnlock(id);
-                });
-            }
-        }
     }
 
     public void SetHP(int hp)
@@ -160,10 +115,10 @@ public class Hero : MonoBehaviour
         }
         textShield.SetShield(heroData);
     }
-    public void UpdateDisplay ()
+    public void UpdateDisplay()
     {
-        textHp.SetHP (heroData);
-        textShield.SetShield (heroData);
+        textHp.SetHP(heroData);
+        textShield.SetShield(heroData);
     }
 
     public void Die()

@@ -15,6 +15,8 @@ public enum GameMode
 
 public class CardManager : MonoBehaviour
 {
+    public const float DELAY_FLIP_TIME = 0.55f;
+
     public static CardManager Instance;
     public static HeroId selectedHero;
 
@@ -347,7 +349,7 @@ public class CardManager : MonoBehaviour
             if (gameMode == GameMode.BossMode && card.side == CardSide.Back)
             {
                 card.FlipToFront();
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(DELAY_FLIP_TIME);
             }
             effect.ApplyEffect(heroCard.GetComponent<Hero>());
         }

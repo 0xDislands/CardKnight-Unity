@@ -28,7 +28,7 @@ public class Monster : CardEffect
         hero.TakeDamage(damage, out bool dead);
         if (dead == false)
         {
-            hero.AddEXP(monsterData.rewardExp);
+            hero.exp.AddEXP(monsterData.rewardExp);
             Debug.Log($"add exp {monsterData.rewardExp}");
         }
         var effect = SimpleObjectPool.Instance.GetObjectFromPool(attackEffect, transform.position);
@@ -73,7 +73,7 @@ public class Monster : CardEffect
 
         if (dead == true)
         {
-            CardManager.Instance.hero.AddEXP(monsterData.rewardExp);
+            CardManager.Instance.hero.exp.AddEXP(monsterData.rewardExp);
             Debug.Log($"add exp {monsterData.rewardExp}");
 
             var monsterCard = GetComponent<Card>();

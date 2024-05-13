@@ -60,7 +60,7 @@ public class LevelUpOption : MonoBehaviour
                 CardManager.Instance.hero.UpdateDisplay();
                 break;
             case LevelUpId.INCREASE_EXP:
-                CardManager.Instance.hero.AddEXP(data.amount);
+                CardManager.Instance.hero.exp.AddEXP(data.amount);
                 CardManager.Instance.hero.UpdateDisplay();
                 break;
         }

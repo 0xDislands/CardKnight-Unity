@@ -330,6 +330,7 @@ GameObject:
   - component: {fileID: 8772459415456982177}
   - component: {fileID: 2075306533853894767}
   - component: {fileID: 8752874849221979746}
+  - component: {fileID: 7724125158432507538}
   m_Layer: 5
   m_Name: Hero
   m_TagString: Untagged
@@ -413,6 +414,7 @@ MonoBehaviour:
   cardBack: {fileID: 6685940440013630504}
   cardParent: {fileID: 0}
   icon: {fileID: 7833356241929002155}
+  side: 0
 --- !u!225 &2075306533853894767
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -443,10 +445,22 @@ MonoBehaviour:
     shield: 0
     maxShield: 0
     startHp: 0
-    dame: 0
+    damage: 0
     level: 0
     currentExp: 0
     totalExp: 0
+--- !u!114 &7724125158432507538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8451986556342849492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b68ade6a810a14b92d7a3e887e3164, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   textLevelUp: {fileID: 9202366413005754918, guid: 90847cb6115d26d4e824866a90d427d1, type: 3}
 --- !u!1 &8802161727089519133
 GameObject:
