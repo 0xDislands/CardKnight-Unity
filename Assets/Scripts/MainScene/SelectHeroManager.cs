@@ -6,6 +6,7 @@ public class SelectHeroManager : MonoBehaviour
     public PopupSelectHero popupSelectHero;
     public Canvas canvasFindMatch;
     public Canvas canvasSelectHero;
+    
     private void Awake()
     {
         Instance = this;
@@ -23,6 +24,7 @@ public class SelectHeroManager : MonoBehaviour
         CardManager.selectedHero = id;
         popupSelectHero.Close();
         canvasFindMatch.gameObject.SetActive(true);
+        FindMatchManager.Instance.OnFindMatchClick();
         canvasSelectHero.gameObject.SetActive(false);
     }
 }

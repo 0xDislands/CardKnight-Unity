@@ -7,9 +7,7 @@ public class ButtonPowerUpLifeSteal : ButtonPowerup
     public PowerUpLifeSteal powerupPrefab;
     public override void OnClick()
     {
-        var unlockLevel = DataManager.Instance.dicPowerUp[id].unlockLevel;
-        if (CardManager.Instance.hero.heroData.level < unlockLevel) return;
-        if (!useable) return;
+        if (CanUse() == false) return;
         CurrentAtkTime = 0;
 
         var hero = CardManager.Instance.heroCard;

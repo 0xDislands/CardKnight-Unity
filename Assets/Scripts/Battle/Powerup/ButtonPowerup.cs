@@ -11,7 +11,7 @@ public abstract class ButtonPowerup : MonoBehaviour
     [SerializeField] protected Image coolDownImg;
     [SerializeField] protected Image icon;
     protected float currentAtkTime;
-    protected bool useable;
+    protected bool fullCoolDown;
 
     public float CurrentAtkTime
     {
@@ -20,7 +20,7 @@ public abstract class ButtonPowerup : MonoBehaviour
             currentAtkTime = value;
             coolDownImg.DOFillAmount(currentAtkTime / atkToAvailable, 0.2f).OnComplete(() => 
             {
-                useable = coolDownImg.fillAmount >= 1f;
+                fullCoolDown = coolDownImg.fillAmount >= 1f;
             });
         }
     }
@@ -41,7 +41,7 @@ public abstract class ButtonPowerup : MonoBehaviour
     private void OnEnable()
     {
         CurrentAtkTime = atkToAvailable;
-        useable = coolDownImg.fillAmount >= 1f;
+        fullCoolDown = coolDownImg.fillAmount >= 1f;
     }
 
     public bool IsUnlocked()
@@ -49,6 +49,18 @@ public abstract class ButtonPowerup : MonoBehaviour
         var hero = CardManager.Instance.hero;
         var powerData = DataManager.Instance.dicPowerUp[id];
         return hero.heroData.level >= powerData.unlockLevel;
+    }
+
+    public bool CanUse(bool showEffect = true)
+    {
+        var unlockLevel = DataManager.Instance.dicPowerUp[id].unlockLevel;
+        if (CardManager.Instance.hero.heroData.level < unlockLevel) return false;
+        if (!fullCoolDown)
+        {
+            if (showEffect) SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextOnCooldown"), transform.position + new Vector3(0,1f));
+            return false;
+        }
+        return true;
     }
 
     public abstract void OnClick();

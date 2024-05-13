@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class FindMatchManager : MonoBehaviour
 {
     public const float FIND_TIME = 4f;
-
+    public static FindMatchManager Instance;
     public Canvas canvasHome;
     public PopupWaiting popupWaiting;
     public TextMeshProUGUI txtButton;
@@ -19,6 +19,7 @@ public class FindMatchManager : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         txtStatus.gameObject.SetActive(false);
     }
 

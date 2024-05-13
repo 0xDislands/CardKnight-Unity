@@ -3781,7 +3781,7 @@ MonoBehaviour:
   cardBack: {fileID: 21300000, guid: 2139030ad1804804982dd6ad0b6455ca, type: 3}
   cardPrefab: {fileID: 8772459415456982177, guid: 53bdd9953b81ff84786c03627db52f6f, type: 3}
   cardParent: {fileID: 858699404}
-  spawnCardData: {fileID: 4900000, guid: 73744e37f1a189747bbdb331e276c5db, type: 3}
+  spawnCardData: {fileID: 4900000, guid: 1f4b7f70ff85e8e48bfa5c848533105f, type: 3}
   hero: {fileID: 0}
   heroCard: {fileID: 0}
   cards: []
@@ -14183,7 +14183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8891171662576682608, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 606.62
+      value: 540
       objectReference: {fileID: 0}
     - target: {fileID: 8891171662576682608, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
       propertyPath: m_AnchoredPosition.y

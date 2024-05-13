@@ -11,7 +11,7 @@ public class HeroBattleData
     public int shield;
     public int maxShield;
     public int startHp;
-    public int dame;
+    public int damage;
     public int level;
     public float currentExp;
     public float totalExp;

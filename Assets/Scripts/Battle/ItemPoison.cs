@@ -13,6 +13,7 @@ public class ItemPoison : Item
         effect.transform.SetParent(hero.transform);
 
         var card = GetComponent<Card>();
+        card.Disappear();
         CardManager.Instance.MoveCardsAfterUse(card);
     }
 }

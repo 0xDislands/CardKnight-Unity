@@ -66,14 +66,16 @@ public class Card : MonoBehaviour, IPointerDownHandler
         sequence.AppendInterval(delayFlip);
         sequence.AppendCallback(() =>
         {
-            FlipToFront();
+            if (CardManager.Instance.gameMode == GameMode.Normal)
+            {
+                FlipToFront();
+            }
             onCardAppear?.Invoke();
         });
     }
 
     public void FlipToFront()
     {
-        if (CardManager.Instance.gameMode == GameMode.BossMode) return;
         if (side == CardSide.Front) return;
         side = CardSide.Front;
         cardBack.gameObject.SetActive(true);

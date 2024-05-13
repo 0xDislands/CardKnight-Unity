@@ -8,8 +8,12 @@ public class Boss : MonoBehaviour
         card = GetComponent<Card>();
         card.onCardAppear += () =>
         {
-            Debug.Log("card disappear");
-            CardManager.Instance.StartBossMode();
+            CardManager.Instance.SetMode(GameMode.BossMode);
+            LeanTween.delayedCall(1f, () =>
+            {
+                Debug.Log("card disappear");
+                CardManager.Instance.FlipDownAllCards();
+            });
         };
         card.onCardDisappear += () =>
         {

@@ -9,9 +9,7 @@ public class ButtonPowerupMeteor : ButtonPowerup
     public MeteorObject meteor;
     public override void OnClick()
     {
-        var unlockLevel = DataManager.Instance.dicPowerUp[id].unlockLevel;
-        if (CardManager.Instance.hero.heroData.level < unlockLevel) return;
-        if (!useable) return;
+        if (CanUse() == false) return;
         CurrentAtkTime = 0;
         CardManager.Instance.StartCoroutine(IESpawnMeteor());
     }
@@ -19,12 +17,12 @@ public class ButtonPowerupMeteor : ButtonPowerup
     IEnumerator IESpawnMeteor()
     {
         var monsters = FindObjectsOfType<Monster>();
-        var damgeValue = CardManager.Instance.hero.heroData.dame;
+        var damgeValue = CardManager.Instance.hero.heroData.damage;
         foreach (var monster in monsters)
         {
             var newMeteor = SimpleObjectPool.Instance.GetObjectFromPool(meteor, monster.transform.position);
+            newMeteor.damageData.damage = CardManager.Instance.hero.heroData.damage;
             newMeteor.FallToAttack(monster);
-            newMeteor.damageData.damage = 1;
             yield return new WaitForSeconds(0.1f);
         }
     }

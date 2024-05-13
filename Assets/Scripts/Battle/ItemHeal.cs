@@ -15,6 +15,7 @@ public class ItemHeal : Item
         effect.transform.SetParent(hero.transform);
         effect.transform.DOLocalMove(effect.transform.localPosition + new Vector3(0, 150f), 1f);
         var card = GetComponent<Card>();
+        card.Disappear();
         CardManager.Instance.MoveCardsAfterUse(card);
     }
 }

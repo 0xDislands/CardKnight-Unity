@@ -260,7 +260,6 @@ public class CardManager : MonoBehaviour
         }
         heroCard.MoveToPos(card.Pos);
         DOTween.Kill(card.transform);
-        card.Disappear();
         CardId newCardId = GetNextCard();
         var newCard = SpawnCard(spawnNewCardPosition, newCardId);
         newCard.ShowSpawnAnimation(0f);
@@ -336,27 +335,37 @@ public class CardManager : MonoBehaviour
     public void UseCard(Card card)
     {
         if (canClick == false) return;
+        StartCoroutine(IEUseCard(card));
+    }
+
+    IEnumerator IEUseCard(Card card)
+    {
+        canClick = false;
         var effect = card.cardEffect;
         if (effect != null)
         {
+            if (gameMode == GameMode.BossMode && card.side == CardSide.Back)
+            {
+                card.FlipToFront();
+                yield return new WaitForSeconds(1f);
+            }
             effect.ApplyEffect(heroCard.GetComponent<Hero>());
         }
         foreach (var item in Gameplay.Instance.buttonPowerups)
         {
             if (item.IsUnlocked()) item.CurrentAtkTime++;
         }
-        StartCoroutine(IETurnEnd());
+        yield return IETurnEnd();
+        canClick = true;
     }
 
     public IEnumerator IETurnEnd()
     {
-        canClick = false;
         var turnEnds = hero.GetComponentsInChildren<TurnEndEffect>();
         for (int i = 0; i < turnEnds.Length; i++)
         {
             yield return turnEnds[i].IETurnEnd();
         }
-        canClick = true;
     }
 
     public void ShowDebug(List<Vector2Int> positions)
@@ -380,14 +389,18 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    public void StartBossMode()
+    public void SetMode(GameMode mode)
     {
-        StartCoroutine(IEStartBossMode());
+        gameMode = mode;
     }
 
-    private IEnumerator IEStartBossMode()
+    public void FlipDownAllCards()
     {
-        gameMode = GameMode.BossMode;
+        StartCoroutine(IEFlipDownAllCards());
+    }
+
+    private IEnumerator IEFlipDownAllCards()
+    {
         List<Card> flipBackCards = new List<Card>();
         flipBackCards.AddRange(this.cards);
         flipBackCards.Remove(CardManager.Instance.heroCard);

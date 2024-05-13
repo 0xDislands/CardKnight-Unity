@@ -7,9 +7,7 @@ public class ButtonPowerupShuffle : ButtonPowerup
 {
     public override void OnClick()
     {
-        var unlockLevel = DataManager.Instance.dicPowerUp[id].unlockLevel;
-        if (CardManager.Instance.hero.heroData.level < unlockLevel) return;
-        if (!useable) return;
+        if (CanUse() == false) return;
         CurrentAtkTime = 0;
         var cards = CardManager.Instance.cards;
         List<Vector2Int> positions = new List<Vector2Int>();

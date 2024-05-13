@@ -60,6 +60,7 @@ public class PopupEvilBuff : MonoBehaviour
         canvasGroup.DOFade(0f, ANIMATION_TIME);
         transform.DOScale(0f, ANIMATION_TIME).SetEase(Ease.InBack).OnComplete(() => {
             gameObject.SetActive(false);
+            card.Disappear();
             CardManager.Instance.MoveCardsAfterUse(card);
             PopupManager.Instance.DoNextAction();
         });

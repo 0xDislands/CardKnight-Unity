@@ -33,6 +33,7 @@ public class Monster : CardEffect
         }
         var effect = SimpleObjectPool.Instance.GetObjectFromPool(attackEffect, transform.position);
         var card = GetComponent<Card>();
+        card.Disappear();
         CardManager.Instance.MoveCardsAfterUse(card);
     }
 
