@@ -4,7 +4,7 @@
 
     public override void OnClick()
     {
-        if (CanUse() == false) return;
+        if (IsCooldownReady() == false) return;
         CurrentAtkTime = 0;
 
         var neightbours = CardManager.Instance.heroNeighbours;

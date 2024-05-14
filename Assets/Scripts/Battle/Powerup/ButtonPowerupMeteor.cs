@@ -9,7 +9,7 @@ public class ButtonPowerupMeteor : ButtonPowerup
     public MeteorObject meteor;
     public override void OnClick()
     {
-        if (CanUse() == false) return;
+        if (IsCooldownReady() == false) return;
         CurrentAtkTime = 0;
         CardManager.Instance.StartCoroutine(IESpawnMeteor());
     }

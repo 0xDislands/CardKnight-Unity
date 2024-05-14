@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SelectHeroManager : MonoBehaviour
 {
@@ -22,9 +23,10 @@ public class SelectHeroManager : MonoBehaviour
     public void SelectHero(HeroId id)
     {
         CardManager.selectedHero = id;
-        popupSelectHero.Close();
-        canvasFindMatch.gameObject.SetActive(true);
-        FindMatchManager.Instance.OnFindMatchClick();
-        canvasSelectHero.gameObject.SetActive(false);
+        //popupSelectHero.Close();
+        //canvasFindMatch.gameObject.SetActive(true);
+        //FindMatchManager.Instance.OnFindMatchClick();
+        //canvasSelectHero.gameObject.SetActive(false);
+        SceneManager.LoadScene("gameplay");
     }
 }

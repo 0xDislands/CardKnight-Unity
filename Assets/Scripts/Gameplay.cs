@@ -55,4 +55,12 @@ public class Gameplay : MonoBehaviour
         state = GameplayState.Lose;
         popupGameOver.gameObject.SetActive(true);
     }
+    public ButtonPowerup GetButtonPowerUpByID(PowerupId id)
+    {
+        foreach(var buttonPowerup in buttonPowerups)
+        {
+            if(buttonPowerup.id == id) return buttonPowerup;
+        }
+        return null;
+    }
 }

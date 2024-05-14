@@ -4435,7 +4435,7 @@ GameObject:
   - component: {fileID: 1875672620}
   - component: {fileID: 1875672619}
   m_Layer: 5
-  m_Name: Button Find Match
+  m_Name: Button Select Hero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4897,7 +4897,7 @@ GameObject:
   - component: {fileID: 1996430958}
   - component: {fileID: 1996430957}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button Ready
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

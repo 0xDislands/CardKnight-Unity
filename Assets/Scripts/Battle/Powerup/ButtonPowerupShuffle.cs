@@ -7,7 +7,7 @@ public class ButtonPowerupShuffle : ButtonPowerup
 {
     public override void OnClick()
     {
-        if (CanUse() == false) return;
+        if (IsCooldownReady() == false) return;
         CurrentAtkTime = 0;
         var cards = CardManager.Instance.cards;
         List<Vector2Int> positions = new List<Vector2Int>();

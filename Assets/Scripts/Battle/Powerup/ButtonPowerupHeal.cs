@@ -4,7 +4,7 @@ public class ButtonPowerupHeal : ButtonPowerup
 {
     public override void OnClick()
     {
-        if (CanUse() == false) return;
+        if (IsCooldownReady() == false) return;
         CurrentAtkTime = 0;
         CardManager.Instance.hero.AddHP(new DamageData(9999));
     }

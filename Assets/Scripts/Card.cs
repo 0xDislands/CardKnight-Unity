@@ -100,7 +100,9 @@ public class Card : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        var hero = GetComponent<Hero>();
+        Hero hero = CardManager.Instance.hero;
+        if (!hero.canMove) return;
+        hero = GetComponent<Hero>();
         if (hero != null)
         {
             Debug.Log("You click hero card");

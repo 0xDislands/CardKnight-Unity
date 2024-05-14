@@ -2,9 +2,10 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public abstract class ButtonPowerup : MonoBehaviour
+public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public PowerupId id;
     protected float atkToAvailable;
@@ -12,6 +13,7 @@ public abstract class ButtonPowerup : MonoBehaviour
     [SerializeField] protected Image icon;
     protected float currentAtkTime;
     protected bool fullCoolDown;
+    protected Hero hero;
 
     public float CurrentAtkTime
     {
@@ -27,6 +29,7 @@ public abstract class ButtonPowerup : MonoBehaviour
 
     private void Awake()
     {
+        hero = CardManager.Instance.hero;
         var data = DataManager.Instance.dicPowerUp[id];
         atkToAvailable = data.cooldown;
         icon.sprite = data.sprite;
@@ -51,7 +54,7 @@ public abstract class ButtonPowerup : MonoBehaviour
         return hero.heroData.level >= powerData.unlockLevel;
     }
 
-    public bool CanUse(bool showEffect = true)
+    public bool IsCooldownReady(bool showEffect = true)
     {
         var unlockLevel = DataManager.Instance.dicPowerUp[id].unlockLevel;
         if (CardManager.Instance.hero.heroData.level < unlockLevel) return false;
@@ -64,4 +67,14 @@ public abstract class ButtonPowerup : MonoBehaviour
     }
 
     public abstract void OnClick();
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        transform.DOScale(Vector3.one * 1.2f, 0.2f);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        transform.DOScale(Vector3.one, 0.2f);
+    }
 }

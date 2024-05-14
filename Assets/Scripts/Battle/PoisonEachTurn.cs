@@ -19,6 +19,10 @@ public class PoisonEachTurn : TurnEndEffect
     }
     private void OnEnable()
     {
+        ResetTurnCount();
+    }
+    public void ResetTurnCount()
+    {
         turnCount = DEFAULT_TURN_COUNT;
     }
     public override IEnumerator IETurnEnd()

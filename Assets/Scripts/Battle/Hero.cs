@@ -33,6 +33,7 @@ public class DamageData
 public class Hero : MonoBehaviour
 {
     public HeroBattleData heroData;
+    public bool canMove;
     private TextHp textHp;
     private TextShield textShield;
     public HeroEXP exp { get; private set; }
@@ -47,6 +48,7 @@ public class Hero : MonoBehaviour
         heroData.maxHp = 10;
         heroData.shield = 0;
         heroData.maxShield = 10;
+        canMove = true;
     }
     private void Start()
     {

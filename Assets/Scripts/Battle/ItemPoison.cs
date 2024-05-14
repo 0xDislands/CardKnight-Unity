@@ -6,8 +6,16 @@ public class ItemPoison : Item
     public override void ApplyEffect(Hero hero)
     {
         Debug.Log("use item poison");
-        var poison = hero.gameObject.AddComponent<PoisonEachTurn>();
-        poison.poisonEffect = poisonEffect;
+        PoisonEachTurn poison;
+        if(hero.TryGetComponent<PoisonEachTurn>(out poison))
+        {
+            poison.poisonEffect = poisonEffect;
+        } 
+        else
+        {
+            poison = hero.gameObject.AddComponent<PoisonEachTurn>();
+            poison.poisonEffect = poisonEffect;
+        }
 
         var effect = SimpleObjectPool.Instance.GetObjectFromPool(poisonEffect, hero.transform.position);
         effect.transform.SetParent(hero.transform);
