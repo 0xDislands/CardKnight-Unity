@@ -4,8 +4,15 @@
 
     public override void OnClick()
     {
+        if (active)
+        {
+            ResetSkill();
+            return;
+        }
         if (IsCooldownReady() == false) return;
-        CurrentAtkTime = 0;
+        active = true;
+        this.hero.canMove = false;
+        CurrentAtkTime = atkToAvailable;
 
         var hero = CardManager.Instance.heroCard;
         for (int i = 0; i < GridManager.Instance.grids.Length; i++)
@@ -16,6 +23,15 @@
             swap.transform.position = grid.card.transform.position;
             swap.pos = grid.pos;
             swap.card = grid.card;
+        }
+    }
+    public override void ResetSkill()
+    {
+        base.ResetSkill();
+        var powerUp = FindObjectsOfType<PowerupUnfairTrade>();
+        for (int i = 0; i < powerUp.Length; i++)
+        {
+            Destroy(powerUp[i]);
         }
     }
 }

@@ -25,6 +25,8 @@ public class PowerupSwap : MonoBehaviour
         {
             swaps[i].gameObject.SetActive(false);
         }
+        Hero hero = CardManager.Instance.hero;
+        hero.canMove = true;
     }
     public void OnDisable()
     {

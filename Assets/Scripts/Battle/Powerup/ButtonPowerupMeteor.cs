@@ -10,7 +10,7 @@ public class ButtonPowerupMeteor : ButtonPowerup
     public override void OnClick()
     {
         if (IsCooldownReady() == false) return;
-        CurrentAtkTime = 0;
+        CurrentAtkTime = atkToAvailable;
         CardManager.Instance.StartCoroutine(IESpawnMeteor());
     }
 
@@ -21,7 +21,7 @@ public class ButtonPowerupMeteor : ButtonPowerup
         foreach (var monster in monsters)
         {
             var newMeteor = SimpleObjectPool.Instance.GetObjectFromPool(meteor, monster.transform.position);
-            newMeteor.damageData.damage = CardManager.Instance.hero.heroData.damage;
+            newMeteor.damageData.damage = CardManager.Instance.hero.heroData.maxHp;
             newMeteor.FallToAttack(monster);
             yield return new WaitForSeconds(0.1f);
         }

@@ -1,18 +1,18 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 public class ButtonPowerupHex : ButtonPowerup
 {
     public PowerupHex powerupPrefab;
     public override void OnClick()
     {
         var neightbours = CardManager.Instance.heroNeighbours;
-        if (currentAtkTime == 0)
+        if (active)
         {
             ResetSkill();
             return;
         }
         if (IsCooldownReady() == false) return;
-        hero.canMove = false;
+        active = true;
+        hero.canMove = false;   
         int monsterCount = 0;
 
         for (int i = 0; i < neightbours.Count; i++)
@@ -32,13 +32,13 @@ public class ButtonPowerupHex : ButtonPowerup
             hero.canMove = true;
         } else
         {
-            CurrentAtkTime = 0;
+            CurrentAtkTime = atkToAvailable;
         }
     }
-    public void ResetSkill()
+    public override void ResetSkill()
     {
+        base.ResetSkill();
         var neightbours = CardManager.Instance.heroNeighbours;
-        CurrentAtkTime = DataManager.Instance.dicPowerUp[id].cooldown;
         hero.canMove = true;
         for (int i = 0; i < neightbours.Count; i++)
         {

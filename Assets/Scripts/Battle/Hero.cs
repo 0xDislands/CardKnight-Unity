@@ -9,8 +9,8 @@ public class HeroBattleData
 {
     public int hp;
     public int maxHp;
-    public int shield;
-    public int maxShield;
+    public float shield;
+    public float maxShield;
     public int startHp;
     public int damage;
     public int level;
@@ -21,10 +21,10 @@ public class HeroBattleData
 [System.Serializable]
 public class DamageData
 {
-    public int damage;
+    public float damage;
 
     public DamageData() { }
-    public DamageData(int damage)
+    public DamageData(float damage)
     {
         this.damage = damage;
     }
@@ -60,7 +60,7 @@ public class Hero : MonoBehaviour
     {
         if (data.damage > heroData.shield)
         {
-            heroData.hp -= (data.damage - heroData.shield);
+            heroData.hp -= (int)(data.damage - heroData.shield);
             heroData.shield = 0;
             if (heroData.hp <= 0)
             {
@@ -72,7 +72,7 @@ public class Hero : MonoBehaviour
         }
         else
         {
-            heroData.shield -= data.damage;
+            heroData.shield -= (int)data.damage;
         }
         textHp.SetHP(heroData);
         textShield.SetShield(heroData);
@@ -93,7 +93,7 @@ public class Hero : MonoBehaviour
 
     public void AddHP(DamageData data)
     {
-        heroData.hp += data.damage;
+        heroData.hp += (int)data.damage;
         if (heroData.hp > heroData.maxHp)
         {
             heroData.hp = heroData.maxHp;
@@ -106,7 +106,7 @@ public class Hero : MonoBehaviour
         textHp.SetHP(heroData);
     }
 
-    public void AddShield(int amount)
+    public void AddShield(float amount)
     {
         heroData.shield += amount;
         if (heroData.shield > heroData.maxShield)

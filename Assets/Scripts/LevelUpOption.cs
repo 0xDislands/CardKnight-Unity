@@ -18,7 +18,7 @@ public class LevelUpOption : MonoBehaviour
     {
         this.data = data;
         imgDemo.sprite = data.sprite;
-        title.text = data.title;
+        title.text = data.Title;
         description.text = data.description;
         if (data.amount >= FULL_LIMIT)
         {

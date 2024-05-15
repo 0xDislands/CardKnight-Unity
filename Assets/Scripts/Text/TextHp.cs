@@ -16,6 +16,6 @@ public class TextHp : MonoBehaviour
     }
     public void SetHP (MonsterData monsterData)
     {
-        txtHp.text = monsterData.currentHp.ToString ();
+        txtHp.text = ((int)monsterData.currentHp).ToString ();
     }
 }

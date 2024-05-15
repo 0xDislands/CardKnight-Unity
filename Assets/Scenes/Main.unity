@@ -994,6 +994,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6668803734502599943, guid: 306c05eda98b7f1438d080b647a3923d, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6668803734502599943, guid: 306c05eda98b7f1438d080b647a3923d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3f2586774a8b9a54787d1f85d91e2b4b, type: 3}
+    - target: {fileID: 6668803734502599943, guid: 306c05eda98b7f1438d080b647a3923d, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7231763888360139376, guid: 306c05eda98b7f1438d080b647a3923d, type: 3}
       propertyPath: heroId
       value: 2
@@ -3851,6 +3863,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1885029032}
     m_Modifications:
+    - target: {fileID: 3484185550753889252, guid: 306c05eda98b7f1438d080b647a3923d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 390.7833
+      objectReference: {fileID: 0}
+    - target: {fileID: 3484185550753889252, guid: 306c05eda98b7f1438d080b647a3923d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 563.3245
+      objectReference: {fileID: 0}
     - target: {fileID: 6405032734514382060, guid: 306c05eda98b7f1438d080b647a3923d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3929,6 +3949,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6405032734514382060, guid: 306c05eda98b7f1438d080b647a3923d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6668803734502599943, guid: 306c05eda98b7f1438d080b647a3923d, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6668803734502599943, guid: 306c05eda98b7f1438d080b647a3923d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5731e152b666434e9aa82b58c6a892f, type: 3}
+    - target: {fileID: 6668803734502599943, guid: 306c05eda98b7f1438d080b647a3923d, type: 3}
+      propertyPath: m_PreserveAspect
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7231763888360139376, guid: 306c05eda98b7f1438d080b647a3923d, type: 3}

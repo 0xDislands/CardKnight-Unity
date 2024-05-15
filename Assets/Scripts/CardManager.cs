@@ -6,6 +6,7 @@ using Dislands;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using System.Linq;
 
 public enum GameMode
 {
@@ -355,7 +356,7 @@ public class CardManager : MonoBehaviour
         }
         foreach (var item in Gameplay.Instance.buttonPowerups)
         {
-            if (item.IsUnlocked()) item.CurrentAtkTime++;
+            if (item.IsUnlocked()) item.CurrentAtkTime--;
         }
         yield return IETurnEnd();
         canClick = true;
@@ -363,10 +364,18 @@ public class CardManager : MonoBehaviour
 
     public IEnumerator IETurnEnd()
     {
-        var turnEnds = hero.GetComponentsInChildren<TurnEndEffect>();
-        for (int i = 0; i < turnEnds.Length; i++)
+        var turnEndsHero = hero.GetComponentsInChildren<TurnEndEffect>();
+        for (int i = 0; i < turnEndsHero.Length; i++)
         {
-            yield return turnEnds[i].IETurnEnd();
+            yield return turnEndsHero[i].IETurnEnd();
+        }
+        for (int i = 0; i < cards.Count; i++)
+        {
+            if (cards[i].TryGetComponent<Monster>(out var monster))
+            {
+                if (monster.TryGetComponent<MonsterTag>(out var tag))
+                    yield return tag.IETurnEnd();
+            }
         }
     }
 

@@ -5,7 +5,7 @@ public class MonsterData
     public float baseHp;
     public float multiple;
     public float rewardExp;
-    public int currentHp;
-    public int maxHp;
+    public float currentHp;
+    public float maxHp;
     public int amor;
 }

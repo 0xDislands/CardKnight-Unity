@@ -24,7 +24,7 @@ public class Monster : CardEffect
     public override void ApplyEffect(Hero hero)
     {
         var damage = new DamageData();
-        damage.damage = monsterData.currentHp;
+        damage.damage = (int)monsterData.currentHp;
         hero.TakeDamage(damage, out bool dead);
         if (dead == false)
         {
@@ -44,7 +44,7 @@ public class Monster : CardEffect
         monsterData.currentHp = monsterData.maxHp;
     }
 
-    public void SetHp(int hp)
+    public void SetHp(float hp)
     {
         monsterData.currentHp = hp;
         if (monsterData.currentHp > monsterData.maxHp)
@@ -63,7 +63,7 @@ public class Monster : CardEffect
     {
         dead = false;
         monsterData.currentHp -= data.damage;
-        if (monsterData.currentHp <= 0)
+        if ((int)monsterData.currentHp <= 0)
         {
             monsterData.currentHp = 0;
             dead = true;

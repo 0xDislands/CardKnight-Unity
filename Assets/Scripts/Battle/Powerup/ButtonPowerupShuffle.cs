@@ -8,7 +8,7 @@ public class ButtonPowerupShuffle : ButtonPowerup
     public override void OnClick()
     {
         if (IsCooldownReady() == false) return;
-        CurrentAtkTime = 0;
+        CurrentAtkTime = atkToAvailable;
         var cards = CardManager.Instance.cards;
         List<Vector2Int> positions = new List<Vector2Int>();
         var listPos = new List<Vector2Int>();
@@ -51,5 +51,9 @@ public class ButtonPowerupShuffle : ButtonPowerup
         {
             cards[i].MoveToPos(newPositions[i]);
         }
+    }
+
+    public override void ResetSkill()
+    {
     }
 }
