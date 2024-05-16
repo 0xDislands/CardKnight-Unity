@@ -5,6 +5,7 @@ public class SelectHeroManager : MonoBehaviour
 {
     public static SelectHeroManager Instance;
     public PopupSelectHero popupSelectHero;
+    public SkinPopup popupSkin;
     public Canvas canvasFindMatch;
     public Canvas canvasSelectHero;
     
@@ -27,6 +28,11 @@ public class SelectHeroManager : MonoBehaviour
         //canvasFindMatch.gameObject.SetActive(true);
         //FindMatchManager.Instance.OnFindMatchClick();
         //canvasSelectHero.gameObject.SetActive(false);
+        //SceneManager.LoadScene("gameplay");
+    }
+
+    public void ToGameplay()
+    {
         SceneManager.LoadScene("gameplay");
     }
 }

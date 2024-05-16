@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public PowerupId id;
     protected float atkToAvailable;
@@ -91,5 +91,10 @@ public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPoin
     {
         transform.DOScale(Vector3.one, 0.2f);
         Gameplay.Instance.popupToolTip.HideToolTip();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Right) Gameplay.Instance.popupInfo.DisplaySkill(id);
     }
 }

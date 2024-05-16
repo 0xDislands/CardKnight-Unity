@@ -57,6 +57,9 @@ public class CardManager : MonoBehaviour
         SpawnAllCard();
         UpdateHeroNeighbours();
         StartCoroutine(IECardAnimation());
+        var heroData = DataManager.Instance.dicHero[selectedHero];
+        heroCard.icon.sprite = heroData.skins[heroData.selectSkin];
+        heroCard.icon.preserveAspect = true;
     }
 
     private void Update()
@@ -373,8 +376,12 @@ public class CardManager : MonoBehaviour
         {
             if (cards[i].TryGetComponent<Monster>(out var monster))
             {
-                if (monster.TryGetComponent<MonsterTag>(out var tag))
-                    yield return tag.IETurnEnd();
+                var tags = monster.GetComponentsInChildren<MonsterTag>();
+                for (int j = 0; j < tags.Length; j++)
+                {
+                    if (!tags[j].gameObject.activeInHierarchy) continue;
+                    yield return tags[j].IETurnEnd();
+                }
             }
         }
     }

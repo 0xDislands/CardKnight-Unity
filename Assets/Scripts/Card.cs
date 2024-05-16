@@ -100,17 +100,25 @@ public class Card : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Hero hero = CardManager.Instance.hero;
-        if (!hero.canMove) return;
-        hero = GetComponent<Hero>();
-        if (hero != null)
+        if(eventData.button == PointerEventData.InputButton.Left)
         {
-            Debug.Log("You click hero card");
+            Hero hero = CardManager.Instance.hero;
+            if (!hero.canMove) return;
+            hero = GetComponent<Hero>();
+            if (hero != null)
+            {
+                Debug.Log("You click hero card");
 
+            }
+            if (CardManager.Instance.IsNextToHeroCard(this))
+            {
+                CardManager.Instance.UseCard(this);
+            }
         }
-        if (CardManager.Instance.IsNextToHeroCard(this))
+        else
         {
-            CardManager.Instance.UseCard(this);
+            if (cardEffect is Monster) Gameplay.Instance.popupInfo.DisplayCard(icon.sprite, "");
+            else Gameplay.Instance.popupInfo.DisplayCard(CardManager.selectedHero);
         }
     }
 

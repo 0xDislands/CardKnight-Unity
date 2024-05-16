@@ -18,7 +18,8 @@ public class ButtonPowerupHex : ButtonPowerup
         for (int i = 0; i < neightbours.Count; i++)
         {
             GridPos grid = GridManager.Instance.dicGrids[neightbours[i]];
-            if (!grid.card.TryGetComponent<Monster>(out Monster monster)) continue;
+            if (grid.card.GetComponentInChildren<ImueMagicTag>() != null) continue;
+            if (!grid.card.TryGetComponent<Monster>(out var monster)) continue;
             monsterCount++;
             var slash = Instantiate(powerupPrefab, grid.card.transform);
             slash.transform.position = grid.card.transform.position;

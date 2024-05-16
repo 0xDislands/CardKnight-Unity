@@ -18,6 +18,7 @@
         for (int i = 0; i < neightbours.Count; i++)
         {
             GridPos grid = GridManager.Instance.dicGrids[neightbours[i]];
+            if (grid.card.GetComponentInChildren<ImueMagicTag>() != null) continue;
             var slash = Instantiate(powerupPrefab, grid.card.transform);
             slash.transform.position = grid.card.transform.position;
             slash.pos = grid.pos;
@@ -25,7 +26,7 @@
             CardManager.Instance.UpdateHeroNeighbours();
         }
         Hero hero = CardManager.Instance.hero;
-        hero.canMove = true;
+        hero.canMove = false;
     }
     public override void ResetSkill()
     {

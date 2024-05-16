@@ -7,5 +7,6 @@
     Life_Steal,
     Shuffle,
     Meteor,
-    UnfairTrade
+    UnfairTrade,
+    Curse
 }

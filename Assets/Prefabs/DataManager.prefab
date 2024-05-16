@@ -150,6 +150,12 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 0e5428721d9ff56478b08e00394a786b, type: 3}
     unlockLevel: 1
     cooldown: 5
+  - id: 8
+    name: Curse
+    description: Decrease 50% HP of a monster
+    sprite: {fileID: 21300000, guid: acb2c5ee49b52cc4bb4724bbc1dee290, type: 3}
+    unlockLevel: 1
+    cooldown: 5
   heroDatas:
   - id: 0
     powerUps: 000000000100000003000000
@@ -162,7 +168,7 @@ MonoBehaviour:
     description: This is description
     sprite: {fileID: 21300000, guid: b5731e152b666434e9aa82b58c6a892f, type: 3}
   - id: 2
-    powerUps: 040000000100000007000000
+    powerUps: 040000000100000008000000
     name: Vampire
     description: This is description
     sprite: {fileID: 21300000, guid: 3f2586774a8b9a54787d1f85d91e2b4b, type: 3}

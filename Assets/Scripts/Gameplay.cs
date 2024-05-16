@@ -19,6 +19,7 @@ public class Gameplay : MonoBehaviour
     public ProgressBarHeroEXP heroProgressBarExp;
     public Transform powerupGroupParent;
     public PopupToolTip popupToolTip;
+    public PopupInfo popupInfo;
     public ButtonPowerup[] buttonPowerups { get; private set; }
 
     private void Awake()

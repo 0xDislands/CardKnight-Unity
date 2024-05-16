@@ -15,6 +15,7 @@ public class ButtonPowerupShuffle : ButtonPowerup
         int heroIndex = cards.IndexOf(CardManager.Instance.heroCard);
         for (int i = 0; i < cards.Count; i++)
         {
+            if (cards[i].GetComponentInChildren<ImueMagicTag>() != null) continue;
             listPos.Add(cards[i].Pos);
         }
         listPos.Remove(CardManager.Instance.heroCard.Pos);

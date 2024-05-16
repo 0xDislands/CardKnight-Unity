@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 public class Monster : CardEffect
@@ -6,10 +8,12 @@ public class Monster : CardEffect
     public MonsterData monsterData;
     private TextHp textHp;
     [SerializeField] private ParticleSystem attackEffect;
+    [SerializeField] private MonsterTag[] tags;
 
     private void Awake()
     {
         textHp = GetComponentInChildren<TextHp>();
+        tags = GetComponentsInChildren<MonsterTag>();
     }
     private void Start()
     {
@@ -20,6 +24,24 @@ public class Monster : CardEffect
     private void OnEnable()
     {
         Init();
+        for (int i = 0; i < tags.Length; i++)
+        {
+            tags[i].gameObject.SetActive(false);
+        }
+        SetTag(Random.Range(0, tags.Length));
+    }
+
+    public void SetTag(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            var tagIndexes = Enumerable.Range(0, tags.Length - 1).ToList();
+            var index = Random.Range(0, tagIndexes.Count);
+            var randomTagIndex = tagIndexes[index];
+            tags[randomTagIndex].gameObject.SetActive(true);
+            tagIndexes.RemoveAt(index);
+        }
+
     }
     public override void ApplyEffect(Hero hero)
     {

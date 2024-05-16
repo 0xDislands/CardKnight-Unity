@@ -20,6 +20,7 @@ public class ButtonPowerupMeteor : ButtonPowerup
         var damgeValue = CardManager.Instance.hero.heroData.damage;
         foreach (var monster in monsters)
         {
+            if (monster.GetComponentInChildren<ImueMagicTag>() != null) continue;
             var newMeteor = SimpleObjectPool.Instance.GetObjectFromPool(meteor, monster.transform.position);
             newMeteor.damageData.damage = CardManager.Instance.hero.heroData.maxHp;
             newMeteor.FallToAttack(monster);

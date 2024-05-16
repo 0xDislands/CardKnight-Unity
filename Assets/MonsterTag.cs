@@ -8,7 +8,7 @@ public abstract class MonsterTag : TurnEndEffect
     protected Monster monster;
     protected virtual void Awake()
     {
-        card = GetComponent<Card>();
+        card = GetComponentInParent<Card>();
         monster = (Monster)card.cardEffect;
     }
 }

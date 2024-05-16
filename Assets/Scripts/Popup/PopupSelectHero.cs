@@ -1,19 +1,24 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PopupSelectHero : MonoBehaviour
 {
     public const float ANIMATION_TIME = 0.5f;
     public const float RUN_TEXT_TIME = 2f;
     private CanvasGroup canvasGroup;
+    public Image highlight;
+    public ButtonSelectHero[] buttonSelectHeros;
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+        buttonSelectHeros = GetComponentsInChildren<ButtonSelectHero>();
     }
     private void OnEnable()
     {
         StartCoroutine(IEDoEffect());
+        highlight.gameObject.SetActive(false);
     }
 
     public IEnumerator IEDoEffect()
