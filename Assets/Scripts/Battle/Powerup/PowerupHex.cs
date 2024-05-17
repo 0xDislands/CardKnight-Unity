@@ -1,11 +1,21 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public class PowerupHex : PowerupBase
 {
+    private void Awake()
+    {
+        id = PowerupId.Hex;
+    }
     public override void OnClick()
     {
         base.OnClick();
+        if (IsImuned())
+        {
+            Gameplay.Instance.buttonPowerups.First(x => x.id == id).ResetSkill();
+            SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextImune"), transform.position + new Vector3(0, 1f));
+            return;
+        }
         card.TryGetComponent<Monster>(out Monster monster);
         monster.TryGetComponent<Boss>(out Boss boss);
         if (monster != null && boss == null)

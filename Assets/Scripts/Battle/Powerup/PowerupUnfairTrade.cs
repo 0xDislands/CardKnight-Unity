@@ -3,9 +3,19 @@ using UnityEngine;
 
 public class PowerupUnfairTrade : PowerupBase
 {
+    private void Awake()
+    {
+        id = PowerupId.UnfairTrade;
+    }
     public override void OnClick()
     {
         base.OnClick();
+        if (IsImuned())
+        {
+            Gameplay.Instance.buttonPowerups.First(x => x.id == id).ResetSkill();
+            SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextImune"), transform.position + new Vector3(0, 1f));
+            return;
+        }
         var heroCard = CardManager.Instance.heroCard;
         card.transform.SetAsLastSibling();
         heroCard.transform.SetAsLastSibling();

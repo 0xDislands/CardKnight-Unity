@@ -2,6 +2,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Dislands;
 
 public class Monster : CardEffect
 {
@@ -28,18 +29,16 @@ public class Monster : CardEffect
         {
             tags[i].gameObject.SetActive(false);
         }
-        SetTag(Random.Range(0, tags.Length));
+        SetTag(Random.Range(0, tags.Length + 1));
     }
 
     public void SetTag(int amount)
     {
+        var tagIndexes = Enumerable.Range(0, tags.Length).ToList();
+        tagIndexes.Shuffle();
         for (int i = 0; i < amount; i++)
         {
-            var tagIndexes = Enumerable.Range(0, tags.Length - 1).ToList();
-            var index = Random.Range(0, tagIndexes.Count);
-            var randomTagIndex = tagIndexes[index];
-            tags[randomTagIndex].gameObject.SetActive(true);
-            tagIndexes.RemoveAt(index);
+            tags[tagIndexes[i]].gameObject.SetActive(true);
         }
 
     }

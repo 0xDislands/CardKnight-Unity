@@ -7,9 +7,19 @@ public class PowerupSlash : PowerupBase
 {
     public EffectSlash effect;
     public ParticleSystem attackEffect;
+    private void Awake()
+    {
+        id = PowerupId.Slash;
+    }
     public override void OnClick()
     {
         base.OnClick();
+        if (IsImuned())
+        {
+            Gameplay.Instance.buttonPowerups.First(x => x.id == id).ResetSkill();
+            SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextImune"), transform.position + new Vector3(0, 1f));
+            return;
+        }
         if (card.TryGetComponent<Monster>(out var monster))
         {
             var newEffect = SimpleObjectPool.Instance.GetObjectFromPool(effect, card.transform.position);

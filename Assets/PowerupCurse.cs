@@ -5,8 +5,19 @@ using UnityEngine;
 
 public class PowerupCurse : PowerupBase
 {
-    public void OnClick()
+    private void Awake()
     {
+        id = PowerupId.Curse;
+    }
+    public override void OnClick()
+    {
+        base.OnClick();
+        if (IsImuned())
+        {
+            Gameplay.Instance.buttonPowerups.First(x => x.id == id).ResetSkill();
+            SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextImune"), transform.position + new Vector3(0, 1f));
+            return;
+        }
         var heroCard = CardManager.Instance.heroCard;
         card.transform.SetAsLastSibling();
         heroCard.transform.SetAsLastSibling();
@@ -28,6 +39,7 @@ public class PowerupCurse : PowerupBase
         }
         Hero hero = CardManager.Instance.hero;
         hero.canMove = true;
+        EffectManager.Instance.Hit(card.transform.position);
     }
     public void OnDisable()
     {
