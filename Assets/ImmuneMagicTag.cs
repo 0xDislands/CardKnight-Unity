@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ImueMagicTag : MonsterTag
+public class ImmuneMagicTag : MonsterTag
 {
     public override IEnumerator IETurnEnd()
     {

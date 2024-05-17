@@ -1,12 +1,11 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-public class PowerupUnfairTrade : MonoBehaviour
+public class PowerupUnfairTrade : PowerupBase
 {
-    public Vector2Int pos;
-    public Card card;
-    public void OnClick()
+    public override void OnClick()
     {
+        base.OnClick();
         var heroCard = CardManager.Instance.heroCard;
         card.transform.SetAsLastSibling();
         heroCard.transform.SetAsLastSibling();
@@ -29,8 +28,6 @@ public class PowerupUnfairTrade : MonoBehaviour
         {
             swaps[i].gameObject.SetActive(false);
         }
-        Hero hero = CardManager.Instance.hero;
-        hero.canMove = true;
     }
     public void OnDisable()
     {

@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerupHex : MonoBehaviour
+public class PowerupHex : PowerupBase
 {
-    public const float MOVE_TIME = 0.5f;
-    public Vector2Int pos;
-    public Card card;
-    public void OnClick()
+    public override void OnClick()
     {
+        base.OnClick();
         card.TryGetComponent<Monster>(out Monster monster);
         monster.TryGetComponent<Boss>(out Boss boss);
         if (monster != null && boss == null)
@@ -27,12 +25,9 @@ public class PowerupHex : MonoBehaviour
         {
             Destroy(hexes[i]);
         }
-        Hero hero = CardManager.Instance.hero;
-        hero.canMove = true;
     }
     public void OnDisable()
     {
         Destroy(gameObject);
     }
 }
-

@@ -22,13 +22,14 @@ public class ButtonPowerupHex : ButtonPowerup
         for (int i = 0; i < neightbours.Count; i++)
         {
             GridPos grid = GridManager.Instance.dicGrids[neightbours[i]];
-            if (grid.card.GetComponentInChildren<ImueMagicTag>() != null) continue;
+            if (grid.card.GetComponentInChildren<ImmuneMagicTag>() != null) continue;
             if (!grid.card.TryGetComponent<Monster>(out var monster)) continue;
             monsterCount++;
-            var slash = Instantiate(powerupPrefab, grid.card.transform);
-            slash.transform.position = grid.card.transform.position;
-            slash.pos = grid.pos;
-            slash.card = grid.card;
+            var hex = Instantiate(powerupPrefab, grid.card.transform);
+            hex.transform.position = grid.card.transform.position;
+            hex.pos = grid.pos;
+            hex.card = grid.card;
+            hex.buttonPowerup = this;
             CardManager.Instance.UpdateHeroNeighbours();
         }
         if (monsterCount == 0)
@@ -37,7 +38,7 @@ public class ButtonPowerupHex : ButtonPowerup
             hero.canMove = true;
         } else
         {
-            TurnLeftToUSeSkill = maxTurnLeftToUseSkill;
+            TurnLeftToUSeSkill = maxTurnLeftToUseSkill; //TODO: dua logic nay vo powerup
         }
     }
     public override void ResetSkill()

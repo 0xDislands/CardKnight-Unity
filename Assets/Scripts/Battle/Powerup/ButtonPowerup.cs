@@ -12,20 +12,16 @@ public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPoin
     [SerializeField] protected Image coolDownImg;
     [SerializeField] protected Image icon;
     protected float turnLeftToUSeSkill;
-    //protected bool fullCoolDown;
     protected Hero hero;
     private Camera mainCam;
-    protected bool isUsingSkill;
+    public bool isUsingSkill;
 
     public float TurnLeftToUSeSkill
     {
         get { return turnLeftToUSeSkill; }
         set {
             turnLeftToUSeSkill = value;
-            coolDownImg.DOFillAmount(turnLeftToUSeSkill / maxTurnLeftToUseSkill, 0.2f).OnComplete(() => 
-            {
-                //fullCoolDown = coolDownImg.fillAmount <= 0f;
-            });
+            coolDownImg.DOFillAmount(turnLeftToUSeSkill / maxTurnLeftToUseSkill, 0.2f);
         }
     }
 
@@ -62,11 +58,6 @@ public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPoin
         var unlockLevel = DataManager.Instance.dicPowerUp[id].unlockLevel;
         if (CardManager.Instance.hero.heroData.level < unlockLevel) return false; //chuoi
         if (coolDownImg.fillAmount > 0) return false;
-        //if (!fullCoolDown)
-        //{
-        //    if (showEffect) SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextOnCooldown"), transform.position + new Vector3(0,1f));
-        //    return false;
-        //}
         return true;
     }
 
@@ -82,14 +73,12 @@ public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPoin
     {
         transform.DOScale(Vector3.one * 1.2f, 0.2f);
         Gameplay.Instance.popupToolTip.DisplayToolTip(DataManager.Instance.dicPowerUp[id].description);
-
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         transform.DOScale(Vector3.one, 0.2f);
         Gameplay.Instance.popupToolTip.HideToolTip();
-
     }
 
     public void OnPointerClick(PointerEventData eventData)

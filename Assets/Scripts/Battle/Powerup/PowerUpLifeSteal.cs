@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PowerUpLifeSteal : MonoBehaviour
+public class PowerUpLifeSteal : PowerupBase
 {
-    public Vector2Int pos;
-    public Card card;
-    public void OnClick()
+    public override void OnClick()
     {
+        base.OnClick();
         var monster = card.GetComponent<Monster>();
         if (monster)
         {
@@ -26,8 +25,6 @@ public class PowerUpLifeSteal : MonoBehaviour
         {
             powers[i].gameObject.SetActive(false);
         }
-        Hero hero = CardManager.Instance.hero;
-        hero.canMove = true;
     }
     public void OnDisable()
     {

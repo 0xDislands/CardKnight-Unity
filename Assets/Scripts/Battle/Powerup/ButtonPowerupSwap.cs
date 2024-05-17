@@ -23,12 +23,13 @@ public class ButtonPowerupSwap : ButtonPowerup
         for (int i = 0; i < GridManager.Instance.grids.Length; i++)
         {
             if (GridManager.Instance.grids[i].pos == hero.Pos) continue;
-            if (GridManager.Instance.grids[i].card.GetComponentInChildren<ImueMagicTag>() != null) continue;
+            if (GridManager.Instance.grids[i].card.GetComponentInChildren<ImmuneMagicTag>() != null) continue;
             GridPos grid = GridManager.Instance.grids[i];
             var swap = Instantiate(powerupPrefab, grid.card.transform);
             swap.transform.position = grid.card.transform.position;
             swap.pos = grid.pos;
             swap.card = grid.card;
+            swap.buttonPowerup = this;
         }
     }
 

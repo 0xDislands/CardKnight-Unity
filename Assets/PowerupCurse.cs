@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PowerupCurse : MonoBehaviour
+public class PowerupCurse : PowerupBase
 {
-    public Vector2Int pos;
-    public Card card;
     public void OnClick()
     {
         var heroCard = CardManager.Instance.heroCard;

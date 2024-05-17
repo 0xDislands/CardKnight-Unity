@@ -3,14 +3,13 @@ using DG.Tweening;
 using System;
 using System.Linq;
 
-public class PowerupSlash : MonoBehaviour
+public class PowerupSlash : PowerupBase
 {
     public EffectSlash effect;
     public ParticleSystem attackEffect;
-    public Vector2Int pos;
-    public Card card;
-    public void OnClick()
+    public override void OnClick()
     {
+        base.OnClick();
         if (card.TryGetComponent<Monster>(out var monster))
         {
             var newEffect = SimpleObjectPool.Instance.GetObjectFromPool(effect, card.transform.position);
