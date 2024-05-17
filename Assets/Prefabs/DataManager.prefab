@@ -122,7 +122,7 @@ MonoBehaviour:
     cooldown: 2
   - id: 3
     name: Full Heal
-    description: Full Heal
+    description: Heal full hp
     sprite: {fileID: 21300000, guid: dc4e6a97a6c642c47ba2682953b7a5be, type: 3}
     unlockLevel: 1
     cooldown: 10
@@ -158,17 +158,32 @@ MonoBehaviour:
     cooldown: 5
   heroDatas:
   - id: 0
-    powerUps: 000000000100000003000000
+    powerUps: 080000000100000003000000
     name: Knight
     description: This is description
     sprite: {fileID: 21300000, guid: c9ad01c66fad2cc4f8a5bd338933a6fe, type: 3}
+    skins:
+    - {fileID: 21300000, guid: c9ad01c66fad2cc4f8a5bd338933a6fe, type: 3}
+    - {fileID: 21300000, guid: fcd2f7d82b9a7dd489b5974ef52712e0, type: 3}
+    - {fileID: 21300000, guid: 35f752ea57812db469d89008420eab54, type: 3}
+    selectSkin: 0
   - id: 1
     powerUps: 020000000500000006000000
     name: Shaman
     description: This is description
     sprite: {fileID: 21300000, guid: b5731e152b666434e9aa82b58c6a892f, type: 3}
+    skins:
+    - {fileID: 21300000, guid: b5731e152b666434e9aa82b58c6a892f, type: 3}
+    - {fileID: 21300000, guid: 984c858d84445644d800bd99e54cd8f2, type: 3}
+    - {fileID: 21300000, guid: d7ac4dc08d9f4b6449fa8efc52643a5e, type: 3}
+    selectSkin: 0
   - id: 2
     powerUps: 040000000100000008000000
     name: Vampire
     description: This is description
     sprite: {fileID: 21300000, guid: 3f2586774a8b9a54787d1f85d91e2b4b, type: 3}
+    skins:
+    - {fileID: 21300000, guid: 3f2586774a8b9a54787d1f85d91e2b4b, type: 3}
+    - {fileID: 21300000, guid: d7dd5a4adb86f4644889392c79698d6a, type: 3}
+    - {fileID: 21300000, guid: d0fe2eea8c1184f4a80d62df44e14550, type: 3}
+    selectSkin: 0

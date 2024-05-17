@@ -7,15 +7,19 @@ public class ButtonPowerUpLifeSteal : ButtonPowerup
     public PowerUpLifeSteal powerupPrefab;
     public override void OnClick()
     {
-        if (active)
+
+        if (!this.hero.canMove && !IsCooldownReady())
         {
             ResetSkill();
             return;
         }
-        if (IsCooldownReady() == false) return;
-        active = true;
+        if (IsCooldownReady() == false) {
+            SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextOnCooldown"), transform.position + new Vector3(0, 1f));
+            return;
+        }
+        isUsingSkill = true;
         this.hero.canMove = false;
-        CurrentAtkTime = atkToAvailable;
+        TurnLeftToUSeSkill = maxTurnLeftToUseSkill;
 
         var hero = CardManager.Instance.heroCard;
         for (int i = 0; i < GridManager.Instance.grids.Length; i++)

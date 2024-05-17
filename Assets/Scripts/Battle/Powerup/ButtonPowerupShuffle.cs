@@ -7,15 +7,18 @@ public class ButtonPowerupShuffle : ButtonPowerup
 {
     public override void OnClick()
     {
-        if (IsCooldownReady() == false) return;
-        CurrentAtkTime = atkToAvailable;
+        if (IsCooldownReady() == false) {
+            SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextOnCooldown"), transform.position + new Vector3(0, 1f));
+            return;
+        }
+        TurnLeftToUSeSkill = maxTurnLeftToUseSkill;
         var cards = CardManager.Instance.cards;
         List<Vector2Int> positions = new List<Vector2Int>();
         var listPos = new List<Vector2Int>();
         int heroIndex = cards.IndexOf(CardManager.Instance.heroCard);
         for (int i = 0; i < cards.Count; i++)
         {
-            if (cards[i].GetComponentInChildren<ImueMagicTag>() != null) continue;
+            //if (cards[i].GetComponentInChildren<ImueMagicTag>() != null) continue;
             listPos.Add(cards[i].Pos);
         }
         listPos.Remove(CardManager.Instance.heroCard.Pos);

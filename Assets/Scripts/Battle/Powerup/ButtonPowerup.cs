@@ -1,31 +1,30 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerMoveHandler
 {
     public PowerupId id;
-    protected float atkToAvailable;
+    protected float maxTurnLeftToUseSkill;
     [SerializeField] protected Image coolDownImg;
     [SerializeField] protected Image icon;
-    protected float currentAtkTime;
-    protected bool fullCoolDown;
+    protected float turnLeftToUSeSkill;
+    //protected bool fullCoolDown;
     protected Hero hero;
     private Camera mainCam;
-    protected bool active;
+    protected bool isUsingSkill;
 
-    public float CurrentAtkTime
+    public float TurnLeftToUSeSkill
     {
-        get { return currentAtkTime; }
+        get { return turnLeftToUSeSkill; }
         set {
-            currentAtkTime = value;
-            coolDownImg.DOFillAmount(currentAtkTime / atkToAvailable, 0.2f).OnComplete(() => 
+            turnLeftToUSeSkill = value;
+            coolDownImg.DOFillAmount(turnLeftToUSeSkill / maxTurnLeftToUseSkill, 0.2f).OnComplete(() => 
             {
-                fullCoolDown = coolDownImg.fillAmount <= 0f;
+                //fullCoolDown = coolDownImg.fillAmount <= 0f;
             });
         }
     }
@@ -35,7 +34,7 @@ public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPoin
         mainCam = Camera.main;
         hero = CardManager.Instance.hero;
         var data = DataManager.Instance.dicPowerUp[id];
-        atkToAvailable = data.cooldown;
+        maxTurnLeftToUseSkill = data.cooldown;
         icon.sprite = data.sprite;
         var text = GetComponentInChildren<TextPowerupName>();
         if (text)
@@ -47,7 +46,7 @@ public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPoin
 
     private void OnEnable()
     {
-        currentAtkTime = 0;
+        turnLeftToUSeSkill = 0;
         if (!IsUnlocked()) coolDownImg.fillAmount = 1f;
     }
 
@@ -58,43 +57,50 @@ public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPoin
         return hero.heroData.level >= powerData.unlockLevel;
     }
 
-    public bool IsCooldownReady(bool showEffect = true)
+    public bool IsCooldownReady()
     {
         var unlockLevel = DataManager.Instance.dicPowerUp[id].unlockLevel;
-        if (CardManager.Instance.hero.heroData.level < unlockLevel) return false;
-        if (!fullCoolDown)
-        {
-            if (showEffect) SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextOnCooldown"), transform.position + new Vector3(0,1f));
-            return false;
-        }
+        if (CardManager.Instance.hero.heroData.level < unlockLevel) return false; //chuoi
+        if (coolDownImg.fillAmount > 0) return false;
+        //if (!fullCoolDown)
+        //{
+        //    if (showEffect) SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextOnCooldown"), transform.position + new Vector3(0,1f));
+        //    return false;
+        //}
         return true;
     }
 
     public abstract void OnClick();
     public virtual void ResetSkill()
     {
-        active = false;
-        CurrentAtkTime = 0;
+        isUsingSkill = false;
+        TurnLeftToUSeSkill = 0;
         hero.canMove = true;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         transform.DOScale(Vector3.one * 1.2f, 0.2f);
+        Gameplay.Instance.popupToolTip.DisplayToolTip(DataManager.Instance.dicPowerUp[id].description);
 
-        var pos = mainCam.ScreenToWorldPoint(eventData.position);
-        pos.z = 0;
-        Gameplay.Instance.popupToolTip.DisplayToolTip(DataManager.Instance.dicPowerUp[id].description, pos) ;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         transform.DOScale(Vector3.one, 0.2f);
         Gameplay.Instance.popupToolTip.HideToolTip();
+
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Right) Gameplay.Instance.popupInfo.DisplaySkill(id);
+    }
+
+    public void OnPointerMove(PointerEventData eventData)
+    {
+        var pos = mainCam.ScreenToWorldPoint(eventData.position);
+        pos.z = 0;
+        Gameplay.Instance.popupToolTip.SetPosition(pos);
     }
 }

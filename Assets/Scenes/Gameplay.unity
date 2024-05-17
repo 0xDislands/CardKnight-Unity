@@ -377,7 +377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -410,8 +410,8 @@ CanvasGroup:
   m_GameObject: {fileID: 28548523}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &28548528
 MonoBehaviour:
@@ -3143,7 +3143,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2370652720133233243, guid: 2b7e0143ab00c4646be09aee51b8d192, type: 3}
       propertyPath: title
-      value: Full Heal
+      value: Heal Full HP
       objectReference: {fileID: 0}
     - target: {fileID: 2370652720133233243, guid: 2b7e0143ab00c4646be09aee51b8d192, type: 3}
       propertyPath: amount
@@ -4102,6 +4102,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 252302732}
+  - {fileID: 913338650}
   - {fileID: 442730130}
   - {fileID: 539969913}
   - {fileID: 1188400643}
@@ -4109,8 +4111,6 @@ RectTransform:
   - {fileID: 306235470}
   - {fileID: 1078261087}
   - {fileID: 235893723}
-  - {fileID: 252302732}
-  - {fileID: 913338650}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -9659,7 +9659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6384708050653511238, guid: 7120d43307645104ba0ce320a29fd711, type: 3}
       propertyPath: title
-      value: +3 Max Armor
+      value: +3 Max Armour
       objectReference: {fileID: 0}
     - target: {fileID: 6384708050653511238, guid: 7120d43307645104ba0ce320a29fd711, type: 3}
       propertyPath: amount
@@ -10342,7 +10342,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2370652720133233243, guid: 2b7e0143ab00c4646be09aee51b8d192, type: 3}
       propertyPath: title
-      value: ' Full Heal'
+      value: Heal Full HP
       objectReference: {fileID: 0}
     - target: {fileID: 2370652720133233243, guid: 2b7e0143ab00c4646be09aee51b8d192, type: 3}
       propertyPath: amount
@@ -13356,7 +13356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8796815212735308930, guid: 04a968c5e92e62043a0a124bb2ccc88d, type: 3}
       propertyPath: title
-      value: Full Armor
+      value: Full Armour
       objectReference: {fileID: 0}
     - target: {fileID: 8796815212735308930, guid: 04a968c5e92e62043a0a124bb2ccc88d, type: 3}
       propertyPath: amount
@@ -14139,11 +14139,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2370652720133233243, guid: 2b7e0143ab00c4646be09aee51b8d192, type: 3}
       propertyPath: title
-      value: Full Heal
+      value: Heal Full HP
       objectReference: {fileID: 0}
     - target: {fileID: 2370652720133233243, guid: 2b7e0143ab00c4646be09aee51b8d192, type: 3}
       propertyPath: amount
-      value: 999999
+      value: 99999999
       objectReference: {fileID: 0}
     - target: {fileID: 2370652720133233243, guid: 2b7e0143ab00c4646be09aee51b8d192, type: 3}
       propertyPath: description
@@ -14661,7 +14661,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6384708050653511238, guid: 7120d43307645104ba0ce320a29fd711, type: 3}
       propertyPath: title
-      value: +2 Max Armor
+      value: +2 Max Armour
       objectReference: {fileID: 0}
     - target: {fileID: 6384708050653511238, guid: 7120d43307645104ba0ce320a29fd711, type: 3}
       propertyPath: description
@@ -17551,7 +17551,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2370652720133233243, guid: 2b7e0143ab00c4646be09aee51b8d192, type: 3}
       propertyPath: title
-      value: Full Heal
+      value: Heal Full HP
       objectReference: {fileID: 0}
     - target: {fileID: 2370652720133233243, guid: 2b7e0143ab00c4646be09aee51b8d192, type: 3}
       propertyPath: amount

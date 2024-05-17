@@ -15,12 +15,14 @@ public class PopupToolTip : MonoBehaviour
         group.DOFade(1f, 0.2f);
     }
 
-    public void DisplayToolTip(string content, Vector2 position)
+    public void DisplayToolTip(string content)
     {
-        transform.position = position;
         gameObject.SetActive(true);
         toolTip.text = content;
     }
-
+    public void SetPosition(Vector2 position)
+    {
+        transform.position = position;
+    }
     public void HideToolTip() => gameObject.SetActive(false);
 }

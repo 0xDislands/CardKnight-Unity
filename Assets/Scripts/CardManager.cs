@@ -359,7 +359,7 @@ public class CardManager : MonoBehaviour
         }
         foreach (var item in Gameplay.Instance.buttonPowerups)
         {
-            if (item.IsUnlocked()) item.CurrentAtkTime--;
+            if (item.IsUnlocked()) item.TurnLeftToUSeSkill--;
         }
         yield return IETurnEnd();
         canClick = true;

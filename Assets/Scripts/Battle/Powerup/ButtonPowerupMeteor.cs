@@ -9,8 +9,12 @@ public class ButtonPowerupMeteor : ButtonPowerup
     public MeteorObject meteor;
     public override void OnClick()
     {
-        if (IsCooldownReady() == false) return;
-        CurrentAtkTime = atkToAvailable;
+        if (IsCooldownReady() == false)
+        {
+            SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextOnCooldown"), transform.position + new Vector3(0, 1f));
+            return;
+        }
+        TurnLeftToUSeSkill = maxTurnLeftToUseSkill;
         CardManager.Instance.StartCoroutine(IESpawnMeteor());
     }
 

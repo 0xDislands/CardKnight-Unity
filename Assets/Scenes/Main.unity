@@ -736,7 +736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3824653269942692351, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.4371984
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3824653269942692351, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
       propertyPath: m_LocalPosition.y
@@ -774,54 +774,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8151232389537041027, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
-      propertyPath: heroDatas.Array.data[0].skins.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8151232389537041027, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
-      propertyPath: heroDatas.Array.data[1].skins.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8151232389537041027, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
-      propertyPath: heroDatas.Array.data[2].skins.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8151232389537041027, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
-      propertyPath: heroDatas.Array.data[0].skins.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: c9ad01c66fad2cc4f8a5bd338933a6fe, type: 3}
-    - target: {fileID: 8151232389537041027, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
-      propertyPath: heroDatas.Array.data[0].skins.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: fcd2f7d82b9a7dd489b5974ef52712e0, type: 3}
-    - target: {fileID: 8151232389537041027, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
-      propertyPath: heroDatas.Array.data[0].skins.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300000, guid: 35f752ea57812db469d89008420eab54, type: 3}
-    - target: {fileID: 8151232389537041027, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
-      propertyPath: heroDatas.Array.data[1].skins.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: b5731e152b666434e9aa82b58c6a892f, type: 3}
-    - target: {fileID: 8151232389537041027, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
-      propertyPath: heroDatas.Array.data[1].skins.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: 984c858d84445644d800bd99e54cd8f2, type: 3}
-    - target: {fileID: 8151232389537041027, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
-      propertyPath: heroDatas.Array.data[1].skins.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300000, guid: d7ac4dc08d9f4b6449fa8efc52643a5e, type: 3}
-    - target: {fileID: 8151232389537041027, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
-      propertyPath: heroDatas.Array.data[2].skins.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: 3f2586774a8b9a54787d1f85d91e2b4b, type: 3}
-    - target: {fileID: 8151232389537041027, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
-      propertyPath: heroDatas.Array.data[2].skins.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: d7dd5a4adb86f4644889392c79698d6a, type: 3}
-    - target: {fileID: 8151232389537041027, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
-      propertyPath: heroDatas.Array.data[2].skins.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300000, guid: d0fe2eea8c1184f4a80d62df44e14550, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5722,6 +5674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlight: {fileID: 1776894310}
+  buttonSelectHeros: []
 --- !u!1 &1875672617
 GameObject:
   m_ObjectHideFlags: 0

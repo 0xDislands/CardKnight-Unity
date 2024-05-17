@@ -5,13 +5,17 @@ public class ButtonPowerupHex : ButtonPowerup
     public override void OnClick()
     {
         var neightbours = CardManager.Instance.heroNeighbours;
-        if (active)
+        if (isUsingSkill)
         {
             ResetSkill();
             return;
         }
-        if (IsCooldownReady() == false) return;
-        active = true;
+        if (IsCooldownReady() == false)
+        {
+            SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextOnCooldown"), transform.position + new Vector3(0, 1f));
+            return;
+        }
+        isUsingSkill = true;
         hero.canMove = false;   
         int monsterCount = 0;
 
@@ -33,7 +37,7 @@ public class ButtonPowerupHex : ButtonPowerup
             hero.canMove = true;
         } else
         {
-            CurrentAtkTime = atkToAvailable;
+            TurnLeftToUSeSkill = maxTurnLeftToUseSkill;
         }
     }
     public override void ResetSkill()
