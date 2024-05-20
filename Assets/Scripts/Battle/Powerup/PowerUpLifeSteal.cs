@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ public class PowerUpLifeSteal : PowerupBase
         {
             card.gameObject.SetActive(false);
             monster.TakeDamage(new DamageData(monster.monsterData.maxHp), out var dead);
-            CardManager.Instance.hero.AddHP(new DamageData((int)(monster.monsterData.maxHp * 0.25f)));
+            CardManager.Instance.hero.AddHP(new DamageData((Mathf.RoundToInt((monster.monsterData.maxHp * 0.2f)))));
         }
         else
         {

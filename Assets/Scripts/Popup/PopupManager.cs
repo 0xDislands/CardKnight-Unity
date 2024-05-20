@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PopupManager : MonoBehaviour
 {
     public static PopupManager Instance;
-
     public List<System.Action> actions = new List<System.Action>();
     private int index = 0;
 

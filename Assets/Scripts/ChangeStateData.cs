@@ -19,12 +19,12 @@ public class ChangeStateData : MonoBehaviour
         get { 
             return id switch
             {
-                LevelUpId.ADD_AMOUR => $"Add {amount} armour",
+                LevelUpId.ADD_AMOUR => amount >= 9999 ? $"Add Max Armour" : $"Add {amount} Armour",
                 LevelUpId.ADD_HP => amount>=9999 ? $"Heal Full HP" : $"Heal {amount} HP",
                 LevelUpId.INCREASE_EXP => $"Add {Mathf.RoundToInt(CardManager.Instance.hero.exp.expRequire * 0.5f)} Exp",
                 LevelUpId.INCREASE_MAX_AMOUR => $"Add {amount} Max Armour",
                 LevelUpId.INCREASE_MAX_HP => $"Add {amount} Max HP",
-                LevelUpId.LOSE_CURRENT_HP_PERCENT => $"Lose {amount}% Max HP",
+                LevelUpId.LOSE_CURRENT_HP_PERCENT => $"Lose {CardManager.Instance.hero.GetHP() * amount / 100} HP",
                 _ => string.Empty
             };
         }

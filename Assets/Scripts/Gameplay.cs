@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum GameplayState
 {
@@ -20,6 +21,7 @@ public class Gameplay : MonoBehaviour
     public Transform powerupGroupParent;
     public PopupToolTip popupToolTip;
     public PopupInfo popupInfo;
+    public Toggle cheatToggle;
     public ButtonPowerup[] buttonPowerups { get; private set; }
 
     private void Awake()
@@ -52,7 +54,7 @@ public class Gameplay : MonoBehaviour
 
     public void Lose()
     {
-        if (Constants.CHEAT_NO_GAME_OVER) return;
+        if (cheatToggle.isOn) return;
         if (state == GameplayState.Lose) return;
         state = GameplayState.Lose;
         popupGameOver.gameObject.SetActive(true);

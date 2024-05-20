@@ -112,8 +112,10 @@ public class Card : MonoBehaviour, IPointerDownHandler
             }
             if (CardManager.Instance.IsNextToHeroCard(this))
             {
+                Debug.Log("1");
                 CardManager.Instance.UseCard(this);
             }
+            Debug.Log("2");
         }
         else
         {

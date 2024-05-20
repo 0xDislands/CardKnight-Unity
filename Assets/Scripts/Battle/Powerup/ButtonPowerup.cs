@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -15,7 +16,7 @@ public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPoin
     protected Hero hero;
     private Camera mainCam;
     public bool isUsingSkill;
-
+    protected TextMeshPro txtNotify;
     public float TurnLeftToUSeSkill
     {
         get { return turnLeftToUSeSkill; }
@@ -91,5 +92,10 @@ public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPoin
         var pos = mainCam.ScreenToWorldPoint(eventData.position);
         pos.z = 0;
         Gameplay.Instance.popupToolTip.SetPosition(pos);
+    }
+    public void Notify(string text)
+    {
+        txtNotify = SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextMeshPro>("TextOnCooldown"), transform.position + new Vector3(0, 1f));
+        txtNotify.text = text;
     }
 }

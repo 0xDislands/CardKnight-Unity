@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SelectHeroManager : MonoBehaviour
@@ -33,6 +34,10 @@ public class SelectHeroManager : MonoBehaviour
 
     public void ToGameplay()
     {
-        SceneManager.LoadScene("gameplay");
+        DOVirtual.DelayedCall(0.05f, () =>
+        {
+            SceneManager.LoadScene("gameplay");
+        });
+        
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 public class ButtonPowerupHex : ButtonPowerup
 {
     public PowerupHex powerupPrefab;
@@ -12,7 +13,7 @@ public class ButtonPowerupHex : ButtonPowerup
         }
         if (IsCooldownReady() == false)
         {
-            SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextOnCooldown"), transform.position + new Vector3(0, 1f));
+            Notify("ON COOLDOWN");
             return;
         }
         isUsingSkill = true;
@@ -22,8 +23,8 @@ public class ButtonPowerupHex : ButtonPowerup
         for (int i = 0; i < neightbours.Count; i++)
         {
             GridPos grid = GridManager.Instance.dicGrids[neightbours[i]];
-            if (grid.card.GetComponentInChildren<ImmuneMagicTag>() != null) continue;
-            if (!grid.card.TryGetComponent<Monster>(out var monster)) continue;
+            //if (grid.card.GetComponentInChildren<ImmuneMagicTag>() != null) continue;
+            //if (!grid.card.TryGetComponent<Monster>(out var monster)) continue;
             monsterCount++;
             var hex = Instantiate(powerupPrefab, grid.card.transform);
             hex.transform.position = grid.card.transform.position;
@@ -34,7 +35,7 @@ public class ButtonPowerupHex : ButtonPowerup
         }
         if (monsterCount == 0)
         {
-            Debug.Log("monster not found");
+            Notify("OUT OF RANGE");
             hero.canMove = true;
         } else
         {

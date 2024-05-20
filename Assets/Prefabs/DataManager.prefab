@@ -58,7 +58,7 @@ MonoBehaviour:
     health: 0
     cardPrefab: {fileID: 8772459415456982177, guid: 6ee9bcd5429c16e438a4a13da4028a30, type: 3}
   - id: 7
-    sprite: {fileID: 21300000, guid: 25772542e1303594d962f8ac1d3a9af7, type: 3}
+    sprite: {fileID: 21300000, guid: 9141c96816d403144bc69f1dbccc0f32, type: 3}
     health: 0
     cardPrefab: {fileID: 8772459415456982177, guid: 2f94a8eb1f37b4e4db02163e07543b52, type: 3}
   - id: 8
@@ -128,7 +128,7 @@ MonoBehaviour:
     cooldown: 10
   - id: 4
     name: Life Steal
-    description: Steal 25% max hp of the enemy
+    description: Steal 20% max hp of the enemy
     sprite: {fileID: 21300000, guid: 9418e5d5c56257f4c89982946fdcf7e3, type: 3}
     unlockLevel: 1
     cooldown: 5
@@ -158,7 +158,7 @@ MonoBehaviour:
     cooldown: 5
   heroDatas:
   - id: 0
-    powerUps: 080000000100000003000000
+    powerUps: 000000000100000003000000
     name: Knight
     description: This is description
     sprite: {fileID: 21300000, guid: c9ad01c66fad2cc4f8a5bd338933a6fe, type: 3}
