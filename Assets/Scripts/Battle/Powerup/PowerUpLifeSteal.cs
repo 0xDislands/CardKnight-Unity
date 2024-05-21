@@ -15,7 +15,7 @@ public class PowerUpLifeSteal : PowerupBase
         base.OnClick();
         if (IsImuned())
         {
-            Gameplay.Instance.buttonPowerups.First(x => x.id == id).ResetSkill();
+            Gameplay.Instance.buttonPowerups.First(x => x.id == id).CancelSkill();
             SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextImune"), transform.position + new Vector3(0, 1f));
             return;
         }
@@ -29,7 +29,7 @@ public class PowerUpLifeSteal : PowerupBase
         else
         {
             var slashButton = Gameplay.Instance.buttonPowerups.FirstOrDefault(x => x.id == PowerupId.Life_Steal);
-            slashButton.ResetSkill();
+            slashButton.CancelSkill();
         }
         var powers = FindObjectsOfType<PowerUpLifeSteal>();
         for (int i = 0; i < powers.Length; i++)

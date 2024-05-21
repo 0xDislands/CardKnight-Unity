@@ -40,7 +40,6 @@ public class Monster : CardEffect
         {
             tags[tagIndexes[i]].gameObject.SetActive(true);
         }
-
     }
     public override void ApplyEffect(Hero hero)
     {
@@ -50,7 +49,7 @@ public class Monster : CardEffect
         if (dead == false)
         {
             hero.exp.AddEXP(monsterData.rewardExp);
-            Debug.Log($"add exp {monsterData.rewardExp}");
+            //Debug.Log($"add exp {monsterData.rewardExp}");
         }
         var effect = SimpleObjectPool.Instance.GetObjectFromPool(attackEffect, transform.position);
         var card = GetComponent<Card>();
@@ -73,11 +72,6 @@ public class Monster : CardEffect
             monsterData.currentHp = monsterData.maxHp;
         }
         textHp.SetHP(monsterData);
-    }
-
-    private void OnDisable()
-    {
-        Destroy(this);
     }
 
     public void TakeDamage(DamageData data, out bool dead)

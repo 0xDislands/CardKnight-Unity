@@ -21,12 +21,12 @@ public class ButtonPowerupMeteor : ButtonPowerup
     IEnumerator IESpawnMeteor()
     {
         var monsters = FindObjectsOfType<Monster>();
-        var damgeValue = CardManager.Instance.hero.heroData.damage;
+        var damgeValue = hero.heroData.damage;
         foreach (var monster in monsters)
         {
             if (monster.GetComponentInChildren<ImmuneMagicTag>() != null) continue;
             var newMeteor = SimpleObjectPool.Instance.GetObjectFromPool(meteor, monster.transform.position);
-            newMeteor.damageData.damage = CardManager.Instance.hero.heroData.maxHp;
+            newMeteor.damageData.damage = hero.heroData.maxHp;
             newMeteor.FallToAttack(monster);
             yield return new WaitForSeconds(0.1f);
         }

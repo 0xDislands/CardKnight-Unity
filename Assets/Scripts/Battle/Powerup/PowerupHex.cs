@@ -12,7 +12,7 @@ public class PowerupHex : PowerupBase
         base.OnClick();
         if (IsImuned())
         {
-            Gameplay.Instance.buttonPowerups.First(x => x.id == id).ResetSkill();
+            Gameplay.Instance.buttonPowerups.First(x => x.id == id).CancelSkill();
             buttonPowerup.Notify("IMUNED");
             SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextImune"), transform.position + new Vector3(0, 1f));
             return;
@@ -22,7 +22,7 @@ public class PowerupHex : PowerupBase
         if(!monster && !boss)
         {
             buttonPowerup.Notify("CAN ONLY TARGET MONSTER");
-            buttonPowerup.ResetSkill();
+            buttonPowerup.CancelSkill();
             return;
         }
         else if (monster != null && boss == null)
@@ -36,7 +36,7 @@ public class PowerupHex : PowerupBase
         else if (boss != null)
         {
             buttonPowerup.Notify("BOSS");
-            Gameplay.Instance.GetButtonPowerUpByID(PowerupId.Hex).GetComponent<ButtonPowerupHex>().ResetSkill();
+            Gameplay.Instance.GetButtonPowerUpByID(PowerupId.Hex).GetComponent<ButtonPowerupHex>().CancelSkill();
         }
 
         var hexes = FindObjectsOfType<PowerupHex>();

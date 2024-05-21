@@ -7,7 +7,6 @@ public class ItemHeal : Item
     public ParticleSystem healEffect;
     public override void ApplyEffect(Hero hero)
     {
-        Debug.Log("use item heal");
         var data = new DamageData();
         data.damage = 1;
         hero.AddHP(data);

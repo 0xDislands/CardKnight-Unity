@@ -5,7 +5,6 @@ public class ItemPoison : Item
     public ParticleSystem poisonEffect;
     public override void ApplyEffect(Hero hero)
     {
-        Debug.Log("use item poison");
         PoisonEachTurn poison;
         if(hero.TryGetComponent<PoisonEachTurn>(out poison))
         {

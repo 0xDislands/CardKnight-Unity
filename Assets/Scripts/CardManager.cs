@@ -27,7 +27,8 @@ public class CardManager : MonoBehaviour
     [SerializeField] private TextAsset spawnCardData;
     public Hero hero;
     public Card heroCard;
-    private bool canClick = true;
+    public bool canClick = true;
+    //private List<Coroutine> co = new List<Coroutine>(); 
     public GameMode gameMode { get; private set; } = GameMode.Normal;
 
     public List<Card> cards;
@@ -242,7 +243,7 @@ public class CardManager : MonoBehaviour
     {
         var moveCard = GetMoveCard(card);
         var spawnNewCardPosition = moveCard.Pos;
-        Debug.Log($"is corner card = {GridManager.Instance.IsCornerCard(heroCard.Pos)}");
+        //Debug.Log($"is corner card = {GridManager.Instance.IsCornerCard(heroCard.Pos)}");
         //Nếu ngay góc thì di chuyển toàn bộ cột
         if (GridManager.Instance.IsCornerCard(heroCard.Pos))
         {
@@ -265,7 +266,7 @@ public class CardManager : MonoBehaviour
             moveCard.MoveToPos(heroCard.Pos);
         }
         heroCard.MoveToPos(card.Pos);
-        DOTween.Kill(card.transform);
+        //DOTween.Kill(card.transform);
         CardId newCardId = GetNextCard();
         var newCard = SpawnCard(spawnNewCardPosition, newCardId);
         newCard.ShowSpawnAnimation(0f);
@@ -346,7 +347,7 @@ public class CardManager : MonoBehaviour
 
     IEnumerator IEUseCard(Card card)
     {
-        canClick = false;
+        //canClick = false;
         var effect = card.cardEffect;
         if (effect != null)
         {
@@ -355,14 +356,14 @@ public class CardManager : MonoBehaviour
                 card.FlipToFront();
                 yield return new WaitForSeconds(DELAY_FLIP_TIME);
             }
-            effect.ApplyEffect(heroCard.GetComponent<Hero>());
+            effect.ApplyEffect(hero);
         }
         foreach (var item in Gameplay.Instance.buttonPowerups)
         {
             if (item.IsUnlocked()) item.TurnLeftToUSeSkill--;
         }
         yield return IETurnEnd();
-        canClick = true;
+        //canClick = true;
     }
 
     public IEnumerator IETurnEnd()
@@ -449,4 +450,5 @@ public class CardManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
     }
+
 }

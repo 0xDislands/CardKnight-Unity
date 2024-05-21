@@ -8,7 +8,7 @@ public class ButtonPowerupSwap : ButtonPowerup
     {
         if (isUsingSkill)
         {
-            ResetSkill();
+            CancelSkill();
             return;
         }
         if (IsCooldownReady() == false) {
@@ -33,9 +33,9 @@ public class ButtonPowerupSwap : ButtonPowerup
         }
     }
 
-    public override void ResetSkill()
+    public override void CancelSkill()
     {
-        base.ResetSkill();
+        base.CancelSkill();
         var powerUp = FindObjectsOfType<PowerupSwap>();
         for (int i = 0; i < powerUp.Length; i++)
         {

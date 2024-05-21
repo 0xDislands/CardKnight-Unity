@@ -8,22 +8,22 @@ public class ButtonPowerupUnfairTrade : ButtonPowerup
     {
         if (isUsingSkill)
         {
-            ResetSkill();
+            CancelSkill();
             return;
         }
         if (IsCooldownReady() == false)
         {
-            SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextOnCooldown"), transform.position + new Vector3(0, 1f));
+            Notify("ON COOLDOWN");
             return;
         }
         isUsingSkill = true;
         this.hero.canMove = false;
-        TurnLeftToUSeSkill = maxTurnLeftToUseSkill;
+        int monsterCount = 0;
 
-        var hero = CardManager.Instance.heroCard;
+        var heroCard = CardManager.Instance.heroCard;
         for (int i = 0; i < GridManager.Instance.grids.Length; i++)
         {
-            if (GridManager.Instance.grids[i].pos == hero.Pos) continue;
+            if (GridManager.Instance.grids[i].pos == heroCard.Pos) continue;
             if (GridManager.Instance.grids[i].card.GetComponentInChildren<ImmuneMagicTag>() != null) continue;
             GridPos grid = GridManager.Instance.grids[i];
             var swap = Instantiate(powerupPrefab, grid.card.transform);
@@ -32,10 +32,18 @@ public class ButtonPowerupUnfairTrade : ButtonPowerup
             swap.card = grid.card;
             swap.buttonPowerup = this;
         }
+        if (monsterCount == 0)
+        {
+            Notify("OUT OF RANGE");
+            this.hero.canMove = true;
+        } else
+        {
+            TurnLeftToUSeSkill = maxTurnLeftToUseSkill;
+        }
     }
-    public override void ResetSkill()
+    public override void CancelSkill()
     {
-        base.ResetSkill();
+        base.CancelSkill();
         var powerUp = FindObjectsOfType<PowerupUnfairTrade>();
         for (int i = 0; i < powerUp.Length; i++)
         {

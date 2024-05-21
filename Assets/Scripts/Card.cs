@@ -57,6 +57,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
     }
     public void ShowSpawnAnimation(float delayFlip = SPAWN_DELAY_FLIP)
     {
+        CardManager.Instance.canClick = false;
         side = CardSide.Back;
         cardBack.gameObject.SetActive(true);
         Vector2 startPos = transform.position;
@@ -71,6 +72,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
                 FlipToFront();
             }
             onCardAppear?.Invoke();
+            CardManager.Instance.canClick = true;
         });
     }
 
@@ -100,6 +102,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        Debug.Log(gameObject.name);
         if(eventData.button == PointerEventData.InputButton.Left)
         {
             Hero hero = CardManager.Instance.hero;
@@ -112,10 +115,8 @@ public class Card : MonoBehaviour, IPointerDownHandler
             }
             if (CardManager.Instance.IsNextToHeroCard(this))
             {
-                Debug.Log("1");
                 CardManager.Instance.UseCard(this);
             }
-            Debug.Log("2");
         }
         else
         {
@@ -145,8 +146,10 @@ public class Card : MonoBehaviour, IPointerDownHandler
     }
     public void MoveToPos(Vector2Int pos)
     {
+        //DOTween.Kill(transform);
         this.pos = pos;
         GridManager.Instance.dicGrids[pos].card = this;
-        LeanTween.move(transform.gameObject, GridManager.Instance.dicGrids[pos].transform.position, CARD_MOVE_SPEED);
+        //LeanTween.move(transform.gameObject, GridManager.Instance.dicGrids[pos].transform.position, CARD_MOVE_SPEED);
+        transform.DOMove(GridManager.Instance.dicGrids[pos].transform.position, CARD_MOVE_SPEED);
     }
 }

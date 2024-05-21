@@ -17,7 +17,7 @@ public class PowerupSwap : PowerupBase
         heroCard.transform.SetAsLastSibling();
         if(IsImuned())
         {
-            Gameplay.Instance.buttonPowerups.First(x => x.id == id).ResetSkill();
+            Gameplay.Instance.buttonPowerups.First(x => x.id == id).CancelSkill();
             SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextImune"), transform.position + new Vector3(0, 1f));
             return;
         }

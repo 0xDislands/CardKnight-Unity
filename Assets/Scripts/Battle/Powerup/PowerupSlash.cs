@@ -16,7 +16,7 @@ public class PowerupSlash : PowerupBase
         base.OnClick();
         if (IsImuned())
         {
-            Gameplay.Instance.buttonPowerups.First(x => x.id == id).ResetSkill();
+            Gameplay.Instance.buttonPowerups.First(x => x.id == id).CancelSkill();
             SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextImune"), transform.position + new Vector3(0, 1f));
             return;
         }
@@ -32,7 +32,7 @@ public class PowerupSlash : PowerupBase
         else
         {
             var slashButton = Gameplay.Instance.buttonPowerups.FirstOrDefault(x => x.id == PowerupId.Slash);
-            slashButton.ResetSkill();
+            slashButton.CancelSkill();
         }
         var slashes = FindObjectsOfType<PowerupSlash>();
         for (int i = 0; i < slashes.Length; i++)

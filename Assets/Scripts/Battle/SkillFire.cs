@@ -22,7 +22,7 @@ public class SkillFire : Skill
 
         var card = GetComponent<Card> ();
         card.Disappear ();
-        CardManager.Instance.MoveCardsAfterUse (card);
+        CardManager.Instance.MoveCardsAfterUse(card);
     }
 
     IEnumerator IEUseSkill (List<Monster> monsters)

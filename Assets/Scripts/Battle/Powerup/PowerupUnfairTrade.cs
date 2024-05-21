@@ -12,7 +12,7 @@ public class PowerupUnfairTrade : PowerupBase
         base.OnClick();
         if (IsImuned())
         {
-            Gameplay.Instance.buttonPowerups.First(x => x.id == id).ResetSkill();
+            Gameplay.Instance.buttonPowerups.First(x => x.id == id).CancelSkill();
             SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextImune"), transform.position + new Vector3(0, 1f));
             return;
         }
@@ -31,7 +31,7 @@ public class PowerupUnfairTrade : PowerupBase
         } else
         {
             var slashButton = Gameplay.Instance.buttonPowerups.FirstOrDefault(x => x.id == PowerupId.UnfairTrade);
-            slashButton.ResetSkill();
+            slashButton.CancelSkill();
         }
         var swaps = FindObjectsOfType<PowerupUnfairTrade>();
         for (int i = 0; i < swaps.Length; i++)

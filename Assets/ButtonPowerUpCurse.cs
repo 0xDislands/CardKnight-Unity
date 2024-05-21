@@ -9,7 +9,7 @@ public class ButtonPowerUpCurse : ButtonPowerup
     {
         if (isUsingSkill)
         {
-            ResetSkill();
+            CancelSkill();
             return;
         }
         if (IsCooldownReady() == false) 
@@ -35,13 +35,13 @@ public class ButtonPowerUpCurse : ButtonPowerup
         }
     }
 
-    public override void ResetSkill()
+    public override void CancelSkill()
     {
-        base.ResetSkill();
+        base.CancelSkill();
         var powerUp = FindObjectsOfType<PowerupCurse>();
         for (int i = 0; i < powerUp.Length; i++)
         {
-            Destroy(powerUp[i]);
+            Destroy(powerUp[i].gameObject);
         }
     }
 }

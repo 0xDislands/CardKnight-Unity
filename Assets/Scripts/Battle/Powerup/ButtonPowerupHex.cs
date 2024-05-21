@@ -8,7 +8,7 @@ public class ButtonPowerupHex : ButtonPowerup
         var neightbours = CardManager.Instance.heroNeighbours;
         if (isUsingSkill)
         {
-            ResetSkill();
+            CancelSkill();
             return;
         }
         if (IsCooldownReady() == false)
@@ -17,21 +17,20 @@ public class ButtonPowerupHex : ButtonPowerup
             return;
         }
         isUsingSkill = true;
-        hero.canMove = false;   
+        hero.canMove = false;
         int monsterCount = 0;
 
         for (int i = 0; i < neightbours.Count; i++)
         {
             GridPos grid = GridManager.Instance.dicGrids[neightbours[i]];
-            //if (grid.card.GetComponentInChildren<ImmuneMagicTag>() != null) continue;
-            //if (!grid.card.TryGetComponent<Monster>(out var monster)) continue;
+            if (grid.card.GetComponentInChildren<ImmuneMagicTag>() != null) continue;
+            if (!grid.card.TryGetComponent<Monster>(out var monster)) continue;
             monsterCount++;
             var hex = Instantiate(powerupPrefab, grid.card.transform);
             hex.transform.position = grid.card.transform.position;
             hex.pos = grid.pos;
             hex.card = grid.card;
             hex.buttonPowerup = this;
-            CardManager.Instance.UpdateHeroNeighbours();
         }
         if (monsterCount == 0)
         {
@@ -39,12 +38,12 @@ public class ButtonPowerupHex : ButtonPowerup
             hero.canMove = true;
         } else
         {
-            TurnLeftToUSeSkill = maxTurnLeftToUseSkill; //TODO: dua logic nay vo powerup
+            TurnLeftToUSeSkill = maxTurnLeftToUseSkill;
         }
     }
-    public override void ResetSkill()
+    public override void CancelSkill()
     {
-        base.ResetSkill();
+        base.CancelSkill();
         var neightbours = CardManager.Instance.heroNeighbours;
         hero.canMove = true;
         for (int i = 0; i < neightbours.Count; i++)

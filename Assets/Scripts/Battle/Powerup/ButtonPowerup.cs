@@ -29,7 +29,6 @@ public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPoin
     private void Awake()
     {
         mainCam = Camera.main;
-        hero = CardManager.Instance.hero;
         var data = DataManager.Instance.dicPowerUp[id];
         maxTurnLeftToUseSkill = data.cooldown;
         icon.sprite = data.sprite;
@@ -43,6 +42,7 @@ public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPoin
 
     private void OnEnable()
     {
+        hero = CardManager.Instance.hero;
         turnLeftToUSeSkill = 0;
         if (!IsUnlocked()) coolDownImg.fillAmount = 1f;
     }
@@ -63,7 +63,7 @@ public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPoin
     }
 
     public abstract void OnClick();
-    public virtual void ResetSkill()
+    public virtual void CancelSkill()
     {
         isUsingSkill = false;
         TurnLeftToUSeSkill = 0;
@@ -97,5 +97,10 @@ public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPoin
     {
         txtNotify = SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextMeshPro>("TextOnCooldown"), transform.position + new Vector3(0, 1f));
         txtNotify.text = text;
+    }
+    public bool IsOutOfRange()
+    {
+
+        return false;
     }
 }

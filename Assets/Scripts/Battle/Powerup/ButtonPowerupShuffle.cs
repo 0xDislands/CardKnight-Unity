@@ -47,9 +47,9 @@ public class ButtonPowerupShuffle : ButtonPowerup
         {
             after += newPositions[i] + " ";
         }
-        Debug.Log("prepare to swap");
-        Debug.Log("before: " + before);
-        Debug.Log("after: " + after);
+        //Debug.Log("prepare to swap");
+        //Debug.Log("before: " + before);
+        //Debug.Log("after: " + after);
 
         for (int i = 0; i < newPositions.Count; i++)
         {
@@ -57,7 +57,7 @@ public class ButtonPowerupShuffle : ButtonPowerup
         }
     }
 
-    public override void ResetSkill()
+    public override void CancelSkill()
     {
     }
 }

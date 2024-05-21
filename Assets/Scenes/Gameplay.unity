@@ -4200,7 +4200,7 @@ MonoBehaviour:
   cardBack: {fileID: 21300000, guid: 2139030ad1804804982dd6ad0b6455ca, type: 3}
   cardPrefab: {fileID: 8772459415456982177, guid: 53bdd9953b81ff84786c03627db52f6f, type: 3}
   cardParent: {fileID: 858699404}
-  spawnCardData: {fileID: 4900000, guid: 73744e37f1a189747bbdb331e276c5db, type: 3}
+  spawnCardData: {fileID: 4900000, guid: 1f4b7f70ff85e8e48bfa5c848533105f, type: 3}
   hero: {fileID: 0}
   heroCard: {fileID: 0}
   cards: []
@@ -10221,6 +10221,8 @@ GameObject:
   - component: {fileID: 956211052}
   - component: {fileID: 956211051}
   - component: {fileID: 956211050}
+  - component: {fileID: 956211053}
+  - component: {fileID: 956211054}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -10279,7 +10281,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 21300000, guid: f42e004fd91272b4282807ffa415f89b, type: 3}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: 4ecc6aa909590614e8ef93c102f06f59, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -10342,6 +10344,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 956211048}
   m_CullTransparentMesh: 1
+--- !u!114 &956211053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956211048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73395d02cf546674ab6a25725bc9de10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: {x: -0.1, y: -0.1, z: -0.1}
+  scaleDuration: 0.02
+  movePosition: {x: 0, y: -30, z: 0}
+  moveDuration: 0.02
+--- !u!114 &956211054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956211048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 956211053}
+          m_TargetAssemblyTypeName: ScaleTextButton, Assembly-CSharp
+          m_MethodName: ButtonMouseDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 956211053}
+          m_TargetAssemblyTypeName: ScaleTextButton, Assembly-CSharp
+          m_MethodName: ButtonMouseUp
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &980867812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16835,6 +16898,8 @@ GameObject:
   - component: {fileID: 1672811179}
   - component: {fileID: 1672811178}
   - component: {fileID: 1672811177}
+  - component: {fileID: 1672811180}
+  - component: {fileID: 1672811181}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -16893,7 +16958,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 21300000, guid: f42e004fd91272b4282807ffa415f89b, type: 3}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: 4ecc6aa909590614e8ef93c102f06f59, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -16956,6 +17021,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672811175}
   m_CullTransparentMesh: 1
+--- !u!114 &1672811180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672811175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73395d02cf546674ab6a25725bc9de10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: {x: -0.1, y: -0.1, z: -0.1}
+  scaleDuration: 0.02
+  movePosition: {x: 0, y: -30, z: 0}
+  moveDuration: 0.02
+--- !u!114 &1672811181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672811175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1672811180}
+          m_TargetAssemblyTypeName: ScaleTextButton, Assembly-CSharp
+          m_MethodName: ButtonMouseDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1672811180}
+          m_TargetAssemblyTypeName: ScaleTextButton, Assembly-CSharp
+          m_MethodName: ButtonMouseUp
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1684610867
 GameObject:
   m_ObjectHideFlags: 0

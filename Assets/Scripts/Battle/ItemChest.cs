@@ -8,7 +8,6 @@ public class ItemChest : Item
     public List<CardId> transformCards = new List<CardId>() { CardId.ItemHeal, CardId.ItemPoison, CardId.ItemShield };
     public override void ApplyEffect(Hero hero)
     {
-        Debug.Log("use item heal");
         var data = new DamageData();
         data.damage = 1;
         hero.AddHP(data);

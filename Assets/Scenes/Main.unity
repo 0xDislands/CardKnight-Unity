@@ -539,9 +539,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scale: {x: -0.03, y: -0.03, z: -0.03}
-  scaleDuration: 0.05
+  scaleDuration: 0.01
   movePosition: {x: 0, y: -40, z: 0}
-  moveDuration: 0.05
+  moveDuration: 0.01
 --- !u!114 &74969569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5899,9 +5899,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scale: {x: -0.05, y: -0.05, z: -0.05}
-  scaleDuration: 0.05
+  scaleDuration: 0.01
   movePosition: {x: 0, y: -30, z: 0}
-  moveDuration: 0.05
+  moveDuration: 0.01
 --- !u!114 &1875672624
 MonoBehaviour:
   m_ObjectHideFlags: 0
