@@ -7,11 +7,19 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 using System.Linq;
+using System;
 
 public enum GameMode
 {
     Normal,
     BossMode
+}
+
+[System.Serializable]
+public class CardSpawnData
+{
+    public CardId cardId;
+    public Dictionary<TagType, bool> tagDic;
 }
 
 public class CardManager : MonoBehaviour
@@ -44,7 +52,8 @@ public class CardManager : MonoBehaviour
         new Vector2Int(-1,0)
     };
     List<CardId> startCards;
-    List<CardId> spawnCards;
+    [SerializeField] List<CardId> spawnCards;
+    [SerializeField] List<CardSpawnData> spawnCardsData;
     int spawnCardIndex = -1;
     private void Awake()
     {
@@ -55,6 +64,7 @@ public class CardManager : MonoBehaviour
     {
         startCards = GetStartCards();
         spawnCards = GetSpawnCards();
+        spawnCardsData = GetSpawnCardsData();
         SpawnAllCard();
         UpdateHeroNeighbours();
         StartCoroutine(IECardAnimation());
@@ -105,6 +115,13 @@ public class CardManager : MonoBehaviour
                 id = startCards[startCardIndex];
                 card = SpawnCard(GridManager.Instance.grids[i].pos, id);
                 startCardIndex++;
+                if(card.TryGetComponent<Monster>(out var monster))
+                {
+                    foreach (var item in monster.tags)
+                    {
+                        item.gameObject.SetActive(false);
+                    }
+                }
             }
             card.name = "Card" + i;
             card.transform.position = new Vector2(999f, 999f);
@@ -148,6 +165,7 @@ public class CardManager : MonoBehaviour
             CardId.Monster1, CardId.SkillFire,
             CardId.Monster2, CardId.SkillFire};
         }
+        var contents = spawnCardData.text.Split("\n");
         Dictionary<string, CardId> dicCard = new Dictionary<string, CardId>();
         dicCard.Add("1", CardId.Monster1);
         dicCard.Add("2", CardId.Monster2);
@@ -162,7 +180,8 @@ public class CardManager : MonoBehaviour
         dicCard.Add("107", CardId.SkillFire);
 
         List<CardId> spawnCards = new List<CardId>();
-        string[] lines = spawnCardData.text.Split("\t");
+        var spawnData = contents[0].Replace("\r","");
+        string[] lines = spawnData.Split("\t");
         for (int i = 0; i < lines.Length; i++)
         {
             if (lines[i] == null) continue;
@@ -170,7 +189,7 @@ public class CardManager : MonoBehaviour
             if (lines[i] == "") continue;
             if (dicCard.ContainsKey(lines[i]) == false)
             {
-                Debug.LogWarning("not found key with id : " + lines[i]);
+                Debug.LogError("not found key with id : " + lines[i]);
                 continue;
             } else
             {
@@ -180,14 +199,78 @@ public class CardManager : MonoBehaviour
         return spawnCards;
     }
 
-    public CardId GetNextCard()
+    private List<CardSpawnData> GetSpawnCardsData()
+    {
+        //if (Constants.TEST_SKILL_FIRE)
+        //{
+        //    return new List<CardId>() {
+        //    CardId.Monster1, CardId.SkillFire,
+        //    CardId.Monster2, CardId.SkillFire};
+        //}
+        var allTag = (TagType[])Enum.GetValues(typeof(TagType));
+
+        var contents = spawnCardData.text.Split("\n");
+        Dictionary<string, CardId> dicCard = new Dictionary<string, CardId>();
+        dicCard.Add("1", CardId.Monster1);
+        dicCard.Add("2", CardId.Monster2);
+        dicCard.Add("3", CardId.Monster3);
+        dicCard.Add("4", CardId.Boss1);
+        dicCard.Add("101", CardId.ItemHeal);
+        dicCard.Add("102", CardId.ItemPoison);
+        dicCard.Add("103", CardId.ItemChest);
+        dicCard.Add("104", CardId.ItemChestMiniGame);
+        dicCard.Add("105", CardId.ItemChestEvil);
+        dicCard.Add("106", CardId.ItemShield);
+        dicCard.Add("107", CardId.SkillFire);
+
+        List<CardSpawnData> spawnCards = new List<CardSpawnData>();
+        var spawnData = contents[0].Replace("\r", "");
+        var growthData = contents[1].Replace("\r", "").Split("\t");
+        var noMagic = contents[2].Replace("\r", "").Split("\t");
+        string[] lines = spawnData.Split("\t");
+        for (int i = 0; i < lines.Length; i++)
+        {
+            if (lines[i] == null) continue;
+            lines[i] = lines[i].Replace(" ", "").Replace("\r", "").Replace("\t", "");
+            if (lines[i] == "") continue;
+            if (dicCard.ContainsKey(lines[i]) == false)
+            {
+                Debug.LogError("not found key with id : " + lines[i]);
+                continue;
+            } else
+            {
+                var newData = new CardSpawnData();
+                newData.cardId = dicCard[lines[i]];
+                newData.tagDic = new Dictionary<TagType, bool>();
+                foreach (var item in allTag)
+                {
+                    if(item == TagType.Growth)
+                    {
+                        var active = growthData[i] == "0" ? false : true;
+                        newData.tagDic.Add(item, active);
+                    }
+                    else if(item == TagType.NoMagic)
+                    {
+                        var active = noMagic[i] == "0" ? false : true;
+                        newData.tagDic.Add(item, active);
+                    }
+                }
+                spawnCards.Add(newData);
+            }
+        }
+
+        return spawnCards;
+    }
+
+
+    public CardSpawnData GetNextCard()
     {
         spawnCardIndex++;
         if (spawnCardIndex >= spawnCards.Count)
         {
             spawnCardIndex = 0;
         }
-        return spawnCards[spawnCardIndex];
+        return spawnCardsData[spawnCardIndex];
     }
     IEnumerator IECardAnimation()
     {
@@ -207,7 +290,7 @@ public class CardManager : MonoBehaviour
         var card = Instantiate(data.cardPrefab, cardParent);
         card.Pos = grid.pos;
         card.transform.position = grid.transform.position;
-        card.gameObject.name = "Card #" + Random.Range(100, 200);
+        card.gameObject.name = "Card #" + UnityEngine.Random.Range(100, 200);
         if (cards.Contains(card) == false)
         {
             cards.Add(card);
@@ -267,9 +350,13 @@ public class CardManager : MonoBehaviour
         }
         heroCard.MoveToPos(card.Pos);
         //DOTween.Kill(card.transform);
-        CardId newCardId = GetNextCard();
-        var newCard = SpawnCard(spawnNewCardPosition, newCardId);
+        var newCardId = GetNextCard();
+        var newCard = SpawnCard(spawnNewCardPosition, newCardId.cardId);
         newCard.ShowSpawnAnimation(0f);
+        if (newCard.TryGetComponent<Monster>(out var monster))
+        {
+            monster.SetTag(newCardId.tagDic);
+        }
         UpdateHeroNeighbours();
     }
 

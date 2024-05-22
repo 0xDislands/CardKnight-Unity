@@ -120,7 +120,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
         }
         else
         {
-            if (cardEffect is Monster) Gameplay.Instance.popupInfo.DisplayCard(icon.sprite, "");
+            if (cardEffect is Monster) Gameplay.Instance.popupInfo.DisplayCard(icon.sprite, ((Monster)cardEffect).tags);
             else Gameplay.Instance.popupInfo.DisplayCard(CardManager.selectedHero);
         }
     }

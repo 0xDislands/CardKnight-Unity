@@ -2,6 +2,7 @@
 using DG.Tweening;
 using System;
 using System.Linq;
+using TMPro;
 
 public class PowerupSlash : PowerupBase
 {
@@ -14,6 +15,16 @@ public class PowerupSlash : PowerupBase
     public override void OnClick()
     {
         base.OnClick();
+        var neighbour = CardManager.Instance.heroNeighbours;
+        if (!neighbour.Contains(card.Pos))
+        {
+            var txtNotify = SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextMeshPro>("TextOnCooldown"), transform.position + new Vector3(0, 1f));
+            txtNotify.text = "Out of Range";
+            var slashButton = Gameplay.Instance.buttonPowerups.FirstOrDefault(x => x.id == PowerupId.Slash);
+            slashButton.CancelSkill();
+            return;
+        }
+
         if (IsImuned())
         {
             Gameplay.Instance.buttonPowerups.First(x => x.id == id).CancelSkill();
@@ -26,11 +37,13 @@ public class PowerupSlash : PowerupBase
             newEffect.DoEffect();
             var newAttackEffect = SimpleObjectPool.Instance.GetObjectFromPool(attackEffect, card.transform.position);
             var damage = new DamageData();
-            damage.damage = Mathf.RoundToInt(monster.monsterData.currentHp * 0.25f);
+            damage.damage = Mathf.CeilToInt(monster.monsterData.maxHp * 0.25f);
             monster.TakeDamage(damage, out bool dead);
         }
         else
         {
+            var txtNotify = SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextMeshPro>("TextOnCooldown"), transform.position + new Vector3(0, 1f));
+            txtNotify.text = "Can only target monster";
             var slashButton = Gameplay.Instance.buttonPowerups.FirstOrDefault(x => x.id == PowerupId.Slash);
             slashButton.CancelSkill();
         }

@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro;
+using static UnityEngine.RuleTile.TilingRuleOutput;
+
 public class PowerupHex : PowerupBase
 {
     private void Awake()
@@ -10,10 +13,18 @@ public class PowerupHex : PowerupBase
     public override void OnClick()
     {
         base.OnClick();
+        var neighbour = CardManager.Instance.heroNeighbours;
+        if (!neighbour.Contains(card.Pos))
+        {
+            var txtNotify = SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextMeshPro>("TextOnCooldown"), transform.position + new Vector3(0, 1f));
+            txtNotify.text = "Out of Range";
+            var slashButton = Gameplay.Instance.buttonPowerups.FirstOrDefault(x => x.id == PowerupId.Hex);
+            slashButton.CancelSkill();
+            return;
+        }
         if (IsImuned())
         {
             Gameplay.Instance.buttonPowerups.First(x => x.id == id).CancelSkill();
-            buttonPowerup.Notify("IMUNED");
             SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextImune"), transform.position + new Vector3(0, 1f));
             return;
         }
@@ -21,7 +32,8 @@ public class PowerupHex : PowerupBase
         card.TryGetComponent<Boss>(out Boss boss);
         if(!monster && !boss)
         {
-            buttonPowerup.Notify("CAN ONLY TARGET MONSTER");
+            var txtNotify = SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextMeshPro>("TextOnCooldown"), transform.position + new Vector3(0, 1f));
+            txtNotify.text = "Can only target monster";
             buttonPowerup.CancelSkill();
             return;
         }
@@ -35,7 +47,8 @@ public class PowerupHex : PowerupBase
         }
         else if (boss != null)
         {
-            buttonPowerup.Notify("BOSS");
+            var txtNotify = SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextMeshPro>("TextOnCooldown"), transform.position + new Vector3(0, 1f));
+            txtNotify.text = "Boss";
             Gameplay.Instance.GetButtonPowerUpByID(PowerupId.Hex).GetComponent<ButtonPowerupHex>().CancelSkill();
         }
 

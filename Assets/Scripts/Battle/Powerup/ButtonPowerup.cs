@@ -13,7 +13,7 @@ public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPoin
     [SerializeField] protected Image coolDownImg;
     [SerializeField] protected Image icon;
     protected float turnLeftToUSeSkill;
-    protected Hero hero;
+    [SerializeField] protected Hero hero;
     private Camera mainCam;
     public bool isUsingSkill;
     protected TextMeshPro txtNotify;

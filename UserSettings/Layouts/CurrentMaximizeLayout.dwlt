@@ -26,7 +26,7 @@ MonoBehaviour:
   m_MinSize: {x: 500, y: 100}
   m_MaxSize: {x: 40480, y: 16192}
   vertical: 0
-  controlID: 7151
+  controlID: -1
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -190,9 +190,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 788f0000
       m_LastClickedID: 0
-      m_ExpandedIDs: e26ffbff26c2fbff7019fcff8e70fcff8e7afcff888afcff929ffcff62abfcff6494fdffacb1fdffd0b1fdffe2b1fdfff4b1fdff66d6fdff42d8fdff52e9fdffd8eefdff283cfeff6253feff66aefeffb2cffeffb8f4ffff16fbffff487c0000944a0100ea4a0100764b0100fa6f01007270010058710100eaab0100caae010098b5010008b601003ab80100e8b801009ac901003ccc0100584f0200c84f0200fa510200a85202003c5a02001c5d02003e820200e084020086d8020028db0200
+      m_ExpandedIDs: 8ea9ffff1cb7ffffd0dcffff58e8ffffcef3ffff16fbffff40a500008ca70000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 7152
+  controlID: -1
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -265,7 +265,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 7153
+  controlID: -1
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -285,8 +285,8 @@ MonoBehaviour:
     y: 0
     width: 359
     height: 666
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 8}
   m_Panes:
   - {fileID: 8}
@@ -811,8 +811,8 @@ MonoBehaviour:
     y: 666
     width: 795
     height: 273
-  m_MinSize: {x: 102, y: 121}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 11}
   m_Panes:
   - {fileID: 11}
@@ -923,7 +923,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Card/Monster
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -931,16 +931,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 51
   m_LastFolders:
-  - Assets/Prefabs/Card/Monster
+  - Assets/Scenes
   m_LastFoldersGridSize: 51
   m_LastProjectPath: C:\Users\rober\Documents\Unity Project\CardKnight
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: a0780000
-    m_LastClickedID: 30880
-    m_ExpandedIDs: 00000000627800006478000066780000687800006a7800006c7800006e78000070780000727800007478000076780000787800007a7800007c7800007e7800008078000082780000847800003c790000ffffff7f
+    m_SelectedIDs: aa780000
+    m_LastClickedID: 30890
+    m_ExpandedIDs: 0000000060780000627800006478000066780000687800006a7800006c7800006e78000070780000727800007478000076780000787800007a7800007c7800007e780000807800008278000084780000ffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -968,7 +968,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000627800006478000066780000687800006a7800006c7800006e78000070780000727800007478000076780000787800007a7800007c7800007e7800008078000082780000847800003c790000ffffff7f
+    m_ExpandedIDs: 0000000060780000627800006478000066780000687800006a7800006c7800006e78000070780000727800007478000076780000787800007a7800007c7800007e780000807800008278000084780000ffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -993,8 +993,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: 788f0000
+    m_LastClickedInstanceID: 36728
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c623000072420000000000001a360100b4a200007279000036820000f06d000022740000a8730000d0730000087f000090710000c2710000dc7100005e760000607f00006685000062860000207b00002c700000d86f00003e100800c47a0000
     m_RenameOverlay:
@@ -1043,8 +1043,8 @@ MonoBehaviour:
     y: 0
     width: 458
     height: 939
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}

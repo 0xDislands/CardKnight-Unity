@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class PowerupCurse : PowerupBase
@@ -12,6 +13,17 @@ public class PowerupCurse : PowerupBase
     public override void OnClick()
     {
         base.OnClick();
+
+        var neighbour = CardManager.Instance.heroNeighbours;
+        if(!neighbour.Contains(card.Pos))
+        {
+            var txtNotify = SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextMeshPro>("TextOnCooldown"), transform.position + new Vector3(0, 1f));
+            txtNotify.text = "Out of Range";
+            var slashButton = Gameplay.Instance.buttonPowerups.FirstOrDefault(x => x.id == PowerupId.Curse);
+            slashButton.CancelSkill();
+            return;
+        }
+
         if (IsImuned())
         {
             Gameplay.Instance.buttonPowerups.First(x => x.id == id).CancelSkill();
@@ -26,9 +38,11 @@ public class PowerupCurse : PowerupBase
 
         if (monster != null)
         {
-            monster.SetHp(monster.monsterData.currentHp /2f);
+            monster.TakeDamage(new DamageData(monster.monsterData.currentHp /2f), out var dead);
         } else
         {
+            var txtNotify = SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextMeshPro>("TextOnCooldown"), transform.position + new Vector3(0, 1f));
+            txtNotify.text = "Can only target monster";
             var slashButton = Gameplay.Instance.buttonPowerups.FirstOrDefault(x => x.id == PowerupId.Curse);
             slashButton.CancelSkill();
         }

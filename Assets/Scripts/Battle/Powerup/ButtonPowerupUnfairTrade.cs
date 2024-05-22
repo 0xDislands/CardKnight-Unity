@@ -24,7 +24,7 @@ public class ButtonPowerupUnfairTrade : ButtonPowerup
         for (int i = 0; i < GridManager.Instance.grids.Length; i++)
         {
             if (GridManager.Instance.grids[i].pos == heroCard.Pos) continue;
-            if (GridManager.Instance.grids[i].card.GetComponentInChildren<ImmuneMagicTag>() != null) continue;
+            //if (GridManager.Instance.grids[i].card.GetComponentInChildren<ImmuneMagicTag>() != null) continue;
             GridPos grid = GridManager.Instance.grids[i];
             var swap = Instantiate(powerupPrefab, grid.card.transform);
             swap.transform.position = grid.card.transform.position;
@@ -34,7 +34,7 @@ public class ButtonPowerupUnfairTrade : ButtonPowerup
         }
         if (monsterCount == 0)
         {
-            Notify("OUT OF RANGE");
+            //Notify("OUT OF RANGE");
             this.hero.canMove = true;
         } else
         {

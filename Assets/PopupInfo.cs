@@ -8,7 +8,8 @@ using UnityEngine.UI;
 public class PopupInfo : MonoBehaviour
 {
     [SerializeField] private Image icon;
-    [SerializeField] private TextMeshProUGUI info;
+    [SerializeField] private TextMeshProUGUI skillInfo;
+    [SerializeField] private TagInfo tagInfo;
 
     private void OnEnable()
     {
@@ -22,7 +23,9 @@ public class PopupInfo : MonoBehaviour
         var data = DataManager.Instance.dicPowerUp[id];
         icon.sprite = data.sprite;
         icon.preserveAspect = true;
-        info.text = data.description;
+        skillInfo.gameObject.SetActive(true);
+        tagInfo.gameObject.SetActive(false);
+        skillInfo.text = data.description;
     }
 
     public void DisplayCard(HeroId id)
@@ -31,16 +34,20 @@ public class PopupInfo : MonoBehaviour
         var data = DataManager.Instance.dicHero[id];
         icon.sprite = data.sprite;
         icon.preserveAspect = true;
-        info.text = data.description;
+        skillInfo.gameObject.SetActive(true);
+        tagInfo.gameObject.SetActive(false);
+        skillInfo.text = data.description;
     }
 
 
-    public void DisplayCard(Sprite icon, string info)
+    public void DisplayCard(Sprite icon, MonsterTag[] tags)
     {
         gameObject.SetActive(true);
         this.icon.sprite = icon;
         this.icon.preserveAspect = true;
-        this.info.text = info;
+        skillInfo.gameObject.SetActive(false);
+        tagInfo.gameObject.SetActive(true);
+        tagInfo.DisplayTags(tags);
     }
 
     public void Close()

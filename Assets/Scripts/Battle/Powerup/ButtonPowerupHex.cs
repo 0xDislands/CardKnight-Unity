@@ -5,7 +5,6 @@ public class ButtonPowerupHex : ButtonPowerup
     public PowerupHex powerupPrefab;
     public override void OnClick()
     {
-        var neightbours = CardManager.Instance.heroNeighbours;
         if (isUsingSkill)
         {
             CancelSkill();
@@ -20,21 +19,22 @@ public class ButtonPowerupHex : ButtonPowerup
         hero.canMove = false;
         int monsterCount = 0;
 
-        for (int i = 0; i < neightbours.Count; i++)
+        var heroCard = CardManager.Instance.heroCard;
+        for (int i = 0; i < GridManager.Instance.grids.Length; i++)
         {
-            GridPos grid = GridManager.Instance.dicGrids[neightbours[i]];
-            if (grid.card.GetComponentInChildren<ImmuneMagicTag>() != null) continue;
-            if (!grid.card.TryGetComponent<Monster>(out var monster)) continue;
-            monsterCount++;
-            var hex = Instantiate(powerupPrefab, grid.card.transform);
-            hex.transform.position = grid.card.transform.position;
-            hex.pos = grid.pos;
-            hex.card = grid.card;
-            hex.buttonPowerup = this;
+            if (GridManager.Instance.grids[i].pos == heroCard.Pos) continue;
+            //if (GridManager.Instance.grids[i].card.GetComponentInChildren<ImmuneMagicTag>() != null) continue;
+            //if (GridManager.Instance.grids[i].pos == hero.Pos) continue;
+            GridPos grid = GridManager.Instance.grids[i];
+            var curse = Instantiate(powerupPrefab, grid.card.transform);
+            curse.transform.position = grid.card.transform.position;
+            curse.pos = grid.pos;
+            curse.card = grid.card;
+            curse.buttonPowerup = this;
         }
         if (monsterCount == 0)
         {
-            Notify("OUT OF RANGE");
+            //Notify("OUT OF RANGE");
             hero.canMove = true;
         } else
         {
@@ -44,13 +44,10 @@ public class ButtonPowerupHex : ButtonPowerup
     public override void CancelSkill()
     {
         base.CancelSkill();
-        var neightbours = CardManager.Instance.heroNeighbours;
-        hero.canMove = true;
-        for (int i = 0; i < neightbours.Count; i++)
+        var powerUp = FindObjectsOfType<PowerupHex>();
+        for (int i = 0; i < powerUp.Length; i++)
         {
-            GridPos grid = GridManager.Instance.dicGrids[neightbours[i]];
-            PowerupHex powerupHex = grid.card.GetComponentInChildren<PowerupHex>();
-            if (powerupHex) Destroy(powerupHex.gameObject);
+            if (powerUp[i]) Destroy(powerUp[i].gameObject);
         }
     }
 }

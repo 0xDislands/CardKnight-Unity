@@ -3,13 +3,14 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Dislands;
+using System.Collections.Generic;
 
 public class Monster : CardEffect
 {
     public MonsterData monsterData;
     private TextHp textHp;
     [SerializeField] private ParticleSystem attackEffect;
-    [SerializeField] private MonsterTag[] tags;
+    public MonsterTag[] tags;
 
     private void Awake()
     {
@@ -25,20 +26,17 @@ public class Monster : CardEffect
     private void OnEnable()
     {
         Init();
+    }
+
+    public void SetTag(Dictionary<TagType, bool> dic)
+    {
         for (int i = 0; i < tags.Length; i++)
         {
             tags[i].gameObject.SetActive(false);
         }
-        SetTag(Random.Range(0, tags.Length + 1));
-    }
-
-    public void SetTag(int amount)
-    {
-        var tagIndexes = Enumerable.Range(0, tags.Length).ToList();
-        tagIndexes.Shuffle();
-        for (int i = 0; i < amount; i++)
+        for (int i = 0; i < tags.Length; i++)
         {
-            tags[tagIndexes[i]].gameObject.SetActive(true);
+            tags[i].gameObject.SetActive(dic[tags[i].type]);
         }
     }
     public override void ApplyEffect(Hero hero)
@@ -93,9 +91,13 @@ public class Monster : CardEffect
 
             var monsterCard = GetComponent<Card>();
             monsterCard.Disappear();
-            CardId nextCardId = CardManager.Instance.GetNextCard();
-            var newCard = CardManager.Instance.SpawnCard(monsterCard.Pos, nextCardId);
+            var nextCardId = CardManager.Instance.GetNextCard();
+            var newCard = CardManager.Instance.SpawnCard(monsterCard.Pos, nextCardId.cardId);
             newCard.ShowSpawnAnimation();
+            if(newCard.TryGetComponent<Monster>(out var monster))
+            {
+                SetTag(nextCardId.tagDic);
+            }
         }
     }
 }

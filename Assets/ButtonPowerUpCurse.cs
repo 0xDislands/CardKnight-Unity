@@ -24,8 +24,9 @@ public class ButtonPowerUpCurse : ButtonPowerup
         var hero = CardManager.Instance.heroCard;
         for (int i = 0; i < GridManager.Instance.grids.Length; i++)
         {
-            if (GridManager.Instance.grids[i].card.GetComponentInChildren<ImmuneMagicTag>() != null) continue;
             if (GridManager.Instance.grids[i].pos == hero.Pos) continue;
+            //if (GridManager.Instance.grids[i].card.GetComponentInChildren<ImmuneMagicTag>() != null) continue;
+            //if (GridManager.Instance.grids[i].pos == hero.Pos) continue;
             GridPos grid = GridManager.Instance.grids[i];
             var curse = Instantiate(powerupPrefab, grid.card.transform);
             curse.transform.position = grid.card.transform.position;

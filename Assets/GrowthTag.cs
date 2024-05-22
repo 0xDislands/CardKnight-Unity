@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class GrowthTag : MonsterTag
 {
+    protected override void Awake()
+    {
+        type = TagType.Growth;
+        base.Awake();
+    }
+
     public override IEnumerator IETurnEnd()
     {
         var addHp = monster.monsterData.maxHp * 0.1f;
