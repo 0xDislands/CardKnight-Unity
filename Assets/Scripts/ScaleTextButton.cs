@@ -14,19 +14,23 @@ public class ScaleTextButton : MonoBehaviour
     public Vector3 movePosition;
     public float moveDuration;
 
+    private Vector3 startPosition;
+    private Vector3 startScale;
     private TextMeshProUGUI tmpro;
     private void Awake()
     {
         tmpro = GetComponentInChildren<TextMeshProUGUI>();
+        startPosition = tmpro.transform.localPosition;
+        startScale = tmpro.transform.localScale;
     }
     public void ButtonMouseDown()
     {
-        tmpro.transform.DOScale(tmpro.transform.localScale + scale, scaleDuration);
-        tmpro.transform.DOMove(tmpro.transform.position + movePosition, moveDuration);
+        tmpro.transform.DOScale(startScale + scale, scaleDuration);
+        tmpro.transform.DOLocalMove(startPosition + movePosition, moveDuration);
     }
     public void ButtonMouseUp()
     {
-        tmpro.transform.DOScale(tmpro.transform.localScale - scale, scaleDuration);
-        tmpro.transform.DOMove(tmpro.transform.position - movePosition, moveDuration);
+        tmpro.transform.DOScale(startScale, scaleDuration);
+        tmpro.transform.DOLocalMove(startPosition, moveDuration);
     }
 }

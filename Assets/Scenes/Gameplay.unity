@@ -5783,6 +5783,8 @@ MonoBehaviour:
   cards: []
   test: {fileID: 657164272}
   testPositions: []
+  spawnCards: 
+  spawnCardsData: []
 --- !u!1001 &430065011
 PrefabInstance:
   m_ObjectHideFlags: 0

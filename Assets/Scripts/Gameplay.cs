@@ -48,7 +48,14 @@ public class Gameplay : MonoBehaviour
         {
             bool active = data.powerUps.Contains(buttonPowerups[i].id);
             buttonPowerups[i].gameObject.SetActive(active);
-            if (active) buttonPowerups[i].transform.SetSiblingIndex(data.powerUps.IndexOf(buttonPowerups[i].id)); //sắp xếp skill đúng thứ tự trái qua phải
+            if (active)
+            {
+                buttonPowerups[i].transform.SetSiblingIndex(data.powerUps.IndexOf(buttonPowerups[i].id)); //sắp xếp skill đúng thứ tự trái qua phải
+            } else
+            {
+                buttonPowerups[i].transform.SetSiblingIndex(buttonPowerups.Length - 1);
+            }
+
         }
     }
 
@@ -61,9 +68,9 @@ public class Gameplay : MonoBehaviour
     }
     public ButtonPowerup GetButtonPowerUpByID(PowerupId id)
     {
-        foreach(var buttonPowerup in buttonPowerups)
+        foreach (var buttonPowerup in buttonPowerups)
         {
-            if(buttonPowerup.id == id) return buttonPowerup;
+            if (buttonPowerup.id == id) return buttonPowerup;
         }
         return null;
     }

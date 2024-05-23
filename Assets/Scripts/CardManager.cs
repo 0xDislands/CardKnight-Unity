@@ -434,7 +434,6 @@ public class CardManager : MonoBehaviour
 
     IEnumerator IEUseCard(Card card)
     {
-        //canClick = false;
         var effect = card.cardEffect;
         if (effect != null)
         {
@@ -450,7 +449,6 @@ public class CardManager : MonoBehaviour
             if (item.IsUnlocked()) item.TurnLeftToUSeSkill--;
         }
         yield return IETurnEnd();
-        //canClick = true;
     }
 
     public IEnumerator IETurnEnd()

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class PopupEvilBuff : MonoBehaviour
 {
@@ -11,10 +12,12 @@ public class PopupEvilBuff : MonoBehaviour
     private CanvasGroup canvasGroup;
     private int index;
     private Card card;
+    private Button[] buttons;
 
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+        buttons = GetComponentsInChildren<Button>(true);
     }
 
     public void ShowLevelUp(Card card)
@@ -38,6 +41,7 @@ public class PopupEvilBuff : MonoBehaviour
             {
                 var levelUpData = step.GetChild(i).GetComponent<ChangeStateData>();
                 options[i].Show(levelUpData);
+                SetIntertracableButton(true);
             }
             else
             {
@@ -45,9 +49,16 @@ public class PopupEvilBuff : MonoBehaviour
             }
         }
     }
-
+    void SetIntertracableButton(bool intertracable)
+    {
+        foreach (var button in buttons)
+        {
+            button.interactable = intertracable;
+        }
+    }
     public void OnYes()
     {
+        Debug.Log("sos");
         for (int i = 0; i < options.Count; i++)
         {
             options[i].OnClick();
@@ -57,6 +68,7 @@ public class PopupEvilBuff : MonoBehaviour
 
     public void Close()
     {
+        SetIntertracableButton(false);
         canvasGroup.DOFade(0f, ANIMATION_TIME);
         transform.DOScale(0f, ANIMATION_TIME).SetEase(Ease.InBack).OnComplete(() => {
             gameObject.SetActive(false);
