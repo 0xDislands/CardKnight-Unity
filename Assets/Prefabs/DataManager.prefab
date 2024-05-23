@@ -194,3 +194,6 @@ MonoBehaviour:
   - tagType: 1
     sprite: {fileID: 21300000, guid: 9b8be6c60b246734aa67df521405b0ad, type: 3}
     description: Imune To Magic
+  - tagType: 2
+    sprite: {fileID: 21300000, guid: 75d32a7ad69580c42ac2eed8cfe8a5c3, type: 3}
+    description: Revenge

@@ -53,6 +53,7 @@ public class Monster : CardEffect
         var card = GetComponent<Card>();
         card.Disappear();
         CardManager.Instance.MoveCardsAfterUse(card);
+        EventManager.Instance.onMonsterDead?.Invoke(this);
     }
 
     public void Init()

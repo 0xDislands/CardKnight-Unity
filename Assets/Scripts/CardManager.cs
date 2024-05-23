@@ -227,6 +227,8 @@ public class CardManager : MonoBehaviour
         var spawnData = contents[0].Replace("\r", "");
         var growthData = contents[1].Replace("\r", "").Split("\t");
         var noMagic = contents[2].Replace("\r", "").Split("\t");
+        var revenge = contents[3].Replace("\r", "").Split("\t");
+        //var noMagic = contents[4].Replace("\r", "").Split("\t");
         string[] lines = spawnData.Split("\t");
         for (int i = 0; i < lines.Length; i++)
         {
@@ -252,6 +254,10 @@ public class CardManager : MonoBehaviour
                     else if(item == TagType.NoMagic)
                     {
                         var active = noMagic[i] == "0" ? false : true;
+                        newData.tagDic.Add(item, active);
+                    } else if (item == TagType.Revenge)
+                    {
+                        var active = revenge[i] == "0" ? false : true;
                         newData.tagDic.Add(item, active);
                     }
                 }
