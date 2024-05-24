@@ -209,7 +209,11 @@ public class CardManager : MonoBehaviour
         //}
         var allTag = (TagType[])Enum.GetValues(typeof(TagType));
 
-        var contents = spawnCardData.text.Split("\n");
+        //var contents = spawnCardData.text.Split("\n");
+        var data = string.Empty;
+        if (EditData.useCustomData) data = EditData.dataStr;
+        else data = spawnCardData.text;
+        var contents = data.Split("\n");
         Dictionary<string, CardId> dicCard = new Dictionary<string, CardId>();
         dicCard.Add("1", CardId.Monster1);
         dicCard.Add("2", CardId.Monster2);
@@ -228,6 +232,7 @@ public class CardManager : MonoBehaviour
         var growthData = contents[1].Replace("\r", "").Split("\t");
         var noMagic = contents[2].Replace("\r", "").Split("\t");
         var revenge = contents[3].Replace("\r", "").Split("\t");
+        var noHeal = contents[4].Replace("\r", "").Split("\t");
         //var noMagic = contents[4].Replace("\r", "").Split("\t");
         string[] lines = spawnData.Split("\t");
         for (int i = 0; i < lines.Length; i++)
@@ -259,6 +264,10 @@ public class CardManager : MonoBehaviour
                     {
                         var active = revenge[i] == "0" ? false : true;
                         newData.tagDic.Add(item, active);
+                    } else if (item == TagType.NoHope)
+                    {
+                        var active = noHeal[i] == "0" ? false : true;
+                        newData.tagDic.Add(item, active);
                     }
                 }
                 spawnCards.Add(newData);
@@ -288,6 +297,7 @@ public class CardManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
     }
+
 
     public Card SpawnCard(Vector2Int pos, CardId id)
     {
@@ -464,11 +474,19 @@ public class CardManager : MonoBehaviour
         {
             yield return turnEndsHero[i].IETurnEnd();
         }
+    }
+    
+    public void GrowAllMonster()
+    {
+        StartCoroutine(IEGrowAllMonster());
+    }
+    private IEnumerator IEGrowAllMonster()
+    {
         for (int i = 0; i < cards.Count; i++)
         {
             if (cards[i].TryGetComponent<Monster>(out var monster))
             {
-                var tags = monster.GetComponentsInChildren<MonsterTag>();
+                var tags = monster.GetComponentsInChildren<GrowthTag>();
                 for (int j = 0; j < tags.Length; j++)
                 {
                     if (!tags[j].gameObject.activeInHierarchy) continue;

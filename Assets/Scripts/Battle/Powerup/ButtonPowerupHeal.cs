@@ -10,6 +10,6 @@ public class ButtonPowerupHeal : ButtonPowerup
             return;
         }
         TurnLeftToUSeSkill = maxTurnLeftToUseSkill;
-        CardManager.Instance.hero.AddHP(new DamageData(9999));
+        CardManager.Instance.hero.Heal(new DamageData(9999));
     }
 }

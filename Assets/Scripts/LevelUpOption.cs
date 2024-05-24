@@ -41,7 +41,7 @@ public class LevelUpOption : MonoBehaviour
             case LevelUpId.ADD_HP:
                 var damage = new DamageData();
                 damage.damage = data.amount;
-                CardManager.Instance.hero.AddHP(damage);
+                CardManager.Instance.hero.Heal(damage);
                 break;
             case LevelUpId.ADD_AMOUR:
                 CardManager.Instance.hero.AddShield(data.amount);
@@ -56,7 +56,7 @@ public class LevelUpOption : MonoBehaviour
                 break;
             case LevelUpId.LOSE_CURRENT_HP_PERCENT:
                 int hpLost = Mathf.FloorToInt(CardManager.Instance.hero.heroData.hp *0.5f);
-                CardManager.Instance.hero.AddHP(new DamageData(-(int)hpLost));
+                CardManager.Instance.hero.Heal(new DamageData(-(int)hpLost));
                 CardManager.Instance.hero.UpdateDisplay();
                 break;
             case LevelUpId.INCREASE_EXP:

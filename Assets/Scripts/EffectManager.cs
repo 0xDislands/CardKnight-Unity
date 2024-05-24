@@ -9,12 +9,14 @@ public class EffectManager : MonoBehaviour
     {
         Instance = this;
     }
-    public void Hit(Vector2 position)
+    public void Hit(Transform effectParent)
     {
-        var newAttackEffect = SimpleObjectPool.Instance.GetObjectFromPool(effectHit, position);
+        var newAttackEffect = SimpleObjectPool.Instance.GetObjectFromPool(effectHit, effectParent.transform.position);
+        newAttackEffect.transform.SetParent(effectParent);
     }
-    public void Heal(Vector2 position)
+    public void Heal(Transform effectParent)
     {
-        var newAttackEffect = SimpleObjectPool.Instance.GetObjectFromPool(effectHeal, position);
+        var newAttackEffect = SimpleObjectPool.Instance.GetObjectFromPool(effectHeal, effectParent.transform.position);
+        newAttackEffect.transform.SetParent(effectParent);
     }
 }

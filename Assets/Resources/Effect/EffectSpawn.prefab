@@ -9467,7 +9467,7 @@ GameObject:
   - component: {fileID: 3744682956430245219}
   - component: {fileID: 8889753485815112837}
   - component: {fileID: 827792217538403403}
-  - component: {fileID: 6636065665554916698}
+  - component: {fileID: 8574896961879645709}
   m_Layer: 0
   m_Name: EffectSpawn
   m_TagString: FxTemporaire
@@ -9504,7 +9504,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 3
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -14207,7 +14207,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &6636065665554916698
+--- !u!114 &8574896961879645709
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14216,10 +14216,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4361800032155894759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fd2e8874f60266498a388d7229a1bac, type: 3}
+  m_Script: {fileID: 11500000, guid: e29a45e24b914a54484600e6fecd62ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnlyDeactivate: 1
 --- !u!1 &5856055772083776021
 GameObject:
   m_ObjectHideFlags: 0

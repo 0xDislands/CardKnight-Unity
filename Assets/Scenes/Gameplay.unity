@@ -22060,6 +22060,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8151232389537041027, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
+      propertyPath: tagDatas.Array.data[1].description
+      value: Immune to magic
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25237,6 +25241,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c92f9b32c6c039e45b529a640d450938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnHeroMove:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 427137646}
+        m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
+        m_MethodName: GrowAllMonster
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2018690248
 GameObject:
   m_ObjectHideFlags: 0

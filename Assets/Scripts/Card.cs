@@ -34,6 +34,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
     public Action onCardDisappear;
     private CanvasGroup canvasGroup;
     private List<CardEffect> effects = new List<CardEffect>();
+    [SerializeField] private bool flipping;
 
     public Vector2Int Pos
     {
@@ -50,6 +51,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
         canvasGroup = GetComponent<CanvasGroup>();
         cardEffect = GetComponent<CardEffect>();
     }
+
 
     public void SetData(CardData cardData)
     {
@@ -79,11 +81,12 @@ public class Card : MonoBehaviour, IPointerDownHandler
     public void FlipToFront()
     {
         if (side == CardSide.Front) return;
+        flipping = true;
         side = CardSide.Front;
         cardBack.gameObject.SetActive(true);
         transform.DOScaleX(0f, FLIP_ANIMATION_TIME).OnComplete(() =>
         {
-            transform.DOScaleX(1f, FLIP_ANIMATION_TIME);
+            transform.DOScaleX(1f, FLIP_ANIMATION_TIME).OnComplete(() => flipping = false);
             cardBack.gameObject.SetActive(false);
         });
     }
@@ -91,17 +94,21 @@ public class Card : MonoBehaviour, IPointerDownHandler
     public void FlipToBack()
     {
         if (side == CardSide.Back) return;
+        flipping = true;
         side = CardSide.Back;
         cardBack.gameObject.SetActive(false);
         transform.DOScaleX(0f, FLIP_ANIMATION_TIME).OnComplete(() =>
         {
-            transform.DOScaleX(1f, FLIP_ANIMATION_TIME);
+            transform.DOScaleX(1f, FLIP_ANIMATION_TIME).OnComplete(() => flipping = false);
             cardBack.gameObject.SetActive(true);
         });
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (Gameplay.Instance.state != GameplayState.Playing) return;
+        if (!CardManager.Instance.canClick) return;
+        if (flipping) return;
         Debug.Log(gameObject.name);
         if(eventData.button == PointerEventData.InputButton.Left)
         {
@@ -151,5 +158,8 @@ public class Card : MonoBehaviour, IPointerDownHandler
         GridManager.Instance.dicGrids[pos].card = this;
         //LeanTween.move(transform.gameObject, GridManager.Instance.dicGrids[pos].transform.position, CARD_MOVE_SPEED);
         transform.DOMove(GridManager.Instance.dicGrids[pos].transform.position, CARD_MOVE_SPEED);
+        EventManager.Instance.OnHeroMove?.Invoke();
     }
+
+
 }

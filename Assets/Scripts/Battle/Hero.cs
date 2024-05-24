@@ -77,7 +77,7 @@ public class Hero : MonoBehaviour
         textHp.SetHP(heroData);
         textShield.SetShield(heroData);
         dead = false;
-        EffectManager.Instance.Hit(transform.position);
+        EffectManager.Instance.Hit(transform);
     }
 
     public void SetHP(int hp)
@@ -91,8 +91,9 @@ public class Hero : MonoBehaviour
         textHp.SetHP(heroData);
     }
 
-    public void AddHP(DamageData data)
+    public void Heal(DamageData data)
     {
+        if (HealIsDisable()) return;
         heroData.hp += (int)data.damage;
         if (heroData.hp > heroData.maxHp)
         {
@@ -104,6 +105,21 @@ public class Hero : MonoBehaviour
             Die();
         }
         textHp.SetHP(heroData);
+    }
+
+    public bool HealIsDisable()
+    {
+        foreach (var item in CardManager.Instance.cards)
+        {
+            if(item.TryGetComponent<Monster>(out var monster))
+            {
+                foreach (var tag in monster.tags)
+                {
+                    if (tag.type == TagType.NoHope) return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void AddShield(float amount)

@@ -3,22 +3,13 @@ using UnityEngine;
 
 public class RevengeTag : MonsterTag
 {
-    public const float INCREASE_HP_RATIO = 1.2f;
+    public const float INCREASE_HP_RATIO = 0.2f;
     bool addEvent = false;
 
-    public override IEnumerator IETurnEnd()
+    protected override void Awake()
     {
-        Debug.Log("Do nothing!");
-        yield return null;
-    }
-
-    private void Start()
-    {
-        if (!addEvent && EventManager.Instance != null)
-        {
-            addEvent = true;
-            EventManager.Instance.onMonsterDead += RevengeIncreaseHP;
-        }
+        type = TagType.Revenge;
+        base.Awake();
     }
 
     private void OnEnable()
@@ -29,6 +20,14 @@ public class RevengeTag : MonsterTag
             EventManager.Instance.onMonsterDead += RevengeIncreaseHP;
         }
     }
+
+
+    public override IEnumerator IETurnEnd()
+    {
+        Debug.Log("Do nothing!");
+        yield return null;
+    }
+
 
     private void OnDisable()
     {
@@ -43,14 +42,15 @@ public class RevengeTag : MonsterTag
     {
         Debug.Log("Revenge!!");
         monster.monsterData.maxHp = 0;
-        float newHP = monster.monsterData.currentHp * INCREASE_HP_RATIO;
+        float increaseHp = monster.monsterData.currentHp * INCREASE_HP_RATIO;
+        if (increaseHp < 1) increaseHp = 1f;
 
-        monster.monsterData.currentHp = newHP;
+        monster.monsterData.currentHp += increaseHp;
         if (monster.monsterData.currentHp > monster.monsterData.maxHp)
         {
             monster.monsterData.maxHp = monster.monsterData.currentHp;
         }
-        monster.SetHp(newHP);
-        EffectManager.Instance.Heal(monster.transform.position);
+        monster.SetHp(monster.monsterData.currentHp);
+        EffectManager.Instance.Heal(monster.transform);
     }
 }

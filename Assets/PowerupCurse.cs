@@ -53,7 +53,7 @@ public class PowerupCurse : PowerupBase
         }
         Hero hero = CardManager.Instance.hero;
         hero.canMove = true;
-        EffectManager.Instance.Hit(card.transform.position);
+        EffectManager.Instance.Hit(card.transform);
     }
     public void OnDisable()
     {

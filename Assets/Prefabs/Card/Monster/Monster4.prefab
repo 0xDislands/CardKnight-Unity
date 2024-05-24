@@ -424,8 +424,8 @@ RectTransform:
   - {fileID: 5508648952251700889}
   - {fileID: 71475109163538225}
   - {fileID: 1789007346959380260}
-  - {fileID: 2150959188416721914}
   - {fileID: 3758252467188868080}
+  - {fileID: 2150959188416721914}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -487,6 +487,7 @@ MonoBehaviour:
   cardParent: {fileID: 0}
   icon: {fileID: 7833356241929002155}
   side: 0
+  flipping: 0
 --- !u!225 &2075306533853894767
 CanvasGroup:
   m_ObjectHideFlags: 0
