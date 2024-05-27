@@ -211,7 +211,7 @@ public class CardManager : MonoBehaviour
 
         //var contents = spawnCardData.text.Split("\n");
         var data = string.Empty;
-        if (EditData.useCustomData) data = EditData.dataStr;
+        if (EditData.useCustomData && !string.IsNullOrEmpty(EditData.dataStr)) data = EditData.dataStr;
         else data = spawnCardData.text;
         var contents = data.Split("\n");
         Dictionary<string, CardId> dicCard = new Dictionary<string, CardId>();

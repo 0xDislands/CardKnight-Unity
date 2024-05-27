@@ -115,7 +115,7 @@ public class Hero : MonoBehaviour
             {
                 foreach (var tag in monster.tags)
                 {
-                    if (tag.type == TagType.NoHope) return true;
+                    if (tag.type == TagType.NoHope && tag.gameObject.activeInHierarchy) return true;
                 }
             }
         }

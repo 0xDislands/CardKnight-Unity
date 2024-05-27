@@ -14,4 +14,5 @@ public class NoHopeTag : MonsterTag
     {
         yield break;
     }
+
 }
