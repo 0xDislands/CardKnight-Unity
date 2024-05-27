@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public enum TagType
 {
-    Growth, NoMagic, Revenge, NoHope
+    Growth, NoMagic, Revenge, NoHope, Silient
 }
 
 public abstract class MonsterTag : TurnEndEffect

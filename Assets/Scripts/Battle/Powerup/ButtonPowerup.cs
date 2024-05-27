@@ -103,4 +103,19 @@ public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPoin
 
         return false;
     }
+
+    protected bool SkillDisable()
+    {
+        foreach (var item in CardManager.Instance.cards)
+        {
+            if (item.TryGetComponent<Monster>(out var monster))
+            {
+                foreach (var tag in monster.tags)
+                {
+                    if (tag.type == TagType.Silient && tag.gameObject.activeInHierarchy) return true;
+                }
+            }
+        }
+        return false;
+    }
 }

@@ -9,7 +9,7 @@ public class TextFlyUpFade : MonoBehaviour
     public float effectTime = 2f;
     public float moveDistance = 1.5f;
     public Color startColor;
-    private TextMeshPro text;
+    public TextMeshPro text;
     private void Awake()
     {
         text = GetComponent<TextMeshPro>();

@@ -16,6 +16,7 @@ public class EditData : MonoBehaviour
     [SerializeField] private TMP_InputField[] imuneField;
     [SerializeField] private TMP_InputField[] revengeField;
     [SerializeField] private TMP_InputField[] noHopeField;
+    [SerializeField] private TMP_InputField[] noSkillField;
     public static string dataStr;
     public static bool useCustomData;
 
@@ -37,6 +38,7 @@ public class EditData : MonoBehaviour
         var noMagic = contents[2].Replace("\r", "").Split("\t");
         var revenge = contents[3].Replace("\r", "").Split("\t");
         var noHeal = contents[4].Replace("\r", "").Split("\t");
+        var noSkill = contents[5].Replace("\r", "").Split("\t");
 
         for (int i = 0; i < enemyField.Length; i++)
         {
@@ -61,6 +63,11 @@ public class EditData : MonoBehaviour
         for (int i = 0; i < noHopeField.Length; i++)
         {
             noHopeField[i].text = noHeal[i];
+        }
+
+        for (int i = 0; i < noSkillField.Length; i++)
+        {
+            noSkillField[i].text = noSkill[i];
         }
     }
 
@@ -90,6 +97,11 @@ public class EditData : MonoBehaviour
         for (int i = 0; i < noHopeField.Length; i++)
         {
             dataStr += noHopeField[i].text + "\t";
+        }
+        dataStr += "\r" + "\n";
+        for (int i = 0; i < noSkillField.Length; i++)
+        {
+            dataStr += noSkillField[i].text + "\t";
         }
         ReWriteData(dataStr);
     }

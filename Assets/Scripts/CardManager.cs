@@ -233,7 +233,7 @@ public class CardManager : MonoBehaviour
         var noMagic = contents[2].Replace("\r", "").Split("\t");
         var revenge = contents[3].Replace("\r", "").Split("\t");
         var noHeal = contents[4].Replace("\r", "").Split("\t");
-        //var noMagic = contents[4].Replace("\r", "").Split("\t");
+        var noSkill = contents[5].Replace("\r", "").Split("\t");
         string[] lines = spawnData.Split("\t");
         for (int i = 0; i < lines.Length; i++)
         {
@@ -265,6 +265,10 @@ public class CardManager : MonoBehaviour
                         var active = revenge[i] == "0" ? false : true;
                         newData.tagDic.Add(item, active);
                     } else if (item == TagType.NoHope)
+                    {
+                        var active = noHeal[i] == "0" ? false : true;
+                        newData.tagDic.Add(item, active);
+                    } else if (item == TagType.Silient)
                     {
                         var active = noHeal[i] == "0" ? false : true;
                         newData.tagDic.Add(item, active);

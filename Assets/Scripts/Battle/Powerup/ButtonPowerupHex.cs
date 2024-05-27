@@ -5,6 +5,12 @@ public class ButtonPowerupHex : ButtonPowerup
     public PowerupHex powerupPrefab;
     public override void OnClick()
     {
+        if (SkillDisable())
+        {
+            var text = SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextOnCooldown"), transform.position + new Vector3(0, 1f));
+            text.text.text = "Silent";
+            return;
+        }
         if (isUsingSkill)
         {
             CancelSkill();

@@ -196,7 +196,7 @@ MonoBehaviour:
     description: Imune to magic
   - tagType: 2
     sprite: {fileID: 21300000, guid: 75d32a7ad69580c42ac2eed8cfe8a5c3, type: 3}
-    description: Revenge
+    description: Gain 20% HP each time a monster is defeated
   - tagType: 3
     sprite: {fileID: 21300000, guid: 0e5428721d9ff56478b08e00394a786b, type: 3}
-    description: Ho Hope
+    description: Prevent you from healing
