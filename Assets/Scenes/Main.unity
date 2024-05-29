@@ -6585,22 +6585,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8151232389537041027, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
-      propertyPath: tagDatas.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8151232389537041027, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
-      propertyPath: tagDatas.Array.data[4].sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: b3454a9c44ea059428017512df6f72b5, type: 3}
-    - target: {fileID: 8151232389537041027, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
-      propertyPath: tagDatas.Array.data[4].tagType
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8151232389537041027, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
-      propertyPath: tagDatas.Array.data[4].description
-      value: Prevent you from using active skill
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

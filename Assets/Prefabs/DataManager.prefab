@@ -200,3 +200,6 @@ MonoBehaviour:
   - tagType: 3
     sprite: {fileID: 21300000, guid: 0e5428721d9ff56478b08e00394a786b, type: 3}
     description: Prevent you from healing
+  - tagType: 4
+    sprite: {fileID: 21300000, guid: 0a22974e5a80a874392a5e3c7cd2a1d9, type: 3}
+    description: Prevent you from using active skill
