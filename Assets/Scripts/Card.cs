@@ -158,7 +158,6 @@ public class Card : MonoBehaviour, IPointerDownHandler
         GridManager.Instance.dicGrids[pos].card = this;
         //LeanTween.move(transform.gameObject, GridManager.Instance.dicGrids[pos].transform.position, CARD_MOVE_SPEED);
         transform.DOMove(GridManager.Instance.dicGrids[pos].transform.position, CARD_MOVE_SPEED);
-        EventManager.Instance.OnHeroMove?.Invoke();
     }
 
 

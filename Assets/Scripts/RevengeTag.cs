@@ -12,7 +12,7 @@ public class RevengeTag : MonsterTag
         base.Awake();
     }
 
-    private void OnEnable()
+    private void Start()
     {
         if (!addEvent && EventManager.Instance != null)
         {
@@ -29,17 +29,19 @@ public class RevengeTag : MonsterTag
     }
 
 
-    private void OnDisable()
-    {
-        addEvent = false;
-        if (EventManager.Instance != null)
-        {
-            EventManager.Instance.onMonsterDead -= RevengeIncreaseHP;
-        }
-    }
+    //private void OnDisable()
+    //{
+    //    addEvent = false;
+    //    if (EventManager.Instance != null)
+    //    {
+    //        EventManager.Instance.onMonsterDead -= RevengeIncreaseHP;
+    //    }
+    //}
 
     public void RevengeIncreaseHP(Monster deadMonter)
     {
+        if (gameObject.activeInHierarchy == false) return;
+
         Debug.Log("Revenge!!");
         monster.monsterData.maxHp = 0;
         float increaseHp = monster.monsterData.currentHp * INCREASE_HP_RATIO;

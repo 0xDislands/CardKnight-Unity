@@ -378,6 +378,7 @@ public class CardManager : MonoBehaviour
             monster.SetTag(newCardId.tagDic);
         }
         UpdateHeroNeighbours();
+        EventManager.Instance.OnHeroMove?.Invoke();
     }
 
     public Card GetMoveCard(Card card)
@@ -482,23 +483,30 @@ public class CardManager : MonoBehaviour
     
     public void GrowAllMonster()
     {
-        StartCoroutine(IEGrowAllMonster());
+        Debug.Log("Growth");
+        var tag = FindTag(TagType.Growth);
+        if (tag != null) StartCoroutine(tag.IETurnEnd());
     }
-    private IEnumerator IEGrowAllMonster()
+
+    public MonsterTag FindTag(TagType type)
     {
         for (int i = 0; i < cards.Count; i++)
         {
             if (cards[i].TryGetComponent<Monster>(out var monster))
             {
-                var tags = monster.GetComponentsInChildren<GrowthTag>();
-                for (int j = 0; j < tags.Length; j++)
+                var tags = monster.GetComponentsInChildren<MonsterTag>(true);
+                foreach (var tag in tags)
                 {
-                    if (!tags[j].gameObject.activeInHierarchy) continue;
-                    yield return tags[j].IETurnEnd();
+                    if (tag.type == type && tag.gameObject.activeInHierarchy)
+                    {
+                        return tag;
+                    }
                 }
             }
         }
+        return null;
     }
+
 
     public void ShowDebug(List<Vector2Int> positions)
     {

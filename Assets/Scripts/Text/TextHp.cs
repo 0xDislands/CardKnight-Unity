@@ -14,8 +14,8 @@ public class TextHp : MonoBehaviour
     {
         txtHp.text = heroData.hp + "/" + heroData.maxHp;
     }
-    public void SetHP (MonsterData monsterData)
+    public void SetHP(MonsterData monsterData)
     {
-        txtHp.text = ((int)monsterData.currentHp).ToString ();
+        txtHp.text = (Mathf.RoundToInt(monsterData.currentHp)).ToString();
     }
 }
