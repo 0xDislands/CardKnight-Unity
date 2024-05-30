@@ -98,6 +98,7 @@ public class CardManager : MonoBehaviour
         //cần spawn hero đầu tiên vì các card khác cần lấy data từ hero (ví dụ như card monster)
         int midIndex = GridManager.Instance.grids.Length / 2;
         cards = new List<Card>();
+        Debug.Log("calling spawn card all card start game");
         heroCard = SpawnCard(GridManager.Instance.grids[midIndex].pos, CardId.Hero);
         heroCard.icon.sprite = DataManager.Instance.dicHero[selectedHero].sprite;
         hero = heroCard.GetComponent<Hero>();
@@ -113,6 +114,7 @@ public class CardManager : MonoBehaviour
             } else
             {
                 id = startCards[startCardIndex];
+                Debug.Log("calling spawn card start game 1");
                 card = SpawnCard(GridManager.Instance.grids[i].pos, id);
                 startCardIndex++;
                 if(card.TryGetComponent<Monster>(out var monster))
@@ -219,6 +221,8 @@ public class CardManager : MonoBehaviour
         dicCard.Add("2", CardId.Monster2);
         dicCard.Add("3", CardId.Monster3);
         dicCard.Add("4", CardId.Boss1);
+        dicCard.Add("5", CardId.MonsterGhost);
+        dicCard.Add("6", CardId.Boss2);
         dicCard.Add("101", CardId.ItemHeal);
         dicCard.Add("102", CardId.ItemPoison);
         dicCard.Add("103", CardId.ItemChest);
@@ -226,6 +230,7 @@ public class CardManager : MonoBehaviour
         dicCard.Add("105", CardId.ItemChestEvil);
         dicCard.Add("106", CardId.ItemShield);
         dicCard.Add("107", CardId.SkillFire);
+        dicCard.Add("108", CardId.ItemSpike);
 
         List<CardSpawnData> spawnCards = new List<CardSpawnData>();
         var spawnData = contents[0].Replace("\r", "");
@@ -270,7 +275,7 @@ public class CardManager : MonoBehaviour
                         newData.tagDic.Add(item, active);
                     } else if (item == TagType.Silient)
                     {
-                        var active = noHeal[i] == "0" ? false : true;
+                        var active = noSkill[i] == "0" ? false : true;
                         newData.tagDic.Add(item, active);
                     }
                 }
@@ -371,6 +376,7 @@ public class CardManager : MonoBehaviour
         heroCard.MoveToPos(card.Pos);
         //DOTween.Kill(card.transform);
         var newCardId = GetNextCard();
+        Debug.Log("calling spawn card move card after use!!");
         var newCard = SpawnCard(spawnNewCardPosition, newCardId.cardId);
         newCard.ShowSpawnAnimation(0f);
         if (newCard.TryGetComponent<Monster>(out var monster))

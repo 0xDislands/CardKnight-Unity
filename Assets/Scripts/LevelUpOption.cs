@@ -10,12 +10,16 @@ public class LevelUpOption : MonoBehaviour
     public TextMeshProUGUI amount;
     public TextMeshProUGUI description;
     private ChangeStateData data;
+    public Button button;
     public bool changeColor;
     public Color colorGood;
     public Color colorBad;
 
     public void Show(ChangeStateData data)
     {
+        button.interactable = true; 
+        var tag = CardManager.Instance.FindTag(TagType.NoHope);
+        if (tag != null && data.id == LevelUpId.ADD_HP) button.interactable = false;
         this.data = data;
         imgDemo.sprite = data.sprite;
         title.text = data.Title;
@@ -39,6 +43,8 @@ public class LevelUpOption : MonoBehaviour
         switch (data.id)
         {
             case LevelUpId.ADD_HP:
+                var tag = CardManager.Instance.FindTag(TagType.NoHope);
+                if (tag != null) return;
                 var damage = new DamageData();
                 damage.damage = data.amount;
                 CardManager.Instance.hero.Heal(damage);

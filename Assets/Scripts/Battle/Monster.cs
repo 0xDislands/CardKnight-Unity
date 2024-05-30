@@ -93,6 +93,7 @@ public class Monster : CardEffect
             var monsterCard = GetComponent<Card>();
             monsterCard.Disappear();
             var nextCardId = CardManager.Instance.GetNextCard();
+            Debug.Log("calling spawn monster take damage");
             var newCard = CardManager.Instance.SpawnCard(monsterCard.Pos, nextCardId.cardId);
             newCard.ShowSpawnAnimation();
             if(newCard.TryGetComponent<Monster>(out var monster))

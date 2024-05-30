@@ -17,5 +17,7 @@
     Boss1,
     Boss2,
     Boss3,
-    Boss4
+    Boss4,
+    ItemSpike,
+    MonsterGhost
 }

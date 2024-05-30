@@ -41,7 +41,7 @@ public class RevengeTag : MonsterTag
     public void RevengeIncreaseHP(Monster deadMonter)
     {
         if (gameObject.activeInHierarchy == false) return;
-
+        if (deadMonter.Equals(monster)) return;
         Debug.Log("Revenge!!");
         monster.monsterData.maxHp = 0;
         float increaseHp = monster.monsterData.currentHp * INCREASE_HP_RATIO;
