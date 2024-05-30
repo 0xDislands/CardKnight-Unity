@@ -60,6 +60,7 @@ public class PopupLockMinigame : MonoBehaviour
             ball.currentPiece.Unlock();
             if (IsAllUnlocked())
             {
+                Debug.Log("calling spawn card lock mini game");
                 CardManager.Instance.SpawnCard(card.Pos, idAfterUnlock);
                 card.Disappear();
                 var effect = SimpleObjectPool.Instance.GetObjectFromPool(appearEffect, card.transform.position);

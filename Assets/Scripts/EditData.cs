@@ -29,7 +29,7 @@ public class EditData : MonoBehaviour
     private void Display()
     {
         var text = string.Empty;
-        if (!useCustomData) text = textAsset.text;
+        if (!useCustomData || !string.IsNullOrEmpty(dataStr)) text = textAsset.text;
         else text = dataStr;
         var contents = text.Split("\n");
 

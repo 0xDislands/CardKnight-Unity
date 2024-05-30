@@ -101,6 +101,18 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: ec8a93397ecaa924ebad8fb60dc4aaef, type: 3}
     health: 0
     cardPrefab: {fileID: 8772459415456982177, guid: 912dbf92f1e260b45a8f73241ab3821c, type: 3}
+  - id: 18
+    sprite: {fileID: 16485121, guid: c7aa504f8f440b64f8b463ca57048803, type: 3}
+    health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: 2671707e2bee1774396bbc9123f8117e, type: 3}
+  - id: 19
+    sprite: {fileID: 21300000, guid: 7f9ef253edc17d4448246044d884bb3d, type: 3}
+    health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: 39e20fd44467be747ae64f97ff1f20be, type: 3}
+  - id: 15
+    sprite: {fileID: 21300000, guid: 291f979e2ebcf1848a3214bad0508912, type: 3}
+    health: 0
+    cardPrefab: {fileID: 8772459415456982177, guid: 3704e4afd661595439fde03e6c499aa5, type: 3}
   powerupDatas:
   - id: 0
     name: SLASH

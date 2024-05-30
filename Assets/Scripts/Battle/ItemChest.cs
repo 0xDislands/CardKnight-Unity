@@ -13,6 +13,7 @@ public class ItemChest : Item
         hero.Heal(data);
         var effect = SimpleObjectPool.Instance.GetObjectFromPool(appearEffect, transform.position);
         var card = GetComponent<Card>();
+        Debug.Log("calling spawn card item chest");
         var newCard = CardManager.Instance.SpawnCard(card.Pos, transformCards.RandomElement());
         newCard.MoveToPos(card.Pos);
         card.Disappear();

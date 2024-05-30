@@ -35,6 +35,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
     private CanvasGroup canvasGroup;
     private List<CardEffect> effects = new List<CardEffect>();
     [SerializeField] private bool flipping;
+    private bool clicked;
 
     public Vector2Int Pos
     {
@@ -50,6 +51,11 @@ public class Card : MonoBehaviour, IPointerDownHandler
     {
         canvasGroup = GetComponent<CanvasGroup>();
         cardEffect = GetComponent<CardEffect>();
+    }
+
+    private void OnEnable()
+    {
+        clicked = false;
     }
 
 
@@ -109,6 +115,8 @@ public class Card : MonoBehaviour, IPointerDownHandler
         if (Gameplay.Instance.state != GameplayState.Playing) return;
         if (!CardManager.Instance.canClick) return;
         if (flipping) return;
+        if (clicked) return;
+        clicked = true;
         Debug.Log(gameObject.name);
         if(eventData.button == PointerEventData.InputButton.Left)
         {
@@ -153,10 +161,8 @@ public class Card : MonoBehaviour, IPointerDownHandler
     }
     public void MoveToPos(Vector2Int pos)
     {
-        //DOTween.Kill(transform);
         this.pos = pos;
         GridManager.Instance.dicGrids[pos].card = this;
-        //LeanTween.move(transform.gameObject, GridManager.Instance.dicGrids[pos].transform.position, CARD_MOVE_SPEED);
         transform.DOMove(GridManager.Instance.dicGrids[pos].transform.position, CARD_MOVE_SPEED);
     }
 

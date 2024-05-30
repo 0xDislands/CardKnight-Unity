@@ -41,6 +41,7 @@ public class PowerupHex : PowerupBase
         {
             card.gameObject.SetActive(false);
             CardManager.Instance.RemoveCard(card);
+            Debug.Log("calling spawn card skill hex");
             var newCard = CardManager.Instance.SpawnCard(card.Pos, CardId.HexedMonster);
             var hexedMonster = newCard.GetComponent<Monster>();
             hexedMonster.monsterData.rewardExp = monster.monsterData.rewardExp;
