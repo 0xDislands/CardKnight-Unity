@@ -13,6 +13,11 @@ public enum CardSide
     Back, Front
 }
 
+public enum CardUse
+{
+    OneTime, ManyTimeUntilDisappear
+}
+
 public class Card : MonoBehaviour, IPointerDownHandler
 {
     public const bool DEBUG_POSITION = false;
@@ -28,6 +33,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
     [SerializeField] Transform cardParent;
     public Image icon;
     public CardSide side = CardSide.Back;
+    public CardUse cardUse;
     public CardData data { get; private set; }
     public CardEffect cardEffect { get; private set; }
     public Action onCardAppear;
@@ -119,7 +125,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
         Debug.Log(gameObject.name);
         if(eventData.button == PointerEventData.InputButton.Left)
         {
-            clicked = true;
+            if (cardUse == CardUse.OneTime) clicked = true;
             Hero hero = CardManager.Instance.hero;
             if (!hero.canMove) return;
             hero = GetComponent<Hero>();
