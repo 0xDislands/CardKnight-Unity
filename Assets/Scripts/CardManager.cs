@@ -312,6 +312,10 @@ public class CardManager : MonoBehaviour
     {
         var data = DataManager.Instance.dicCardDatas[id];
         var grid = GridManager.Instance.dicGrids[pos];
+        if (data.cardPrefab == null)
+        {
+            Debug.LogError("null data.cardPrefab");
+        }
         var card = Instantiate(data.cardPrefab, cardParent);
         card.Pos = grid.pos;
         card.transform.position = grid.transform.position;

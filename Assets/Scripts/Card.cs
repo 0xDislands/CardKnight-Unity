@@ -116,10 +116,10 @@ public class Card : MonoBehaviour, IPointerDownHandler
         if (!CardManager.Instance.canClick) return;
         if (flipping) return;
         if (clicked) return;
-        clicked = true;
         Debug.Log(gameObject.name);
         if(eventData.button == PointerEventData.InputButton.Left)
         {
+            clicked = true;
             Hero hero = CardManager.Instance.hero;
             if (!hero.canMove) return;
             hero = GetComponent<Hero>();

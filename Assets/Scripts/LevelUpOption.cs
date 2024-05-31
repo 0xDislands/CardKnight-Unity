@@ -17,6 +17,7 @@ public class LevelUpOption : MonoBehaviour
 
     public void Show(ChangeStateData data)
     {
+        if (button == null) button = GetComponent<Button>();
         button.interactable = true; 
         var tag = CardManager.Instance.FindTag(TagType.NoHope);
         if (tag != null && data.id == LevelUpId.ADD_HP) button.interactable = false;

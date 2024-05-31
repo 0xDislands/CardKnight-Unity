@@ -585,5 +585,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caab5294317e0e5438d469e19e16c83b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  appearEffect: {fileID: 8574896961879645709, guid: 6bd10874086de7b42b17fed615784ae8, type: 3}
+  appearEffect: {fileID: 8889753485815112837, guid: 6bd10874086de7b42b17fed615784ae8, type: 3}
   transformCards: 010000000200000005000000
