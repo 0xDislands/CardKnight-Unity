@@ -18,9 +18,14 @@ public class ButtonPowerUpCurse : ButtonPowerup
             CancelSkill();
             return;
         }
-        if (IsCooldownReady() == false) 
+        if (IsLevelReady() == false)
         {
-            SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextOnCooldown"), transform.position + new Vector3(0, 1f));
+            Notify("LEVEL UP TO UNLOCK");
+            return;
+        }
+        if (IsCooldownReady() == false)
+        {
+            Notify("ON COOLDOWN");
             return;
         }
         isUsingSkill = true;

@@ -15,9 +15,14 @@ public class ButtonPowerupMeteor : ButtonPowerup
             text.text.text = "Silent";
             return;
         }
+        if (IsLevelReady() == false)
+        {
+            Notify("LEVEL UP TO UNLOCK");
+            return;
+        }
         if (IsCooldownReady() == false)
         {
-            SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextFlyUpFade>("TextOnCooldown"), transform.position + new Vector3(0, 1f));
+            Notify("ON COOLDOWN");
             return;
         }
         TurnLeftToUSeSkill = maxTurnLeftToUseSkill;

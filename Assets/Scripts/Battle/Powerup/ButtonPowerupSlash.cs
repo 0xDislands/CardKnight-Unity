@@ -17,6 +17,11 @@ public class ButtonPowerupSlash : ButtonPowerup
             CancelSkill();
             return;
         }
+        if (IsLevelReady() == false)
+        {
+            Notify("LEVEL UP TO UNLOCK");
+            return;
+        }
         if (IsCooldownReady() == false)
         {
             Notify("ON COOLDOWN");
