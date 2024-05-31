@@ -27,6 +27,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
     public const float CARD_MOVE_SPEED = 0.6f;
     public const float CARD_FADE_SPEED = 0.4f;
     public const float SPAWN_DELAY_FLIP = 0.2f;
+    public const float DOUBLE_CLICK_PREVENT_TIME = 0.5f;
 
     private Vector2Int pos;
     [SerializeField] Image cardBack;
@@ -41,7 +42,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
     private CanvasGroup canvasGroup;
     private List<CardEffect> effects = new List<CardEffect>();
     [SerializeField] private bool flipping;
-    private bool clicked;
+    private float lastClick;
 
     public Vector2Int Pos
     {
@@ -61,7 +62,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
 
     private void OnEnable()
     {
-        clicked = false;
+        lastClick = Time.time;
     }
 
 
@@ -121,11 +122,11 @@ public class Card : MonoBehaviour, IPointerDownHandler
         if (Gameplay.Instance.state != GameplayState.Playing) return;
         if (!CardManager.Instance.canClick) return;
         if (flipping) return;
-        if (clicked) return;
+        if (Time.time - lastClick < DOUBLE_CLICK_PREVENT_TIME) return;
         Debug.Log(gameObject.name);
         if(eventData.button == PointerEventData.InputButton.Left)
         {
-            if (cardUse == CardUse.OneTime) clicked = true;
+            lastClick = Time.time;
             Hero hero = CardManager.Instance.hero;
             if (!hero.canMove) return;
             hero = GetComponent<Hero>();

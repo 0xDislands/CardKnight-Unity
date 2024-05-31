@@ -18,9 +18,16 @@ public class LevelUpOption : MonoBehaviour
     public void Show(ChangeStateData data)
     {
         if (button == null) button = GetComponent<Button>();
-        button.interactable = true; 
         var tag = CardManager.Instance.FindTag(TagType.NoHope);
-        if (tag != null && data.id == LevelUpId.ADD_HP) button.interactable = false;
+        if (tag != null && data.id == LevelUpId.ADD_HP)
+        {
+            button.interactable = false;
+            imgDemo.color = new Color(1, 1, 1, 0.5f);
+        } else
+        {
+            button.interactable = true;
+            imgDemo.color = Color.white;
+        }
         this.data = data;
         imgDemo.sprite = data.sprite;
         title.text = data.Title;

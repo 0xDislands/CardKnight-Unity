@@ -9,6 +9,7 @@ public class PopupLockMinigame : MonoBehaviour
     public const float ANIMATION_TIME = 0.5f;
 
     [SerializeField] private ParticleSystem appearEffect;
+    [SerializeField] private Transform baseGroup;
     private List<LockMiniGame_Piece> pieces;
     private LockMiniGame_Ball ball;
     private LockMiniGame_Lock locker;
@@ -18,11 +19,19 @@ public class PopupLockMinigame : MonoBehaviour
     private CardId idAfterUnlock;
     private void Init()
     {
-        pieces = GetComponentsInChildren<LockMiniGame_Piece>().ToList();
         locker = GetComponentInChildren<LockMiniGame_Lock>();
         ball = GetComponentInChildren<LockMiniGame_Ball>();
         rotate = GetComponentInChildren<Rotate>();
         canvasGroup = GetComponent<CanvasGroup>();
+        int rand = Random.Range(0, baseGroup.childCount);
+        for (int i = 0; i < baseGroup.childCount; i++)
+        {
+            baseGroup.GetChild(i).gameObject.SetActive(i == rand);
+            if (i == rand)
+            {
+                pieces = baseGroup.GetChild(i).GetComponentsInChildren<LockMiniGame_Piece>().ToList();
+            }
+        }
     }
 
     public void ShowMiniGame(Card card, CardId idAfterUnlock)
