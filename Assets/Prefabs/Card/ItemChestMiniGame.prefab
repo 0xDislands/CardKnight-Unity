@@ -634,7 +634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardBack: {fileID: 6685940440013630504}
   cardParent: {fileID: 0}
-  icon: {fileID: 0}
+  icon: {fileID: 5311417381576714377}
   side: 0
   cardUse: 1
   flipping: 0

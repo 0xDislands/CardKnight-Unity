@@ -21,11 +21,11 @@ public class LevelUpOption : MonoBehaviour
         var tag = CardManager.Instance.FindTag(TagType.NoHope);
         if (tag != null && data.id == LevelUpId.ADD_HP)
         {
-            button.interactable = false;
+            button.image.color = new Color(1, 1, 1, 0.5f);
             imgDemo.color = new Color(1, 1, 1, 0.5f);
         } else
         {
-            button.interactable = true;
+            button.image.color = new Color(1, 1, 1, 1f);
             imgDemo.color = Color.white;
         }
         this.data = data;
@@ -48,11 +48,16 @@ public class LevelUpOption : MonoBehaviour
 
     public void OnClick()
     {
+        var levelUpPopup = GetComponentInParent<PopupLevelUp>();
         switch (data.id)
         {
             case LevelUpId.ADD_HP:
                 var tag = CardManager.Instance.FindTag(TagType.NoHope);
-                if (tag != null) return;
+                if (tag != null)
+                {
+                    levelUpPopup.Warninng(transform.position);
+                    return;
+                }
                 var damage = new DamageData();
                 damage.damage = data.amount;
                 CardManager.Instance.hero.Heal(damage);
@@ -78,5 +83,6 @@ public class LevelUpOption : MonoBehaviour
                 CardManager.Instance.hero.UpdateDisplay();
                 break;
         }
+        levelUpPopup.Close();
     }
 }

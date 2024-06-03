@@ -558,7 +558,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardBack: {fileID: 6685940440013630504}
   cardParent: {fileID: 0}
-  icon: {fileID: 0}
+  icon: {fileID: 6789486490068517606}
+  side: 0
+  cardUse: 0
+  flipping: 0
 --- !u!225 &2075306533853894767
 CanvasGroup:
   m_ObjectHideFlags: 0

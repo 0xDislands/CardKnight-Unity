@@ -324,6 +324,7 @@ public class CardManager : MonoBehaviour
         {
             cards.Add(card);
         }
+        EventManager.Instance.onNewCardSpawned?.Invoke(card);
         return card;
     }
 

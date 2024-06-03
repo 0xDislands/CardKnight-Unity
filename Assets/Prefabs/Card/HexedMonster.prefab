@@ -483,6 +483,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardBack: {fileID: 6685940440013630504}
   cardParent: {fileID: 0}
+  icon: {fileID: 7833356241929002155}
+  side: 0
+  cardUse: 0
+  flipping: 0
 --- !u!225 &2075306533853894767
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -516,6 +520,7 @@ MonoBehaviour:
     maxHp: 0
     amor: 4
   attackEffect: {fileID: 6553047553640012297, guid: 64a1bfed3e6382742a7ab56c24a8285c, type: 3}
+  tags: []
 --- !u!1001 &1632040475844355653
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using static System.Net.Mime.MediaTypeNames;
 
 public class PopupLevelUp : MonoBehaviour
 {
@@ -12,10 +13,16 @@ public class PopupLevelUp : MonoBehaviour
     public Transform levelUpDataParent;
     public List<LevelUpOption> options;
     private CanvasGroup canvasGroup;
+    [SerializeField] private TextMeshProUGUI warningTxt;
 
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+    }
+
+    private void OnEnable()
+    {
+        warningTxt.gameObject.SetActive(false);
     }
 
     public void ShowLevelUp(int index)
@@ -49,6 +56,20 @@ public class PopupLevelUp : MonoBehaviour
         transform.DOScale(0f, ANIMATION_TIME).SetEase(Ease.InBack).OnComplete(()=> {
             gameObject.SetActive(false);
             PopupManager.Instance.DoNextAction();
+        });
+    }
+
+    public void Warninng(Vector2 position)
+    {
+        warningTxt.transform.position = position;
+        var color = Color.red;
+        color.a = 1f;
+        warningTxt.color = color;
+        warningTxt.gameObject.SetActive(true);
+        warningTxt.DOFade(0f, 2f);
+        transform.DOMove(transform.position + new Vector3(0f, 1), 2f).OnComplete(() =>
+        {
+            warningTxt.gameObject.SetActive(false);
         });
     }
 }

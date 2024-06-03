@@ -12,13 +12,14 @@ public class TagInfo : MonoBehaviour
         tagDisplays= GetComponentsInChildren<TagDisplay>();
     }
 
-    public void DisplayTags(MonsterTag[] tags)
+    public void DisplayTags(MonsterTag[] tags, CardSide side)
     {
         var tagDic = DataManager.Instance.dicTag;
         foreach (var display in tagDisplays)
         {
             display.group.alpha = 0f;
         }
+        if (side == CardSide.Back) return;
         for (int i = 0; i < tags.Length; i++)
         {
             if (!tags[i].gameObject.activeInHierarchy) continue;

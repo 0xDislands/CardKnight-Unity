@@ -10,6 +10,8 @@ public class PopupInfo : MonoBehaviour
     [SerializeField] private Image icon;
     [SerializeField] private TextMeshProUGUI skillInfo;
     [SerializeField] private TagInfo tagInfo;
+    [SerializeField] private Sprite questionMark;
+
 
     private void OnEnable()
     {
@@ -40,14 +42,27 @@ public class PopupInfo : MonoBehaviour
     }
 
 
-    public void DisplayCard(Sprite icon, MonsterTag[] tags)
+    public void DisplayCard(Sprite icon, MonsterTag[] tags, CardSide side)
     {
         gameObject.SetActive(true);
-        this.icon.sprite = icon;
+        if (side == CardSide.Back) this.icon.sprite = questionMark;
+        else this.icon.sprite = icon;
         this.icon.preserveAspect = true;
         skillInfo.gameObject.SetActive(false);
         tagInfo.gameObject.SetActive(true);
-        tagInfo.DisplayTags(tags);
+        tagInfo.DisplayTags(tags, side);
+    }
+
+    public void DisplayCard(Card card, CardSide side)
+    {
+        gameObject.SetActive(true);
+        if (side == CardSide.Back) this.icon.sprite = questionMark;
+        else icon.sprite = card.icon.sprite;
+
+        icon.preserveAspect = true;
+        skillInfo.gameObject.SetActive(true);
+        tagInfo.gameObject.SetActive(false);
+        skillInfo.text = "";
     }
 
     public void Close()

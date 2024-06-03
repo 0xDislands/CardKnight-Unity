@@ -29,6 +29,7 @@ public class ButtonPowerupSlash : ButtonPowerup
         }
         isUsingSkill = true;
         hero.canMove = false;
+        TurnLeftToUSeSkill = maxTurnLeftToUseSkill;
         int monsterCount = 0;
         var heroCard = CardManager.Instance.heroCard;
         for (int i = 0; i < GridManager.Instance.grids.Length; i++)

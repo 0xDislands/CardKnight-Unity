@@ -16,6 +16,6 @@ public class TextHp : MonoBehaviour
     }
     public void SetHP(MonsterData monsterData)
     {
-        txtHp.text = (Mathf.RoundToInt(monsterData.currentHp)).ToString();
+        txtHp.text = (Mathf.FloorToInt(monsterData.currentHp)).ToString();
     }
 }

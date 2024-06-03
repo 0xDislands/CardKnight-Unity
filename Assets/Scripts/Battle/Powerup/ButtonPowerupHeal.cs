@@ -1,7 +1,17 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonPowerupHeal : ButtonPowerup
 {
+    [SerializeField] private Image disableImg;
+    [SerializeField] private Button button;
+
+    private void Start()
+    {
+        EventManager.Instance.onNewCardSpawned += CheckSkill;
+        EventManager.Instance.onCardDisappeared += CheckSkill;
+    }
+
     public override void OnClick()
     {
         if (SkillDisable())
@@ -22,5 +32,21 @@ public class ButtonPowerupHeal : ButtonPowerup
         }
         TurnLeftToUSeSkill = maxTurnLeftToUseSkill;
         CardManager.Instance.hero.Heal(new DamageData(9999));
+    }
+
+    private void CheckSkill(Card card)
+    {
+        if (!IsLevelReady()) return;
+        var noHeal = CardManager.Instance.FindTag(TagType.NoHope);
+        if(noHeal == null)
+        {
+            button.interactable = true;
+            disableImg.gameObject.SetActive(false);
+        }
+        else
+        {
+            button.interactable = false;
+            disableImg.gameObject.SetActive(true);
+        }
     }
 }
