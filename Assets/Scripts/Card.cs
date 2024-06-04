@@ -99,7 +99,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
         cardBack.gameObject.SetActive(true);
         transform.DOScaleX(0f, FLIP_ANIMATION_TIME).OnComplete(() =>
         {
-            transform.DOScaleX(1f, FLIP_ANIMATION_TIME).OnComplete(() => flipping = false);
+            transform.DOScaleX(CardManager.Instance.DEFAULT_SCALE.x, FLIP_ANIMATION_TIME).OnComplete(() => flipping = false);
             cardBack.gameObject.SetActive(false);
         });
     }
@@ -112,7 +112,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
         cardBack.gameObject.SetActive(false);
         transform.DOScaleX(0f, FLIP_ANIMATION_TIME).OnComplete(() =>
         {
-            transform.DOScaleX(1f, FLIP_ANIMATION_TIME).OnComplete(() => flipping = false);
+            transform.DOScaleX(CardManager.Instance.DEFAULT_SCALE.x, FLIP_ANIMATION_TIME).OnComplete(() => flipping = false);
             cardBack.gameObject.SetActive(true);
         });
     }

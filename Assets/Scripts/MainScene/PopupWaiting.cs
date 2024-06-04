@@ -25,9 +25,15 @@ public class PopupWaiting : MonoBehaviour
         {
             players[i].SetReady(false);
             players[i].SetPlayer(i == playerIndex);
+            players[i].point = Random.Range(0, 100000);
+        }
+        players.Sort((a, b) => a.point.CompareTo(b.point));
+        for (int i = 0; i < players.Count; i++)
+        {
+            players[i].transform.SetSiblingIndex(players.IndexOf(players[i]));
             players[i].UpdateDisplay();
         }
-        FakeReady();
+        //FakeReady();
         textCountDown.StartCountDown(COUNT_DOWN_TIME, null);
     }
 
@@ -61,15 +67,15 @@ public class PopupWaiting : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (changingScene) return;
+    //private void Update()
+    //{
+    //    if (changingScene) return;
 
-        bool allReady = CheckAllReady();
-        if (allReady || textCountDown.time <= 0)
-        {
-            changingScene = true;
-            SceneManager.LoadScene("gameplay");
-        }
-    }
+    //    bool allReady = CheckAllReady();
+    //    if (allReady || textCountDown.time <= 0)
+    //    {
+    //        changingScene = true;
+    //        SceneManager.LoadScene("gameplay");
+    //    }
+    //}
 }

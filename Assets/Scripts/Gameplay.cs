@@ -22,6 +22,7 @@ public class Gameplay : MonoBehaviour
     public PopupToolTip popupToolTip;
     public PopupInfo popupInfo;
     public Toggle cheatToggle;
+    public TimeCounter timeCounter;
     public ButtonPowerup[] buttonPowerups { get; private set; }
 
     private void Awake()
@@ -55,8 +56,8 @@ public class Gameplay : MonoBehaviour
             {
                 buttonPowerups[i].transform.SetSiblingIndex(buttonPowerups.Length - 1);
             }
-
         }
+        timeCounter.SetTime();
     }
 
     public void Lose()

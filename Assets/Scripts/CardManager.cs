@@ -25,7 +25,7 @@ public class CardSpawnData
 public class CardManager : MonoBehaviour
 {
     public const float DELAY_FLIP_TIME = 0.55f;
-
+    public readonly Vector3 DEFAULT_SCALE = new Vector3(0.95f, 0.95f, 0.95f);
     public static CardManager Instance;
     public static HeroId selectedHero;
 
@@ -317,6 +317,7 @@ public class CardManager : MonoBehaviour
             Debug.LogError("null data.cardPrefab");
         }
         var card = Instantiate(data.cardPrefab, cardParent);
+        card.transform.localScale = DEFAULT_SCALE;
         card.Pos = grid.pos;
         card.transform.position = grid.transform.position;
         card.gameObject.name = "Card #" + UnityEngine.Random.Range(100, 200);

@@ -10,10 +10,8 @@ public class PlayerInRoom : MonoBehaviour
     private int bigFontSize = 60;
     private int normalFontSize = 54;
 
-    private void Awake()
-    {
-        txtName.text = GetRandomName();
-    }
+    public float point;
+
     public void SetPlayer(bool isPlayer)
     {
         this.isPlayer = isPlayer;
@@ -33,11 +31,13 @@ public class PlayerInRoom : MonoBehaviour
         txtStatus.fontStyle = isPlayer ? FontStyles.Bold : FontStyles.Normal;
         txtName.fontSize = isPlayer ? bigFontSize : normalFontSize;
         txtStatus.fontSize = isPlayer ? bigFontSize : normalFontSize;
-        txtStatus.text = ready ? "Ready" : "Not Ready";
+        txtStatus.text = point.ToString();
+        txtName.text = GetRandomName();
     }
     string alphabet = "abcdefghijklmnopqstuvxyz0123456789";
     public string GetRandomName()
     {
+        if (isPlayer) return "Player";
         string str = "0x";
         for (int i = 0; i < 10; i++)
         {
