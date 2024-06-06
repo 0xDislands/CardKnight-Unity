@@ -12,7 +12,7 @@ public class TextHp : MonoBehaviour
     }
     public void SetHP(HeroBattleData heroData)
     {
-        txtHp.text = heroData.hp + "/" + heroData.maxHp;
+        txtHp.text = heroData.hp.ToString();
     }
     public void SetHP(MonsterData monsterData)
     {
