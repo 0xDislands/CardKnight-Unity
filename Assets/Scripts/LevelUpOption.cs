@@ -55,7 +55,7 @@ public class LevelUpOption : MonoBehaviour
                 var tag = CardManager.Instance.FindTag(TagType.NoHope);
                 if (tag != null)
                 {
-                    levelUpPopup.Warninng(transform.position);
+                    if (levelUpPopup) levelUpPopup.Warninng(transform.position);
                     return;
                 }
                 var damage = new DamageData();
@@ -83,6 +83,6 @@ public class LevelUpOption : MonoBehaviour
                 CardManager.Instance.hero.UpdateDisplay();
                 break;
         }
-        levelUpPopup.Close();
+        if (levelUpPopup) levelUpPopup.Close();
     }
 }

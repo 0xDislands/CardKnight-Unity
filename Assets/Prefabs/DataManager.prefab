@@ -173,10 +173,10 @@ MonoBehaviour:
     powerUps: 000000000100000003000000
     name: Knight
     description: This is description
-    sprite: {fileID: 21300000, guid: 2220fedbb2be03c47927140efbf43acf, type: 3}
+    sprite: {fileID: 21300000, guid: 8b2c371f513961a4684acde40ade0858, type: 3}
     skins:
+    - {fileID: 21300000, guid: 8b2c371f513961a4684acde40ade0858, type: 3}
     - {fileID: 21300000, guid: 2220fedbb2be03c47927140efbf43acf, type: 3}
-    - {fileID: 21300000, guid: fcd2f7d82b9a7dd489b5974ef52712e0, type: 3}
     - {fileID: 21300000, guid: 35f752ea57812db469d89008420eab54, type: 3}
     selectSkin: 0
   - id: 1
