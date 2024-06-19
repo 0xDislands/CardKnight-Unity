@@ -69,7 +69,7 @@ public class CardManager : MonoBehaviour
         UpdateHeroNeighbours();
         StartCoroutine(IECardAnimation());
         var heroData = DataManager.Instance.dicHero[selectedHero];
-        heroCard.icon.sprite = heroData.skins[heroData.selectSkin];
+        heroCard.icon.sprite = heroData.skins[heroData.selectedSkin];
         heroCard.icon.preserveAspect = true;
     }
 

@@ -26,15 +26,15 @@ public class TextPowerupName : MonoBehaviour
 
     public void UpdateDisplay()
     {
-        if (txt == null) txt = GetComponent<TextMeshProUGUI>();
-        var data = DataManager.Instance.dicPowerUp[id];
-        if (CardManager.Instance.hero.heroData.level < data.unlockLevel)
-        {
-            txt.text = $"Unlock at level {data.unlockLevel + 1}";
-        }
-        else
-        {
-            txt.text = data.name;
-        }
+        //if (txt == null) txt = GetComponent<TextMeshProUGUI>();
+        //var data = DataManager.Instance.dicPowerUp[id];
+        //if (CardManager.Instance.hero.heroData.level < data.unlockLevel)
+        //{
+        //    txt.text = $"Unlock at level {data.unlockLevel + 1}";
+        //}
+        //else
+        //{
+        //    txt.text = data.name;
+        //}
     }
 }

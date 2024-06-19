@@ -1555,7 +1555,7 @@ PrefabInstance:
     - target: {fileID: 1471127989286485863, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0b3e28c4078d2db4a9ae61a30d00e864, type: 3}
+      objectReference: {fileID: 21300000, guid: d33d3a25a496b824d80af2ba43398d02, type: 3}
     - target: {fileID: 2221902817981709587, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
       propertyPath: m_SizeDelta.x
       value: 248.44
@@ -1591,6 +1591,10 @@ PrefabInstance:
     - target: {fileID: 3672847422003152859, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
       propertyPath: id
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3958332821751680248, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6436630053194223552, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1662,7 +1666,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8891171662576682608, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 92.45999
+      value: 540
       objectReference: {fileID: 0}
     - target: {fileID: 8891171662576682608, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3425,6 +3429,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 786844521}
     m_Modifications:
+    - target: {fileID: 1279295246320415223, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471127989286485863, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0299d04492abf1746aa3ee37a2af3e74, type: 3}
+    - target: {fileID: 1471127989286485863, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2221902817981709587, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
       propertyPath: m_SizeDelta.x
       value: 242.48
@@ -3444,6 +3460,10 @@ PrefabInstance:
     - target: {fileID: 3194482198752621384, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
       propertyPath: atkToAvailable
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3958332821751680248, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8891171662576682608, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
       propertyPath: m_Pivot.x
@@ -6110,6 +6130,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 786844521}
     m_Modifications:
+    - target: {fileID: 1471127989286485863, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f045261df4b07ec4692343a00427f25e, type: 3}
     - target: {fileID: 2221902817981709587, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
       propertyPath: m_SizeDelta.x
       value: 242.52
@@ -6149,6 +6173,10 @@ PrefabInstance:
     - target: {fileID: 3672847422003152859, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
       propertyPath: id
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3958332821751680248, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8891171662576682608, guid: 130bc8b887aba9d4693dd35d511a8ba9, type: 3}
       propertyPath: m_Pivot.x
@@ -25421,9 +25449,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1722478268}
-        m_TargetAssemblyTypeName: Dislands.ChangeScene, Assembly-CSharp
-        m_MethodName: ChangeToScene
-        m_Mode: 5
+        m_TargetAssemblyTypeName: ButtonReset, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -25479,7 +25507,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1722478263}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfacdd76b20c7194791843625be2d3ac, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c4ba158f4e4a3d438e0a897a6f9a687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1724793103

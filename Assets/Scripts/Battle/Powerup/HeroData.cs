@@ -10,5 +10,5 @@ public class HeroData
     public string description;
     public Sprite sprite;
     public Sprite[] skins;
-    public int selectSkin;
+    public int selectedSkin;
 }

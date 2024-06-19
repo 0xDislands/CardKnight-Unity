@@ -34,7 +34,7 @@ public class SkinPopup : MonoBehaviour
     public void ChooseSkin(int index)
     {
         var data = DataManager.Instance.dicHero[displayId];
-        data.selectSkin = index;
+        data.selectedSkin = index;
         var button = SelectHeroManager.Instance.popupSelectHero.buttonSelectHeros.First(x => x.heroId == displayId);
         button.imgHero.sprite = data.skins[index];
         button.imgHero.preserveAspect = true;
