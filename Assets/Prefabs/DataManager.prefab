@@ -50,11 +50,11 @@ MonoBehaviour:
     health: 0
     cardPrefab: {fileID: 8772459415456982177, guid: 53bdd9953b81ff84786c03627db52f6f, type: 3}
   - id: 1
-    sprite: {fileID: 21300000, guid: dc4e6a97a6c642c47ba2682953b7a5be, type: 3}
+    sprite: {fileID: 21300000, guid: afdc685dada5a4740b31f2795f16ffc8, type: 3}
     health: 0
     cardPrefab: {fileID: 8772459415456982177, guid: 34c4d206d3dcd594a935f055c185177c, type: 3}
   - id: 2
-    sprite: {fileID: 21300000, guid: f04262372b54e314ab5a7e6bfe50fc7e, type: 3}
+    sprite: {fileID: 21300000, guid: afdb6b3ae2d38b84ba96719cee7d6874, type: 3}
     health: 0
     cardPrefab: {fileID: 8772459415456982177, guid: 6ee9bcd5429c16e438a4a13da4028a30, type: 3}
   - id: 7
@@ -70,7 +70,7 @@ MonoBehaviour:
     health: 0
     cardPrefab: {fileID: 8772459415456982177, guid: 0859c6055b4a1c14caf4d17a6d230704, type: 3}
   - id: 3
-    sprite: {fileID: 21300000, guid: bb0f5b6da68b29048bc5485da0360b67, type: 3}
+    sprite: {fileID: 21300000, guid: 732bcba5198676d43ad23794e27b9413, type: 3}
     health: 0
     cardPrefab: {fileID: 8772459415456982177, guid: d9860ee5c8627a34f9cd193be9cddda3, type: 3}
   - id: 9
@@ -78,7 +78,7 @@ MonoBehaviour:
     health: 0
     cardPrefab: {fileID: 8772459415456982177, guid: 59e716bb4483eff4daf81d007a8a2552, type: 3}
   - id: 5
-    sprite: {fileID: 21300000, guid: bb0f5b6da68b29048bc5485da0360b67, type: 3}
+    sprite: {fileID: 21300000, guid: 25317dfaecef39447917c1dbfa192871, type: 3}
     health: 0
     cardPrefab: {fileID: 8772459415456982177, guid: 6fc67f54f96af7e45b7aab5fa5172f71, type: 3}
   - id: 10
@@ -178,7 +178,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 8b2c371f513961a4684acde40ade0858, type: 3}
     - {fileID: 21300000, guid: 2220fedbb2be03c47927140efbf43acf, type: 3}
     - {fileID: 21300000, guid: 35f752ea57812db469d89008420eab54, type: 3}
-    selectSkin: 0
+    selectedSkin: 0
   - id: 1
     powerUps: 020000000500000006000000
     name: Shaman
@@ -188,7 +188,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: b5731e152b666434e9aa82b58c6a892f, type: 3}
     - {fileID: 21300000, guid: 984c858d84445644d800bd99e54cd8f2, type: 3}
     - {fileID: 21300000, guid: d7ac4dc08d9f4b6449fa8efc52643a5e, type: 3}
-    selectSkin: 0
+    selectedSkin: 0
   - id: 2
     powerUps: 040000000100000008000000
     name: Vampire
@@ -198,7 +198,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 3f2586774a8b9a54787d1f85d91e2b4b, type: 3}
     - {fileID: 21300000, guid: d7dd5a4adb86f4644889392c79698d6a, type: 3}
     - {fileID: 21300000, guid: d0fe2eea8c1184f4a80d62df44e14550, type: 3}
-    selectSkin: 0
+    selectedSkin: 0
   tagDatas:
   - tagType: 0
     sprite: {fileID: 21300000, guid: cfe803c992a79194dac5f0cf1211ebcb, type: 3}
