@@ -17,6 +17,10 @@ public class PopupLockMinigame : MonoBehaviour
     private CanvasGroup canvasGroup;
     private Card card;
     private CardId idAfterUnlock;
+    private void Awake()
+    {
+        Init();
+    }
     private void Init()
     {
         locker = GetComponentInChildren<LockMiniGame_Lock>();
