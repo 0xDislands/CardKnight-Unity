@@ -33,6 +33,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
     [SerializeField] Image cardBack;
     [SerializeField] Transform cardParent;
     public Image icon;
+    public TextMeshProUGUI txtName;
     public CardSide side = CardSide.Back;
     public CardUse cardUse;
     [field:SerializeField] public CardData data { get; private set; }
@@ -69,9 +70,10 @@ public class Card : MonoBehaviour, IPointerDownHandler
     public void SetData(CardData cardData)
     {
         this.data = cardData;
-        if (cardEffect != null && cardEffect is Monster)
+        if (cardEffect != null && (cardEffect is Monster || cardEffect is Item))
         {
             this.icon.sprite = data.sprite;
+            if (this.txtName != null) this.txtName.text = data.name;
         }
     }
     public void ShowSpawnAnimation(float delayFlip = SPAWN_DELAY_FLIP)

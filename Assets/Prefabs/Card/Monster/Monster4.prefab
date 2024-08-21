@@ -488,8 +488,15 @@ MonoBehaviour:
   cardBack: {fileID: 6685940440013630504}
   cardParent: {fileID: 0}
   icon: {fileID: 7833356241929002155}
+  txtName: {fileID: 7584830755694268612}
   side: 0
   cardUse: 0
+  <data>k__BackingField:
+    id: 0
+    name: 
+    sprite: {fileID: 0}
+    health: 0
+    cardPrefab: {fileID: 0}
   flipping: 0
 --- !u!225 &2075306533853894767
 CanvasGroup:
@@ -843,6 +850,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4521961668013421070, guid: 367c7c408878a194dafc8f8adeb171dc, type: 3}
   m_PrefabInstance: {fileID: 7668429856860770135}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7584830755694268612 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 227721166309220243, guid: 367c7c408878a194dafc8f8adeb171dc, type: 3}
+  m_PrefabInstance: {fileID: 7668429856860770135}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8504929326410845148
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,7 +10,8 @@ public class PopupPoweupUnlocked : MonoBehaviour
     [SerializeField] private Image imgDemo;
     [SerializeField] private TextMeshProUGUI txtName;
     [SerializeField] private TextMeshProUGUI txtDescription;
-   
+    [SerializeField] private Transform body;
+
     private CanvasGroup canvasGroup;
 
     private void Awake()
@@ -33,8 +34,9 @@ public class PopupPoweupUnlocked : MonoBehaviour
 
         canvasGroup.DOFade(1f, ANIMATION_TIME);
         gameObject.SetActive(true);
-        transform.localScale = Vector3.one * 0.8f;
-        transform.DOScale(1f, ANIMATION_TIME).SetEase(Ease.OutBack);
+
+        body.transform.localScale = Vector3.one * 0.8f;
+        body.transform.DOScale(1f, ANIMATION_TIME).SetEase(Ease.OutBack);
 
         var texts = FindObjectsOfType<TextPowerupName>();
         for (int i = 0; i < texts.Length; i++)
@@ -46,7 +48,7 @@ public class PopupPoweupUnlocked : MonoBehaviour
     public void Close()
     {
         canvasGroup.DOFade(0f, ANIMATION_TIME);
-        transform.DOScale(0f, ANIMATION_TIME).SetEase(Ease.InBack).OnComplete(() => {
+        body.transform.DOScale(0f, ANIMATION_TIME).SetEase(Ease.InBack).OnComplete(() => {
             gameObject.SetActive(false);
             PopupManager.Instance.DoNextAction();
         });
