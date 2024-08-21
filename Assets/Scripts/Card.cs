@@ -35,7 +35,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
     public Image icon;
     public CardSide side = CardSide.Back;
     public CardUse cardUse;
-    public CardData data { get; private set; }
+    [field:SerializeField] public CardData data { get; private set; }
     public CardEffect cardEffect { get; private set; }
     public Action onCardAppear;
     public Action onCardDisappear;
@@ -69,6 +69,10 @@ public class Card : MonoBehaviour, IPointerDownHandler
     public void SetData(CardData cardData)
     {
         this.data = cardData;
+        if (cardEffect != null && cardEffect is Monster)
+        {
+            this.icon.sprite = data.sprite;
+        }
     }
     public void ShowSpawnAnimation(float delayFlip = SPAWN_DELAY_FLIP)
     {
@@ -133,7 +137,6 @@ public class Card : MonoBehaviour, IPointerDownHandler
             if (hero != null)
             {
                 Debug.Log("You click hero card");
-
             }
             if (CardManager.Instance.IsNextToHeroCard(this))
             {
@@ -174,6 +177,4 @@ public class Card : MonoBehaviour, IPointerDownHandler
         GridManager.Instance.dicGrids[pos].card = this;
         transform.DOMove(GridManager.Instance.dicGrids[pos].transform.position, CARD_MOVE_SPEED);
     }
-
-
 }

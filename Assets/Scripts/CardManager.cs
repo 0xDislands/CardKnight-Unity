@@ -321,6 +321,7 @@ public class CardManager : MonoBehaviour
         card.Pos = grid.pos;
         card.transform.position = grid.transform.position;
         card.gameObject.name = "Card #" + UnityEngine.Random.Range(100, 200);
+        card.SetData(data);
         if (cards.Contains(card) == false)
         {
             cards.Add(card);
