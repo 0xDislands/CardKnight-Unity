@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Dislands;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,16 +8,18 @@ using UnityEngine.UI;
 
 public class PopupInfo : MonoBehaviour
 {
+    public const float ANIMATION_TIME = 0.5f;
+
     [SerializeField] private Image icon;
     [SerializeField] private TextMeshProUGUI skillInfo;
     [SerializeField] private TagInfo tagInfo;
     [SerializeField] private Sprite questionMark;
-
+    [SerializeField] private Transform body;
 
     private void OnEnable()
     {
-        transform.localScale = Vector3.zero;
-        transform.DOScale(1f, 0.2f);
+        body.transform.localScale = Vector3.zero;
+        body.transform.DOScale(1f, ANIMATION_TIME).SetEase(Ease.OutBack);
     }
 
     public void DisplaySkill(PowerupId id)
@@ -67,6 +70,6 @@ public class PopupInfo : MonoBehaviour
 
     public void Close()
     {
-        transform.DOScale(0f, 0.2f).OnComplete(()=> gameObject.SetActive(false));
+        body.transform.DOScale(0f, ANIMATION_TIME).SetEase(Ease.InBack).OnComplete(()=> gameObject.SetActive(false));
     }
 }
