@@ -87,7 +87,7 @@ MonoBehaviour:
     cardPrefab: {fileID: 8772459415456982177, guid: 59e716bb4483eff4daf81d007a8a2552, type: 3}
   - id: 5
     name: 
-    sprite: {fileID: 21300000, guid: 25317dfaecef39447917c1dbfa192871, type: 3}
+    sprite: {fileID: 21300000, guid: ba7ab7690babbbd46839b942f509cb28, type: 3}
     health: 0
     cardPrefab: {fileID: 8772459415456982177, guid: 6fc67f54f96af7e45b7aab5fa5172f71, type: 3}
   - id: 10
@@ -190,10 +190,10 @@ MonoBehaviour:
     powerUps: 000000000100000003000000
     name: Knight
     description: This is description
-    sprite: {fileID: 21300000, guid: fb894fcaf80ca0d4685b372f8e0a761f, type: 3}
+    sprite: {fileID: 21300000, guid: dfa2a146674cc4748959ae5ef97dd9a2, type: 3}
     skins:
-    - {fileID: 21300000, guid: fb894fcaf80ca0d4685b372f8e0a761f, type: 3}
-    - {fileID: 21300000, guid: 2220fedbb2be03c47927140efbf43acf, type: 3}
+    - {fileID: 21300000, guid: dfa2a146674cc4748959ae5ef97dd9a2, type: 3}
+    - {fileID: 21300000, guid: 3f957d3ba2d11ac47bec6f274f5ca240, type: 3}
     - {fileID: 21300000, guid: 35f752ea57812db469d89008420eab54, type: 3}
     selectedSkin: 0
   - id: 1
