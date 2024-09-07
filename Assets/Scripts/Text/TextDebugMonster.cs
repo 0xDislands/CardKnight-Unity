@@ -3,8 +3,6 @@ using TMPro;
 
 public class TextDebugMonster : MonoBehaviour
 {
-    public const bool SHOW_DEBUG = true;
-
     private TextMeshProUGUI txtDebug;
     private Monster monster;
 
@@ -17,7 +15,7 @@ public class TextDebugMonster : MonoBehaviour
 
     private void Update ()
     {
-        if (SHOW_DEBUG == false) return;
+        if (Constants.SHOW_DEBUG == false) return;
         txtDebug.text = GetDebugText ();
     }
 

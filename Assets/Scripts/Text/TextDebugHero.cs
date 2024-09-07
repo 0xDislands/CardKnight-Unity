@@ -13,6 +13,7 @@ public class TextDebugHero : MonoBehaviour
 
     private void Update ()
     {
+        if (Constants.SHOW_DEBUG == false) return;
         txtDebug.text = GetDebugText ();
     }
 

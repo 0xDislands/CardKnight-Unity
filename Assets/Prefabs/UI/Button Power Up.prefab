@@ -375,6 +375,8 @@ MonoBehaviour:
   id: 0
   coolDownImg: {fileID: 4030173898748033925}
   icon: {fileID: 3396183902135001512}
+  hero: {fileID: 0}
+  isUsingSkill: 0
   powerupPrefab: {fileID: 3422061619211254893, guid: d2233d5b1ffb3844a89eb66111db78e1, type: 3}
 --- !u!114 &3515908722345748569
 MonoBehaviour:
@@ -421,10 +423,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8891171662576682608}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6, y: 0}
-  m_SizeDelta: {x: 152.8873, y: 178.3336}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.00012207031, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9188945912958812699
 CanvasRenderer:
@@ -456,7 +458,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 3dd55defa483e5148a36efb4a4893a61, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

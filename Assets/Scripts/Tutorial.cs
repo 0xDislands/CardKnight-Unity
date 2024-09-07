@@ -6,14 +6,16 @@ using UnityEngine.UI;
 
 public class Tutorial : MonoBehaviour
 {
+    public const float ANIM_TIME = 0.5f;
+
     [SerializeField] private Image image;
     [SerializeField] private Sprite[] tutorialSprites;
     private int index;
 
     private void OnEnable()
     {
-        transform.localScale = Vector3.zero;
-        transform.DOScale(1f, 0.2f);
+        transform.localScale = Vector3.one * 0.5f;
+        transform.DOScale(1f, ANIM_TIME).SetEase(Ease.OutBack);
     }
 
     public void Next()
@@ -38,7 +40,7 @@ public class Tutorial : MonoBehaviour
 
     public void Close()
     {
-        transform.DOScale(0f, 0.2f).OnComplete(() => 
+        transform.DOScale(Vector3.one * 0.5f, ANIM_TIME).SetEase(Ease.InBack).OnComplete(() => 
         {
             gameObject.SetActive(false);
         });

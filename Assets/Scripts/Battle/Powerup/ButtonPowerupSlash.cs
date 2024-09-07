@@ -35,8 +35,6 @@ public class ButtonPowerupSlash : ButtonPowerup
         for (int i = 0; i < GridManager.Instance.grids.Length; i++)
         {
             if (GridManager.Instance.grids[i].pos == heroCard.Pos) continue;
-            //if (GridManager.Instance.grids[i].card.GetComponentInChildren<ImmuneMagicTag>() != null) continue;
-            //if (GridManager.Instance.grids[i].pos == hero.Pos) continue;
             GridPos grid = GridManager.Instance.grids[i];
             var curse = Instantiate(powerupPrefab, grid.card.transform);
             curse.transform.position = grid.card.transform.position;
@@ -46,7 +44,6 @@ public class ButtonPowerupSlash : ButtonPowerup
         }
         if (monsterCount == 0)
         {
-            //Notify("OUT OF RANGE");
             hero.canMove = true;
         } else
         {
