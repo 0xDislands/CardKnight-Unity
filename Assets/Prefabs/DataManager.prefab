@@ -194,7 +194,7 @@ MonoBehaviour:
     skins:
     - {fileID: 21300000, guid: dfa2a146674cc4748959ae5ef97dd9a2, type: 3}
     - {fileID: 21300000, guid: 3f957d3ba2d11ac47bec6f274f5ca240, type: 3}
-    - {fileID: 21300000, guid: 35f752ea57812db469d89008420eab54, type: 3}
+    - {fileID: 21300000, guid: dfa2a146674cc4748959ae5ef97dd9a2, type: 3}
     selectedSkin: 0
   - id: 1
     powerUps: 020000000500000006000000
@@ -203,18 +203,18 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: bb538c4c89085e4419f63fbedd4b6e59, type: 3}
     skins:
     - {fileID: 21300000, guid: bb538c4c89085e4419f63fbedd4b6e59, type: 3}
-    - {fileID: 21300000, guid: 984c858d84445644d800bd99e54cd8f2, type: 3}
-    - {fileID: 21300000, guid: d7ac4dc08d9f4b6449fa8efc52643a5e, type: 3}
+    - {fileID: 21300000, guid: bb538c4c89085e4419f63fbedd4b6e59, type: 3}
+    - {fileID: 21300000, guid: bb538c4c89085e4419f63fbedd4b6e59, type: 3}
     selectedSkin: 0
   - id: 2
     powerUps: 040000000100000008000000
     name: Vampire
     description: This is description
-    sprite: {fileID: 21300000, guid: 3f2586774a8b9a54787d1f85d91e2b4b, type: 3}
+    sprite: {fileID: 21300000, guid: 95727ffb2b0f24583904e1b32edc2763, type: 3}
     skins:
-    - {fileID: 21300000, guid: 3f2586774a8b9a54787d1f85d91e2b4b, type: 3}
-    - {fileID: 21300000, guid: d7dd5a4adb86f4644889392c79698d6a, type: 3}
-    - {fileID: 21300000, guid: d0fe2eea8c1184f4a80d62df44e14550, type: 3}
+    - {fileID: 21300000, guid: 95727ffb2b0f24583904e1b32edc2763, type: 3}
+    - {fileID: 21300000, guid: 95727ffb2b0f24583904e1b32edc2763, type: 3}
+    - {fileID: 21300000, guid: 95727ffb2b0f24583904e1b32edc2763, type: 3}
     selectedSkin: 0
   tagDatas:
   - tagType: 0
