@@ -20,6 +20,7 @@ public class PopupInfo : MonoBehaviour
     {
         body.transform.localScale = Vector3.zero;
         body.transform.DOScale(1f, ANIMATION_TIME).SetEase(Ease.OutBack);
+        skillInfo.text = "";
     }
 
     public void DisplaySkill(PowerupId id)
