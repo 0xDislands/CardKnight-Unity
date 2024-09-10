@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 namespace CartoonFX
 {
-	[RequireComponent(typeof(ParticleSystem))]
 	public partial class CFXR_Effect : MonoBehaviour
 	{
 		[System.Serializable]
@@ -49,6 +49,17 @@ namespace CartoonFX
 			static bool s_CallbackRegistered;
 			static List<CameraShake> s_CameraShakes = new List<CameraShake>();
 
+#if UNITY_2019_1_OR_NEWER
+			static void OnPreRenderCamera_Static_URP(ScriptableRenderContext context, Camera cam)
+			{
+				OnPreRenderCamera_Static(cam);
+			}
+			static void OnPostRenderCamera_Static_URP(ScriptableRenderContext context, Camera cam)
+			{
+				OnPostRenderCamera_Static(cam);
+			}
+#endif
+
 			static void OnPreRenderCamera_Static(Camera cam)
 			{
 				int count = s_CameraShakes.Count;
@@ -75,8 +86,27 @@ namespace CartoonFX
 
 				if (!s_CallbackRegistered)
 				{
-					Camera.onPreRender += OnPreRenderCamera_Static;
-					Camera.onPostRender += OnPostRenderCamera_Static;
+#if UNITY_2019_1_OR_NEWER
+	#if UNITY_2019_3_OR_NEWER
+					if (GraphicsSettings.currentRenderPipeline == null)
+	#else
+					if (GraphicsSettings.renderPipelineAsset == null)
+	#endif
+					{
+						// Built-in Render Pipeline
+						Camera.onPreRender += OnPreRenderCamera_Static;
+						Camera.onPostRender += OnPostRenderCamera_Static;
+					}
+					else
+					{
+						// URP
+						RenderPipelineManager.beginCameraRendering += OnPreRenderCamera_Static_URP;
+						RenderPipelineManager.endCameraRendering += OnPostRenderCamera_Static_URP;
+					}
+#else
+						Camera.onPreRender += OnPreRenderCamera_Static;
+						Camera.onPostRender += OnPostRenderCamera_Static;
+#endif
 
 					s_CallbackRegistered = true;
 				}
@@ -88,8 +118,27 @@ namespace CartoonFX
 
 				if (s_CallbackRegistered && s_CameraShakes.Count == 0)
 				{
-					Camera.onPreRender -= OnPreRenderCamera_Static;
-					Camera.onPostRender -= OnPostRenderCamera_Static;
+#if UNITY_2019_1_OR_NEWER
+	#if UNITY_2019_3_OR_NEWER
+					if (GraphicsSettings.currentRenderPipeline == null)
+	#else
+					if (GraphicsSettings.renderPipelineAsset == null)
+	#endif
+					{
+						// Built-in Render Pipeline
+						Camera.onPreRender -= OnPreRenderCamera_Static;
+						Camera.onPostRender -= OnPostRenderCamera_Static;
+					}
+					else
+					{
+						// URP
+						RenderPipelineManager.beginCameraRendering -= OnPreRenderCamera_Static_URP;
+						RenderPipelineManager.endCameraRendering -= OnPostRenderCamera_Static_URP;
+					}
+#else
+						Camera.onPreRender -= OnPreRenderCamera_Static;
+						Camera.onPostRender -= OnPostRenderCamera_Static;
+#endif
 
 					s_CallbackRegistered = false;
 				}
@@ -224,8 +273,7 @@ namespace CartoonFX
 
 					var randomVec = new Vector3(Random.value, Random.value, Random.value);
 					var shakeVec = Vector3.Scale(randomVec, shakeStrength) * (Random.value > 0.5f ? -1 : 1);
-					shakeVector = Vector3.Lerp(Vector3.zero, shakeVec, shakeCurve.Evaluate(delta));
-					//shakeVector = shakeVec * shakeCurve.Evaluate(delta); // TODO this is the same?
+					shakeVector = shakeVec * shakeCurve.Evaluate(delta) * GLOBAL_CAMERA_SHAKE_MULTIPLIER;
 				}
 				else if (isShaking)
 				{

@@ -1,6 +1,5 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------------
 // Cartoon FX
-// (c) 2012-2020 Jean Moreno
 //--------------------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
@@ -39,7 +38,7 @@ namespace CartoonFX
 
 		void OnValidate()
 		{
-			this.hideFlags = HideFlags.DontSaveInBuild;
+			this.hideFlags = HideFlags.None;
 
 			if (text == null || font == null)
 			{

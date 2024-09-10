@@ -594,3 +594,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireEffect: {fileID: 411515980779252365, guid: 0b6358d58230db24dabde1e225f2a66c, type: 3}
+  fireEffectExplosive: {fileID: 198000011976894484, guid: 4db157f700e903e4282d77f287b7ad7e, type: 3}
