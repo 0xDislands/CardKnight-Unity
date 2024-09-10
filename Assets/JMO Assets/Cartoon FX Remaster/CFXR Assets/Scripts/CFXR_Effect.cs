@@ -1,12 +1,17 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------------
 // Cartoon FX
-// (c) 2012-2020 Jean Moreno
+//--------------------------------------------------------------------------------------------------------------------------------
+
+
 //--------------------------------------------------------------------------------------------------------------------------------
 
 // Use the defines below to globally disable features:
+
 //#define DISABLE_CAMERA_SHAKE
 //#define DISABLE_LIGHTS
 //#define DISABLE_CLEAR_BEHAVIOR
+
+//--------------------------------------------------------------------------------------------------------------------------------
 
 using UnityEngine;
 #if UNITY_EDITOR
@@ -16,8 +21,12 @@ using UnityEditor;
 namespace CartoonFX
 {
 	[RequireComponent(typeof(ParticleSystem))]
+	[DisallowMultipleComponent]
 	public partial class CFXR_Effect : MonoBehaviour
 	{
+		// Change this value to easily tune the camera shake strength for all effects
+		const float GLOBAL_CAMERA_SHAKE_MULTIPLIER = 1.0f;
+
 #if UNITY_EDITOR
 		[InitializeOnLoadMethod]
 		static void InitGlobalOptions()
@@ -444,6 +453,8 @@ namespace CartoonFX
 
 		float time;
 		ParticleSystem rootParticleSystem;
+		[System.NonSerialized] MaterialPropertyBlock materialPropertyBlock;
+		[System.NonSerialized] Renderer particleRenderer;
 
 		// ================================================================================================================================
 
@@ -482,7 +493,13 @@ namespace CartoonFX
 	#endif
 	#if !DISABLE_CLEAR_BEHAVIOR
 			startFrameOffset = GlobalStartFrameOffset++;
-	#endif
+#endif
+			// Detect if world position needs to be passed to the shader
+			particleRenderer = this.GetComponent<ParticleSystemRenderer>();
+			if (particleRenderer.sharedMaterial != null && particleRenderer.sharedMaterial.IsKeywordEnabled("_CFXR_LIGHTING_WPOS_OFFSET"))
+			{ 
+				materialPropertyBlock = new MaterialPropertyBlock();
+			}
 		}
 #endif
 
@@ -547,6 +564,12 @@ namespace CartoonFX
 				}
 			}
 #endif
+			if (materialPropertyBlock != null)
+			{
+				particleRenderer.GetPropertyBlock(materialPropertyBlock);
+				materialPropertyBlock.SetVector("_GameObjectWorldPosition", this.transform.position);
+				particleRenderer.SetPropertyBlock(materialPropertyBlock);
+			}
 		}
 #endif
 
@@ -666,6 +689,19 @@ namespace CartoonFX
 			if (this == null)
 			{
 				return;
+			}
+
+			var renderer = this.GetComponent<ParticleSystemRenderer>();
+			if (renderer.sharedMaterial != null && renderer.sharedMaterial.IsKeywordEnabled("_CFXR_LIGHTING_WPOS_OFFSET"))
+			{
+				if (materialPropertyBlock == null)
+				{
+					materialPropertyBlock = new MaterialPropertyBlock();
+				}
+
+				renderer.GetPropertyBlock(materialPropertyBlock);
+				materialPropertyBlock.SetVector("_GameObjectWorldPosition", this.transform.position);
+				renderer.SetPropertyBlock(materialPropertyBlock);
 			}
 
 			// Need to track unwrapped time when playing back from Editor

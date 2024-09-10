@@ -1,6 +1,5 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------------
 // Cartoon FX
-// (c) 2012-2020 Jean Moreno
 //--------------------------------------------------------------------------------------------------------------------------------
 
 using System.Collections;
@@ -14,7 +13,6 @@ namespace CartoonFX
 {
 	public class CFXR_ParticleTextFontAsset : ScriptableObject
 	{
-#if UNITY_EDITOR
 		public string CharSequence = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?-.#@$ ";
 		public Sprite[] CharSprites;
 		public Kerning[] CharKerningOffsets;
@@ -29,7 +27,7 @@ namespace CartoonFX
 
 		void OnValidate()
 		{
-			this.hideFlags = HideFlags.DontSaveInBuild;
+			this.hideFlags = HideFlags.None;
 
 			if (CharKerningOffsets == null || CharKerningOffsets.Length != CharSequence.Length)
 			{
@@ -53,7 +51,8 @@ namespace CartoonFX
 			return valid;
 		}
 
-		[MenuItem("Tools/Create font asset")]
+#if UNITY_EDITOR
+		// [MenuItem("Tools/Create font asset")]
 		static void CreateFontAsset()
 		{
 			var instance = CreateInstance<CFXR_ParticleTextFontAsset>();

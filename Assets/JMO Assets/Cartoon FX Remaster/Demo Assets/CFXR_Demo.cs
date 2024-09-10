@@ -128,8 +128,8 @@ namespace CartoonFX
 
 		//----------------------------------------------------------------------------------------------------------------------------
 
+		[System.NonSerialized] public GameObject currentEffect;
 		GameObject[] effectsList;
-		GameObject currentEffect;
 		int index = 0;
 
 		Vector3 camInitialPosition;
@@ -163,6 +163,11 @@ namespace CartoonFX
 				if (currentEffect != null)
 				{
 					var ps = currentEffect.GetComponent<ParticleSystem>();
+					if (ps == null)
+					{
+						return;
+					}
+
 					if (ps.isEmitting)
 					{
 						ps.Stop(true);
@@ -230,7 +235,7 @@ namespace CartoonFX
 			}
 		}
 
-		void PlayAtIndex()
+		public void PlayAtIndex()
 		{
 			if (currentEffect != null)
 			{

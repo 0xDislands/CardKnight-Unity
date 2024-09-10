@@ -9,6 +9,7 @@ public class SkillFire : Skill
     public const int ATTACK_NUMBER = 2;
 
     public ParticleSystem fireEffect;
+    public ParticleSystem fireEffectExplosive;
     public override void ApplyEffect (Hero hero)
     {
         var monsters = GetAllMonsters ();
@@ -36,6 +37,9 @@ public class SkillFire : Skill
                 var damageData = new DamageData ();
                 damageData.damage = 1;
                 monster.TakeDamage (damageData, out bool dead);
+                Debug.Log("monster" + monster.name);
+                var effect2 = SimpleObjectPool.Instance.GetObjectFromPool(fireEffectExplosive, monster.transform.position);
+                Debug.Log("Spawn new fire"+effect2.name);
             });
             yield return new WaitForSeconds (0.2f);
         }
