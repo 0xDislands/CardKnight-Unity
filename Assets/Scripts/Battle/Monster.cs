@@ -16,6 +16,8 @@ public class Monster : CardEffect
     {
         textHp = GetComponentInChildren<TextHp>();
         tags = GetComponentsInChildren<MonsterTag>();
+        var shield = GetComponentInChildren<TextShield>();
+        if (shield != null) shield.transform.parent.gameObject.SetActive(false);
     }
     private void Start()
     {
@@ -93,12 +95,12 @@ public class Monster : CardEffect
             var monsterCard = GetComponent<Card>();
             monsterCard.Disappear();
             var nextCardId = CardManager.Instance.GetNextCard();
-            Debug.Log("calling spawn monster take damage");
+            Debug.Log("calling spawn newMonster take damage");
             var newCard = CardManager.Instance.SpawnCard(monsterCard.Pos, nextCardId.cardId);
             newCard.ShowSpawnAnimation();
-            if(newCard.TryGetComponent<Monster>(out var monster))
+            if(newCard.TryGetComponent<Monster>(out var newMonster))
             {
-                SetTag(nextCardId.tagDic);
+                newMonster.SetTag(nextCardId.tagDic);
             }
         }
     }
