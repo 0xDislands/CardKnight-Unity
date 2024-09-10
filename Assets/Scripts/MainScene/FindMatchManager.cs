@@ -27,7 +27,10 @@ public class FindMatchManager : MonoBehaviour
     {
 
     }
-
+    /// <summary>
+    /// this function is called from Button Find Match (UnityEvent on editor)
+    /// this function is called from Button Find Match (UnityEvent on editor)
+    /// </summary>
     public void OnFindMatchClick()
     {
         if (state == FindMatchState.Lobby)

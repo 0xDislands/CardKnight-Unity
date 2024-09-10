@@ -58,6 +58,7 @@ public class Hero : MonoBehaviour
 
     public void TakeDamage(DamageData data, out bool dead)
     {
+        dead = false;
         if (data.damage > heroData.shield)
         {
             heroData.hp -= (int)(data.damage - heroData.shield);
@@ -69,6 +70,7 @@ public class Hero : MonoBehaviour
                 dead = true;
                 Gameplay.Instance.Lose();
             }
+            Debug.Log($"take damage, after take damage, hp = {heroData.hp}, dead = {dead}");
         }
         else
         {

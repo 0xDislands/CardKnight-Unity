@@ -26,7 +26,7 @@ public class ScaleTextButton : MonoBehaviour
     public void ButtonMouseDown()
     {
         tmpro.transform.DOScale(startScale + scale, scaleDuration);
-        tmpro.transform.DOLocalMove(startPosition + movePosition, moveDuration);
+        tmpro.transform.DOLocalMove(startPosition + movePosition * 0.5f, moveDuration);
     }
     public void ButtonMouseUp()
     {

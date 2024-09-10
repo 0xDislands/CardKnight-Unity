@@ -9,13 +9,16 @@ using UnityEngine.UI;
 
 public class SkinPopup : MonoBehaviour
 {
+    public const float ANIM_TIME = 0.5f;
+
     [SerializeField] private TextMeshProUGUI tittle;
+    [SerializeField] private Transform body;
     [SerializeField] private Image[] avatars;
     private HeroId displayId;
     private void OnEnable()
     {
-        transform.localScale = Vector3.zero;
-        transform.DOScale(1f, 0.2f);
+        body.transform.localScale = Vector3.zero;
+        body.transform.DOScale(1f, ANIM_TIME).SetEase(Ease.OutBack);
     }
 
     public void Display(HeroId id)
@@ -23,7 +26,7 @@ public class SkinPopup : MonoBehaviour
         displayId = id;
         gameObject.SetActive(true);
         var data = DataManager.Instance.dicHero[id];
-        tittle.text = $"Select {id}'s skin";
+        tittle.text = $"Select {id}'s skin".ToUpper();
         for (int i = 0; i < avatars.Length; i++)
         {
             avatars[i].sprite = data.skins[i];
@@ -43,7 +46,7 @@ public class SkinPopup : MonoBehaviour
 
     public void Close()
     {
-        transform.DOScale(0f, 0.1f).OnComplete(() => 
+        body.transform.DOScale(0f, ANIM_TIME).SetEase(Ease.InBack).OnComplete(() => 
         {
             gameObject.SetActive(false);
         });

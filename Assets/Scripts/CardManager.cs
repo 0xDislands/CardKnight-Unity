@@ -523,12 +523,7 @@ public class CardManager : MonoBehaviour
 
     public void ShowDebug(List<Vector2Int> positions)
     {
-        if (Constants.SHOW_DEBUG == false) return;
-        for (int i = 0; i < positions.Count; i++)
-        {
-            var obj = Instantiate(test, GridManager.Instance.dicGrids[positions[i]].transform.position, Quaternion.identity);
-            testPositions.Add(obj);
-        }
+
     }
 
     internal void RemoveCard(Card card)

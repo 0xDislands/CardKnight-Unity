@@ -14,10 +14,12 @@ public class GridPos : MonoBehaviour
     private void Awake()
     {
         txtDebug = GetComponentInChildren<TextMeshProUGUI>();
+        txtDebug.text = "";
     }
 
     private void Update()
     {
+        if (Constants.SHOW_CHEAT_OBJECT == false) return;
         txtDebug.text = pos.ToString();
         if (card == null) return;
         if (card.Pos != pos)

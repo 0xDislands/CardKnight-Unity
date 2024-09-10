@@ -56,8 +56,6 @@ public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public bool IsCooldownReady()
     {
-        //var unlockLevel = DataManager.Instance.dicPowerUp[id].unlockLevel;
-        //if (CardManager.Instance.hero.heroData.level < unlockLevel) return false; 
         if (coolDownImg.fillAmount > 0) return false;
         return true;
     }
