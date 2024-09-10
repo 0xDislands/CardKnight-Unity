@@ -524,7 +524,7 @@ MonoBehaviour:
   monsterData:
     damage: 2
     baseHp: 1.8
-    multiple: 1.5
+    multiple: 1.4
     rewardExp: 1.5
     currentHp: 0
     maxHp: 0
