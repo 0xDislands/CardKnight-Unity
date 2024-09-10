@@ -409,6 +409,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Hero
       objectReference: {fileID: 0}
+    - target: {fileID: 3221595381452174437, guid: 367c7c408878a194dafc8f8adeb171dc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 32ffebb15d37f054c9ad4fa82589c886, type: 3}
     - target: {fileID: 3888076469905139714, guid: 367c7c408878a194dafc8f8adeb171dc, type: 3}
       propertyPath: m_Name
       value: Card Front
