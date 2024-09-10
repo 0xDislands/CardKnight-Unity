@@ -376,7 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterData:
     damage: 2
-    baseHp: 1.8
+    baseHp: 1.3
     multiple: 1.2
     rewardExp: 1.5
     currentHp: 0
