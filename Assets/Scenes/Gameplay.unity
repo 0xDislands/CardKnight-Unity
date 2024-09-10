@@ -20290,7 +20290,7 @@ PrefabInstance:
     - target: {fileID: 8796815212735308930, guid: 04a968c5e92e62043a0a124bb2ccc88d, type: 3}
       propertyPath: sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 87fc7428ed3830f4aa7c8380936e91d3, type: 3}
+      objectReference: {fileID: 21300000, guid: 25317dfaecef39447917c1dbfa192871, type: 3}
     - target: {fileID: 8796815212735308930, guid: 04a968c5e92e62043a0a124bb2ccc88d, type: 3}
       propertyPath: description
       value: 

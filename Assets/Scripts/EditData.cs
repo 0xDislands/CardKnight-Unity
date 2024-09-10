@@ -23,7 +23,6 @@ public class EditData : MonoBehaviour
     private void OnEnable()
     {
         Display();
-        useCustomData = true;
     }
 
     private void Display()
@@ -73,6 +72,7 @@ public class EditData : MonoBehaviour
 
     public void SetData()
     {
+        useCustomData = true;
         dataStr = string.Empty;
         for (int i = 0; i < enemyField.Length; i++)
         {
@@ -103,10 +103,10 @@ public class EditData : MonoBehaviour
         {
             dataStr += noSkillField[i].text + "\t";
         }
-        ReWriteData(dataStr);
+        _ = ReWriteData(dataStr);
     }
 
-    private async void ReWriteData(string buildStr)
+    private async Task ReWriteData(string buildStr)
     {
         var task = File.WriteAllTextAsync(AssetDatabase.GetAssetPath(textAsset), buildStr);
         while (!task.IsCompleted) await Task.Yield();
