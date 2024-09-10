@@ -420,10 +420,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5508648952251700889}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -72.1073, y: -104.9707}
+  m_SizeDelta: {x: 304.3599, y: 405.8132}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4653933510336963573
 CanvasRenderer:
@@ -453,7 +453,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 87fc7428ed3830f4aa7c8380936e91d3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5fbe0c685a886a84091ecacb5fc17c1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -559,8 +559,15 @@ MonoBehaviour:
   cardBack: {fileID: 6685940440013630504}
   cardParent: {fileID: 0}
   icon: {fileID: 6789486490068517606}
+  txtName: {fileID: 0}
   side: 0
   cardUse: 0
+  <data>k__BackingField:
+    id: 0
+    name: 
+    sprite: {fileID: 0}
+    health: 0
+    cardPrefab: {fileID: 0}
   flipping: 0
 --- !u!225 &2075306533853894767
 CanvasGroup:
