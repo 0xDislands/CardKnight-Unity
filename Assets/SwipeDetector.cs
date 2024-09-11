@@ -12,6 +12,7 @@ public class SwipeDetector : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     private void Awake()
     {
         card = GetComponent<Card>();
+        Debug.LogError($"this is wipe detector : {gameObject.name}");
     }
 
     public void OnPointerDown(PointerEventData eventData)

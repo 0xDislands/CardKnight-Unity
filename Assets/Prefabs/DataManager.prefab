@@ -66,7 +66,7 @@ MonoBehaviour:
     health: 0
     cardPrefab: {fileID: 8772459415456982177, guid: 2f94a8eb1f37b4e4db02163e07543b52, type: 3}
   - id: 8
-    name: Naga
+    name: Naga Captain
     sprite: {fileID: 21300000, guid: c41bfcd43f2e46c4195628b35e2f4b58, type: 3}
     health: 0
     cardPrefab: {fileID: 8772459415456982177, guid: 5cb4f37809419dd4381c8cf38d6d1475, type: 3}
@@ -92,17 +92,17 @@ MonoBehaviour:
     cardPrefab: {fileID: 8772459415456982177, guid: 6fc67f54f96af7e45b7aab5fa5172f71, type: 3}
   - id: 10
     name: 
-    sprite: {fileID: 21300000, guid: 139d45194752d454ba344441670aa31d, type: 3}
+    sprite: {fileID: 21300000, guid: 5fbe0c685a886a84091ecacb5fc17c1b, type: 3}
     health: 0
     cardPrefab: {fileID: 8772459415456982177, guid: 51c4dbc624d619e42a41c1e0aee9f409, type: 3}
   - id: 11
     name: 
-    sprite: {fileID: 21300000, guid: 13f6246a193a7ee4b89732c4f01bb871, type: 3}
+    sprite: {fileID: 21300000, guid: 9383a530c87854e439bddf68f2888868, type: 3}
     health: 0
     cardPrefab: {fileID: 8772459415456982177, guid: 985a249691cda954bb4402021760ecfe, type: 3}
   - id: 12
     name: 
-    sprite: {fileID: 21300000, guid: 3d9d4fcc3fcdf1f42b93d74bbc9742d3, type: 3}
+    sprite: {fileID: 21300000, guid: 05f74080c98a56540819c23fa382559f, type: 3}
     health: 0
     cardPrefab: {fileID: 8772459415456982177, guid: 7e91b0de27de17e45a4d2acbdf752cee, type: 3}
   - id: 13
@@ -148,7 +148,7 @@ MonoBehaviour:
     description: Turn one monster to chicken
     sprite: {fileID: 21300000, guid: 094379aa0a8ce544cb15566e4e5b6fae, type: 3}
     unlockLevel: 1
-    cooldown: 2
+    cooldown: 3
   - id: 3
     name: Full Heal
     description: Heal full hp
