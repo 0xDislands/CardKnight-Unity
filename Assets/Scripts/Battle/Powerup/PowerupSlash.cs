@@ -6,7 +6,7 @@ using TMPro;
 
 public class PowerupSlash : PowerupBase
 {
-    public EffectSlash effect;
+    public GameObject effect;
     public ParticleSystem attackEffect;
     private void Awake()
     {
@@ -34,7 +34,7 @@ public class PowerupSlash : PowerupBase
         if (card.TryGetComponent<Monster>(out var monster))
         {
             var newEffect = SimpleObjectPool.Instance.GetObjectFromPool(effect, card.transform.position);
-            newEffect.DoEffect();
+         //   newEffect.DoEffect();
             var newAttackEffect = SimpleObjectPool.Instance.GetObjectFromPool(attackEffect, card.transform.position);
             var damage = new DamageData();
             damage.damage = Mathf.CeilToInt(monster.monsterData.maxHp * 0.25f);
