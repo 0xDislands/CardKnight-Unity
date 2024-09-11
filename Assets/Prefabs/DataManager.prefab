@@ -133,13 +133,13 @@ MonoBehaviour:
   powerupDatas:
   - id: 0
     name: SLASH
-    description: Slash description
+    description: '-25% max HP to an adj monster '
     sprite: {fileID: 21300000, guid: 0299d04492abf1746aa3ee37a2af3e74, type: 3}
     unlockLevel: 1
     cooldown: 3
   - id: 1
     name: SWAP
-    description: Swap Description
+    description: Teleport to anywhere
     sprite: {fileID: 21300000, guid: d33d3a25a496b824d80af2ba43398d02, type: 3}
     unlockLevel: 1
     cooldown: 3
@@ -148,7 +148,7 @@ MonoBehaviour:
     description: Turn one monster to chicken
     sprite: {fileID: 21300000, guid: 094379aa0a8ce544cb15566e4e5b6fae, type: 3}
     unlockLevel: 1
-    cooldown: 3
+    cooldown: 4
   - id: 3
     name: Full Heal
     description: Heal full hp
