@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 2075306533853894767}
   - component: {fileID: 8752874849221979746}
   - component: {fileID: 7724125158432507538}
+  - component: {fileID: 4241950129082789253}
   m_Layer: 5
   m_Name: Hero
   m_TagString: Untagged
@@ -397,6 +398,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textLevelUp: {fileID: 9202366413005754918, guid: 90847cb6115d26d4e824866a90d427d1, type: 3}
+--- !u!114 &4241950129082789253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8451986556342849492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e328802b686bcbd418e73dd1a37c6760, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4839564811546984991
 PrefabInstance:
   m_ObjectHideFlags: 0

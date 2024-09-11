@@ -9,6 +9,7 @@ public class ItemChestDevil : Item
     public List<CardId> transformCards = new List<CardId>() { CardId.ItemHeal, CardId.ItemPoison, CardId.ItemShield };
     public override void ApplyEffect(Hero hero)
     {
+        CardManager.Instance.hero.hasMove = false;
         var card = GetComponent<Card>();
         Gameplay.Instance.popupEvilBuff.ShowLevelUp(card);
     }

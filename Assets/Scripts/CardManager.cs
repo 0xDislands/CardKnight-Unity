@@ -335,6 +335,11 @@ public class CardManager : MonoBehaviour
         return heroNeighbours.Contains(card.Pos);
     }
 
+    public bool IsNextToHeroCard(Vector2Int pos)
+    {
+        return heroNeighbours.Contains(pos);
+    }
+
     public List<Vector2Int> GetNeightbourPositions(Vector2Int pos)
     {
         var neighbours = new List<Vector2Int>();
@@ -356,6 +361,8 @@ public class CardManager : MonoBehaviour
 
     public void MoveCardsAfterUse(Card card)
     {
+        hero.hasMove = heroCard.Pos != card.Pos;
+        Debug.Log($"hero pos = {heroCard.Pos}, card pos = {card.Pos}");
         var moveCard = GetMoveCard(card);
         var spawnNewCardPosition = moveCard.Pos;
         //Debug.Log($"is corner card = {GridManager.Instance.IsCornerCard(heroCard.Pos)}");
@@ -380,7 +387,7 @@ public class CardManager : MonoBehaviour
         {
             moveCard.MoveToPos(heroCard.Pos);
         }
-        heroCard.MoveToPos(card.Pos);
+        heroCard.MoveToPos(card.Pos);       
         //DOTween.Kill(card.transform);
         var newCardId = GetNextCard();
         Debug.Log("calling spawn card move card after use!!");

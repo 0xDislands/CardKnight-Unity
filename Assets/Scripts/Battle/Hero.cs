@@ -37,7 +37,7 @@ public class Hero : MonoBehaviour
     private TextHp textHp;
     private TextShield textShield;
     public HeroEXP exp { get; private set; }
-
+    public bool hasMove;
     private void Awake()
     {
         heroData = new HeroBattleData();

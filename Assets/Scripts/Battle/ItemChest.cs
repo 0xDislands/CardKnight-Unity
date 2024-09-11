@@ -8,6 +8,7 @@ public class ItemChest : Item
     public List<CardId> transformCards = new List<CardId>() { CardId.ItemHeal, CardId.ItemPoison, CardId.ItemShield };
     public override void ApplyEffect(Hero hero)
     {
+        CardManager.Instance.hero.hasMove = false;
         var effect = SimpleObjectPool.Instance.GetObjectFromPool(appearEffect, transform.position);
         var card = GetComponent<Card>();
         Debug.Log("calling spawn card item chest");

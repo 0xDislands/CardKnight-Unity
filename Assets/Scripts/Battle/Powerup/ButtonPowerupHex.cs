@@ -29,7 +29,7 @@ public class ButtonPowerupHex : ButtonPowerup
         isUsingSkill = true;
         hero.canMove = false;
         int monsterCount = 0;
-
+        TurnLeftToUSeSkill = maxTurnLeftToUseSkill;
         var heroCard = CardManager.Instance.heroCard;
         for (int i = 0; i < GridManager.Instance.grids.Length; i++)
         {

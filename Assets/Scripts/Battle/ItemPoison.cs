@@ -9,6 +9,7 @@ public class ItemPoison : Item
         if(hero.TryGetComponent<PoisonEachTurn>(out poison))
         {
             poison.poisonEffect = poisonEffect;
+            poison.ResetTurnCount();
         } 
         else
         {
