@@ -6,13 +6,31 @@ using UnityEngine.EventSystems;
 
 public class SwipeDetector : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    public const float DETECT_WIPE_DISTANCE = 300f;
+
     private Vector2 startPointerPosition, endPointerPosition;
     public float minSwipeDistance = 50f;
     private Card card;
     private void Awake()
     {
         card = GetComponent<Card>();
-        Debug.LogError($"this is wipe detector : {gameObject.name}");
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0)) 
+        {
+            startPointerPosition = Input.mousePosition;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            endPointerPosition = Input.mousePosition;
+            float distance = Vector2.Distance(startPointerPosition, endPointerPosition);
+            if (distance > DETECT_WIPE_DISTANCE)
+            {
+                Wipe();
+            }
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -23,10 +41,10 @@ public class SwipeDetector : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public void OnPointerUp(PointerEventData eventData)
     {
         endPointerPosition = eventData.position;
-        DetectSwipe();
+        Wipe();
     }
 
-    private void DetectSwipe()
+    private void Wipe()
     {
         Vector2 swipeVector = endPointerPosition - startPointerPosition;
 
