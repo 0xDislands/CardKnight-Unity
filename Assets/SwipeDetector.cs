@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SwipeDetector : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class SwipeDetector : MonoBehaviour
 {
     public const float DETECT_WIPE_DISTANCE = 300f;
 
@@ -31,17 +31,6 @@ public class SwipeDetector : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
                 Wipe();
             }
         }
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        startPointerPosition = eventData.position;
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        endPointerPosition = eventData.position;
-        Wipe();
     }
 
     private void Wipe()
