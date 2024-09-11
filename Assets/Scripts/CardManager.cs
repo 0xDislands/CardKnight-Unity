@@ -142,15 +142,12 @@ public class CardManager : MonoBehaviour
         List<CardId> results = new List<CardId>();
         List<CardId> monsters = new List<CardId>()
         {
-            CardId.Monster1, CardId.Monster2, CardId.Monster3
+            CardId.Monster1,CardId.Monster1, CardId.Monster2, CardId.Monster2
         };
-        for (int i = 0; i < 4; i++)
-        {
-            results.Add(monsters.RandomElement());
-        }
+        results.AddRange(monsters);
         List<CardId> nonMonsters = new List<CardId>()
         {
-            CardId.ItemHeal, CardId.ItemPoison, CardId.ItemChest, CardId.ItemShield
+            CardId.ItemHeal, CardId.ItemChest, CardId.ItemShield
         };
         for (int i = 0; i < 4; i++)
         {
@@ -191,7 +188,7 @@ public class CardManager : MonoBehaviour
             if (lines[i] == "") continue;
             if (dicCard.ContainsKey(lines[i]) == false)
             {
-                Debug.LogError("not found key with id : " + lines[i]);
+                Debug.LogWarning("not found key with id : " + lines[i]);
                 continue;
             } else
             {
