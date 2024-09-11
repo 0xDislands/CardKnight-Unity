@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using TMPro; 
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using System.IO;
@@ -137,9 +139,11 @@ public class EditData : MonoBehaviour
 
     private async Task ReWriteData(string buildStr)
     {
+#if UNITY_EDITOR
         var task = File.WriteAllTextAsync(AssetDatabase.GetAssetPath(textAsset), buildStr);
         while (!task.IsCompleted) await Task.Yield();
         EditorUtility.SetDirty(textAsset);
+#endif
         gameObject.SetActive(false);
     }
 }

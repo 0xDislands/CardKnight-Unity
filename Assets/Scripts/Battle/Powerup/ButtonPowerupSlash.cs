@@ -17,16 +17,21 @@ public class ButtonPowerupSlash : ButtonPowerup
             CancelSkill();
             return;
         }
-        if (IsLevelReady() == false)
+
+        if (Gameplay.Instance.cheatToggle.isOn == false)
         {
-            Notify("LEVEL UP TO UNLOCK");
-            return;
+            if (IsLevelReady() == false)
+            {
+                Notify("LEVEL UP TO UNLOCK");
+                return;
+            }
+            if (IsCooldownReady() == false)
+            {
+                Notify("ON COOLDOWN");
+                return;
+            }
         }
-        if (IsCooldownReady() == false)
-        {
-            Notify("ON COOLDOWN");
-            return;
-        }
+   
         isUsingSkill = true;
         hero.canMove = false;
         TurnLeftToUSeSkill = maxTurnLeftToUseSkill;

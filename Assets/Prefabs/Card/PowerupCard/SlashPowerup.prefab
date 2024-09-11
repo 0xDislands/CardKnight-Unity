@@ -471,7 +471,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28dc5652663b983469eed1431577adf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: {fileID: 4149379400033786973, guid: 3532ab7d9723b8b4fb85554d9c7f602f, type: 3}
-  attackEffect: {fileID: 6553047553640012297, guid: 64a1bfed3e6382742a7ab56c24a8285c, type: 3}
   pos: {x: 0, y: 0}
   card: {fileID: 0}
+  buttonPowerup: {fileID: 0}
+  effect: {fileID: 3347006561227784572, guid: b079cc20ac6305d4da5e7ffa99939c06, type: 3}
+  attackEffect: {fileID: 6553047553640012297, guid: 64a1bfed3e6382742a7ab56c24a8285c, type: 3}
