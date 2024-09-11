@@ -14,7 +14,7 @@ public class ItemChestMiniGame : Item
     }
     public CardId GetRandomCard()
     {
-        int ratio1 = 15;
+        int ratio1 = 5;
         int ratio2 = 30 + ratio1;
         int ratio3 = 10 + ratio2;
         int ratio4 = 55 + ratio3;
