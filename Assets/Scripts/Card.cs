@@ -147,9 +147,15 @@ public class Card : MonoBehaviour, IPointerDownHandler
         }
         else
         {
-            if (cardEffect is Monster) Gameplay.Instance.popupInfo.DisplayCard(icon.sprite, ((Monster)cardEffect).tags, side);
-            else if (cardEffect is Item || cardEffect is Skill) Gameplay.Instance.popupInfo.DisplayCard(this, side);
-            else Gameplay.Instance.popupInfo.DisplayCard(CardManager.selectedHero);
+            if (cardEffect is Monster)
+            {
+                Gameplay.Instance.popupInfo.ShowCardMonster(this, (Monster)cardEffect, side);
+            }
+            else if (cardEffect is Item || cardEffect is Skill)
+            {
+                Gameplay.Instance.popupInfo.ShowCardItem(this, side);
+            }
+            else Gameplay.Instance.popupInfo.ShowCardHero(CardManager.selectedHero);
         }
     }
 

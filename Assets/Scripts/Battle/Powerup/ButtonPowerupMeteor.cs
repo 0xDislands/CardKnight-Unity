@@ -37,7 +37,9 @@ public class ButtonPowerupMeteor : ButtonPowerup
         {
             if (monster.GetComponentInChildren<ImmuneMagicTag>() != null) continue;
             var newMeteor = SimpleObjectPool.Instance.GetObjectFromPool(meteor, monster.transform.position);
-            newMeteor.damageData.damage = hero.heroData.maxHp;
+            float damage = Mathf.CeilToInt(hero.heroData.hp * 0.25f);
+            if (damage < 1) damage = 1;
+            newMeteor.damageData.damage = damage;
             newMeteor.FallToAttack(monster);
             yield return new WaitForSeconds(0.1f);
         }

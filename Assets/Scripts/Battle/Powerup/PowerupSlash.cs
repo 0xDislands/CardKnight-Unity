@@ -34,10 +34,9 @@ public class PowerupSlash : PowerupBase
         if (card.TryGetComponent<Monster>(out var monster))
         {
             var newEffect = SimpleObjectPool.Instance.GetObjectFromPool(effect, card.transform.position);
-         //   newEffect.DoEffect();
             var newAttackEffect = SimpleObjectPool.Instance.GetObjectFromPool(attackEffect, card.transform.position);
             var damage = new DamageData();
-            damage.damage = Mathf.CeilToInt(monster.monsterData.maxHp * 0.25f);
+            damage.damage = Mathf.CeilToInt(monster.monsterData.maxHp);
             monster.TakeDamage(damage, out bool dead);
         }
         else

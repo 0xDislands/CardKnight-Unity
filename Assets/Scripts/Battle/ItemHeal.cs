@@ -7,8 +7,10 @@ public class ItemHeal : Item
     public ParticleSystem healEffect;
     public override void ApplyEffect(Hero hero)
     {
+        int rand = Random.Range(1, 6);
+        int healValue = Mathf.CeilToInt((rand / 10f) * hero.heroData.maxHp);
         var data = new DamageData();
-        data.damage = 1;
+        data.damage = healValue;
         hero.Heal(data);
         var effect = SimpleObjectPool.Instance.GetObjectFromPool(healEffect, hero.transform.position);
         effect.transform.SetParent(hero.transform);

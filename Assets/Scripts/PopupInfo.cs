@@ -11,7 +11,8 @@ public class PopupInfo : MonoBehaviour
     public const float ANIMATION_TIME = 0.5f;
 
     [SerializeField] private Image icon;
-    [SerializeField] private TextMeshProUGUI skillInfo;
+    [SerializeField] private TextMeshProUGUI txtName;
+    [SerializeField] private TextMeshProUGUI txtDescription;
     [SerializeField] private TagInfo tagInfo;
     [SerializeField] private Sprite questionMark;
     [SerializeField] private Transform body;
@@ -20,7 +21,7 @@ public class PopupInfo : MonoBehaviour
     {
         body.transform.localScale = Vector3.zero;
         body.transform.DOScale(1f, ANIMATION_TIME).SetEase(Ease.OutBack);
-        skillInfo.text = "";
+        txtDescription.text = "";
     }
 
     public void DisplaySkill(PowerupId id)
@@ -29,44 +30,50 @@ public class PopupInfo : MonoBehaviour
         var data = DataManager.Instance.dicPowerUp[id];
         icon.sprite = data.sprite;
         icon.preserveAspect = true;
-        skillInfo.gameObject.SetActive(true);
+        txtDescription.gameObject.SetActive(true);
         tagInfo.gameObject.SetActive(false);
-        skillInfo.text = data.description;
+        txtDescription.text = data.description;
+        txtName.text = data.name;
     }
 
-    public void DisplayCard(HeroId id)
+    public void ShowCardHero(HeroId id)
     {
         gameObject.SetActive(true);
         var data = DataManager.Instance.dicHero[id];
         icon.sprite = data.sprite;
         icon.preserveAspect = true;
-        skillInfo.gameObject.SetActive(true);
+        txtDescription.gameObject.SetActive(true);
         tagInfo.gameObject.SetActive(false);
-        skillInfo.text = data.description;
+        txtDescription.text = data.name;
+        txtName.text = "Hero";
     }
 
 
-    public void DisplayCard(Sprite icon, MonsterTag[] tags, CardSide side)
+    public void ShowCardMonster(Card card, Monster monster, CardSide side)
     {
         gameObject.SetActive(true);
         if (side == CardSide.Back) this.icon.sprite = questionMark;
-        else this.icon.sprite = icon;
+        else this.icon.sprite = card.icon.sprite;
         this.icon.preserveAspect = true;
-        skillInfo.gameObject.SetActive(false);
+        txtDescription.gameObject.SetActive(false);
         tagInfo.gameObject.SetActive(true);
-        tagInfo.DisplayTags(tags, side);
+        tagInfo.DisplayTags(monster.tags, side);
+        txtName.text = card.data.name;
+        txtDescription.text = card.data.description;
     }
 
-    public void DisplayCard(Card card, CardSide side)
+    public void ShowCardItem(Card card, CardSide side)
     {
         gameObject.SetActive(true);
         if (side == CardSide.Back) this.icon.sprite = questionMark;
         else icon.sprite = card.icon.sprite;
 
         icon.preserveAspect = true;
-        skillInfo.gameObject.SetActive(true);
+        txtDescription.gameObject.SetActive(true);
         tagInfo.gameObject.SetActive(false);
-        skillInfo.text = "";
+
+        txtDescription.text = card.data.description;
+        txtName.text = card.data.name;
     }
 
     public void Close()
