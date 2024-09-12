@@ -27,10 +27,10 @@ public class PoisonEachTurn : TurnEndEffect
     }
     public override IEnumerator IETurnEnd()
     {
-        if(!hero.hasMove) yield break;
-        yield return new WaitForSeconds (DELAY);
         turnCount--;
-        if (turnCount < 0) Destroy(this);
+        if (!hero.hasMove) yield break;
+        yield return new WaitForSeconds (DELAY);
+        if (turnCount <= 0) Destroy(this);
         var damageData = new DamageData ();
         damageData.damage = 1;
         hero.TakeDamage(damageData, out bool dead);
