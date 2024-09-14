@@ -346,6 +346,7 @@ MonoBehaviour:
   <data>k__BackingField:
     id: 0
     name: 
+    description: 
     sprite: {fileID: 0}
     health: 0
     cardPrefab: {fileID: 0}
@@ -385,6 +386,7 @@ MonoBehaviour:
     currentExp: 0
     totalExp: 0
   canMove: 0
+  hasMove: 0
 --- !u!114 &7724125158432507538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e328802b686bcbd418e73dd1a37c6760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minSwipeDistance: 50
 --- !u!1001 &4839564811546984991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -709,6 +712,18 @@ PrefabInstance:
     - target: {fileID: 1611094673713705332, guid: 7b3352662536f494d85be35678a7e064, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2228980132084174982, guid: 7b3352662536f494d85be35678a7e064, type: 3}
+      propertyPath: m_text
+      value: 10/12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2228980132084174982, guid: 7b3352662536f494d85be35678a7e064, type: 3}
+      propertyPath: m_fontSize
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 2228980132084174982, guid: 7b3352662536f494d85be35678a7e064, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 6844200119495683571, guid: 7b3352662536f494d85be35678a7e064, type: 3}
       propertyPath: m_Name

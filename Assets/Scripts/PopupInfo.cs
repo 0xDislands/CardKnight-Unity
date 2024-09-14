@@ -52,28 +52,42 @@ public class PopupInfo : MonoBehaviour
     public void ShowCardMonster(Card card, Monster monster, CardSide side)
     {
         gameObject.SetActive(true);
-        if (side == CardSide.Back) this.icon.sprite = questionMark;
-        else this.icon.sprite = card.icon.sprite;
+        if (side == CardSide.Back)
+        {
+            this.icon.sprite = questionMark;
+            txtName.text = "Unknown";
+            txtDescription.text = "Unknown";
+        } 
+        else
+        {
+            this.icon.sprite = card.icon.sprite;
+            txtName.text = card.data.name;
+            txtDescription.text = card.data.description;
+        }
         this.icon.preserveAspect = true;
         txtDescription.gameObject.SetActive(false);
         tagInfo.gameObject.SetActive(true);
         tagInfo.DisplayTags(monster.tags, side);
-        txtName.text = card.data.name;
-        txtDescription.text = card.data.description;
     }
 
     public void ShowCardItem(Card card, CardSide side)
     {
         gameObject.SetActive(true);
-        if (side == CardSide.Back) this.icon.sprite = questionMark;
-        else icon.sprite = card.icon.sprite;
-
+        if (side == CardSide.Back)
+        {
+            this.icon.sprite = questionMark;
+            txtName.text = "Unknown";
+            txtDescription.text = "Unknown";
+        }
+        else
+        {
+            icon.sprite = card.icon.sprite;
+            txtDescription.text = card.data.description;
+            txtName.text = card.data.name;
+        }
         icon.preserveAspect = true;
         txtDescription.gameObject.SetActive(true);
         tagInfo.gameObject.SetActive(false);
-
-        txtDescription.text = card.data.description;
-        txtName.text = card.data.name;
     }
 
     public void Close()

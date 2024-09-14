@@ -11010,6 +11010,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8151232389537041027, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
+      propertyPath: powerupDatas.Array.data[4].description
+      value: Steal 20% HP from a monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151232389537041027, guid: 048ff6abe3631b545a07194e29b54cda, type: 3}
+      propertyPath: powerupDatas.Array.data[5].description
+      value: Shuffle all cards except Main character
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

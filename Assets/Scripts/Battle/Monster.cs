@@ -23,7 +23,7 @@ public class Monster : CardEffect
     {
         Init();
         monsterData.currentHp = monsterData.maxHp;
-        textHp.SetHP(monsterData);
+        textHp.SetHpMonster(monsterData);
     }
     private void OnEnable()
     {
@@ -72,7 +72,7 @@ public class Monster : CardEffect
         {
             monsterData.currentHp = monsterData.maxHp;
         }
-        textHp.SetHP(monsterData);
+        textHp.SetHpMonster(monsterData);
     }
 
     public void TakeDamage(DamageData data, out bool dead)
@@ -84,7 +84,7 @@ public class Monster : CardEffect
             monsterData.currentHp = 0;
             dead = true;
         }
-        textHp.SetHP(monsterData);
+        textHp.SetHpMonster(monsterData);
         EffectManager.Instance.Hit(transform);
 
         if (dead == true)

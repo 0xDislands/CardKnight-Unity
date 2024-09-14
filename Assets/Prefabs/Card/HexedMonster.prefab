@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 5.4179077, y: 4.5843964}
+  m_AnchoredPosition: {x: 1.927002, y: 1.989502}
   m_SizeDelta: {x: 10.8358, y: 9.1688}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9041676920230465868
@@ -422,10 +422,10 @@ RectTransform:
   m_Children:
   - {fileID: 5508648952251700889}
   - {fileID: 1789007346959380260}
-  - {fileID: 2150959188416721914}
   - {fileID: 5245249463239659553}
   - {fileID: 2780968226113534523}
   - {fileID: 2944033504300657100}
+  - {fileID: 2150959188416721914}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -492,6 +492,7 @@ MonoBehaviour:
   <data>k__BackingField:
     id: 0
     name: 
+    description: 
     sprite: {fileID: 0}
     health: 0
     cardPrefab: {fileID: 0}

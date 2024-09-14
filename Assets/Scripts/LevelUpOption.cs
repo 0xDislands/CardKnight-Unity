@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class LevelUpOption : MonoBehaviour
 {
@@ -48,6 +49,7 @@ public class LevelUpOption : MonoBehaviour
 
     public void OnClick()
     {
+        Notify(title.text);
         var levelUpPopup = GetComponentInParent<PopupLevelUp>();
         switch (data.id)
         {
@@ -84,5 +86,15 @@ public class LevelUpOption : MonoBehaviour
                 break;
         }
         if (levelUpPopup) levelUpPopup.Close();
+    }
+
+    public void Notify(string text)
+    {
+        var pos = Camera.main.ScreenToWorldPoint(transform.position);
+        var popup = GameObject.FindGameObjectWithTag("CanvasPopup");
+        var txtNotify = SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextMeshProUGUI>("TextFlyingUGUI"), popup.transform);
+
+        txtNotify.transform.SetParent(popup.transform, false);
+        txtNotify.text = text;
     }
 }

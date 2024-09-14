@@ -52,7 +52,7 @@ public class Hero : MonoBehaviour
     }
     private void Start()
     {
-        textHp.SetHP(heroData);
+        textHp.SetHpHero(heroData);
         textShield.SetShield(heroData);
     }
 
@@ -76,7 +76,7 @@ public class Hero : MonoBehaviour
         {
             heroData.shield -= (int)data.damage;
         }
-        textHp.SetHP(heroData);
+        textHp.SetHpHero(heroData);
         textShield.SetShield(heroData);
         dead = false;
         EffectManager.Instance.Hit(transform);
@@ -90,7 +90,7 @@ public class Hero : MonoBehaviour
             heroData.hp = 0;
             Die();
         }
-        textHp.SetHP(heroData);
+        textHp.SetHpHero(heroData);
     }
 
     public void Heal(DamageData data)
@@ -106,7 +106,7 @@ public class Hero : MonoBehaviour
             heroData.hp = 0;
             Die();
         }
-        textHp.SetHP(heroData);
+        textHp.SetHpHero(heroData);
     }
 
     public bool HealIsDisable()
@@ -135,7 +135,7 @@ public class Hero : MonoBehaviour
     }
     public void UpdateDisplay()
     {
-        textHp.SetHP(heroData);
+        textHp.SetHpHero(heroData);
         textShield.SetShield(heroData);
     }
 
