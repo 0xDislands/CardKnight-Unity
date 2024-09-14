@@ -17370,6 +17370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 1827685197}
+  cardBackground: {fileID: 2083883647}
   txtName: {fileID: 368106563}
   txtDescription: {fileID: 992186958}
   tagInfo: {fileID: 1461876072}
@@ -30047,7 +30048,7 @@ GameObject:
   - component: {fileID: 2083883648}
   - component: {fileID: 2083883647}
   m_Layer: 5
-  m_Name: Icon
+  m_Name: CardBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

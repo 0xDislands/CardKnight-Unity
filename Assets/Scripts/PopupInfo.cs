@@ -11,6 +11,7 @@ public class PopupInfo : MonoBehaviour
     public const float ANIMATION_TIME = 0.5f;
 
     [SerializeField] private Image icon;
+    [SerializeField] private Image cardBackground;
     [SerializeField] private TextMeshProUGUI txtName;
     [SerializeField] private TextMeshProUGUI txtDescription;
     [SerializeField] private TagInfo tagInfo;
@@ -57,12 +58,14 @@ public class PopupInfo : MonoBehaviour
             this.icon.sprite = questionMark;
             txtName.text = "Unknown";
             txtDescription.text = "Unknown";
+            cardBackground.color = Color.black;
         } 
         else
         {
             this.icon.sprite = card.icon.sprite;
             txtName.text = card.data.name;
             txtDescription.text = card.data.description;
+            cardBackground.color = Color.white;
         }
         this.icon.preserveAspect = true;
         txtDescription.gameObject.SetActive(false);
@@ -78,12 +81,14 @@ public class PopupInfo : MonoBehaviour
             this.icon.sprite = questionMark;
             txtName.text = "Unknown";
             txtDescription.text = "Unknown";
+            cardBackground.color = Color.black;
         }
         else
         {
             icon.sprite = card.icon.sprite;
             txtDescription.text = card.data.description;
             txtName.text = card.data.name;
+            cardBackground.color = Color.white;
         }
         icon.preserveAspect = true;
         txtDescription.gameObject.SetActive(true);
