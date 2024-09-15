@@ -88,7 +88,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
         sequence.AppendInterval(delayFlip);
         sequence.AppendCallback(() =>
         {
-            if (CardManager.Instance.gameMode == GameMode.Normal)
+            if (CardManager.Instance.gameMode == GameMode.Normal || GetComponent<Hero>() != null)
             {
                 FlipToFront();
             }
@@ -113,6 +113,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
     public void FlipToBack()
     {
         if (side == CardSide.Back) return;
+        if (GetComponent<Hero>() != null) return;
         flipping = true;
         side = CardSide.Back;
         cardBack.gameObject.SetActive(false);
