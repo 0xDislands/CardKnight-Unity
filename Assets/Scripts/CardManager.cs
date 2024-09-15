@@ -98,7 +98,6 @@ public class CardManager : MonoBehaviour
         //cần spawn hero đầu tiên vì các card khác cần lấy data từ hero (ví dụ như card monster)
         int midIndex = GridManager.Instance.grids.Length / 2;
         cards = new List<Card>();
-        Debug.Log("calling spawn card all card start game");
         heroCard = SpawnCard(GridManager.Instance.grids[midIndex].pos, CardId.Hero);
         heroCard.icon.sprite = DataManager.Instance.dicHero[selectedHero].sprite;
         hero = heroCard.GetComponent<Hero>();
@@ -114,7 +113,6 @@ public class CardManager : MonoBehaviour
             } else
             {
                 id = startCards[startCardIndex];
-                Debug.Log("calling spawn card start game 1");
                 card = SpawnCard(GridManager.Instance.grids[i].pos, id);
                 startCardIndex++;
                 if(card.TryGetComponent<Monster>(out var monster))
@@ -200,15 +198,7 @@ public class CardManager : MonoBehaviour
 
     private List<CardSpawnData> GetSpawnCardsData()
     {
-        //if (Constants.TEST_SKILL_FIRE)
-        //{
-        //    return new List<CardId>() {
-        //    CardId.Monster1, CardId.SkillFire,
-        //    CardId.Monster2, CardId.SkillFire};
-        //}
         var allTag = (TagType[])Enum.GetValues(typeof(TagType));
-
-        //var contents = spawnCardData.text.Split("\n");
         var data = string.Empty;
         if (EditData.useCustomData && !string.IsNullOrEmpty(EditData.dataStr)) data = EditData.dataStr;
         else data = spawnCardData.text;
@@ -359,10 +349,8 @@ public class CardManager : MonoBehaviour
     public void MoveCardsAfterUse(Card card)
     {
         hero.hasMove = heroCard.Pos != card.Pos;
-        Debug.Log($"hero pos = {heroCard.Pos}, card pos = {card.Pos}");
         var moveCard = GetMoveCard(card);
         var spawnNewCardPosition = moveCard.Pos;
-        //Debug.Log($"is corner card = {GridManager.Instance.IsCornerCard(heroCard.Pos)}");
         //Nếu ngay góc thì di chuyển toàn bộ cột
         if (GridManager.Instance.IsCornerCard(heroCard.Pos))
         {
@@ -385,9 +373,7 @@ public class CardManager : MonoBehaviour
             moveCard.MoveToPos(heroCard.Pos);
         }
         heroCard.MoveToPos(card.Pos);       
-        //DOTween.Kill(card.transform);
         var newCardId = GetNextCard();
-        Debug.Log("calling spawn card move card after use!!");
         var newCard = SpawnCard(spawnNewCardPosition, newCardId.cardId);
         newCard.ShowSpawnAnimation(0f);
         if (newCard.TryGetComponent<Monster>(out var monster))
@@ -500,7 +486,6 @@ public class CardManager : MonoBehaviour
     
     public void GrowAllMonster()
     {
-        Debug.Log("Growth");
         var tag = FindTag(TagType.Growth);
         if (tag != null) StartCoroutine(tag.IETurnEnd());
     }
@@ -583,5 +568,4 @@ public class CardManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
     }
-
 }

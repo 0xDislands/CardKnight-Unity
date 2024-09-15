@@ -62,17 +62,12 @@ public class Gameplay : MonoBehaviour
 
     public void Lose()
     {
-        Debug.Log("This is lose!!");
-        Debug.Log("Lose 1");
         if (Constants.SHOW_CHEAT_OBJECT && cheatToggle.isOn) return;
-        Debug.Log("Lose 2");
         if (state == GameplayState.Lose) return;
-        Debug.Log("Lose 3");
         state = GameplayState.Lose;
-        Debug.Log("Lose 4");
         popupGameOver.gameObject.SetActive(true);
-        Debug.Log("Lose 5");
     }
+
     public ButtonPowerup GetButtonPowerUpByID(PowerupId id)
     {
         foreach (var buttonPowerup in buttonPowerups)

@@ -28,6 +28,7 @@ public class PopupInfo : MonoBehaviour
     public void DisplaySkill(PowerupId id)
     {
         gameObject.SetActive(true);
+        cardBackground.color = Color.white;
         var data = DataManager.Instance.dicPowerUp[id];
         icon.sprite = data.sprite;
         icon.preserveAspect = true;
@@ -40,6 +41,7 @@ public class PopupInfo : MonoBehaviour
     public void ShowCardHero(HeroId id)
     {
         gameObject.SetActive(true);
+        cardBackground.color = Color.white;
         var data = DataManager.Instance.dicHero[id];
         icon.sprite = data.sprite;
         icon.preserveAspect = true;
@@ -53,6 +55,7 @@ public class PopupInfo : MonoBehaviour
     public void ShowCardMonster(Card card, Monster monster, CardSide side)
     {
         gameObject.SetActive(true);
+        cardBackground.color = Color.white;
         if (side == CardSide.Back)
         {
             this.icon.sprite = questionMark;
@@ -76,6 +79,7 @@ public class PopupInfo : MonoBehaviour
     public void ShowCardItem(Card card, CardSide side)
     {
         gameObject.SetActive(true);
+        cardBackground.color = Color.white;
         if (side == CardSide.Back)
         {
             this.icon.sprite = questionMark;

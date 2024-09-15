@@ -129,7 +129,6 @@ public class Card : MonoBehaviour, IPointerDownHandler
         if (!CardManager.Instance.canClick) return;
         if (flipping) return;
         if (Time.time - lastClick < DOUBLE_CLICK_PREVENT_TIME) return;
-        Debug.Log(gameObject.name);
         if(eventData.button == PointerEventData.InputButton.Left)
         {
             lastClick = Time.time;

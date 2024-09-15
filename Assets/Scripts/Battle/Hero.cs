@@ -65,12 +65,10 @@ public class Hero : MonoBehaviour
             heroData.shield = 0;
             if (heroData.hp <= 0)
             {
-                Debug.Log("Die!");
                 heroData.hp = 0;
                 dead = true;
                 Gameplay.Instance.Lose();
             }
-            Debug.Log($"take damage, after take damage, hp = {heroData.hp}, dead = {dead}");
         }
         else
         {
