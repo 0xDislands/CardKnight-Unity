@@ -18,8 +18,10 @@ public enum CardUse
     OneTime, ManyTimeUntilDisappear
 }
 
-public class Card : MonoBehaviour, IPointerDownHandler
+public class Card : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    public static Card currentSelectedCard;
+
     public const bool DEBUG_POSITION = false;
     public const float SPAWN_SPAW_X = -4f;
     public const float SPAWN_SPAW_Y = 8f;
@@ -28,6 +30,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
     public const float CARD_FADE_SPEED = 0.4f;
     public const float SPAWN_DELAY_FLIP = 0.2f;
     public const float DOUBLE_CLICK_PREVENT_TIME = 0.5f;
+    public const float HOLD_TIME_SHOW_POPUP_INFO = 1f;
 
     private Vector2Int pos;
     [SerializeField] Image cardBack;
@@ -44,6 +47,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
     private List<CardEffect> effects = new List<CardEffect>();
     [SerializeField] private bool flipping;
     private float lastClick;
+    private float onPointerDownTime;
 
     public Vector2Int Pos
     {
@@ -66,6 +70,13 @@ public class Card : MonoBehaviour, IPointerDownHandler
         lastClick = Time.time;
     }
 
+    private void Update()
+    {
+        if (onPointerDownTime != 0 && Time.time - onPointerDownTime > HOLD_TIME_SHOW_POPUP_INFO)
+        {
+            ShowInfo();
+        }
+    }
 
     public void SetData(CardData cardData)
     {
@@ -127,37 +138,8 @@ public class Card : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (Gameplay.Instance.state != GameplayState.Playing) return;
-        if (!CardManager.Instance.canClick) return;
-        if (flipping) return;
-        if (Time.time - lastClick < DOUBLE_CLICK_PREVENT_TIME) return;
-        if(eventData.button == PointerEventData.InputButton.Left)
-        {
-            lastClick = Time.time;
-            Hero hero = CardManager.Instance.hero;
-            if (!hero.canMove) return;
-            hero = GetComponent<Hero>();
-            if (hero != null)
-            {
-                Debug.Log("You click hero card");
-            }
-            if (CardManager.Instance.IsNextToHeroCard(this))
-            {
-                CardManager.Instance.UseCard(this);
-            }
-        }
-        else
-        {
-            if (cardEffect is Monster)
-            {
-                Gameplay.Instance.popupInfo.ShowCardMonster(this, (Monster)cardEffect, side);
-            }
-            else if (cardEffect is Item || cardEffect is Skill)
-            {
-                Gameplay.Instance.popupInfo.ShowCardItem(this, side);
-            }
-            else Gameplay.Instance.popupInfo.ShowCardHero(CardManager.selectedHero);
-        }
+        currentSelectedCard = this;
+        onPointerDownTime = Time.time;
     }
 
     public void Disappear()
@@ -185,5 +167,49 @@ public class Card : MonoBehaviour, IPointerDownHandler
         this.pos = pos;
         GridManager.Instance.dicGrids[pos].card = this;
         transform.DOMove(GridManager.Instance.dicGrids[pos].transform.position, CARD_MOVE_SPEED);
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        onPointerDownTime = 0;
+        if (Gameplay.Instance.popupInfo.gameObject.activeInHierarchy) return;
+        if (currentSelectedCard != this) return;
+        if (Gameplay.Instance.state != GameplayState.Playing) return;
+        if (!CardManager.Instance.canClick) return;
+        if (flipping) return;
+        if (Time.time - lastClick < DOUBLE_CLICK_PREVENT_TIME) return;
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            lastClick = Time.time;
+            Hero hero = CardManager.Instance.hero;
+            if (!hero.canMove) return;
+            hero = GetComponent<Hero>();
+            if (hero != null)
+            {
+                Debug.Log("You click hero card");
+            }
+            if (CardManager.Instance.IsNextToHeroCard(this))
+            {
+                CardManager.Instance.UseCard(this);
+            }
+        }
+        else
+        {
+            ShowInfo();
+        }
+    }
+
+    public void ShowInfo()
+    {
+        if (Gameplay.Instance.popupInfo.gameObject.activeInHierarchy) return;
+        if (cardEffect is Monster)
+        {
+            Gameplay.Instance.popupInfo.ShowCardMonster(this, (Monster)cardEffect, side);
+        }
+        else if (cardEffect is Item || cardEffect is Skill)
+        {
+            Gameplay.Instance.popupInfo.ShowCardItem(this, side);
+        }
+        else Gameplay.Instance.popupInfo.ShowCardHero(CardManager.selectedHero);
     }
 }

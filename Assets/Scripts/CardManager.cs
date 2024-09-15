@@ -36,7 +36,6 @@ public class CardManager : MonoBehaviour
     public Hero hero;
     public Card heroCard;
     public bool canClick = true;
-    //private List<Coroutine> co = new List<Coroutine>(); 
     public GameMode gameMode { get; private set; } = GameMode.Normal;
 
     public List<Card> cards;

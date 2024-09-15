@@ -11,6 +11,6 @@ public class TextShield : MonoBehaviour
     }
     public void SetShield(HeroBattleData heroData)
     {
-        txtHp.text = Mathf.Round(heroData.shield).ToString();
+        txtHp.text = Mathf.Round(heroData.shield).ToString() + "/" + heroData.maxShield.ToString();
     }
 }

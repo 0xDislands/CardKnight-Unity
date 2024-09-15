@@ -34,7 +34,6 @@ public class ButtonPowerUpLifeSteal : ButtonPowerup
         for (int i = 0; i < CardManager.Instance.cards.Count; i++)
         {
             if (GridManager.Instance.grids[i].pos == heroCard.Pos) continue;
-            //if (GridManager.Instance.grids[i].card.GetComponentInChildren<ImmuneMagicTag>() != null) continue;
             monsterCount++;
             GridPos grid = GridManager.Instance.grids[i];
             var swap = Instantiate(powerupPrefab, grid.card.transform);
@@ -45,7 +44,6 @@ public class ButtonPowerUpLifeSteal : ButtonPowerup
         }
         if (monsterCount == 0)
         {
-            //Notify("OUT OF RANGE");
             hero.canMove = true;
         } else
         {
