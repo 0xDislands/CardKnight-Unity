@@ -32,7 +32,7 @@ public class Gameplay : MonoBehaviour
         get { return score; }
         set {
             score = value;
-            scoreTxt.text = $"Score: {(int)value}";
+            scoreTxt.text = $"Score: {(int)(value)}";
         }
     }
 
