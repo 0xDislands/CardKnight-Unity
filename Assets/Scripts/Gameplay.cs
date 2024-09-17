@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,7 +24,17 @@ public class Gameplay : MonoBehaviour
     public PopupInfo popupInfo;
     public Toggle cheatToggle;
     public TimeCounter timeCounter;
+    public TextMeshProUGUI scoreTxt;
     public ButtonPowerup[] buttonPowerups { get; private set; }
+    [SerializeField] private float score;
+    public float Score
+    {
+        get { return score; }
+        set {
+            score = value;
+            scoreTxt.text = $"Score: {(int)value}";
+        }
+    }
 
     private void Awake()
     {
@@ -38,6 +49,7 @@ public class Gameplay : MonoBehaviour
 
     public void StartGame()
     {
+        Score = 0;
         popupLevelUp.gameObject.SetActive(false);
         popupPoweupUnlocked.gameObject.SetActive(false);
         popupGameOver.gameObject.SetActive(false);

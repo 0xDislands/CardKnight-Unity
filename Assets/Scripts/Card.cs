@@ -94,6 +94,7 @@ public class Card : MonoBehaviour, IPointerDownHandler
             }
             onCardAppear?.Invoke();
             CardManager.Instance.canClick = true;
+            CardManager.Instance.hero.transform.SetAsLastSibling();
         });
     }
 

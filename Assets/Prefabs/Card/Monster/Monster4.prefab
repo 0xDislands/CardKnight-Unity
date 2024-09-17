@@ -258,8 +258,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.6846924, y: 0.5399933}
-  m_SizeDelta: {x: -37.5695, y: -34.3481}
+  m_AnchoredPosition: {x: 4.0509033, y: 5.230194}
+  m_SizeDelta: {x: -30.8371, y: -24.9677}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1834742060293970415
 CanvasRenderer:
@@ -494,6 +494,7 @@ MonoBehaviour:
   <data>k__BackingField:
     id: 0
     name: 
+    description: 
     sprite: {fileID: 0}
     health: 0
     cardPrefab: {fileID: 0}
@@ -532,6 +533,7 @@ MonoBehaviour:
     amor: 4
   attackEffect: {fileID: 6553047553640012297, guid: 64a1bfed3e6382742a7ab56c24a8285c, type: 3}
   tags: []
+  highLight: {fileID: 0}
 --- !u!114 &4640847567302313464
 MonoBehaviour:
   m_ObjectHideFlags: 0

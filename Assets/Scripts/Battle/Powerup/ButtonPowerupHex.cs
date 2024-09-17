@@ -1,5 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+
 public class ButtonPowerupHex : ButtonPowerup
 {
     public PowerupHex powerupPrefab;
@@ -40,6 +42,13 @@ public class ButtonPowerupHex : ButtonPowerup
             curse.pos = grid.pos;
             curse.card = grid.card;
             curse.buttonPowerup = this;
+            if (!CardManager.Instance.heroNeighbours.Contains(GridManager.Instance.grids[i].pos) || GridManager.Instance.grids[i].card.GetComponent<Monster>() == null)
+            {
+                var button = curse.GetComponentInChildren<Button>();
+                var color = Color.white;
+                color.a = 0f;
+                button.image.color = color;
+            }
         }
         if (monsterCount == 0)
         {

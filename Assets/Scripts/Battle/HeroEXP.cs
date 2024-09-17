@@ -33,6 +33,7 @@ public class HeroEXP : MonoBehaviour
     }
     public void AddEXP(float exp)
     {
+        Gameplay.Instance.Score += exp;
         var heroData = hero.heroData;
         float neededExp = GetExpNeedForNextLevel(heroData.level);
         heroData.currentExp += exp;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonPowerUpLifeSteal : ButtonPowerup
 {
@@ -42,6 +43,13 @@ public class ButtonPowerUpLifeSteal : ButtonPowerup
             swap.pos = grid.pos;
             swap.card = grid.card;
             swap.buttonPowerup = this;
+            if (!CardManager.Instance.heroNeighbours.Contains(GridManager.Instance.grids[i].pos) || GridManager.Instance.grids[i].card.GetComponent<Monster>() == null)
+            {
+                var button = swap.GetComponentInChildren<Button>();
+                var color = Color.white;
+                color.a = 0f;
+                button.image.color = color;
+            }
         }
         if (monsterCount == 0)
         {

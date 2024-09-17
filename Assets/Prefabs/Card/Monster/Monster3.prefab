@@ -493,6 +493,7 @@ MonoBehaviour:
   <data>k__BackingField:
     id: 0
     name: 
+    description: 
     sprite: {fileID: 0}
     health: 0
     cardPrefab: {fileID: 0}
@@ -531,6 +532,7 @@ MonoBehaviour:
     amor: 4
   attackEffect: {fileID: 6553047553640012297, guid: 64a1bfed3e6382742a7ab56c24a8285c, type: 3}
   tags: []
+  highLight: {fileID: 0}
 --- !u!1001 &2607893599460715961
 PrefabInstance:
   m_ObjectHideFlags: 0

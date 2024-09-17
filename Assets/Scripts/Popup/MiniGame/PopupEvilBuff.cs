@@ -58,7 +58,6 @@ public class PopupEvilBuff : MonoBehaviour
     }
     public void OnYes()
     {
-        Debug.Log("sos");
         for (int i = 0; i < options.Count; i++)
         {
             options[i].OnClick();

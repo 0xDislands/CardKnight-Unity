@@ -473,3 +473,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pos: {x: 0, y: 0}
   card: {fileID: 0}
+  buttonPowerup: {fileID: 0}

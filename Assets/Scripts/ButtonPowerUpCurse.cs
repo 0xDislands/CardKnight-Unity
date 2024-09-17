@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonPowerUpCurse : ButtonPowerup
 {
@@ -44,6 +45,13 @@ public class ButtonPowerUpCurse : ButtonPowerup
             curse.pos = grid.pos;
             curse.card = grid.card;
             curse.buttonPowerup = this;
+            if (!CardManager.Instance.heroNeighbours.Contains(GridManager.Instance.grids[i].pos) || GridManager.Instance.grids[i].card.GetComponent<Monster>() == null)
+            {
+                var button = curse.GetComponentInChildren<Button>();
+                var color = Color.white;
+                color.a = 0f;
+                button.image.color = color;
+            }
         }
     }
 
