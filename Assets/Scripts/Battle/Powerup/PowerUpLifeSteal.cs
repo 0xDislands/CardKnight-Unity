@@ -33,8 +33,7 @@ public class PowerUpLifeSteal : PowerupBase
         var monster = card.GetComponent<Monster>();
         if (monster)
         {
-            card.gameObject.SetActive(false);
-            monster.TakeDamage(new DamageData(monster.monsterData.maxHp), out var dead);
+            monster.TakeDamage(new DamageData(monster.monsterData.maxHp * 0.2f), out var dead);
             CardManager.Instance.hero.Heal(new DamageData((Mathf.CeilToInt((monster.monsterData.maxHp * 0.2f)))));
         }
         else

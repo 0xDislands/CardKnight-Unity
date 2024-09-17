@@ -2,6 +2,7 @@
 using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using TMPro;
 
 public class PopupEvilBuff : MonoBehaviour
 {
@@ -60,13 +61,12 @@ public class PopupEvilBuff : MonoBehaviour
     {
         for (int i = 0; i < options.Count; i++)
         {
-            options[i].OnClick();
+            var option = options[i];
+            DOVirtual.DelayedCall(i * 1f, () =>
+            {
+                option.OnClick();
+            });    
         }
-        Close();
-    }
-
-    public void Close()
-    {
         SetIntertracableButton(false);
         canvasGroup.DOFade(0f, ANIMATION_TIME);
         transform.DOScale(0f, ANIMATION_TIME).SetEase(Ease.InBack).OnComplete(() => {
@@ -75,5 +75,26 @@ public class PopupEvilBuff : MonoBehaviour
             CardManager.Instance.MoveCardsAfterUse(card);
             PopupManager.Instance.DoNextAction();
         });
+    }
+
+    public void Close()
+    {
+        Notify("Cancel Evil Buff");
+        SetIntertracableButton(false);
+        canvasGroup.DOFade(0f, ANIMATION_TIME);
+        transform.DOScale(0f, ANIMATION_TIME).SetEase(Ease.InBack).OnComplete(() => {
+            gameObject.SetActive(false);
+            card.Disappear();
+            CardManager.Instance.MoveCardsAfterUse(card);
+            PopupManager.Instance.DoNextAction();
+        });
+    }
+
+    public void Notify(string text)
+    { 
+        var popup = GameObject.FindGameObjectWithTag("CanvasPopup");
+        var txtNotify = SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextMeshProUGUI>("TextFlyingUGUI"), popup.transform);
+        txtNotify.transform.SetParent(popup.transform, false);
+        txtNotify.text = text;
     }
 }
