@@ -16,6 +16,7 @@ public class PowerupSlash : PowerupBase
     {
         base.OnClick();
         var neighbour = CardManager.Instance.heroNeighbours;
+        Hero hero = CardManager.Instance.hero;
         if (!neighbour.Contains(card.Pos))
         {
             var txtNotify = SimpleObjectPool.Instance.GetObjectFromPool(Resources.Load<TextMeshPro>("TextOnCooldown"), transform.position + new Vector3(0, 1f));
@@ -36,7 +37,7 @@ public class PowerupSlash : PowerupBase
             var newEffect = SimpleObjectPool.Instance.GetObjectFromPool(effect, card.transform.position);
             var newAttackEffect = SimpleObjectPool.Instance.GetObjectFromPool(attackEffect, card.transform.position);
             var damage = new DamageData();
-            damage.damage = Mathf.CeilToInt(monster.monsterData.maxHp);
+            damage.damage = Mathf.CeilToInt(hero.heroData.hp);
             monster.TakeDamage(damage, out bool dead);
         }
         else
@@ -51,7 +52,6 @@ public class PowerupSlash : PowerupBase
         {
             slashes[i].gameObject.SetActive(false);
         }
-        Hero hero = CardManager.Instance.hero;
         hero.canMove = true;
     }
     public void OnDisable()
