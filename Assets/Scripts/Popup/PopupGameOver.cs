@@ -35,7 +35,7 @@ public class PopupGameOver : MonoBehaviour
         transform.DOScale(1f, ANIMATION_TIME).SetEase(Ease.OutBack);
         btnRetry.gameObject.SetActive(false);
 
-        var exp = CardManager.Instance.hero.heroData.totalExp;
+        var exp = Gameplay.Instance.Score;
         txtHighScore.SetValue(0, (int)exp, RUN_TEXT_TIME);
         yield return new WaitForSeconds(1f);
 
