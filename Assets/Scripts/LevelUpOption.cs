@@ -10,11 +10,18 @@ public class LevelUpOption : MonoBehaviour
     public TextMeshProUGUI title;
     public TextMeshProUGUI amount;
     public TextMeshProUGUI description;
+    public Image highLight;
     private ChangeStateData data;
     public Button button;
     public bool changeColor;
     public Color colorGood;
     public Color colorBad;
+
+    private void OnEnable()
+    {
+        button.interactable = true;
+        highLight.gameObject.SetActive(false);
+    }
 
     public void Show(ChangeStateData data)
     {
@@ -50,7 +57,12 @@ public class LevelUpOption : MonoBehaviour
     public void OnClick()
     {
         Notify(title.text);
+        highLight.gameObject.SetActive(true);
         var levelUpPopup = GetComponentInParent<PopupLevelUp>();
+        foreach (var levelUp in levelUpPopup.options)
+        {
+            levelUp.button.interactable = false;
+        }
         switch (data.id)
         {
             case LevelUpId.ADD_HP:
@@ -85,7 +97,10 @@ public class LevelUpOption : MonoBehaviour
                 CardManager.Instance.hero.UpdateDisplay();
                 break;
         }
-        if (levelUpPopup) levelUpPopup.Close();
+        LeanTweenExt.LeanDelayedCall(gameObject, 0.5f, () =>
+        {
+            if (levelUpPopup) levelUpPopup.Close();
+        });
     }
 
     public void Notify(string text)

@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System.Collections;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -12,6 +13,7 @@ public enum GameplayState
 public class Gameplay : MonoBehaviour
 {
     public static Gameplay Instance;
+    public static bool fristPlay = true;
     public GameplayState state;
     public PopupLevelUp popupLevelUp;
     public PopupPoweupUnlocked popupPoweupUnlocked;
@@ -25,6 +27,9 @@ public class Gameplay : MonoBehaviour
     public Toggle cheatToggle;
     public TimeCounter timeCounter;
     public TextMeshProUGUI scoreTxt;
+    public GameObject hand;
+    public float lastClickTime;
+    public float time;
     public ButtonPowerup[] buttonPowerups { get; private set; }
     [SerializeField] private float score;
     public float Score
@@ -42,9 +47,34 @@ public class Gameplay : MonoBehaviour
         buttonPowerups = powerupGroupParent.GetComponentsInChildren<ButtonPowerup>(true);
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
         StartGame();
+        yield return new WaitForSeconds(2f);
+        if (fristPlay)
+        {
+            AppearHand();
+            fristPlay = false;
+        }
+    }
+
+    private void Update()
+    {
+        time += Time.deltaTime;
+        if (time - lastClickTime > 5f && !hand.activeInHierarchy)
+        {
+            AppearHand();
+            //lastClickTime = Time.time;
+        }
+    }
+
+    private void AppearHand()
+    {
+        hand.SetActive(true);
+        var heroNeighbours = CardManager.Instance.heroNeighbours;
+        var destinations = heroNeighbours.FindAll(neighbour => neighbour.y == CardManager.Instance.heroCard.Pos.y);
+        var final = destinations[Random.Range(0, destinations.Count)];
+        hand.transform.position = GridManager.Instance.dicGrids[final].transform.position;
     }
 
     public void StartGame()

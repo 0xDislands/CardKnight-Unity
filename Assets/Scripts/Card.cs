@@ -140,6 +140,8 @@ public class Card : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         currentSelectedCard = this;
         onPointerDownTime = Time.time;
+        Gameplay.Instance.hand.SetActive(false);
+        Gameplay.Instance.lastClickTime = Time.time;
     }
 
     public void Disappear()
