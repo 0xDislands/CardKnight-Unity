@@ -11,9 +11,9 @@ public class ItemChest : Item
         var effect = SimpleObjectPool.Instance.GetObjectFromPool(appearEffect, transform.position);
         var card = GetComponent<Card>();
         Debug.Log("calling spawn card item chest");
+        card.Disappear();
         var newCard = CardManager.Instance.SpawnCard(card.Pos, GetRandomCard());
         newCard.MoveToPos(card.Pos);
-        card.Disappear();
     }
 
     public CardId GetRandomCard()

@@ -38,6 +38,11 @@ public class Monster : CardEffect
         }
         for (int i = 0; i < tags.Length; i++)
         {
+            if (dic.ContainsKey(tags[i].type) == false)
+            {
+                tags[i].gameObject.SetActive(false);
+                continue;
+            }
             tags[i].gameObject.SetActive(dic[tags[i].type]);
         }
     }

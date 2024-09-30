@@ -33,7 +33,7 @@ public class Card : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public const float HOLD_TIME_SHOW_POPUP_INFO = 1f;
 
     private Vector2Int pos;
-    [SerializeField] Image cardBack;
+    [SerializeField] public Image cardBack;
     [SerializeField] Transform cardParent;
     public Image icon;
     public TextMeshProUGUI txtName;
@@ -124,7 +124,7 @@ public class Card : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void FlipToBack()
     {
-        if (side == CardSide.Back) return;
+        //if (side == CardSide.Back) return;
         if (GetComponent<Hero>() != null) return;
         flipping = true;
         side = CardSide.Back;

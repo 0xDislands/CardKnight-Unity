@@ -538,7 +538,7 @@ public class CardManager : MonoBehaviour
     private IEnumerator IEFlipDownAllCards()
     {
         List<Card> flipBackCards = new List<Card>();
-        flipBackCards.AddRange(this.cards);
+        flipBackCards.AddRange(FindObjectsOfType<Card>());
         flipBackCards.Remove(CardManager.Instance.heroCard);
 
         for (int i = flipBackCards.Count - 1; i >= 0; i--)
@@ -548,7 +548,7 @@ public class CardManager : MonoBehaviour
         }
         for (int i = 0; i < flipBackCards.Count; i++)
         {
-            if (flipBackCards[i].side == CardSide.Front) flipBackCards[i].FlipToBack();
+            if (flipBackCards[i].side == CardSide.Front || flipBackCards[i].cardBack.gameObject.activeInHierarchy == false) flipBackCards[i].FlipToBack();
             yield return new WaitForSeconds(0.1f);
         }
     }
