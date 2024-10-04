@@ -28,7 +28,7 @@ public class PopupEvilBuff : MonoBehaviour
         gameObject.SetActive(true);
         transform.localScale = Vector3.one * 0.8f;
         transform.DOScale(1f, ANIMATION_TIME).SetEase(Ease.OutBack);
-        index++;
+        index = Random.Range(0, levelUpDataParent.transform.childCount);
 
         if (index >= levelUpDataParent.transform.childCount)
         {

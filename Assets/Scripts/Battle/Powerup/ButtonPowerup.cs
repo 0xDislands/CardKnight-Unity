@@ -73,7 +73,10 @@ public abstract class ButtonPowerup : MonoBehaviour, IPointerEnterHandler, IPoin
         TurnLeftToUSeSkill = 0;
         hero.canMove = true;
     }
-
+    //public void ResetCooldown()
+    //{
+    //    TurnLeftToUSeSkill = maxTurnLeftToUseSkill;
+    //}
     public void OnPointerEnter(PointerEventData eventData)
     {
         transform.DOScale(Vector3.one * 1.2f, 0.2f);

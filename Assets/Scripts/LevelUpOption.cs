@@ -11,7 +11,7 @@ public class LevelUpOption : MonoBehaviour
     public TextMeshProUGUI amount;
     public TextMeshProUGUI description;
     public Image highLight;
-    private ChangeStateData data;
+    public ChangeStateData data;
     public Button button;
     public bool changeColor;
     public Color colorGood;
@@ -19,8 +19,8 @@ public class LevelUpOption : MonoBehaviour
 
     private void OnEnable()
     {
-        button.interactable = true;
-        highLight.gameObject.SetActive(false);
+        if (button) button.interactable = true;
+        highLight?.gameObject.SetActive(false);
     }
 
     public void Show(ChangeStateData data)
@@ -29,17 +29,17 @@ public class LevelUpOption : MonoBehaviour
         var tag = CardManager.Instance.FindTag(TagType.NoHope);
         if (tag != null && data.id == LevelUpId.ADD_HP)
         {
-            button.image.color = new Color(1, 1, 1, 0.5f);
+            if (button) button.image.color = new Color(1, 1, 1, 0.5f);
             imgDemo.color = new Color(1, 1, 1, 0.5f);
         } else
         {
-            button.image.color = new Color(1, 1, 1, 1f);
+            if (button) button.image.color = new Color(1, 1, 1, 1f);
             imgDemo.color = Color.white;
         }
         this.data = data;
         imgDemo.sprite = data.sprite;
         title.text = data.Title;
-        description.text = data.description;
+        description.text = "";
         if (data.amount >= FULL_LIMIT)
         {
             amount.text = "FULL";
@@ -57,11 +57,14 @@ public class LevelUpOption : MonoBehaviour
     public void OnClick()
     {
         Notify(title.text);
-        highLight.gameObject.SetActive(true);
+        highLight?.gameObject.SetActive(true);
         var levelUpPopup = GetComponentInParent<PopupLevelUp>();
-        foreach (var levelUp in levelUpPopup.options)
+        if (levelUpPopup != null)
         {
-            levelUp.button.interactable = false;
+            foreach (var levelUp in levelUpPopup.options)
+            {
+                if (levelUp.button) levelUp.button.interactable = false;
+            }
         }
         switch (data.id)
         {
@@ -79,12 +82,14 @@ public class LevelUpOption : MonoBehaviour
             case LevelUpId.ADD_AMOUR:
                 CardManager.Instance.hero.AddShield(data.amount);
                 break;
-            case LevelUpId.INCREASE_MAX_HP:
-                CardManager.Instance.hero.heroData.maxHp += data.amount;
+            case LevelUpId.INCREASE_MAX_HP_PERCENT:
+                float newValue = CardManager.Instance.hero.heroData.maxHp * (((float)data.amount) / 100f);
+                CardManager.Instance.hero.heroData.maxHp += Mathf.RoundToInt(newValue);
                 CardManager.Instance.hero.UpdateDisplay ();
                 break;
-            case LevelUpId.INCREASE_MAX_AMOUR:
-                CardManager.Instance.hero.heroData.maxShield += data.amount;
+            case LevelUpId.INCREASE_MAX_AMOUR_PERCENT:
+                float val2 = CardManager.Instance.hero.heroData.maxShield * (((float)data.amount) / 100f);
+                CardManager.Instance.hero.heroData.maxShield += Mathf.RoundToInt(val2);
                 CardManager.Instance.hero.UpdateDisplay ();
                 break;
             case LevelUpId.LOSE_CURRENT_HP_PERCENT:
@@ -95,6 +100,21 @@ public class LevelUpOption : MonoBehaviour
             case LevelUpId.INCREASE_EXP:
                 CardManager.Instance.hero.exp.AddEXP(data.amount);
                 CardManager.Instance.hero.UpdateDisplay();
+                break;
+            case LevelUpId.ADD_HP_PERCENT:
+                int healPercent = Mathf.RoundToInt(CardManager.Instance.hero.heroData.maxHp * (((float)data.amount) / 100f));
+                CardManager.Instance.hero.Heal(new DamageData((int)healPercent));
+                CardManager.Instance.hero.UpdateDisplay();
+                break;
+            case LevelUpId.LOSE_POINT_PERCENT:
+                Gameplay.Instance.Score *= 0.9f;
+                break;
+            case LevelUpId.RESET_COOL_DOWN_ALL_SKILL:
+                var buttons = FindObjectsOfType<ButtonPowerup>();
+                for (int i = 0; i < buttons.Length; i++)
+                {
+                    buttons[i].CancelSkill();
+                }
                 break;
         }
         LeanTweenExt.LeanDelayedCall(gameObject, 0.5f, () =>
